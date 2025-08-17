@@ -1,2 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* opcional: estilos base mínimos */
 html, body, #root { height: 100%; }
-body { margin: 0; background: #fff; color: #111827; }
+body { @apply bg-neutral-50 text-slate-900; }
