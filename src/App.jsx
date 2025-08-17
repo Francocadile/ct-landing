@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
 import { Button } from './components/ui/button.jsx'
 import { Card, CardContent, CardHeader, CardTitle } from './components/ui/card.jsx'
-import { Mail, Phone, Instagram, Youtube, MapPin, Twitter, Rss, Linkedin, TikTok, MessageCircle, Link as LinkIcon } from 'lucide-react'
-
+import { Mail, Phone, Instagram, Youtube, MapPin, Twitter, Rss, Linkedin, MessageCircle, Link as LinkIcon, Music } from 'lucide-react'
 // === Datos del cuerpo técnico ===
 const TEAM = [
   {
