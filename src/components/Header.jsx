@@ -3,12 +3,12 @@ import React, { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { SITE } from "../data/site";
 
-// Orden definitivo de navegación
+// Orden definitivo de navegación (sin "Filosofía", con "Resultados")
 const NAV = [
   { href: "#home", label: "Inicio" },
   { href: "#staff", label: "Staff" },
   { href: "#experiencia", label: "Experiencia" },
-  { href: "#filosofia", label: "Filosofía" },
+  { href: "#resultados", label: "Resultados" },   // NUEVO
   { href: "#modelo", label: "Modelo de juego" },
   { href: "#blog", label: "Blog" },
   { href: "#contacto", label: "Contacto" },
