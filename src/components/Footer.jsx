@@ -6,9 +6,10 @@ import {
   Linkedin,
   Youtube,
   Facebook,
-  Tiktok,
   Mail,
-  MessageCircle
+  MessageCircle,
+  Music, // usamos este como ícono para TikTok (fallback)
+  Link as LinkIcon // opcional para Threads si querés mostrarlo
 } from "lucide-react";
 import { SITE } from "../data/site";
 
@@ -43,8 +44,15 @@ export default function Footer() {
           <IconLink href={s.linkedin}  label="LinkedIn"><Linkedin className="h-5 w-5" /></IconLink>
           <IconLink href={s.youtube}   label="YouTube"><Youtube className="h-5 w-5" /></IconLink>
           <IconLink href={s.facebook}  label="Facebook"><Facebook className="h-5 w-5" /></IconLink>
-          <IconLink href={s.tiktok}    label="TikTok"><Tiktok className="h-5 w-5" /></IconLink>
-          <IconLink href={s.whatsapp}  label="WhatsApp"><MessageCircle className="h-5 w-5" /></IconLink>
+
+          {/* TikTok: fallback con icono Music porque 'Tiktok' no está exportado en tu versión */}
+          <IconLink href={s.tiktok} label="TikTok"><Music className="h-5 w-5" /></IconLink>
+
+          {/* Threads (opcional): usamos un icono de enlace genérico */}
+          <IconLink href={s.threads} label="Threads"><LinkIcon className="h-5 w-5" /></IconLink>
+
+          {/* WhatsApp */}
+          <IconLink href={s.whatsapp} label="WhatsApp"><MessageCircle className="h-5 w-5" /></IconLink>
 
           {SITE.email && (
             <a
@@ -60,3 +68,4 @@ export default function Footer() {
     </footer>
   );
 }
+
