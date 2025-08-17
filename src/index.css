@@ -1,3 +1,2 @@
-/* Estilos mínimos para evitar warnings */
 html, body, #root { height: 100%; }
-body { margin: 0; background: #ffffff; color: #111827; }
+body { margin: 0; background: #fff; color: #111827; }
