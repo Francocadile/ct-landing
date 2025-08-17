@@ -1,46 +1,75 @@
+import React from "react";
+import { TEAM } from "./data/staff";
+
 export default function Home() {
   return (
-    <div className="min-h-screen bg-neutral-50 text-neutral-900">
-      {/* Header */}
-      <header className="border-b bg-white/70 backdrop-blur supports-[backdrop-filter]:bg-white/60">
-        <div className="mx-auto max-w-5xl px-4 py-4 flex items-center justify-between">
-          <span className="text-lg font-semibold">Cuerpo Técnico</span>
-          <nav className="hidden sm:flex items-center gap-6 text-sm">
-            <a href="#inicio" className="hover:text-neutral-600">Inicio</a>
-            <a href="#staff" className="hover:text-neutral-600">Staff</a>
-            <a href="#contacto" className="hover:text-neutral-600">Contacto</a>
-          </nav>
-        </div>
+    <main className="mx-auto max-w-5xl px-4 py-12">
+      <header className="mb-10">
+        <h1 className="text-3xl font-bold">Cuerpo Técnico</h1>
+        <p className="text-slate-600">Temporada 2025</p>
       </header>
 
-      {/* Main */}
-      <main id="inicio" className="mx-auto max-w-5xl px-4">
-        <section className="py-14">
-          <h1 className="text-3xl font-bold">Cuerpo Técnico de Flavio Robatto</h1>
-          <p className="mt-3 text-neutral-600">
-            Sitio oficial: perfil, experiencia y staff.
-          </p>
-        </section>
+      <section className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {TEAM.map((m, i) => (
+          <article
+            key={i}
+            className="overflow-hidden rounded-xl border bg-white shadow-sm"
+          >
+            <img
+              src={m.img}
+              alt={m.name}
+              className="h-44 w-full object-cover"
+              loading="lazy"
+            />
+            <div className="p-4">
+              <h3 className="text-lg font-semibold">{m.name}</h3>
+              <p className="text-sm font-medium text-indigo-600">{m.role}</p>
+              <p className="mt-2 text-sm text-slate-700">{m.bio}</p>
 
-        <section id="staff" className="py-10">
-          <h2 className="text-2xl font-semibold">Staff</h2>
-          <p className="mt-2 text-neutral-600">
-            Pronto verás las tarjetas del equipo aquí.
-          </p>
-        </section>
-
-        <section id="contacto" className="py-10">
-          <h2 className="text-2xl font-semibold">Contacto</h2>
-          <p className="mt-2 text-neutral-600">Información de contacto próximamente.</p>
-        </section>
-      </main>
-
-      {/* Footer */}
-      <footer className="mt-16 border-t">
-        <div className="mx-auto max-w-5xl px-4 py-6 text-sm text-neutral-500">
-          © {new Date().getFullYear()} Cuerpo Técnico. Todos los derechos reservados.
-        </div>
-      </footer>
-    </div>
+              <div className="mt-3 flex flex-wrap gap-3 text-sm">
+                {m.socials?.instagram && (
+                  <a
+                    href={m.socials.instagram}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-slate-500 hover:text-slate-900"
+                  >
+                    Instagram
+                  </a>
+                )}
+                {m.socials?.twitter && (
+                  <a
+                    href={m.socials.twitter}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-slate-500 hover:text-slate-900"
+                  >
+                    Twitter
+                  </a>
+                )}
+                {m.socials?.linkedin && (
+                  <a
+                    href={m.socials.linkedin}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-slate-500 hover:text-slate-900"
+                  >
+                    LinkedIn
+                  </a>
+                )}
+                {m.socials?.email && (
+                  <a
+                    href={`mailto:${m.socials.email}`}
+                    className="text-slate-500 hover:text-slate-900"
+                  >
+                    Email
+                  </a>
+                )}
+              </div>
+            </div>
+          </article>
+        ))}
+      </section>
+    </main>
   );
 }
