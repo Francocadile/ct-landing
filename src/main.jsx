@@ -1,10 +1,10 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App.jsx";
-import "./index.css"; // no pasa nada si el archivo está vacío, lo creamos abajo
+import "./index.css";
 
-const rootElement = document.getElementById("root");
-createRoot(rootElement).render(
+const root = document.getElementById("root");
+createRoot(root).render(
   <React.StrictMode>
     <App />
   </React.StrictMode>
