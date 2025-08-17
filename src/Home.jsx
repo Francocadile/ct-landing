@@ -1,26 +1,44 @@
 // src/Home.jsx
-import React from "react";
-import { TEAM } from "./data/staff";
-
 export default function Home() {
   return (
-    <>
-      {/* ancla para Inicio */}
-      <div id="home" className="sr-only" aria-hidden="true"></div>
+    <main className="bg-white">
+      {/* Hero */}
+      <section className="border-b">
+        <div className="mx-auto max-w-6xl px-4 py-16">
+          <h1 className="text-4xl font-bold tracking-tight">
+            Cuerpo Técnico
+          </h1>
+          <p className="mt-4 max-w-2xl text-slate-600">
+            Sitio en construcción. Próximamente: staff, filosofía de juego,
+            experiencia y contacto.
+          </p>
 
-      <main id="staff" className="mx-auto max-w-5xl px-4 py-12">
-        <header className="mb-10">
-          <h1 className="text-3xl font-bold">Cuerpo Técnico</h1>
-          <p className="text-slate-600">Temporada {new Date().getFullYear()}</p>
-        </header>
+          <div className="mt-6 flex items-center gap-3">
+            <a
+              href="#contacto"
+              className="rounded-lg bg-blue-600 px-4 py-2 font-medium text-white hover:bg-blue-700"
+            >
+              Contacto
+            </a>
+            <a
+              href="#plantel"
+              className="rounded-lg border px-4 py-2 font-medium text-slate-700 hover:bg-slate-100"
+            >
+              Ver Staff
+            </a>
+          </div>
+        </div>
+      </section>
 
-        <section className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {TEAM.map((m, i) => (
-            <article key={i} className="overflow-hidden rounded-xl border bg-white shadow-sm">
-              <img
-                src={m.img}
-                alt={m.name}
-                className="h-44 w-full object-cover"
-                loading="lazy"
-              />
-              <div
+      {/* Placeholder staff / se completa después */}
+      <section id="plantel">
+        <div className="mx-auto max-w-6xl px-4 py-12">
+          <h2 className="text-2xl font-semibold">Staff</h2>
+          <p className="mt-2 text-slate-600">
+            Esta sección se completará con las tarjetas del equipo.
+          </p>
+        </div>
+      </section>
+    </main>
+  );
+}
