@@ -1,3 +1,4 @@
+// src/components/Header.jsx
 import React, { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { SITE } from "../data/site";
@@ -7,6 +8,7 @@ const NAV = [
   { href: "#filosofia", label: "Filosofía" },
   { href: "#staff", label: "Staff" },
   { href: "#experiencia", label: "Experiencia" },
+  { href: "#blog", label: "Blog" },
   { href: "#contacto", label: "Contacto" },
 ];
 
