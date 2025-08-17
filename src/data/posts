@@ -1,0 +1,50 @@
+// src/data/posts.js
+// Luego reemplazamos estos posts por los tuyos reales (títulos, fechas, imágenes y contenido).
+
+export const POSTS = [
+  {
+    id: "control-de-carga",
+    date: "2025-06-12",
+    title: "La dosis hace al veneno: control de carga en fútbol profesional",
+    cover:
+      "https://images.unsplash.com/photo-1605647533135-880cd4b0a62d?q=80&w=1600&auto=format&fit=crop",
+    tags: ["Preparación Física", "Metodología"],
+    excerpt:
+      "Por qué controlar la carga interna y externa evita lesiones y mejora el rendimiento competitivo.",
+    content: [
+      "La carga debe cuantificarse con métricas válidas (ICR, RPE, microcargas).",
+      "Periodizar por objetivos semanales y no por inercias del calendario.",
+      "El control no es burocracia: es salud del plantel y disponibilidad competitiva.",
+    ],
+  },
+  {
+    id: "comunicacion-ct",
+    date: "2025-05-03",
+    title: "Comunicación dentro del cuerpo técnico: decisiones más rápidas",
+    cover:
+      "https://images.unsplash.com/photo-1521417531735-1fdf5b6b8dfd?q=80&w=1600&auto=format&fit=crop",
+    tags: ["Gestión", "Cuerpo Técnico"],
+    excerpt:
+      "Mapear roles, canales y rituales de información acelera la toma de decisiones en la semana.",
+    content: [
+      "Reuniones breves y diarias por sub-áreas (AT, PF, ABP, Analista).",
+      "Tablero único: objetivos de microciclo y responsabilidades visibles.",
+      "Post-partido: 24h para síntesis objetiva y 48h para planes correctivos.",
+    ],
+  },
+  {
+    id: "semana-flexible",
+    date: "2025-04-22",
+    title: "Planificar una semana flexible en la élite",
+    cover:
+      "https://images.unsplash.com/photo-1499013819532-e4ff41b00669?q=80&w=1600&auto=format&fit=crop",
+    tags: ["Metodología", "Planificación"],
+    excerpt:
+      "El rival cambia, el calendario aprieta: la estructura se adapta sin perder los principios.",
+    content: [
+      "Modelo de juego como norte; tareas se ajustan a contexto rival.",
+      "Controles de fatiga para decidir cargas y minutos en tareas G3–G4.",
+      "Sesiones de ABP acopladas a la progresión de la semana.",
+    ],
+  },
+];
