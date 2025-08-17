@@ -1,47 +1,54 @@
-import { Mail, Instagram, Twitter, Linkedin } from "lucide-react";
+// src/components/StaffCard.jsx
+import React from "react";
+import { Instagram, Twitter, Linkedin, Mail } from "lucide-react";
 
-export default function StaffCard({ name, role, bio, img, socials = {} }) {
-  const { email, instagram, twitter, linkedin } = socials;
-
+const IconLink = ({ href, label, children }) => {
+  if (!href) return null;
   return (
-    <article className="group overflow-hidden rounded-2xl border bg-white shadow-sm transition hover:shadow-md">
-      <div className="aspect-[4/3] w-full overflow-hidden bg-neutral-100">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
+    <a
+      href={href}
+      target="_blank"
+      rel="noreferrer"
+      aria-label={label}
+      className="rounded p-1.5 text-slate-500 hover:bg-slate-100 hover:text-slate-900"
+    >
+      {children}
+    </a>
+  );
+};
+
+export default function StaffCard({ name, role, bio, img, socials }) {
+  return (
+    <article className="group overflow-hidden rounded-xl border bg-white shadow-sm transition-shadow hover:shadow-md">
+      {/* Marco 4:3 con recorte elegante */}
+      <div className="relative w-full bg-slate-100 pt-[75%]">
         <img
-          src={img || "https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=1200&auto=format&fit=crop"}
+          src={img}
           alt={name}
-          className="h-full w-full object-cover transition duration-300 group-hover:scale-105"
           loading="lazy"
+          decoding="async"
+          className="absolute inset-0 h-full w-full object-cover"
         />
       </div>
 
-      <div className="p-5">
+      <div className="p-4">
         <h3 className="text-lg font-semibold">{name}</h3>
-        <p className="text-sm text-neutral-600">{role}</p>
+        <p className="text-sm font-medium text-indigo-600">{role}</p>
+        {bio && <p className="mt-2 text-sm text-slate-700">{bio}</p>}
 
-        {bio && <p className="mt-3 text-sm leading-relaxed text-neutral-700">{bio}</p>}
-
-        <div className="mt-4 flex items-center gap-3 text-neutral-500">
-          {email && (
-            <a href={`mailto:${email}`} className="hover:text-neutral-800" aria-label="Email">
-              <Mail size={18} />
-            </a>
-          )}
-          {instagram && (
-            <a href={instagram} target="_blank" rel="noreferrer" className="hover:text-neutral-800" aria-label="Instagram">
-              <Instagram size={18} />
-            </a>
-          )}
-          {twitter && (
-            <a href={twitter} target="_blank" rel="noreferrer" className="hover:text-neutral-800" aria-label="Twitter">
-              <Twitter size={18} />
-            </a>
-          )}
-          {linkedin && (
-            <a href={linkedin} target="_blank" rel="noreferrer" className="hover:text-neutral-800" aria-label="LinkedIn">
-              <Linkedin size={18} />
-            </a>
-          )}
+        <div className="mt-3 flex items-center gap-2">
+          <IconLink href={socials?.instagram} label="Instagram">
+            <Instagram className="h-4 w-4" />
+          </IconLink>
+          <IconLink href={socials?.twitter} label="Twitter / X">
+            <Twitter className="h-4 w-4" />
+          </IconLink>
+          <IconLink href={socials?.linkedin} label="LinkedIn">
+            <Linkedin className="h-4 w-4" />
+          </IconLink>
+          <IconLink href={socials?.email ? `mailto:${socials.email}` : ""} label="Email">
+            <Mail className="h-4 w-4" />
+          </IconLink>
         </div>
       </div>
     </article>
