@@ -8,7 +8,7 @@ export default function App() {
       }}
     >
       <h1>¡Funciona!</h1>
-      <p>Si ves este texto, React está renderizando OK.</p>
+      <p>Si ves esto, React está renderizando OK.</p>
     </div>
   );
 }
