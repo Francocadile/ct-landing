@@ -1,7 +1,12 @@
+/* src/index.css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* opcional: estilos base mínimos */
+/* Layout base */
 html, body, #root { height: 100%; }
+html { scroll-behavior: smooth; }
 body { @apply bg-neutral-50 text-slate-900; }
+
+/* Opcional: tipografía y enlaces */
+a { @apply transition-colors; }
