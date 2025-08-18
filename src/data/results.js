@@ -1,8 +1,8 @@
 // src/data/results.js
 
-// ———————————————————————————————
-//  A) Records / Logros del Cuerpo Técnico
-// ———————————————————————————————
+// =======================
+// A) RECORDS / LOGROS
+// =======================
 export const RECORDS = [
   {
     year: 2012,
@@ -10,6 +10,7 @@ export const RECORDS = [
     club: "Barcelona SC",
     role: "Asistente Técnico",
     logo: "/img/clubs/barcelona-sc.png",
+    details: [],
   },
   {
     year: 2014,
@@ -17,6 +18,7 @@ export const RECORDS = [
     club: "Barcelona SC",
     role: "Asistente Técnico",
     logo: "/img/clubs/barcelona-sc.png",
+    details: [],
   },
   {
     year: 2014,
@@ -24,24 +26,26 @@ export const RECORDS = [
     club: "Barcelona SC",
     role: "Asistente Técnico",
     logo: "/img/clubs/barcelona-sc.png",
+    details: [],
   },
   {
     year: 2015,
     title: "Campeón Segunda División",
     club: "Club Sport Norte América",
     role: "Entrenador",
-    logo: "/img/clubs/norte-america.png", // si no lo tienes, puedes subirlo luego
+    logo: "/img/clubs/norte.jpg",
+    details: [],
   },
   {
     year: 2017,
     title: "Semifinales Primera B",
     club: "Cúcuta Deportivo",
     role: "Entrenador",
+    logo: "/img/clubs/cucuta-deportivo.png", // <- CORRECTO
     details: [
       "Mejor equipo en la tabla general",
       "Equipo más goleador en 2017",
     ],
-    logo: "/img/clubs/cucuta.png",
   },
   {
     year: 2022,
@@ -49,6 +53,7 @@ export const RECORDS = [
     club: "Nacional Potosí",
     role: "Entrenador",
     logo: "/img/clubs/nacional-potosi.png",
+    details: [],
   },
   {
     year: 2024,
@@ -56,13 +61,15 @@ export const RECORDS = [
     club: "Club Bolívar",
     role: "Entrenador",
     logo: "/img/clubs/bolivar.png",
+    details: [],
   },
   {
     year: 2024,
-    title: "Campeón Absoluto del Fútbol Boliviano",
+    title: "Campeón Absoluto",
     club: "Club Bolívar",
     role: "Entrenador",
     logo: "/img/clubs/bolivar.png",
+    details: [],
   },
   {
     year: 2025,
@@ -70,48 +77,102 @@ export const RECORDS = [
     club: "Club Bolívar",
     role: "Entrenador",
     logo: "/img/clubs/bolivar.png",
+    details: [],
   },
 ];
 
-// ———————————————————————————————
-//  B) Historial de Efectividad por año
-// ———————————————————————————————
+// ==================================
+// B) HISTORIAL DE EFECTIVIDAD (KPIs)
+// ==================================
 export const EFFECTIVENESS = [
-  { year: 2016, club: "Millonarios", logo: "/img/clubs/millonarios.png", pct: 55 },
-  { year: 2018, club: "Cúcuta Deportivo", logo: "/img/clubs/cucuta.png", pct: 59 },
-  { year: 2019, club: "Jaguares FC", logo: "/img/clubs/jaguares.png", pct: 37, note: "4tos. de final Copa Colombia" },
-  { year: 2020, club: "Atlético Huila", logo: "/img/clubs/atletico-huila.png", pct: 67 },
-  { year: 2021, club: "Nacional Potosí", logo: "/img/clubs/nacional-potosi.png", pct: 67, note: "Clasificación a Libertadores" },
-  { year: 2022, club: "Nacional Potosí", logo: "/img/clubs/nacional-potosi.png", pct: 56, note: "Clasificación a Sudamericana" },
-  { year: 2023, club: "Nacional Potosí", logo: "/img/clubs/nacional-potosi.png", pct: 53 },
-  { year: 2024, club: "Bolívar", logo: "/img/clubs/bolivar.png", pct: 70, note: "8vos de Libertadores • Campeón Clausura • Campeón Absoluto" },
-  { year: 2025, club: "Bolívar", logo: "/img/clubs/bolivar.png", pct: 90, note: "Campeón Torneo de Verano" },
+  {
+    year: 2016,
+    club: "Millonarios",
+    pct: 55,
+    logo: "/img/clubs/millonarios.png",
+  },
+  {
+    year: 2018,
+    club: "Cúcuta Deportivo",
+    pct: 59,
+    logo: "/img/clubs/cucuta-deportivo.png", // <- CORRECTO
+  },
+  {
+    year: 2019,
+    club: "Jaguares FC",
+    pct: 37,
+    logo: "/img/clubs/jaguares-fc.png",
+  },
+  {
+    year: 2020,
+    club: "Atlético Huila",
+    pct: 67,
+    logo: "/img/clubs/atletico-huila.png",
+  },
+  {
+    year: 2021,
+    club: "Nacional Potosí",
+    pct: 67,
+    logo: "/img/clubs/nacional-potosi.png",
+  },
+  {
+    year: 2022,
+    club: "Nacional Potosí",
+    pct: 56,
+    logo: "/img/clubs/nacional-potosi.png",
+  },
+  {
+    year: 2023,
+    club: "Nacional Potosí",
+    pct: 53,
+    logo: "/img/clubs/nacional-potosi.png",
+  },
+  {
+    year: 2024,
+    club: "Bolívar",
+    pct: 70,
+    logo: "/img/clubs/bolivar.png",
+  },
+  {
+    year: 2025,
+    club: "Bolívar",
+    pct: 90,
+    logo: "/img/clubs/bolivar.png",
+  },
 ];
 
-// ———————————————————————————————
-//  C) Números por temporada (cards de estadísticas)
-// ———————————————————————————————
+// ===================================
+// C) NÚMEROS POR TEMPORADA (detalle)
+// ===================================
 export const SEASONS = [
   {
     year: 2017,
     team: "Cúcuta Deportivo",
-    logo: "/img/clubs/cucuta.png",
+    logo: "/img/clubs/cucuta-deportivo.png", // <- CORRECTO
     pct: 59,
-    stats: { pj: 0, v: 18, e: 6, d: 6, gf: 67, gc: 23, obs: "1 derrota de local" },
+    stats: {
+      pj: 0,
+      v: 18,
+      e: 6,
+      d: 6,
+      gf: 67,
+      gc: 23,
+      obs: "1 derrota de local",
+    },
   },
   {
     year: 2020,
     team: "Atlético Huila",
     logo: "/img/clubs/atletico-huila.png",
     pct: 67,
-    stats: { pj: 0, v: 5, e: 3, d: 1, gf: 16, gc: 7, obs: "0 derrotas de local" },
+    stats: { pj: 0, v: 5, e: 3, d: 1, gf: 16, gc: 7 },
   },
   {
     year: 2021,
     team: "Nacional Potosí",
     logo: "/img/clubs/nacional-potosi.png",
     pct: 67,
-    stats: { pj: 0, v: 5, e: 3, d: 1, gf: 16, gc: 9, obs: "0 derrotas de local" },
+    stats: { pj: 0, v: 5, e: 3, d: 1, gf: 16, gc: 9 },
   },
   {
     year: 2022,
@@ -139,22 +200,7 @@ export const SEASONS = [
       d: 8,
       gf: 111,
       gc: 51,
-      obs:
-        "Campeones Clausura 2024 • Campeones Absoluto • 8vos Libertadores (líderes de grupo)",
+      obs: "Campeones Clausura 2024 • Campeones Absoluto • 8vos Libertadores (líderes de grupo)",
     },
-  },
-  {
-    year: 2025,
-    team: "Bolívar (Total)",
-    logo: "/img/clubs/bolivar.png",
-    pct: 64,
-    stats: { pj: 39, v: 24, e: 3, d: 12, gf: 95, gc: 47, obs: "2.4 goles/partido • 3º lugar torneo local • Campeones Torneo de Verano 2025" },
-  },
-  {
-    year: 2025,
-    team: "Bolívar (Torneo de Verano)",
-    logo: "/img/clubs/bolivar.png",
-    pct: 90,
-    stats: { pj: 8, v: 7, e: 0, d: 1, gf: 28, gc: 8, obs: "Campeones del Torneo de Verano 2025" },
   },
 ];
