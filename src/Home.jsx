@@ -1,9 +1,8 @@
 // src/Home.jsx
 import React from "react";
 
-// Secciones
 import Staff from "./sections/Staff.jsx";
-import ClubsWorked from "./sections/ClubsWorked.jsx"; // Escudos grandes
+import ClubsWorked from "./sections/ClubsWorked.jsx"; // escudos grandes a color
 import Records from "./sections/Records.jsx";
 import Modelo from "./sections/Modelo.jsx";
 import Blog from "./sections/Blog.jsx";
@@ -42,7 +41,7 @@ export default function Home() {
         <Staff />
       </section>
 
-      {/* 2) CLUBES (reemplaza “Experiencia”) */}
+      {/* 2) CLUBES */}
       <ClubsWorked />
 
       {/* 3) RECORDS */}
@@ -50,7 +49,7 @@ export default function Home() {
         <Records />
       </section>
 
-      {/* 4) MODELO DE JUEGO */}
+      {/* 4) MODELO */}
       <section id="modelo" className="scroll-mt-24">
         <Modelo />
       </section>
