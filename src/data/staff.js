@@ -1,10 +1,12 @@
 // src/data/staff.js
+
 export const TEAM = [
   {
+    slug: "flavio-robatto",
     name: "Flavio Robatto",
     role: "Director Técnico",
     img: "/img/staff/flavio-robatto.jpg",
-    flags: ["/img/banders/argentina.png"], // 🇦🇷
+    flags: ["/img/banders/argentina.png"],
     bio:
       "Entrenador de fútbol con amplia trayectoria en primera división de Sudamérica. Se caracteriza por su visión táctica moderna, la planificación detallada de los microciclos y una comunicación directa con su cuerpo técnico y jugadores. Con experiencia en clubes de Argentina, Bolivia, Colombia, Ecuador y Perú, ha demostrado capacidad para construir equipos competitivos, potenciar el rendimiento individual y colectivo, y consolidar una identidad de juego clara. Su liderazgo combina exigencia, cercanía y criterio estratégico, elementos que lo definen como un director técnico integral y formador de grupos.",
     roles: [
@@ -15,49 +17,70 @@ export const TEAM = [
     ],
   },
   {
+    slug: "sandro-dominguez",
     name: "Sandro Domínguez",
     role: "Asistente Técnico",
-    img: "/img/staff/sandro-domingez.jpg", // (sin 'u')
-    flags: ["/img/banders/argentina.png"], // 🇦🇷
+    img: "/img/staff/sandro-domingez.jpg", // nombre de archivo tal como lo subiste
+    flags: ["/img/banders/argentina.png"],
     bio:
-      "Asistente técnico con experiencia en Argentina y Bolivia. Coordinación de tareas en campo y análisis táctico.",
-    roles: ["Diseño de sesiones", "Análisis táctico"],
+      "Asistente técnico especializado en diseño de tareas, microciclos de alto rendimiento y scouting del rival. Integra indicadores de carga (RPE, GPS) con el modelo de juego para asegurar transferencia al partido. Referente en balón parado ofensivo/defensivo y optimización de tiempos de sesión.",
+    roles: [
+      "Diseño de sesiones",
+      "Scouting y ABP",
+      "Planificación semanal integrada",
+    ],
   },
   {
+    slug: "horacio-rodriguez",
     name: "Horacio Rodríguez",
     role: "Asistente Técnico",
     img: "/img/staff/horacio-rodriguez.jpg",
-    flags: ["/img/banders/argentina.png"], // 🇦🇷
+    flags: ["/img/banders/argentina.png"],
     bio:
-      "Encargado de la coordinación metodológica y del desarrollo de sesiones.",
-    roles: ["Metodología", "Planificación semanal"],
+      "Coordinador metodológico. Estandariza contenidos, define objetivos por día y asegura la coherencia entre las tareas y los principios de juego. Experto en progresión de cargas técnico-tácticas y control de la calidad del entrenamiento.",
+    roles: [
+      "Metodología y contenidos",
+      "Planificación MD+1 a MD-1",
+      "Control de calidad del entrenamiento",
+    ],
   },
   {
+    slug: "juan-vogliotti",
     name: 'Juan "Chicho" Vogliotti',
     role: "Asistente Técnico",
-    img: "/img/staff/juan-voglioti.jpg", // (una sola 't')
-    flags: ["/img/banders/argentina.png"], // 🇦🇷
+    img: "/img/staff/juan-voglioti.jpg",
+    flags: ["/img/banders/argentina.png"],
     bio:
-      "Aporta su experiencia al diseño y ejecución de sesiones, transmitiendo conceptos tácticos y técnicos.",
-    roles: ["Diseño de sesiones", "Asistencia en cancha"],
+      "Exdelantero profesional. Especialista en fase ofensiva: desmarques, finalización, ocupación del área y coordinación con los extremos. Lidera tareas específicas por posición y feedback en video para atacantes.",
+    roles: [
+      "Trabajo por puestos (ataque)",
+      "Finalización y ocupación de área",
+      "Feedback individual con video",
+    ],
   },
   {
+    slug: "franco-cadile",
     name: "Franco Cadile",
     role: "Preparador Físico",
     img: "/img/staff/franco-cadile.jpg",
-    flags: ["/img/banders/argentina.png"], // 🇦🇷
+    flags: ["/img/banders/argentina.png"],
     bio:
-      "Preparador físico profesional. Planificación de cargas, prevención y control del rendimiento.",
-    roles: ["Planificación de cargas", "Prevención", "Control del rendimiento"],
+      "Preparador físico orientado a la transferencia. Planifica cargas con GPS y wellness, coordina fuerza integrada en campo y protocolos de prevención y readaptación. Responsable de reportes físicos por microciclo.",
+    roles: [
+      "Planificación de cargas",
+      "Prevención y fuerza integrada",
+      "Control neuromuscular y GPS",
+    ],
   },
   {
+    slug: "gabriel-gonzalez",
     name: "Gabriel Gonzalez",
     role: "Analista de Rendimiento",
     img: "/img/staff/gabriel-gonzalez.jpg",
-    flags: ["/img/banders/venezuela.png", "/img/banders/portugal.png"], // 🇻🇪 + 🇵🇹
+    flags: ["/img/banders/venezuela.png", "/img/banders/portugal.png"],
     bio:
-      "Edición, segmentación y presentación de videos para CT y jugadores. Soporte constante a la toma de decisiones.",
-    roles: ["Análisis de video", "Informes", "Soporte táctico"],
+      "Analista de rendimiento. Segmentación, etiquetado y presentación de informes para CT y jugadores. Genera dashboards con KPIs tácticos y de eficiencia, y produce pre/post partido para la toma de decisiones.",
+    roles: ["Análisis de video", "Informes y KPIs", "Soporte táctico al CT"],
   },
 ];
 
