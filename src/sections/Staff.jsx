@@ -46,20 +46,26 @@ function FeaturedCard({ m }) {
 
 function SmallCard({ m }) {
   return (
-    <article className="flex h-full flex-col overflow-hidden rounded-2xl border bg-white shadow-sm">
-      <div className="aspect-[4/5] w-full overflow-hidden bg-slate-100">
+    <article className="flex h-full flex-col overflow-hidden rounded-xl border bg-white shadow-sm">
+      {/* 
+        Si querés ver la foto COMPLETA sin recorte, cambiá "object-cover" por "object-contain"
+        y podés agregar "bg-white" para que no se vea el borde gris.
+      */}
+      <div className="aspect-[3/4] w-full overflow-hidden bg-slate-100">
         <img
           src={m.img}
           alt={m.name}
-          className="h-full w-full object-cover"
+          className="h-full w-full object-cover object-top"
           loading="lazy"
         />
       </div>
-      <div className="flex flex-1 flex-col gap-1.5 p-3">
-        <h4 className="text-base font-semibold leading-tight">{m.name}</h4>
-        <div className="text-sky-700 text-xs font-semibold">{m.role}</div>
+      <div className="flex flex-1 flex-col gap-1.5 p-2">
+        <h4 className="text-sm font-semibold leading-tight">{m.name}</h4>
+        <div className="text-sky-700 text-[11px] font-semibold">{m.role}</div>
+
+        {/* Chips solo en pantallas grandes para mantener las tarjetas bajas */}
         {m.roles?.length ? (
-          <div className="mt-auto flex flex-wrap gap-1">
+          <div className="mt-auto hidden flex-wrap gap-1 xl:flex">
             {m.roles.map((r, i) => (
               <RoleChip key={i}>{r}</RoleChip>
             ))}
@@ -102,8 +108,12 @@ export default function Staff() {
           <FeaturedCard m={featured} />
         </div>
 
-        {/* Resto más pequeño y uniforme */}
-        <div className="mt-8 grid gap-5 sm:grid-cols-3 lg:grid-cols-4">
+        {/* Resto: más chico y en una sola fila en desktop */}
+        {/* 
+          En desktop (lg+) mostramos 5 columnas fijas para que entren en una línea:
+          asistentes (3) + PF + Analista = 5
+        */}
+        <div className="mt-8 grid gap-4 grid-cols-2 sm:grid-cols-3 lg:grid-cols-5">
           {ordered.map((m) => (
             <SmallCard key={m.name} m={m} />
           ))}
