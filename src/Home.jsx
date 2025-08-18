@@ -1,16 +1,13 @@
 // src/Home.jsx
 import React from "react";
-import StaffCard from "./components/StaffCard";
-import { TEAM } from "./data/staff";
-
-// Secciones
+import Staff from "./sections/Staff";
 import Experiencia from "./sections/Experiencia";
 import Resultados from "./sections/Resultados";
-// Si luego usás Modelo, Blog y Contacto, ya están en /sections.
 
 export default function Home() {
   return (
     <>
+      {/* Ancla para el menú "Inicio" */}
       <div id="home" className="sr-only" aria-hidden="true"></div>
 
       <main className="bg-white">
@@ -19,7 +16,7 @@ export default function Home() {
           <div className="mx-auto max-w-6xl px-4 py-16">
             <h1 className="text-4xl font-bold tracking-tight">Cuerpo Técnico</h1>
             <p className="mt-4 max-w-2xl text-slate-600">
-              Sitio oficial: staff, modelo de juego, experiencia y contacto.
+              Sitio oficial: staff, experiencia, resultados y contacto.
             </p>
 
             <div className="mt-6 flex items-center gap-3">
@@ -40,22 +37,12 @@ export default function Home() {
         </section>
 
         {/* Staff */}
-        <section id="staff">
-          <div className="mx-auto max-w-6xl px-4 py-12">
-            <h2 className="text-2xl font-semibold">Staff</h2>
+        <Staff />
 
-            <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {TEAM.map((m) => (
-                <StaffCard key={m.name} {...m} />
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Experiencia (solo UNA VEZ) */}
+        {/* Experiencia (una sola vez) */}
         <Experiencia />
 
-        {/* Resultados con escudos grandes */}
+        {/* Resultados / Records / Efectividad */}
         <Resultados />
       </main>
     </>
