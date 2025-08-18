@@ -46,7 +46,7 @@ function PillStat({ k, v }) {
   );
 }
 
-// ============ RECORDS (estilo anterior, sin truncar títulos) ============
+// ============ RECORDS (tal como te gustaba) ============
 function RecordItem({ r }) {
   return (
     <li className="rounded-2xl border border-slate-200 bg-gradient-to-b from-amber-50/50 to-white p-4 shadow-sm">
@@ -85,7 +85,7 @@ function RecordItem({ r }) {
   );
 }
 
-// ============ NÚMEROS (diseño sobrio y uniforme) ============
+// ============ NÚMEROS (ahora con altura uniforme) ============
 function SeasonCard({ s }) {
   // Overrides de PJ que pediste (sin tocar tus datos)
   const OVERRIDES = {
@@ -101,7 +101,13 @@ function SeasonCard({ s }) {
   const pj = s?.stats?.pj ?? OVERRIDES[key] ?? v + e + d;
 
   return (
-    <article className="flex h-full min-h-[20rem] flex-col rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+    <article
+      className="
+        flex h-80 flex-col   /* 🔒 Alto fijo para TODAS las tarjetas (20rem) */
+        rounded-2xl border border-slate-200 bg-white p-5 shadow-sm
+        hover:shadow-md transition-shadow
+      "
+    >
       {/* Header */}
       <div className="mb-4 flex items-center justify-between gap-3">
         <div className="flex items-center gap-3 min-w-0">
@@ -156,7 +162,7 @@ function SeasonCard({ s }) {
 }
 
 export default function Records() {
-  // Records: más recientes primero (no cambiamos concepto)
+  // Records: más recientes primero (igual que antes)
   const recordsSorted = [...RECORDS].sort((a, b) => b.year - a.year);
 
   // Números: más recientes primero
@@ -178,7 +184,7 @@ export default function Records() {
   return (
     <section id="records" className="border-b bg-gradient-to-b from-slate-50 to-white">
       <div className="mx-auto max-w-6xl px-4 py-12">
-        {/* 1) Records (estilo anterior) */}
+        {/* 1) Records */}
         <h2 className="text-2xl font-semibold text-slate-900">Records del Cuerpo Técnico</h2>
         <ol className="mt-6 grid gap-4 sm:grid-cols-2">
           {recordsSorted.map((r, i) => (
@@ -189,16 +195,14 @@ export default function Records() {
         {/* 2) Cuerpo técnico en números */}
         <div className="mt-12">
           <h3 className="text-xl font-semibold text-slate-900">Cuerpo técnico en números</h3>
-          <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-6 grid items-stretch gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {/* principales */}
             {ordered.slice(0, ordered.length - tail.length).map((s, i) => (
               <SeasonCard key={`${s.team}-${s.year}-${i}`} s={s} />
             ))}
 
             {/* placeholder para alinear la última fila si hace falta */}
-            {needsPlaceholder && (
-              <div className="hidden lg:block" aria-hidden="true" />
-            )}
+            {needsPlaceholder && <div className="hidden lg:block" aria-hidden="true" />}
 
             {/* tail: Huila + Cúcuta lado a lado */}
             {tail.map((s, i) => (
@@ -210,3 +214,4 @@ export default function Records() {
     </section>
   );
 }
+
