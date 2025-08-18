@@ -15,7 +15,7 @@ const Stat = ({ label, value }) => (
   </div>
 );
 
-// Banderas en /public/img/banders (incluye Ecuador)
+// /public/img/banders (incluye ecuador.png)
 const FLAG_BY_COUNTRY = {
   AR: "/img/banders/argentina.png",
   BO: "/img/banders/bolivia.png",
@@ -50,23 +50,25 @@ export default function Records() {
           Palmarés del cuerpo técnico y métricas por temporada en clubes donde trabajamos.
         </p>
 
-        {/* PALMARÉS — cards con altura uniforme y títulos legibles */}
-        <div className="mt-8 grid gap-4 sm:grid-cols-2">
+        {/* PALMARÉS – filas del mismo alto */}
+        <div
+          className="mt-8 grid gap-4 sm:grid-cols-2"
+          style={{ gridAutoRows: "1fr" }}
+        >
           {achievements.map((r, i) => (
             <article
               key={i}
-              className="relative flex min-h-[160px] flex-col justify-between overflow-hidden rounded-2xl border bg-gradient-to-br from-amber-50 via-white to-white p-5 shadow-sm"
+              className="relative flex h-full flex-col justify-between overflow-hidden rounded-2xl border bg-gradient-to-br from-amber-50 via-white to-white p-5 shadow-sm"
             >
               <div className="flex items-start gap-4">
                 <img
                   src={r.logo}
                   alt={r.club}
-                  className="h-14 w-14 rounded-xl border bg-white p-1 object-contain"
+                  className="size-14 rounded-xl border bg-white p-1 object-contain"
                   loading="lazy"
                 />
                 <div className="min-w-0">
-                  {/* título sin truncar, permite salto de línea */}
-                  <h3 className="text-lg font-semibold text-slate-900 md:text-xl break-words">
+                  <h3 className="break-words text-lg font-semibold text-slate-900 md:text-xl">
                     {r.title}
                   </h3>
                   <div className="mt-0.5 flex items-center gap-2 text-sm text-slate-600">
@@ -95,12 +97,12 @@ export default function Records() {
           ))}
         </div>
 
-        {/* Título para el bloque de métricas */}
+        {/* Título bloque de métricas */}
         <h3 className="mt-12 text-2xl font-bold tracking-tight">
           Cuerpo técnico en números
         </h3>
 
-        {/* NÚMEROS POR CLUB Y TEMPORADA */}
+        {/* MÉTRICAS POR CLUB */}
         <div className="mt-6 space-y-10">
           {SEASONS_BY_CLUB.map((club) => (
             <div key={club.club} className="rounded-2xl border bg-white p-5">
