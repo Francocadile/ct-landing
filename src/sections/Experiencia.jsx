@@ -28,57 +28,68 @@ export default function Experiencia() {
         <h2 className="text-2xl font-semibold">Experiencia</h2>
         <p className="mt-2 text-slate-600">Trayectoria completa de Flavio Robatto.</p>
 
-        {/* Timeline horizontal sin scroll */}
-        <div className="relative mt-8">
-          {/* Línea guía */}
+        {/* ====== MÓVIL: carrusel horizontal con snap ====== */}
+        <div className="relative mt-6 md:hidden">
           <div className="pointer-events-none absolute left-0 right-0 top-5 h-px bg-slate-200" />
+          <div className="-mx-4 overflow-x-auto pb-3">
+            <div className="mx-4 flex min-w-max gap-3 snap-x snap-mandatory">
+              {items.map((it, i) => (
+                <div key={`${it.team}-${i}`} className="relative w-40 shrink-0 snap-start text-center">
+                  <span className="absolute left-1/2 top-[14px] h-3 w-3 -translate-x-1/2 rounded-full border-2 border-blue-600 bg-white shadow" />
+                  <div className="pt-6">
+                    <div className="mx-auto h-9 w-9 overflow-hidden rounded-md border bg-white p-1">
+                      {it.logo ? (
+                        <img src={it.logo} alt={it.team} className="h-full w-full object-contain" loading="lazy" />
+                      ) : (
+                        <div className="flex h-full w-full items-center justify-center text-[10px] font-semibold text-slate-600">
+                          {initials(it.team)}
+                        </div>
+                      )}
+                    </div>
+                    <div className="mt-1 mx-auto max-w-[150px] text-[12px] leading-tight font-semibold whitespace-normal break-words">
+                      {it.team}
+                    </div>
+                    <div className="text-[10px] text-slate-500">{fmtRange(it.start, it.end)}</div>
+                    <div className="text-[10px] text-blue-700">{it.role}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="mt-1 text-[10px] text-slate-500">Desliza para ver toda la trayectoria →</div>
+        </div>
 
-          {/* Todas las columnas visibles; cada ítem tiene un ancho mínimo para que el texto se lea */}
+        {/* ====== TABLET/DESKTOP: sin scroll, toda visible ====== */}
+        <div className="relative mt-8 hidden md:block">
+          <div className="pointer-events-none absolute left-0 right-0 top-5 h-px bg-slate-200" />
           <div
             className="grid gap-3"
-            style={{
-              gridTemplateColumns: `repeat(${items.length}, minmax(110px, 1fr))`,
-            }}
+            style={{ gridTemplateColumns: `repeat(${items.length}, minmax(120px, 1fr))` }}
           >
             {items.map((it, i) => (
               <div key={`${it.team}-${i}`} className="relative text-center">
-                {/* Punto en la línea */}
                 <span className="absolute left-1/2 top-[14px] h-3 w-3 -translate-x-1/2 rounded-full border-2 border-blue-600 bg-white shadow" />
-
-                {/* Tarjeta compacta con nombre legible en 2 líneas */}
                 <div className="pt-6">
-                  <div className="mx-auto h-9 w-9 overflow-hidden rounded-md border bg-white p-1">
+                  <div className="mx-auto h-10 w-10 overflow-hidden rounded-md border bg-white p-1">
                     {it.logo ? (
-                      <img
-                        src={it.logo}
-                        alt={it.team}
-                        className="h-full w-full object-contain"
-                        loading="lazy"
-                      />
+                      <img src={it.logo} alt={it.team} className="h-full w-full object-contain" loading="lazy" />
                     ) : (
                       <div className="flex h-full w-full items-center justify-center text-[10px] font-semibold text-slate-600">
                         {initials(it.team)}
                       </div>
                     )}
                   </div>
-
-                  {/* Nombre: dos líneas, sin truncado */}
-                  <div
-                    className="mt-1 mx-auto max-w-[140px] text-[12px] leading-tight font-semibold whitespace-normal break-words"
-                    title={it.team}
-                  >
+                  <div className="mt-1 mx-auto max-w-[160px] text-[12px] leading-tight font-semibold whitespace-normal break-words">
                     {it.team}
                   </div>
-
-                  <div className="text-[10px] text-slate-500">
-                    {fmtRange(it.start, it.end)}
-                  </div>
-                  <div className="text-[10px] text-blue-700">{it.role}</div>
+                  <div className="text-[11px] text-slate-500">{fmtRange(it.start, it.end)}</div>
+                  <div className="text-[11px] text-blue-700">{it.role}</div>
                 </div>
               </div>
             ))}
           </div>
         </div>
+
       </div>
     </section>
   );
