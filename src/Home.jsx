@@ -1,10 +1,17 @@
 // src/Home.jsx
 import React from "react";
 
-// Secciones
+// Header (menú)
+import Header from "./components/Header.jsx";
+
+// Secciones nuevas arriba
+import Highlights from "./sections/Highlights.jsx";
+import ClubsStrip from "./sections/ClubsStrip.jsx";
+
+// Secciones existentes
 import Staff from "./sections/Staff.jsx";
 import Experiencia from "./sections/Experiencia.jsx";
-import Records from "./sections/Records.jsx"; // ya está así
+import Records from "./sections/Records.jsx";
 import Modelo from "./sections/Modelo.jsx";
 import Blog from "./sections/Blog.jsx";
 import Contacto from "./sections/Contacto.jsx";
@@ -12,12 +19,11 @@ import Contacto from "./sections/Contacto.jsx";
 export default function Home() {
   return (
     <>
-      {/* Ancla Inicio */}
-      <div id="home" className="sr-only" aria-hidden="true"></div>
+      <Header />
 
       <main className="bg-white">
-        {/* Hero */}
-        <section className="border-b">
+        {/* Hero como sección visible para que el Header pueda detectar #home */}
+        <section id="home" className="border-b scroll-mt-24">
           <div className="mx-auto max-w-6xl px-4 py-16">
             <h1 className="text-4xl font-bold tracking-tight">Cuerpo Técnico</h1>
             <p className="mt-4 max-w-2xl text-slate-600">
@@ -41,6 +47,12 @@ export default function Home() {
           </div>
         </section>
 
+        {/* KPIs de impacto */}
+        <Highlights />
+
+        {/* Logos de clubes (credibilidad) */}
+        <ClubsStrip />
+
         {/* Staff */}
         <section id="staff" className="scroll-mt-24">
           <Staff />
@@ -61,7 +73,7 @@ export default function Home() {
           <Modelo />
         </section>
 
-        {/* Blog (lo dejaremos fuera del Home en un paso siguiente) */}
+        {/* Blog (si luego lo sacamos del home, solo quitamos esta sección) */}
         <section id="blog" className="scroll-mt-24">
           <Blog />
         </section>
