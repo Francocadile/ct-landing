@@ -2,51 +2,73 @@
 import React from "react";
 import { EXPERIENCE } from "../data/experience";
 
-export default function Experiencia() {
+function Stat({ label, value }) {
   return (
-    <section id="experiencia" className="bg-white border-t">
+    <div className="rounded-lg bg-slate-50 px-3 py-2 text-center">
+      <div className="text-xs uppercase tracking-wide text-slate-500">{label}</div>
+      <div className="text-base font-semibold text-slate-800">{value}</div>
+    </div>
+  );
+}
+
+function Period({ start, end }) {
+  const from = new Date(start);
+  const to = end ? new Date(end) : null;
+  const y = (d) => (d ? d.getFullYear() : "Actualidad");
+  return (
+    <span className="text-sm text-slate-600">
+      {y(from)} – {y(to)}
+    </span>
+  );
+}
+
+export default function Experiencia() {
+  const items = [...EXPERIENCE].sort(
+    (a, b) => new Date(b.start) - new Date(a.start)
+  );
+
+  return (
+    <section id="experiencia" className="border-b">
       <div className="mx-auto max-w-6xl px-4 py-12">
-        <h2 className="text-3xl font-bold tracking-tight">Experiencia</h2>
-        <p className="mt-2 text-slate-600">
-          Línea de tiempo con los principales hitos del cuerpo técnico.
-        </p>
-
-        <div className="mt-8 relative">
-          {/* Línea vertical */}
-          <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-slate-200" aria-hidden />
-
-          <ul className="space-y-8">
-            {EXPERIENCE.sort((a, b) => a.year - b.year).map((item, idx) => (
-              <li key={`${item.year}-${idx}`} className="relative pl-16">
-                {/* Punto en la línea */}
-                <span className="absolute left-5 top-2 h-3 w-3 rounded-full bg-blue-600 ring-4 ring-blue-100" />
-                <div className="rounded-xl border p-4 hover:shadow-sm transition">
-                  <div className="flex flex-wrap items-center gap-4">
-                    {item.badge ? (
-                      <img
-                        src={item.badge}
-                        alt={`${item.club} escudo`}
-                        className="h-12 w-12 object-contain"
-                        loading="lazy"
-                      />
-                    ) : (
-                      <div className="h-12 w-12 rounded bg-slate-100" />
-                    )}
-                    <div className="min-w-0">
-                      <div className="flex items-baseline gap-3">
-                        <span className="text-blue-700 font-semibold tabular-nums">{item.year}</span>
-                        <h3 className="text-lg font-semibold leading-tight truncate">{item.club}</h3>
-                      </div>
-                      <p className="text-sm text-slate-600">{item.role}</p>
-                      <p className="mt-1 text-slate-700">{item.achievement}</p>
-                    </div>
-                  </div>
-                </div>
-              </li>
-            ))}
-          </ul>
+        <div className="flex items-end justify-between gap-4">
+          <h2 className="text-2xl font-semibold">Experiencia</h2>
+          <span className="text-sm text-slate-500">
+            Línea de tiempo · cargos y desempeño
+          </span>
         </div>
 
+        <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {items.map((it, i) => (
+            <article
+              key={i}
+              className="group relative overflow-hidden rounded-2xl border bg-white shadow-sm transition hover:shadow-md"
+            >
+              <div className="flex items-center gap-4 p-4">
+                <img
+                  src={it.logo}
+                  alt={it.club}
+                  className="h-14 w-14 flex-none rounded-xl border bg-white object-contain p-1"
+                />
+                <div>
+                  <h3 className="text-lg font-semibold leading-tight">
+                    {it.club}
+                  </h3>
+                  <div className="text-sm text-slate-600">{it.role}</div>
+                  <Period start={it.start} end={it.end} />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-3 gap-3 p-4 pt-0">
+                <Stat label="Partidos" value={it.matches ?? "—"} />
+                <Stat label="Puntos/PP" value={it.ppg ? it.ppg.toFixed(2) : "—"} />
+                <Stat
+                  label="País"
+                  value={it.country}
+                />
+              </div>
+            </article>
+          ))}
+        </div>
       </div>
     </section>
   );
