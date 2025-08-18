@@ -1,7 +1,7 @@
 {
   "name": "ct-landing",
-  "private": true,
   "version": "0.0.1",
+  "private": true,
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -9,20 +9,17 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "lucide-react": "^0.460.0",
+    "lucide-react": "^0.453.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.26.2"
-    "react-router-dom": "^6.26.2"
-
   },
   "devDependencies": {
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",
     "autoprefixer": "^10.4.19",
     "postcss": "^8.4.38",
-    "tailwindcss": "^3.4.7",
-    "vite": "^5.2.0",
-    "@vitejs/plugin-react-swc": "^3.5.0"
+    "tailwindcss": "^3.4.10",
+    "vite": "^5.4.19"
   }
 }
