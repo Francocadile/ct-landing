@@ -154,14 +154,14 @@ export const SEASONS = [
     team: "Nacional Potosí",
     logo: "/img/clubs/nacional-potosi.png",
     pct: 67,
-    stats: { pj: 0, v: 5, e: 3, d: 1, gf: 16, gc: 9 },
+    stats: { pj: 9, v: 5, e: 3, d: 1, gf: 16, gc: 9 },
   },
   {
     year: 2020,
     team: "Atlético Huila",
     logo: "/img/clubs/atletico-huila.png",
     pct: 67,
-    stats: { pj: 0, v: 5, e: 3, d: 1, gf: 16, gc: 7 },
+    stats: { pj: 9, v: 5, e: 3, d: 1, gf: 16, gc: 7 },
   },
   {
     year: 2017,
@@ -169,7 +169,7 @@ export const SEASONS = [
     logo: "/img/clubs/cucuta-deportivo.png",
     pct: 59,
     stats: {
-      pj: 0,
+      pj: 30,
       v: 18,
       e: 6,
       d: 6,
