@@ -7,7 +7,6 @@ function fmtRange(start, end) {
   const ye = end ? end.split("-")[0] : "Presente";
   return ys === ye ? ys : `${ys}–${ye}`;
 }
-
 function initials(name) {
   return (name || "")
     .split(" ")
@@ -29,41 +28,56 @@ export default function Experiencia() {
         <h2 className="text-2xl font-semibold">Experiencia</h2>
         <p className="mt-2 text-slate-600">Trayectoria completa de Flavio Robatto.</p>
 
-        {/* Grilla compacta, sin desplazamiento horizontal */}
-        <div className="mt-8 grid gap-4 grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6">
-          {items.map((it, i) => (
-            <article
-              key={`${it.team}-${i}`}
-              className="rounded-xl border bg-white p-3 shadow-sm transition hover:shadow-md"
-              title={`${it.team} · ${fmtRange(it.start, it.end)} · ${it.country}`}
-            >
-              <div className="flex items-center gap-2">
-                {it.logo ? (
-                  <img
-                    src={it.logo}
-                    alt={it.team}
-                    className="h-10 w-10 rounded-md border bg-white object-contain p-1"
-                    loading="lazy"
-                  />
-                ) : (
-                  <div className="flex h-10 w-10 items-center justify-center rounded-md border bg-slate-50 text-xs font-semibold text-slate-600">
-                    {initials(it.team)}
-                  </div>
-                )}
+        {/* Timeline horizontal sin scroll (se comprime por columnas) */}
+        <div className="relative mt-8">
+          {/* Línea guía */}
+          <div className="pointer-events-none absolute left-0 right-0 top-5 h-px bg-slate-200" />
 
-                <div className="min-w-0">
-                  <div className="text-[11px] text-slate-500">
-                    {fmtRange(it.start, it.end)} · {it.country}
+          {/* Una columna por elemento; todas caben en el ancho disponible */}
+          <div
+            className="grid gap-3"
+            style={{ gridTemplateColumns: `repeat(${items.length}, minmax(0, 1fr))` }}
+          >
+            {items.map((it, i) => (
+              <div key={`${it.team}-${i}`} className="relative text-center">
+                {/* Punto en la línea */}
+                <span className="absolute left-1/2 top-[14px] h-3 w-3 -translate-x-1/2 rounded-full border-2 border-blue-600 bg-white shadow" />
+
+                {/* Tarjeta ultra compacta */}
+                <div className="pt-6">
+                  <div className="mx-auto h-9 w-9 overflow-hidden rounded-md border bg-white p-1">
+                    {it.logo ? (
+                      <img
+                        src={it.logo}
+                        alt={it.team}
+                        className="h-full w-full object-contain"
+                        loading="lazy"
+                      />
+                    ) : (
+                      <div className="flex h-full w-full items-center justify-center text-[10px] font-semibold text-slate-600">
+                        {initials(it.team)}
+                      </div>
+                    )}
                   </div>
-                  <div className="truncate text-sm font-semibold">{it.team}</div>
-                  <div className="text-[12px] text-blue-700">{it.role}</div>
+
+                  <div className="mt-1 truncate text-[12px] font-semibold" title={it.team}>
+                    {it.team}
+                  </div>
+                  <div className="text-[10px] text-slate-500">
+                    {fmtRange(it.start, it.end)}
+                  </div>
+                  <div className="text-[10px] text-blue-700">{it.role}</div>
                 </div>
               </div>
-            </article>
-          ))}
+            ))}
+          </div>
+
+          {/* Nota opcional: quitá si no la querés */}
+          {/* <div className="mt-3 text-[10px] text-slate-500">
+            Fuente: Wikipedia / confirmaciones propias.
+          </div> */}
         </div>
       </div>
     </section>
   );
 }
-
