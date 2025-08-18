@@ -11,7 +11,7 @@ function FlagRow({ flags = [] }) {
           key={i}
           src={src}
           alt="bandera"
-          className="h-4 w-5 rounded-[2px] border object-cover"
+          className="h-4 w-6 rounded-[2px] border object-cover"
           loading="lazy"
         />
       ))}
@@ -19,14 +19,18 @@ function FlagRow({ flags = [] }) {
   );
 }
 
-function CardHead({ person }) {
-  const slug =
-    (person.slug ??
-      person.name
-        .toLowerCase()
-        .replace(/[^a-z0-9\s-]/g, "")
-        .replace(/\s+/g, "-")) || "";
+function slugify(s = "") {
+  return s
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "") // quita acentos
+    .replace(/[^a-z0-9\s-]/g, "")
+    .trim()
+    .replace(/\s+/g, "-");
+}
 
+function CardHead({ person }) {
+  const slug = person.slug || slugify(person.name);
   return (
     <a
       href={`/staff/${slug}`}
@@ -45,41 +49,23 @@ function CardHead({ person }) {
         </h3>
         <p className="text-slate-700">{person.role}</p>
         <p className="mt-2 max-w-3xl text-sm text-slate-600">{person.bio}</p>
-
-        {person.roles?.length ? (
-          <div className="mt-3 flex flex-wrap gap-1">
-            {person.roles.map((r, i) => (
-              <span
-                key={i}
-                className="rounded-full border bg-slate-50 px-2 py-0.5 text-xs text-slate-600"
-              >
-                {r}
-              </span>
-            ))}
-          </div>
-        ) : null}
+        {/* A pedido: a Flavio NO le mostramos chips de funciones */}
       </div>
     </a>
   );
 }
 
 function CardAsst({ person }) {
-  const slug =
-    (person.slug ??
-      person.name
-        .toLowerCase()
-        .replace(/[^a-z0-9\s-]/g, "")
-        .replace(/\s+/g, "-")) || "";
-
+  const slug = person.slug || slugify(person.name);
   return (
     <a
       href={`/staff/${slug}`}
-      className="flex h-[300px] w-full flex-col items-center rounded-2xl border bg-white p-4 text-center shadow-sm transition hover:shadow-md"
+      className="flex h-[320px] w-full flex-col items-center rounded-2xl border bg-white p-4 text-center shadow-sm transition hover:shadow-md"
     >
       <img
         src={person.img}
         alt={person.name}
-        className="h-28 w-28 rounded-xl border bg-slate-50 object-cover"
+        className="h-36 w-36 rounded-xl border bg-slate-50 object-cover"
         loading="lazy"
       />
       <div className="mt-3">
@@ -124,14 +110,15 @@ export default function Staff() {
           <CardHead person={head} />
         </div>
 
-        {/* Asistentes: una sola fila en desktop, fotos más grandes, funciones visibles */}
+        {/* Asistentes: más grandes y en una sola fila (desktop) */}
         <div className="mt-6 grid gap-4 sm:grid-cols-3 lg:grid-cols-5">
           {others.map((p) => (
-            <CardAsst key={p.name} person={p} />
+            <CardAsst key={p.slug || p.name} person={p} />
           ))}
         </div>
       </div>
     </section>
   );
 }
+
 
