@@ -2,7 +2,7 @@
 import React from "react";
 import StaffCard from "./components/StaffCard";
 import { TEAM } from "./data/staff";
-import Experiencia from "./sections/Experiencia";
+import Resultados from "./sections/Resultados";
 
 export default function Home() {
   return (
@@ -49,9 +49,10 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Experiencia */}
-        <Experiencia />
+        {/* Resultados y Efectividad (datos, sin imágenes) */}
+        <Resultados />
       </main>
     </>
   );
 }
+
