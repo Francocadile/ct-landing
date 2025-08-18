@@ -31,37 +31,58 @@ export default function Experiencia() {
           Trayectoria completa de <strong>Flavio Robatto</strong> como DT y Asistente.
         </p>
 
-        <ol className="relative mt-8 space-y-6 border-l pl-6">
-          {items.map((it, i) => (
-            <li key={`${it.team}-${i}`} className="relative">
-              {/* Punto de la línea */}
-              <span className="absolute -left-[9px] top-2 h-4 w-4 rounded-full border-2 border-blue-600 bg-white"></span>
+        {/* Timeline horizontal con scroll + snap */}
+        <div className="relative mt-8">
+          {/* Línea guía (solo en desktop) */}
+          <div className="pointer-events-none absolute left-0 right-0 top-6 hidden h-px bg-slate-200 md:block" />
 
-              <div className="flex flex-wrap items-center gap-4 rounded-xl border bg-white p-4 shadow-sm">
-                {it.logo ? (
-                  <img
-                    src={it.logo}
-                    alt={it.team}
-                    className="h-12 w-12 rounded-md border bg-white object-contain p-1"
-                    loading="lazy"
-                  />
-                ) : (
-                  <div className="flex h-12 w-12 items-center justify-center rounded-md border bg-slate-50 text-sm font-semibold text-slate-600">
-                    {initials(it.team)}
-                  </div>
-                )}
+          {/* Carrusel horizontal */}
+          <div className="-mx-4 overflow-x-auto pb-6">
+            <div className="mx-4 flex min-w-max gap-6 snap-x snap-mandatory">
+              {items.map((it, i) => (
+                <div
+                  key={`${it.team}-${i}`}
+                  className="relative w-72 shrink-0 snap-start"
+                >
+                  {/* Punto sobre la tarjeta (alineado con la línea guía) */}
+                  <span className="absolute left-1/2 top-4 hidden h-3 w-3 -translate-x-1/2 rounded-full border-2 border-blue-600 bg-white shadow md:block" />
 
-                <div className="min-w-0">
-                  <div className="text-sm text-slate-500">
-                    {fmtRange(it.start, it.end)} · {it.country}
-                  </div>
-                  <div className="truncate text-base font-semibold">{it.team}</div>
-                  <div className="text-sm text-blue-700">{it.role}</div>
+                  <article className="rounded-xl border bg-white p-4 shadow-sm transition hover:shadow-md">
+                    <div className="flex items-center gap-3">
+                      {it.logo ? (
+                        <img
+                          src={it.logo}
+                          alt={it.team}
+                          className="h-12 w-12 rounded-md border bg-white object-contain p-1"
+                          loading="lazy"
+                        />
+                      ) : (
+                        <div className="flex h-12 w-12 items-center justify-center rounded-md border bg-slate-50 text-sm font-semibold text-slate-600">
+                          {initials(it.team)}
+                        </div>
+                      )}
+
+                      <div className="min-w-0">
+                        <div className="text-sm text-slate-500">
+                          {fmtRange(it.start, it.end)} · {it.country}
+                        </div>
+                        <div className="truncate text-base font-semibold">
+                          {it.team}
+                        </div>
+                        <div className="text-sm text-blue-700">{it.role}</div>
+                      </div>
+                    </div>
+                  </article>
                 </div>
-              </div>
-            </li>
-          ))}
-        </ol>
+              ))}
+            </div>
+          </div>
+
+          {/* Indicador sutil de desplazamiento (opcional) */}
+          <div className="mt-2 text-xs text-slate-500">
+            Desliza horizontalmente para ver toda la trayectoria →
+          </div>
+        </div>
       </div>
     </section>
   );
