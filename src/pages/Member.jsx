@@ -63,22 +63,41 @@ export default function Member() {
                   </ul>
                 </>
               ) : null}
+            </div>
+          </div>
 
-              <div className="mt-8 flex gap-3">
-                <a
-                  href="/#records"
-                  className="rounded-lg bg-blue-600 px-4 py-2 font-medium text-white hover:bg-blue-700"
-                >
-                  Ver Records
-                </a>
-                <a
-                  href="/#contacto"
-                  className="rounded-lg border px-4 py-2 font-medium text-slate-700 hover:bg-slate-100"
-                >
-                  Contacto
-                </a>
+          {/* Trayectoria por clubes: SOLO ESCUDOS */}
+          {member.clubs?.length ? (
+            <div className="mt-10">
+              <h2 className="text-lg font-semibold">Trayectoria por clubes</h2>
+              <div className="mt-4 flex flex-wrap items-center gap-3">
+                {member.clubs.map((c, i) => (
+                  <img
+                    key={i}
+                    src={c.logo}
+                    alt={c.name}
+                    title={c.name}
+                    className="h-10 w-10 rounded-md border bg-white object-contain p-1 sm:h-12 sm:w-12"
+                    loading="lazy"
+                  />
+                ))}
               </div>
             </div>
+          ) : null}
+
+          <div className="mt-10 flex gap-3">
+            <a
+              href="/#records"
+              className="rounded-lg bg-blue-600 px-4 py-2 font-medium text-white hover:bg-blue-700"
+            >
+              Ver Records
+            </a>
+            <a
+              href="/#contacto"
+              className="rounded-lg border px-4 py-2 font-medium text-slate-700 hover:bg-slate-100"
+            >
+              Contacto
+            </a>
           </div>
         </div>
       </section>
