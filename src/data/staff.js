@@ -6,7 +6,7 @@ export const TEAM = [
     role: "Director Técnico",
     img: "/img/staff/flavio-robatto.jpg",
     bio:
-      "Entrenador con trayectoria en Bolivia (Bolívar, Nacional Potosí), Perú (Alianza Atlético), Colombia (Cúcuta, Jaguares, Atlético Huila) y Ecuador (Barcelona SC, U Loja). Especialista en planificación de alto rendimiento, construcción de modelos de juego y gestión del proceso semanal (MD+1 a MD-1). Lidera el trabajo interdisciplinario del CT, define los principios de Juego de Posición y ABP, y conduce la toma de decisiones en competencia. Logros recientes: campeón Clausura y Absoluto 2024 con Bolívar, 8vos de CONMEBOL Libertadores 2024, clasificación histórica de Nacional Potosí a Libertadores 2022 y campeón del Torneo de Verano 2025.",
+      "Entrenador de fútbol con amplia trayectoria en primera división de Sudamérica. Se caracteriza por su visión táctica moderna, la planificación detallada de los microciclos y una comunicación directa con su cuerpo técnico y jugadores. Con experiencia en clubes de Argentina, Bolivia, Colombia, Ecuador y Perú, ha demostrado capacidad para construir equipos competitivos, potenciar el rendimiento individual y colectivo, y consolidar una identidad de juego clara. Su liderazgo combina exigencia, cercanía y criterio estratégico, elementos que lo definen como un director técnico integral y formador de grupos.",
     roles: [
       "Planificación y estrategia",
       "Dirección de partido",
