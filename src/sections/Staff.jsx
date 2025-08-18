@@ -74,22 +74,35 @@ function CardAsst({ person }) {
   return (
     <a
       href={`/staff/${slug}`}
-      className="flex h-[220px] w-full flex-col items-center rounded-2xl border bg-white p-4 text-center shadow-sm transition hover:shadow-md"
+      className="flex h-[300px] w-full flex-col items-center rounded-2xl border bg-white p-4 text-center shadow-sm transition hover:shadow-md"
     >
       <img
         src={person.img}
         alt={person.name}
-        className="h-20 w-20 rounded-xl border bg-slate-50 object-cover"
+        className="h-28 w-28 rounded-xl border bg-slate-50 object-cover"
         loading="lazy"
       />
       <div className="mt-3">
-        <h4 className="line-clamp-1 text-sm font-semibold text-slate-900">
+        <h4 className="line-clamp-2 text-sm font-semibold leading-snug text-slate-900">
           {person.name}
           <FlagRow flags={person.flags} />
         </h4>
         <p className="mt-0.5 text-xs text-slate-600">{person.role}</p>
       </div>
-      {/* Separador para que todas queden a la misma altura */}
+
+      {person.roles?.length ? (
+        <div className="mt-3 flex w-full flex-wrap justify-center gap-1 px-1">
+          {person.roles.map((r, i) => (
+            <span
+              key={i}
+              className="rounded-full border bg-slate-50 px-2 py-0.5 text-[11px] text-slate-600"
+            >
+              {r}
+            </span>
+          ))}
+        </div>
+      ) : null}
+
       <div className="mt-auto" />
     </a>
   );
@@ -111,7 +124,7 @@ export default function Staff() {
           <CardHead person={head} />
         </div>
 
-        {/* Asistentes: una sola fila en desktop, misma altura */}
+        {/* Asistentes: una sola fila en desktop, fotos más grandes, funciones visibles */}
         <div className="mt-6 grid gap-4 sm:grid-cols-3 lg:grid-cols-5">
           {others.map((p) => (
             <CardAsst key={p.name} person={p} />
