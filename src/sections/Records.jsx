@@ -52,7 +52,7 @@ const TAG_OVERRIDES = [
   { year: 2025, text: "8vos de final Copa Sudamericana" },
   // 2024 (dos casos distintos)
   { year: 2024, match: /absoluto/i, text: "Clasificados a 8vos como líderes del Grupo E" },
-  { year: 2024, match: /clausura/i, text: "70% EFECTIVIDAD" },
+  { year: 2024, match: /clausura/i, text: "70% Efectividad" },
   // 2022
   {
     year: 2022,
