@@ -116,7 +116,16 @@ export const STAFF_PAGES = {
       "Produce pre y post partido con KPIs tácticos y de eficiencia; soporte permanente al cuerpo técnico.",
     ],
     roles: ["Análisis de video", "Informes y dashboards", "Soporte táctico"],
-    clubs: ["/img/clubs/bolivar.png", "/img/clubs/nacional-potosi.png", "/img/clubs/zulia.png"],
+    clubs: [
+      "/img/clubs/bolivar.png",
+      "/img/clubs/nacional-potosi.png",
+      "/img/clubs/zulia.png",
+    ],
   },
 };
+
+// Alias de compatibilidad (si en algún archivo quedó el import viejo):
+export const CLUBS_BY_MEMBER = Object.fromEntries(
+  Object.entries(STAFF_PAGES).map(([slug, data]) => [slug, data.clubs || []])
+);
 
