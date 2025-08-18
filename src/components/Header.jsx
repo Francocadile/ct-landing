@@ -3,12 +3,11 @@ import React, { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { SITE } from "../data/site";
 
-// Navegación (con "Records" y href correcto)
 const NAV = [
   { href: "#home", label: "Inicio" },
   { href: "#staff", label: "Staff" },
-  { href: "#experiencia", label: "Experiencia" },
-  { href: "#records", label: "Records" }, // <- actualizado
+  { href: "#clubes", label: "Clubes" },        // ← antes “Experiencia”
+  { href: "#records", label: "Records" },      // ex Resultados
   { href: "#modelo", label: "Modelo de juego" },
   { href: "#blog", label: "Blog" },
   { href: "#contacto", label: "Contacto" },
@@ -22,11 +21,9 @@ export default function Header() {
     if (typeof window !== "undefined" && window.location.hash) {
       setActive(window.location.hash);
     }
-
     const ids = NAV.map((n) => n.href.replace("#", ""));
     const els = ids.map((id) => document.getElementById(id)).filter(Boolean);
     if (els.length === 0) return;
-
     const obs = new IntersectionObserver(
       (entries) => {
         const visible = entries
@@ -36,7 +33,6 @@ export default function Header() {
       },
       { threshold: [0.25, 0.5, 0.75], rootMargin: "0px 0px -40% 0px" }
     );
-
     els.forEach((el) => obs.observe(el));
     return () => obs.disconnect();
   }, []);
@@ -87,3 +83,4 @@ export default function Header() {
     </header>
   );
 }
+
