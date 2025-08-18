@@ -3,7 +3,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { TEAM } from "../data/staff.js";
 
-// Utilidad: slug por si faltara en data
 function slugify(s) {
   return s
     .toLowerCase()
@@ -13,6 +12,13 @@ function slugify(s) {
     .replace(/(^-|-$)/g, "");
 }
 
+// Normaliza la ruta de banderas: acepta "argentina.png" o "/img/banders/argentina.png"
+function flagSrc(f) {
+  if (!f) return "";
+  if (f.startsWith("/") || f.startsWith("http")) return f;
+  return `/img/banders/${f}`;
+}
+
 function Flags({ flags = [] }) {
   if (!flags || flags.length === 0) return null;
   return (
@@ -20,7 +26,7 @@ function Flags({ flags = [] }) {
       {flags.map((f, i) => (
         <img
           key={`${f}-${i}`}
-          src={`/img/banders/${f}`}
+          src={flagSrc(f)}
           alt=""
           className="h-4 w-6 rounded object-cover ring-1 ring-slate-200"
           loading="lazy"
@@ -45,24 +51,22 @@ function AssistantCard({ m }) {
       to={`/staff/${slug}`}
       className="group flex h-full flex-col rounded-2xl border border-slate-200 bg-white p-4 shadow-sm transition hover:shadow-md"
     >
-      {/* Foto grande y consistente */}
-      <div className="mb-4 flex h-56 items-center justify-center overflow-hidden rounded-xl border border-slate-100 bg-white">
+      {/* Marco con tamaño uniforme y recorte suave */}
+      <div className="mb-4 relative h-64 w-full overflow-hidden rounded-xl border border-slate-100 bg-white">
         <img
           src={m.img}
           alt={m.name}
-          className="h-full w-full object-contain transition-transform duration-300 group-hover:scale-[1.02]"
+          className="absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
           loading="lazy"
         />
       </div>
 
-      {/* Nombre + banderas */}
       <h3 className="text-lg font-semibold text-slate-900">
         {m.name}
         <Flags flags={m.flags} />
       </h3>
       <div className="mt-0.5 text-sm text-slate-600">{m.role}</div>
 
-      {/* Chips de funciones */}
       <div className="mt-3 flex flex-wrap gap-2 md:mt-4">
         {(m.roles || []).map((r, i) => (
           <Chip key={i}>{r}</Chip>
@@ -73,16 +77,16 @@ function AssistantCard({ m }) {
 }
 
 export default function Staff() {
-  // Elegimos al DT (Flavio) por rol o por nombre
+  // DT destacado
   const lead =
     TEAM.find((p) => /director/i.test(p.role)) ||
     TEAM.find((p) => /flavio/i.test(p.name));
 
-  // Orden para asistentes (todos en una fila en pantallas grandes)
+  // Orden visible de asistentes en una sola fila en XL
   const desiredOrder = [
     "Sandro Domínguez",
     "Horacio Rodríguez",
-    "Juan Vogliotti", // sin "Chicho"
+    "Juan Vogliotti",
     "Franco Cadile",
     "Gabriel Gonzalez",
   ];
@@ -106,25 +110,23 @@ export default function Staff() {
           </p>
         </header>
 
-        {/* === Flavio destacado arriba (sin chips) === */}
+        {/* Flavio destacado arriba (sin chips) */}
         {lead && (
           <Link
             to={`/staff/${lead.slug || slugify(lead.name)}`}
             className="mb-10 block rounded-3xl border border-slate-200 bg-white/60 p-6 shadow-sm ring-1 ring-transparent transition hover:bg-white hover:shadow-md"
           >
             <div className="grid items-center gap-6 md:grid-cols-2">
-              {/* Foto grande */}
               <div className="order-1 md:order-none">
-                <div className="flex h-80 items-center justify-center overflow-hidden rounded-2xl border border-slate-100 bg-white">
+                <div className="relative h-80 overflow-hidden rounded-2xl border border-slate-100 bg-white">
                   <img
                     src={lead.img}
                     alt={lead.name}
-                    className="h-full w-full object-contain"
+                    className="absolute inset-0 h-full w-full object-cover"
                   />
                 </div>
               </div>
 
-              {/* Texto */}
               <div>
                 <div className="text-sm font-medium uppercase tracking-wide text-blue-700">
                   Director Técnico
@@ -142,7 +144,7 @@ export default function Staff() {
           </Link>
         )}
 
-        {/* === Asistentes en una sola línea en XL, más grandes === */}
+        {/* Asistentes en línea (XL = 5 columnas) */}
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
           {assistants.map((m) => (
             <AssistantCard key={m.name} m={m} />
