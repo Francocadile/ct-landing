@@ -15,7 +15,7 @@ const Stat = ({ label, value }) => (
   </div>
 );
 
-// Map a tus banderas en /public/img/banders  (incluye Ecuador)
+// Banderas en /public/img/banders (incluye Ecuador)
 const FLAG_BY_COUNTRY = {
   AR: "/img/banders/argentina.png",
   BO: "/img/banders/bolivia.png",
@@ -23,7 +23,7 @@ const FLAG_BY_COUNTRY = {
   VE: "/img/banders/venezuela.png",
   PT: "/img/banders/portugal.png",
   EC: "/img/banders/ecuador.png",
-  ECU: "/img/banders/ecuador.png", // por si algún dato viene con 'ECU'
+  ECU: "/img/banders/ecuador.png",
 };
 
 function CountryFlag({ country, className = "" }) {
@@ -50,12 +50,12 @@ export default function Records() {
           Palmarés del cuerpo técnico y métricas por temporada en clubes donde trabajamos.
         </p>
 
-        {/* PALMARÉS */}
+        {/* PALMARÉS — cards con altura uniforme y títulos legibles */}
         <div className="mt-8 grid gap-4 sm:grid-cols-2">
           {achievements.map((r, i) => (
             <article
               key={i}
-              className="relative overflow-hidden rounded-2xl border bg-gradient-to-br from-amber-50 via-white to-white p-5 shadow-sm"
+              className="relative flex min-h-[160px] flex-col justify-between overflow-hidden rounded-2xl border bg-gradient-to-br from-amber-50 via-white to-white p-5 shadow-sm"
             >
               <div className="flex items-start gap-4">
                 <img
@@ -65,7 +65,8 @@ export default function Records() {
                   loading="lazy"
                 />
                 <div className="min-w-0">
-                  <h3 className="truncate text-xl font-semibold text-slate-900">
+                  {/* título sin truncar, permite salto de línea */}
+                  <h3 className="text-lg font-semibold text-slate-900 md:text-xl break-words">
                     {r.title}
                   </h3>
                   <div className="mt-0.5 flex items-center gap-2 text-sm text-slate-600">
@@ -75,28 +76,32 @@ export default function Records() {
                     </span>
                     <CountryFlag country={r.country} />
                   </div>
-
-                  {r.details?.length ? (
-                    <div className="mt-2 flex flex-wrap gap-1">
-                      {r.details.map((d, idx) => (
-                        <Pill key={idx}>{d}</Pill>
-                      ))}
-                    </div>
-                  ) : null}
                 </div>
-
                 <span className="ml-auto shrink-0 rounded-full bg-slate-100 px-3 py-1 text-sm font-semibold text-slate-700">
                   {r.year}
                 </span>
               </div>
 
-              <div className="pointer-events-none absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-white"></div>
+              {r.details?.length ? (
+                <div className="mt-3 flex flex-wrap gap-1">
+                  {r.details.map((d, idx) => (
+                    <Pill key={idx}>{d}</Pill>
+                  ))}
+                </div>
+              ) : (
+                <div className="mt-2" />
+              )}
             </article>
           ))}
         </div>
 
+        {/* Título para el bloque de métricas */}
+        <h3 className="mt-12 text-2xl font-bold tracking-tight">
+          Cuerpo técnico en números
+        </h3>
+
         {/* NÚMEROS POR CLUB Y TEMPORADA */}
-        <div className="mt-12 space-y-10">
+        <div className="mt-6 space-y-10">
           {SEASONS_BY_CLUB.map((club) => (
             <div key={club.club} className="rounded-2xl border bg-white p-5">
               <div className="flex items-center gap-3">
@@ -106,7 +111,7 @@ export default function Records() {
                   className="h-10 w-10 rounded-lg border bg-white p-1 object-contain"
                   loading="lazy"
                 />
-                <h3 className="text-lg font-semibold">{club.club}</h3>
+                <h4 className="text-lg font-semibold">{club.club}</h4>
                 <CountryFlag country={club.country} />
               </div>
 
