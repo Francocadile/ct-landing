@@ -1,18 +1,28 @@
 // src/sections/Staff.jsx
 import React from "react";
 import { Link } from "react-router-dom";
-import { TEAM } from "../data/staff";
+import { TEAM } from "../data/staff.js";
 
-function FlagStrip({ flags = [] }) {
-  if (!flags?.length) return null;
+// Utilidad: slug por si faltara en data
+function slugify(s) {
+  return s
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
+}
+
+function Flags({ flags = [] }) {
+  if (!flags || flags.length === 0) return null;
   return (
     <span className="ml-2 inline-flex items-center gap-1 align-middle">
       {flags.map((f, i) => (
         <img
-          key={i}
-          src={f}
-          alt="bandera"
-          className="h-4 w-6 rounded-[2px] border object-cover"
+          key={`${f}-${i}`}
+          src={`/img/banders/${f}`}
+          alt=""
+          className="h-4 w-6 rounded object-cover ring-1 ring-slate-200"
           loading="lazy"
         />
       ))}
@@ -20,94 +30,122 @@ function FlagStrip({ flags = [] }) {
   );
 }
 
-function RolePill({ children }) {
+function Chip({ children }) {
   return (
-    <span className="inline-flex min-h-[36px] items-center justify-center rounded-full border border-slate-200 bg-white px-3 text-xs leading-snug text-slate-700 text-center">
+    <span className="rounded-full border border-slate-200 bg-white px-3 py-1 text-xs text-slate-700">
       {children}
     </span>
   );
 }
 
-function StaffCard({ m, highlight = false }) {
+function AssistantCard({ m }) {
+  const slug = m.slug || slugify(m.name);
   return (
     <Link
-      to={`/staff/${m.slug}`}
-      className={`group flex h-full flex-col rounded-3xl border bg-white p-6 shadow-sm transition hover:shadow-md ${
-        highlight ? "ring-1 ring-blue-100" : ""
-      }`}
+      to={`/staff/${slug}`}
+      className="group flex h-full flex-col rounded-2xl border border-slate-200 bg-white p-4 shadow-sm transition hover:shadow-md"
     >
-      {/* Foto con tamaño consistente */}
-      <div
-        className={`mx-auto mb-5 flex w-full items-end justify-center overflow-hidden rounded-2xl bg-gradient-to-b from-slate-50 to-white ring-1 ring-slate-200 ${
-          highlight ? "aspect-[16/10] max-w-[800px]" : "aspect-[4/5] max-w-[260px]"
-        }`}
-      >
+      {/* Foto grande y consistente */}
+      <div className="mb-4 flex h-56 items-center justify-center overflow-hidden rounded-xl border border-slate-100 bg-white">
         <img
           src={m.img}
           alt={m.name}
-          className="h-full w-full object-contain"
+          className="h-full w-full object-contain transition-transform duration-300 group-hover:scale-[1.02]"
           loading="lazy"
         />
       </div>
 
       {/* Nombre + banderas */}
-      <h3
-        className={`text-center font-semibold text-slate-900 ${
-          highlight ? "text-2xl md:text-3xl" : "text-xl"
-        }`}
-      >
+      <h3 className="text-lg font-semibold text-slate-900">
         {m.name}
-        <FlagStrip flags={m.flags} />
+        <Flags flags={m.flags} />
       </h3>
+      <div className="mt-0.5 text-sm text-slate-600">{m.role}</div>
 
-      <p className="mt-1 text-center text-slate-600">
-        {m.role}
-      </p>
-
-      {/* Bio (solo Flavio en la tarjeta destacada) */}
-      {highlight ? (
-        <p className="mt-4 max-w-3xl self-center text-center text-sm text-slate-700">
-          {m.bio}
-        </p>
-      ) : null}
-
-      {/* Funciones: en 2 columnas, alturas consistentes. 
-          Para Flavio NO mostramos roles en su card destacada. */}
-      {!highlight && m.roles?.length ? (
-        <div className="mt-4 grid grid-cols-2 gap-2">
-          {m.roles.map((r, i) => (
-            <RolePill key={i}>{r}</RolePill>
-          ))}
-        </div>
-      ) : null}
-
-      <div className="mt-auto" />
+      {/* Chips de funciones */}
+      <div className="mt-3 flex flex-wrap gap-2 md:mt-4">
+        {(m.roles || []).map((r, i) => (
+          <Chip key={i}>{r}</Chip>
+        ))}
+      </div>
     </Link>
   );
 }
 
 export default function Staff() {
-  const boss =
-    TEAM.find((t) => t.slug === "flavio-robatto") || TEAM[0];
-  const assistants = TEAM.filter((t) => t.slug !== boss.slug);
+  // Elegimos al DT (Flavio) por rol o por nombre
+  const lead =
+    TEAM.find((p) => /director/i.test(p.role)) ||
+    TEAM.find((p) => /flavio/i.test(p.name));
+
+  // Orden para asistentes (todos en una fila en pantallas grandes)
+  const desiredOrder = [
+    "Sandro Domínguez",
+    "Horacio Rodríguez",
+    "Juan Vogliotti", // sin "Chicho"
+    "Franco Cadile",
+    "Gabriel Gonzalez",
+  ];
+
+  const assistants = TEAM
+    .filter((p) => p !== lead)
+    .sort((a, b) => {
+      const ai = desiredOrder.indexOf(a.name);
+      const bi = desiredOrder.indexOf(b.name);
+      return (ai === -1 ? 999 : ai) - (bi === -1 ? 999 : bi);
+    });
 
   return (
-    <section className="border-b">
+    <section className="border-b bg-white">
       <div className="mx-auto max-w-6xl px-4 py-12">
-        <h2 className="text-3xl font-bold tracking-tight">Staff</h2>
-        <p className="mt-2 max-w-3xl text-slate-600">
-          Cuerpo técnico profesional con roles complementarios y metodología integrada.
-        </p>
+        <header className="mb-8">
+          <h2 className="text-2xl font-semibold text-slate-900">Staff</h2>
+          <p className="mt-2 max-w-3xl text-slate-600">
+            Cuerpo técnico de primera división: liderazgo, metodología, análisis y
+            preparación física al servicio del rendimiento.
+          </p>
+        </header>
 
-        {/* Flavio destacado */}
-        <div className="mt-8">
-          <StaffCard m={boss} highlight />
-        </div>
+        {/* === Flavio destacado arriba (sin chips) === */}
+        {lead && (
+          <Link
+            to={`/staff/${lead.slug || slugify(lead.name)}`}
+            className="mb-10 block rounded-3xl border border-slate-200 bg-white/60 p-6 shadow-sm ring-1 ring-transparent transition hover:bg-white hover:shadow-md"
+          >
+            <div className="grid items-center gap-6 md:grid-cols-2">
+              {/* Foto grande */}
+              <div className="order-1 md:order-none">
+                <div className="flex h-80 items-center justify-center overflow-hidden rounded-2xl border border-slate-100 bg-white">
+                  <img
+                    src={lead.img}
+                    alt={lead.name}
+                    className="h-full w-full object-contain"
+                  />
+                </div>
+              </div>
 
-        {/* Asistentes alineados en una sola fila (más grandes) */}
-        <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-5">
+              {/* Texto */}
+              <div>
+                <div className="text-sm font-medium uppercase tracking-wide text-blue-700">
+                  Director Técnico
+                </div>
+                <h3 className="mt-1 text-2xl font-bold text-slate-900">
+                  {lead.name}
+                  <Flags flags={lead.flags} />
+                </h3>
+                <p className="mt-3 text-slate-700">{lead.bio}</p>
+                <div className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-blue-700">
+                  Ver perfil →
+                </div>
+              </div>
+            </div>
+          </Link>
+        )}
+
+        {/* === Asistentes en una sola línea en XL, más grandes === */}
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
           {assistants.map((m) => (
-            <StaffCard key={m.slug} m={m} />
+            <AssistantCard key={m.name} m={m} />
           ))}
         </div>
       </div>
