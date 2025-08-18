@@ -4,7 +4,7 @@ import { TEAM } from "../data/staff";
 
 function RoleChip({ children }) {
   return (
-    <span className="rounded-full border bg-white/70 px-2 py-0.5 text-xs text-slate-600">
+    <span className="rounded-full border bg-white/70 px-2 py-0.5 text-[10px] text-slate-600">
       {children}
     </span>
   );
@@ -24,12 +24,14 @@ function FeaturedCard({ m }) {
           />
         </div>
       </div>
+
       {/* Texto */}
       <div className="flex flex-1 flex-col gap-3 p-6 md:w-1/2">
         <div className="text-sm text-slate-500">Cuerpo Técnico</div>
         <h3 className="text-2xl font-semibold">{m.name}</h3>
-        <div className="text-blue-600 font-medium">{m.role}</div>
+        <div className="text-blue-600 font-semibold">{m.role}</div>
         <p className="text-slate-700">{m.bio}</p>
+
         {m.roles?.length ? (
           <div className="mt-1 flex flex-wrap gap-1.5">
             {m.roles.map((r, i) => (
@@ -45,7 +47,7 @@ function FeaturedCard({ m }) {
 function SmallCard({ m }) {
   return (
     <article className="flex h-full flex-col overflow-hidden rounded-2xl border bg-white shadow-sm">
-      <div className="aspect-[3/4] w-full overflow-hidden bg-slate-100">
+      <div className="aspect-[4/5] w-full overflow-hidden bg-slate-100">
         <img
           src={m.img}
           alt={m.name}
@@ -53,9 +55,9 @@ function SmallCard({ m }) {
           loading="lazy"
         />
       </div>
-      <div className="flex flex-1 flex-col gap-2 p-4">
-        <h4 className="text-lg font-semibold">{m.name}</h4>
-        <div className="text-sky-700 text-sm font-medium">{m.role}</div>
+      <div className="flex flex-1 flex-col gap-1.5 p-3">
+        <h4 className="text-base font-semibold leading-tight">{m.name}</h4>
+        <div className="text-sky-700 text-xs font-semibold">{m.role}</div>
         {m.roles?.length ? (
           <div className="mt-auto flex flex-wrap gap-1">
             {m.roles.map((r, i) => (
@@ -69,11 +71,23 @@ function SmallCard({ m }) {
 }
 
 export default function Staff() {
-  // Elegimos al DT como destacado (por rol), y el resto abajo
+  // Destacado: DT
   const featured =
-    TEAM.find((x) => /director/i.test(x.role)) ||
-    TEAM[0];
-  const others = TEAM.filter((x) => x !== featured);
+    TEAM.find((x) => /director/i.test(x.role)) || TEAM[0];
+
+  // Resto
+  const rest = TEAM.filter((x) => x !== featured);
+
+  // Orden: Asistentes primero, luego Franco (PF) y al final Gabriel (Analista)
+  const assistants = rest.filter((x) => /asistente/i.test(x.role));
+  const pf = rest.find((x) => /preparador/i.test(x.role));
+  const analyst = rest.find((x) => /analista/i.test(x.role));
+
+  const ordered = [
+    ...assistants,
+    ...(pf ? [pf] : []),
+    ...(analyst ? [analyst] : []),
+  ];
 
   return (
     <section id="staff" className="border-b">
@@ -88,9 +102,9 @@ export default function Staff() {
           <FeaturedCard m={featured} />
         </div>
 
-        {/* Resto en grilla uniforme */}
-        <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {others.map((m) => (
+        {/* Resto más pequeño y uniforme */}
+        <div className="mt-8 grid gap-5 sm:grid-cols-3 lg:grid-cols-4">
+          {ordered.map((m) => (
             <SmallCard key={m.name} m={m} />
           ))}
         </div>
@@ -98,3 +112,4 @@ export default function Staff() {
     </section>
   );
 }
+
