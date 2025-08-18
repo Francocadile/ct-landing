@@ -1,98 +1,103 @@
 // src/pages/StaffProfile.jsx
 import React from "react";
-import { useParams, Link } from "react-router-dom";
-import { TEAM } from "../data/staff.js";
-import { CLUBS_BY_MEMBER } from "../data/staff-pages.js";
-
-function findMemberBySlug(slug) {
-  // buscamos por slug calculado del name
-  const s = (text) =>
-    text
-      .toLowerCase()
-      .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
-      .replace(/[^a-z0-9]+/g, "-")
-      .replace(/(^-|-$)/g, "");
-  return TEAM.find((m) => s(m.name) === slug);
-}
-
-// mapeo manual a las claves que usamos en CLUBS_BY_MEMBER
-const slugToKey = {
-  "flavio-robatto": "flavio",
-  "sandro-dominguez": "sandro",
-  "horacio-rodriguez": "horacio",
-  "juan-chicho-vogliotti": "juan",
-  "franco-cadile": "franco",
-  "gabriel-gonzalez": "gabriel",
-};
+import { useParams } from "react-router-dom";
+import { STAFF_PAGES } from "../data/staff-pages.js";
 
 export default function StaffProfile() {
   const { slug } = useParams();
-  const member = findMemberBySlug(slug);
+  const person = STAFF_PAGES[slug];
 
-  if (!member) {
+  if (!person) {
     return (
-      <main className="mx-auto max-w-3xl px-4 py-16">
-        <p className="text-slate-600">Perfil no encontrado.</p>
-        <Link className="mt-4 inline-block text-blue-600" to="/#staff">
+      <main className="mx-auto max-w-6xl px-4 py-16">
+        <h1 className="text-2xl font-semibold">Perfil no encontrado</h1>
+        <a
+          href="/#staff"
+          className="mt-4 inline-block rounded border px-3 py-2 text-slate-700 hover:bg-slate-50"
+        >
           ← Volver al Staff
-        </Link>
+        </a>
       </main>
     );
   }
 
-  const clubs = CLUBS_BY_MEMBER[slugToKey[slug]] || [];
-
   return (
     <main className="bg-white">
       <section className="border-b">
-        <div className="mx-auto max-w-6xl px-4 py-10">
-          <Link className="text-blue-600" to="/#staff">← Volver al Staff</Link>
+        <div className="mx-auto max-w-6xl px-4 py-12">
+          <a
+            href="/#staff"
+            className="text-sm text-slate-600 hover:text-slate-900"
+          >
+            ← Volver al Staff
+          </a>
 
-          <div className="mt-6 grid gap-8 md:grid-cols-[280px,1fr]">
-            <div className="rounded-2xl border bg-white p-4">
-              <img
-                src={member.img}
-                alt={member.name}
-                className="w-full rounded-xl object-cover"
-              />
-              <div className="mt-4 text-sm text-slate-500">{member.role}</div>
-              <h1 className="text-2xl font-bold tracking-tight">{member.name}</h1>
-            </div>
-
+          <div className="mt-4 grid gap-6 md:grid-cols-[180px,1fr]">
+            <img
+              src={person.photo}
+              alt={person.name}
+              className="h-44 w-44 rounded-xl border bg-slate-50 object-cover"
+              loading="lazy"
+            />
             <div>
-              <p className="text-slate-700">{member.bio}</p>
-
-              {member.roles?.length ? (
-                <>
-                  <h2 className="mt-6 text-lg font-semibold">Funciones clave</h2>
-                  <ul className="mt-2 grid list-inside list-disc gap-1 text-slate-700">
-                    {member.roles.map((r) => (
-                      <li key={r}>{r}</li>
-                    ))}
-                  </ul>
-                </>
-              ) : null}
-
-              {clubs.length ? (
-                <>
-                  <h2 className="mt-8 text-lg font-semibold">Clubes</h2>
-                  <div className="mt-3 grid grid-cols-3 gap-4 sm:grid-cols-4 md:grid-cols-6">
-                    {clubs.map((c) => (
-                      <div key={c.name} className="flex items-center justify-center rounded-xl border bg-white p-3">
-                        <img
-                          src={c.logo}
-                          alt={c.name}
-                          className="h-12 w-12 object-contain"
-                          title={c.name}
-                          loading="lazy"
-                        />
-                      </div>
-                    ))}
-                  </div>
-                </>
+              <h1 className="text-3xl font-bold tracking-tight">
+                {person.name}
+              </h1>
+              <p className="mt-1 text-slate-700">{person.role}</p>
+              {person.flags?.length ? (
+                <div className="mt-2 flex gap-2">
+                  {person.flags.map((f, i) => (
+                    <img
+                      key={i}
+                      src={f}
+                      alt="bandera"
+                      className="h-4 w-6 rounded-[2px] border object-cover"
+                    />
+                  ))}
+                </div>
               ) : null}
             </div>
           </div>
+
+          {person.bio?.length ? (
+            <div className="prose prose-sm mt-6 max-w-none text-slate-700">
+              {person.bio.map((p, i) => (
+                <p key={i}>{p}</p>
+              ))}
+            </div>
+          ) : null}
+
+          {person.roles?.length ? (
+            <div className="mt-6">
+              <h2 className="text-lg font-semibold">Funciones</h2>
+              <div className="mt-2 flex flex-wrap gap-2">
+                {person.roles.map((r, i) => (
+                  <span
+                    key={i}
+                    className="rounded-full border bg-slate-50 px-3 py-1 text-sm text-slate-700"
+                  >
+                    {r}
+                  </span>
+                ))}
+              </div>
+            </div>
+          ) : null}
+
+          {person.clubs?.length ? (
+            <div className="mt-8">
+              <h2 className="text-lg font-semibold">Clubes</h2>
+              <div className="mt-3 flex flex-wrap items-center gap-4">
+                {person.clubs.map((c, i) => (
+                  <img
+                    key={i}
+                    src={c}
+                    alt="club"
+                    className="h-10 w-10 rounded border bg-white p-1 object-contain"
+                  />
+                ))}
+              </div>
+            </div>
+          ) : null}
         </div>
       </section>
     </main>
