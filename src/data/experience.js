@@ -1,105 +1,105 @@
 // src/data/experience.js
+// Línea de tiempo de Flavio Robatto
 
-export const EXPERIENCE = [
+export const FLAVIO_TIMELINE = [
+  // Asistente en Barcelona SC
   {
-    club: "Bolívar",
-    role: "Entrenador",
-    start: "2024-01-06",
-    end: null,
-    matches: 68,
-    ppg: 1.93,
-    logo: "/img/clubs/bolivar.png",
-    country: "BO",
-  },
-  {
-    club: "Nacional Potosí",
-    role: "Entrenador",
-    start: "2023-03-17",
-    end: "2023-12-31",
-    matches: 36,
-    ppg: 1.58,
-    logo: "/img/clubs/nacional-potosi.png",
-    country: "BO",
-  },
-  {
-    club: "Nacional Potosí",
-    role: "Entrenador",
-    start: "2022-01-01",
-    end: "2022-11-13",
-    matches: 42,
-    ppg: 1.67,
-    logo: "/img/clubs/nacional-potosi.png",
-    country: "BO",
-  },
-  {
-    club: "Nacional Potosí",
-    role: "Entrenador",
-    start: "2021-04-20",
-    end: "2021-07-08",
-    matches: 3,
-    ppg: 3.0,
-    logo: "/img/clubs/nacional-potosi.png",
-    country: "BO",
-  },
-  {
-    club: "Atlético Huila",
-    role: "Entrenador",
-    start: "2020-01-01",
-    end: "2020-09-25",
-    matches: 6,
-    ppg: 1.33,
-    logo: "/img/clubs/atletico-huila.png",
-    country: "CO",
-  },
-  {
-    club: "Jaguares FC",
-    role: "Entrenador",
-    start: "2018-09-01",
-    end: "2018-12-31",
-    matches: 13,
-    ppg: 0.69,
-    logo: "/img/clubs/jaguares.png",
-    country: "CO",
-  },
-  {
-    club: "Alianza Atlético",
-    role: "Entrenador",
-    start: "2018-02-01",
-    end: "2018-06-15",
-    matches: 8,
-    ppg: 0.63,
-    logo: "/img/clubs/alianza-atletico.png",
-    country: "PE",
-  },
-  {
-    club: "Cúcuta Deportivo",
-    role: "Entrenador",
-    start: "2017-03-15",
-    end: "2017-12-15",
-    matches: 6,
-    ppg: 0.67,
-    logo: "/img/clubs/cucuta.png",
-    country: "CO",
-  },
-  {
-    club: "Millonarios",
-    role: "Asistente",
-    start: "2015-08-27",
-    end: "2016-08-11",
-    matches: null,
-    ppg: 0,
-    logo: "/img/clubs/millonarios.png",
-    country: "CO",
-  },
-  {
-    club: "Barcelona SC",
-    role: "Asistente",
-    start: "2011-01-30",
-    end: "2015-05-31",
-    matches: null,
-    ppg: 0,
+    start: "2011-06",
+    end: "2015-05",
+    team: "Barcelona SC",
+    role: "Asistente Técnico",
+    country: "Ecuador",
     logo: "/img/clubs/barcelona-sc.png",
-    country: "EC",
+  },
+
+  // DT en Sport Norte América
+  {
+    start: "2015-03",
+    end: "2015-07",
+    team: "Sport Norte América",
+    role: "Director Técnico",
+    country: "Ecuador",
+    logo: "/img/clubs/norte.jpg",
+  },
+
+  // Asistente en Millonarios
+  {
+    start: "2015-08",
+    end: "2016-08",
+    team: "Millonarios",
+    role: "Asistente Técnico",
+    country: "Colombia",
+    logo: "/img/clubs/millonarios.png",
+  },
+
+  // DT en Cúcuta Deportivo
+  {
+    start: "2017-03",
+    end: "2017-12",
+    team: "Cúcuta Deportivo",
+    role: "Director Técnico",
+    country: "Colombia",
+    logo: "/img/clubs/cucuta-deportivo.png",
+  },
+
+  // DT en Alianza Atlético
+  {
+    start: "2018-02",
+    end: "2018-06",
+    team: "Alianza Atlético",
+    role: "Director Técnico",
+    country: "Perú",
+    logo: "/img/clubs/alianza-atletico.png",
+  },
+
+  // DT en Jaguares de Córdoba
+  {
+    start: "2018-09",
+    end: "2018-12",
+    team: "Jaguares de Córdoba",
+    role: "Director Técnico",
+    country: "Colombia",
+    logo: "/img/clubs/jaguares-fc.png",
+  },
+
+  // DT en Liga de Loja
+  {
+    start: "2019-06",
+    end: "2019-12",
+    team: "Liga de Loja",
+    role: "Director Técnico",
+    country: "Ecuador",
+    logo: "/img/clubs/loja.png",
+  },
+
+  // DT en Atlético Huila
+  {
+    start: "2020-01",
+    end: "2020-09",
+    team: "Atlético Huila",
+    role: "Director Técnico",
+    country: "Colombia",
+    logo: "/img/clubs/atletico-huila.png",
+  },
+
+  // DT en Nacional Potosí (UNIFICADO)
+  {
+    start: "2021-04",
+    end: "2023-12",
+    team: "Nacional Potosí",
+    role: "Director Técnico",
+    country: "Bolivia",
+    logo: "/img/clubs/nacional-potosi.png",
+  },
+
+  // DT en Bolívar (actual)
+  {
+    start: "2024-01",
+    end: null, // Presente
+    team: "Bolívar",
+    role: "Director Técnico",
+    country: "Bolivia",
+    logo: "/img/clubs/bolivar.png",
   },
 ];
 
