@@ -6,54 +6,112 @@ export const TEAM = [
     role: "Director Técnico",
     img: "/img/staff/flavio-robatto.jpg",
     bio:
-      "Entrenador de fútbol con amplia trayectoria en primera división de Sudamérica. Se caracteriza por su visión táctica moderna, la planificación detallada de los microciclos y una comunicación directa con su cuerpo técnico y jugadores. Con experiencia en clubes de Argentina, Bolivia, Colombia, Ecuador y Perú, ha demostrado capacidad para construir equipos competitivos, potenciar el rendimiento individual y colectivo, y consolidar una identidad de juego clara. Su liderazgo combina exigencia, cercanía y criterio estratégico, elementos que lo definen como un director técnico integral y formador de grupos.",
+      "Entrenador de primera división con experiencia en Argentina, Bolivia, Colombia, Ecuador y Perú. Conduce procesos integrales de alto rendimiento integrando metodología, táctica y gestión de grupo. Especialista en la construcción de modelos de juego aplicados a la competición, diseño de microciclos (MD+1 → MD-1), planes de partido y ABP. Lidera la coordinación interdisciplinaria (PF, analista, asistentes) y la toma de decisiones en el día de partido.",
     roles: [
-      "Planificación y estrategia",
-      "Dirección de partido",
+      "Liderazgo deportivo y gestión del CT",
       "Modelo de juego y ABP",
-      "Gestión de staff y procesos",
+      "Planificación semanal y planes de partido",
+      "Desarrollo del futbolista y cultura de alto rendimiento",
+    ],
+    clubs: [
+      { name: "Bolívar", logo: "/img/clubs/bolivar.png" },
+      { name: "Atlético Huila", logo: "/img/clubs/atletico-huila.png" },
+      { name: "Nacional Potosí", logo: "/img/clubs/nacional-potosi.png" },
+      { name: "Mitre", logo: "/img/clubs/mitre.png" },
+      { name: "Millonarios", logo: "/img/clubs/millonarios.png" },
+      { name: "Loja", logo: "/img/clubs/loja.png" },
+      { name: "Jaguares FC", logo: "/img/clubs/jaguares-fc.png" },
+      { name: "Cúcuta Deportivo", logo: "/img/clubs/cucuta-deportivo.png" },
+      { name: "Barcelona SC", logo: "/img/clubs/barcelona-sc.png" },
+      { name: "Alianza Atlético", logo: "/img/clubs/alianza-atletico.png" },
     ],
   },
   {
     name: "Sandro Domínguez",
     role: "Asistente Técnico",
-    // coincide con tu archivo actual (sin 'u')
-    img: "/img/staff/sandro-domingez.jpg",
+    img: "/img/staff/sandro-domingez.jpg", // coincide con tu archivo actual
     bio:
-      "Asistente técnico con experiencia en Argentina y Bolivia. Coordinación de tareas en campo y análisis táctico.",
-    roles: ["Diseño de sesiones", "Análisis táctico"],
+      "Asistente con foco en la operación diaria del cuerpo técnico. Gestiona la planificación operativa, la logística de sesiones/partidos y el nexo con utilería. Aporta en el armado de tareas en campo, seguimiento de cargas con el PF y observaciones tácticas durante la competencia.",
+    roles: [
+      "Planificación operativa y logística",
+      "Soporte en sesión y coordinación de tareas",
+      "Interfaz con utilería y staff",
+    ],
+    clubs: [
+      { name: "Bolívar", logo: "/img/clubs/bolivar.png" },
+      { name: "Nacional Potosí", logo: "/img/clubs/nacional-potosi.png" },
+      { name: "Atenas", logo: "/img/clubs/atenas.png" },
+      { name: "Renato", logo: "/img/clubs/renato.png" },
+    ],
   },
   {
     name: "Horacio Rodríguez",
     role: "Asistente Técnico",
     img: "/img/staff/horacio-rodriguez.jpg",
     bio:
-      "Encargado de la coordinación metodológica y del desarrollo de sesiones.",
-    roles: ["Metodología", "Planificación semanal"],
+      "Especialista en coordinación metodológica y diseño de tareas. Supervisa la correcta aplicación de contenidos del microciclo, asegura la transferencia al juego y colabora en la preparación de planes de partido.",
+    roles: [
+      "Coordinación metodológica",
+      "Diseño y control de tareas en cancha",
+      "Ajustes tácticos con el DT",
+    ],
+    clubs: [
+      { name: "Bolívar", logo: "/img/clubs/bolivar.png" },
+      { name: "Estudiantes", logo: "/img/clubs/estudiantes.png" },
+    ],
   },
   {
     name: 'Juan "Chicho" Vogliotti',
     role: "Asistente Técnico",
-    // coincide con tu archivo actual (una sola 't')
-    img: "/img/staff/juan-voglioti.jpg",
+    img: "/img/staff/juan-voglioti.jpg", // coincide con tu archivo actual
     bio:
-      "Aporta su experiencia al diseño y ejecución de sesiones, transmitiendo conceptos tácticos y técnicos.",
-    roles: ["Diseño de sesiones", "Asistencia en cancha"],
+      "Exfutbolista profesional. Aporta lectura de juego desde la experiencia en cancha y facilita la traducción de los principios tácticos al día a día. Colabora en el diseño/ejecución de tareas y en la preparación de partidos.",
+    roles: [
+      "Transmisión de conceptos tácticos",
+      "Acompañamiento en el campo y feedback al jugador",
+      "Aporte específico por posición/sector",
+    ],
+    clubs: [
+      { name: "Bolívar", logo: "/img/clubs/bolivar.png" },
+    ],
   },
   {
     name: "Franco Cadile",
     role: "Preparador Físico",
     img: "/img/staff/franco-cadile.jpg",
     bio:
-      "Preparador físico profesional. Planificación de cargas, prevención y control del rendimiento.",
-    roles: ["Planificación de cargas", "Prevención", "Control del rendimiento"],
+      "Preparador físico de fútbol profesional. Enlace entre el modelo de juego y la carga de entrenamiento. Planificación y control de cargas (internas/externas), uso de tecnología GPS, prevención y readaptación, y programación de semanas tipo según calendario competitivo.",
+    roles: [
+      "Planificación de cargas y periodización",
+      "Monitoreo GPS y control del esfuerzo",
+      "Prevención y return to play",
+    ],
+    clubs: [
+      { name: "Deportivo Táchira", logo: "/img/clubs/tachira.png" },
+      { name: "Los Chankas", logo: "/img/clubs/chankas.png" },
+      { name: "Gimnasia y Esgrima (Mza)", logo: "/img/clubs/gimnasia.png" },
+      // ⚠️ Ver nota al final sobre este archivo
+      { name: "Real Potosí", logo: "/img/clubs/real-potosi.png" },
+      { name: "Atlético Huila", logo: "/img/clubs/atletico-huila.png" },
+      { name: "Nacional Potosí", logo: "/img/clubs/nacional-potosi.png" },
+      { name: "Juventud", logo: "/img/clubs/juventud.png" },
+    ],
   },
   {
     name: "Gabriel Gonzalez",
     role: "Analista de Rendimiento",
     img: "/img/staff/gabriel-gonzalez.jpg",
     bio:
-      "Edición, segmentación y presentación de videos para CT y jugadores. Soporte constante a la toma de decisiones.",
-    roles: ["Análisis de video", "Informes", "Soporte táctico"],
+      "Analista táctico y audiovisual. Responsable del análisis de propio y rival, segmentación y etiquetado de video, elaboración de informes, ABP y presentaciones para staff y jugadores. Integra datos con observación cualitativa para la toma de decisiones.",
+    roles: [
+      "Scouting de rival y análisis de propio",
+      "Edición, etiquetado y presentaciones",
+      "Informes pre y post-partido",
+    ],
+    clubs: [
+      { name: "Bolívar", logo: "/img/clubs/bolivar.png" },
+      { name: "Nacional Potosí", logo: "/img/clubs/nacional-potosi.png" },
+      { name: "Zulia", logo: "/img/clubs/zulia.png" },
+    ],
   },
 ];
