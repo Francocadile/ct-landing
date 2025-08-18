@@ -2,7 +2,7 @@
 import React from "react";
 import { RECORDS, SEASONS } from "../data/results";
 
-// ---------- helpers visuales ----------
+// ============ helpers ============
 function Chip({ children }) {
   return (
     <span className="rounded-full border border-slate-200 bg-white px-2.5 py-0.5 text-xs text-slate-700">
@@ -11,7 +11,7 @@ function Chip({ children }) {
   );
 }
 
-function yearPill(y) {
+function YearPill({ y }) {
   return (
     <span className="rounded-full bg-slate-100 px-2 py-0.5 text-xs font-medium text-slate-700">
       {y}
@@ -46,12 +46,59 @@ function PillStat({ k, v }) {
   );
 }
 
-// ---------- tarjeta para NÚMEROS (más sobria y uniforme) ----------
+// ============ RECORDS (estilo anterior, sin truncar títulos) ============
+function RecordItem({ r }) {
+  return (
+    <li className="rounded-2xl border border-slate-200 bg-gradient-to-b from-amber-50/50 to-white p-4 shadow-sm">
+      <div className="flex items-start gap-3">
+        <div className="relative">
+          <img
+            src={r.logo}
+            alt={r.club}
+            className="h-12 w-12 rounded-xl border border-slate-200 bg-white object-contain p-1"
+            loading="lazy"
+          />
+          <span className="absolute -bottom-1 -right-1 h-3 w-3 rounded-full bg-orange-400/80 ring-2 ring-white" />
+        </div>
+
+        <div className="min-w-0 flex-1">
+          <div className="flex items-center gap-2">
+            <h4 className="text-lg font-semibold leading-snug text-slate-900 whitespace-normal break-words">
+              {r.title}
+            </h4>
+            <YearPill y={r.year} />
+          </div>
+          <div className="mt-0.5 text-sm text-slate-600">
+            {r.club} · {r.role}
+          </div>
+
+          {r.details?.length ? (
+            <div className="mt-2 flex flex-wrap gap-1.5">
+              {r.details.map((d, i) => (
+                <Chip key={i}>{d}</Chip>
+              ))}
+            </div>
+          ) : null}
+        </div>
+      </div>
+    </li>
+  );
+}
+
+// ============ NÚMEROS (diseño sobrio y uniforme) ============
 function SeasonCard({ s }) {
+  // Overrides de PJ que pediste (sin tocar tus datos)
+  const OVERRIDES = {
+    "Nacional Potosí|2021": 9,
+    "Atlético Huila|2020": 9,
+    "Cúcuta Deportivo|2017": 30,
+  };
+
   const v = s?.stats?.v ?? 0;
   const e = s?.stats?.e ?? 0;
   const d = s?.stats?.d ?? 0;
-  const pj = s?.stats?.pj ?? v + e + d;
+  const key = `${s.team}|${s.year}`;
+  const pj = s?.stats?.pj ?? OVERRIDES[key] ?? v + e + d;
 
   return (
     <article className="flex h-full min-h-[20rem] flex-col rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
@@ -77,14 +124,14 @@ function SeasonCard({ s }) {
                   loading="lazy"
                 />
               ) : null}
-              {yearPill(s.year)}
+              <YearPill y={s.year} />
             </div>
           </div>
         </div>
         <BigPct value={s.pct} />
       </div>
 
-      {/* Stats en píldoras, muy legibles */}
+      {/* Stats en píldoras */}
       <div className="grid grid-cols-3 gap-2">
         <PillStat k="PJ" v={pj} />
         <PillStat k="G" v={v} />
@@ -94,7 +141,7 @@ function SeasonCard({ s }) {
         <PillStat k="GC" v={s?.stats?.gc ?? "—"} />
       </div>
 
-      {/* Notas / logros en chips (todas visibles) */}
+      {/* Notas */}
       {Array.isArray(s.notes) && s.notes.length > 0 && (
         <div className="mt-4 flex flex-wrap gap-1.5">
           {s.notes.map((t, i) => (
@@ -103,67 +150,59 @@ function SeasonCard({ s }) {
         </div>
       )}
 
-      {/* empuje para igualar alturas */}
       <div className="mt-auto" />
     </article>
   );
 }
 
-// ---------- tarjeta de Records (no se modifica la idea, solo estilo consistente) ----------
-function RecordCard({ r }) {
-  return (
-    <li className="flex h-full items-center gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-      <img
-        src={r.logo}
-        alt={r.club}
-        className="h-12 w-12 rounded-xl border border-slate-200 bg-white object-contain p-1"
-        loading="lazy"
-      />
-      <div className="min-w-0">
-        <div className="flex items-center gap-2">
-          <div className="truncate text-lg font-semibold text-slate-900">
-            {r.title}
-          </div>
-          {yearPill(r.year)}
-        </div>
-        <div className="text-sm text-slate-600">
-          {r.club} · {r.role}
-        </div>
-        {r.details?.length ? (
-          <div className="mt-1.5 flex flex-wrap gap-1.5">
-            {r.details.map((d, i) => (
-              <Chip key={i}>{d}</Chip>
-            ))}
-          </div>
-        ) : null}
-      </div>
-    </li>
-  );
-}
-
 export default function Records() {
-  // Records: más recientes primero (sección NO modificada conceptualmente)
+  // Records: más recientes primero (no cambiamos concepto)
   const recordsSorted = [...RECORDS].sort((a, b) => b.year - a.year);
+
   // Números: más recientes primero
   const seasonsSorted = [...SEASONS].sort((a, b) => b.year - a.year);
+
+  // Querés que Huila y Cúcuta queden lado a lado al final (en desktop)
+  const tailTeams = new Set(["Atlético Huila", "Cúcuta Deportivo"]);
+  const main = seasonsSorted.filter((s) => !tailTeams.has(s.team));
+  const tail = seasonsSorted
+    .filter((s) => tailTeams.has(s.team))
+    .sort((a, b) => b.year - a.year); // 2020 antes que 2017
+
+  const ordered = [...main, ...tail];
+
+  // Si con 3 columnas queda 1 solo en la última fila,
+  // meto un placeholder oculto para que los dos últimos queden juntos.
+  const needsPlaceholder = ordered.length % 3 === 1;
 
   return (
     <section id="records" className="border-b bg-gradient-to-b from-slate-50 to-white">
       <div className="mx-auto max-w-6xl px-4 py-12">
-        {/* 1) Records */}
+        {/* 1) Records (estilo anterior) */}
         <h2 className="text-2xl font-semibold text-slate-900">Records del Cuerpo Técnico</h2>
         <ol className="mt-6 grid gap-4 sm:grid-cols-2">
           {recordsSorted.map((r, i) => (
-            <RecordCard key={i} r={r} />
+            <RecordItem key={i} r={r} />
           ))}
         </ol>
 
-        {/* 2) Cuerpo técnico en números (nuevo diseño sobrio) */}
+        {/* 2) Cuerpo técnico en números */}
         <div className="mt-12">
           <h3 className="text-xl font-semibold text-slate-900">Cuerpo técnico en números</h3>
           <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {seasonsSorted.map((s, i) => (
-              <SeasonCard key={i} s={s} />
+            {/* principales */}
+            {ordered.slice(0, ordered.length - tail.length).map((s, i) => (
+              <SeasonCard key={`${s.team}-${s.year}-${i}`} s={s} />
+            ))}
+
+            {/* placeholder para alinear la última fila si hace falta */}
+            {needsPlaceholder && (
+              <div className="hidden lg:block" aria-hidden="true" />
+            )}
+
+            {/* tail: Huila + Cúcuta lado a lado */}
+            {tail.map((s, i) => (
+              <SeasonCard key={`${s.team}-${s.year}-tail-${i}`} s={s} />
             ))}
           </div>
         </div>
