@@ -52,7 +52,7 @@ const TAG_OVERRIDES = [
   { year: 2025, text: "8vos de final Copa Sudamericana" },
   // 2024 (dos casos distintos)
   { year: 2024, match: /absoluto/i, text: "Clasificados a 8vos como líderes del Grupo E" },
-  { year: 2024, match: /clausura/i, text: "70% Efectividad" },
+  { year: 2024, match: /clausura/i, text: "70% EFECTIVIDAD" },
   // 2022
   {
     year: 2022,
@@ -130,7 +130,7 @@ function RecordItem({ r }) {
   );
 }
 
-// ============ NÚMEROS (diseño sobrio y uniforme) ============
+// ============ NÚMEROS (mismo layout + AURA CAMPEÓN) ============
 function SeasonCard({ s }) {
   // Overrides de PJ (sin tocar tus datos)
   const OVERRIDES = {
@@ -146,57 +146,73 @@ function SeasonCard({ s }) {
   const pj = s?.stats?.pj ?? OVERRIDES[key] ?? v + e + d;
 
   return (
-    <article className="flex h-full min-h-[20rem] flex-col rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-      {/* Header */}
-      <div className="mb-4 flex items-center justify-between gap-3">
-        <div className="flex items-center gap-3 min-w-0">
-          <img
-            src={s.logo}
-            alt={s.team}
-            className="h-12 w-12 rounded-xl border border-slate-200 bg-white object-contain p-1"
-            loading="lazy"
-          />
-          <div className="min-w-0">
-            <div className="truncate text-base font-semibold text-slate-900">
-              {s.team}
+    <div className="relative h-full">
+      {/* Glow dorado sutil (mismo espíritu que en Records) */}
+      <div
+        className="pointer-events-none absolute inset-0 rounded-2xl shadow-[0_14px_40px_-12px_rgba(245,158,11,0.35)]"
+        aria-hidden="true"
+      />
+      {/* Ribbon superior dorado ultra-delgado */}
+      <div className="absolute inset-x-0 top-0 h-1 rounded-t-2xl bg-gradient-to-r from-amber-300 via-amber-400 to-amber-300" />
+
+      <article className="relative flex h-full min-h-[20rem] flex-col rounded-2xl border border-amber-200/70 bg-gradient-to-b from-amber-50/25 to-white p-5 shadow-sm">
+        {/* Header */}
+        <div className="mb-4 flex items-center justify-between gap-3">
+          <div className="flex items-center gap-3 min-w-0">
+            <div className="relative">
+              <img
+                src={s.logo}
+                alt={s.team}
+                className="h-12 w-12 rounded-xl border border-amber-200 bg-white object-contain p-1 ring-1 ring-amber-100"
+                loading="lazy"
+              />
+              <span className="absolute -bottom-1 -right-1 h-3 w-3 rounded-full bg-amber-400/80 ring-2 ring-white" />
             </div>
-            <div className="mt-0.5 flex items-center gap-2">
-              {s.flag ? (
-                <img
-                  src={flagSrc(s.flag)}
-                  alt=""
-                  className="h-3.5 w-5 rounded ring-1 ring-slate-200"
-                  loading="lazy"
-                />
-              ) : null}
-              <YearPill y={s.year} />
+            <div className="min-w-0">
+              <div className="truncate text-base font-semibold text-slate-900">
+                {s.team}
+              </div>
+              <div className="mt-0.5 flex items-center gap-2">
+                {s.flag ? (
+                  <img
+                    src={flagSrc(s.flag)}
+                    alt=""
+                    className="h-3.5 w-5 rounded ring-1 ring-slate-200"
+                    loading="lazy"
+                  />
+                ) : null}
+                <YearPill y={s.year} />
+              </div>
             </div>
           </div>
+          {/* Por pedido, mantenemos el mismo componente de porcentaje */}
+          <div className="rounded-xl border border-amber-200 bg-amber-50/40 p-1">
+            <BigPct value={s.pct} />
+          </div>
         </div>
-        <BigPct value={s.pct} />
-      </div>
 
-      {/* Stats en píldoras */}
-      <div className="grid grid-cols-3 gap-2">
-        <PillStat k="PJ" v={pj} />
-        <PillStat k="G" v={v} />
-        <PillStat k="E" v={e} />
-        <PillStat k="P" v={d} />
-        <PillStat k="GF" v={s?.stats?.gf ?? "—"} />
-        <PillStat k="GC" v={s?.stats?.gc ?? "—"} />
-      </div>
-
-      {/* Notas */}
-      {Array.isArray(s.notes) && s.notes.length > 0 && (
-        <div className="mt-4 flex flex-wrap gap-1.5">
-          {s.notes.map((t, i) => (
-            <Chip key={i}>{t}</Chip>
-          ))}
+        {/* Stats en píldoras */}
+        <div className="grid grid-cols-3 gap-2">
+          <PillStat k="PJ" v={pj} />
+          <PillStat k="G" v={v} />
+          <PillStat k="E" v={e} />
+          <PillStat k="P" v={d} />
+          <PillStat k="GF" v={s?.stats?.gf ?? "—"} />
+          <PillStat k="GC" v={s?.stats?.gc ?? "—"} />
         </div>
-      )}
 
-      <div className="mt-auto" />
-    </article>
+        {/* Notas (si existen) */}
+        {Array.isArray(s.notes) && s.notes.length > 0 && (
+          <div className="mt-4 flex flex-wrap gap-1.5">
+            {s.notes.map((t, i) => (
+              <Chip key={i}>{t}</Chip>
+            ))}
+          </div>
+        )}
+
+        <div className="mt-auto" />
+      </article>
+    </div>
   );
 }
 
