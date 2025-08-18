@@ -1,57 +1,52 @@
 // src/sections/Experiencia.jsx
 import React from "react";
-import { EXPERIENCIA } from "../data/experiencia";
+import { EXPERIENCE } from "../data/experience";
 
 export default function Experiencia() {
   return (
-    <section id="experiencia" className="border-t bg-white">
-      <div className="mx-auto max-w-6xl px-4 py-14">
+    <section id="experiencia" className="bg-white border-t">
+      <div className="mx-auto max-w-6xl px-4 py-12">
         <h2 className="text-3xl font-bold tracking-tight">Experiencia</h2>
         <p className="mt-2 text-slate-600">
-          Resumen de hitos por año, club y logros principales.
+          Línea de tiempo con los principales hitos del cuerpo técnico.
         </p>
 
-        {/* Timeline */}
-        <ol className="relative mt-10 border-s-2 border-slate-200">
-          {EXPERIENCIA.map((item, idx) => (
-            <li key={idx} className="mb-10 ms-6">
-              <span className="absolute -start-3 mt-1 flex h-6 w-6 items-center justify-center rounded-full bg-blue-600 ring-8 ring-white">
-                <span className="h-2 w-2 rounded-full bg-white" />
-              </span>
+        <div className="mt-8 relative">
+          {/* Línea vertical */}
+          <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-slate-200" aria-hidden />
 
-              <div className="flex flex-col gap-3 rounded-xl border bg-white p-4 shadow-sm sm:flex-row sm:items-center">
-                {/* Badge */}
-                {item.badge ? (
-                  <img
-                    src={item.badge}
-                    alt={item.club}
-                    className="h-14 w-14 object-contain"
-                    loading="lazy"
-                  />
-                ) : (
-                  <div className="h-14 w-14 rounded bg-slate-100" />
-                )}
-
-                {/* Main */}
-                <div className="flex-1">
-                  <div className="flex flex-wrap items-baseline gap-2">
-                    <span className="text-sm font-semibold text-blue-600">{item.year}</span>
-                    <h3 className="text-lg font-semibold">
-                      {item.club} <span className="text-slate-500">· {item.role}</span>
-                    </h3>
+          <ul className="space-y-8">
+            {EXPERIENCE.sort((a, b) => a.year - b.year).map((item, idx) => (
+              <li key={`${item.year}-${idx}`} className="relative pl-16">
+                {/* Punto en la línea */}
+                <span className="absolute left-5 top-2 h-3 w-3 rounded-full bg-blue-600 ring-4 ring-blue-100" />
+                <div className="rounded-xl border p-4 hover:shadow-sm transition">
+                  <div className="flex flex-wrap items-center gap-4">
+                    {item.badge ? (
+                      <img
+                        src={item.badge}
+                        alt={`${item.club} escudo`}
+                        className="h-12 w-12 object-contain"
+                        loading="lazy"
+                      />
+                    ) : (
+                      <div className="h-12 w-12 rounded bg-slate-100" />
+                    )}
+                    <div className="min-w-0">
+                      <div className="flex items-baseline gap-3">
+                        <span className="text-blue-700 font-semibold tabular-nums">{item.year}</span>
+                        <h3 className="text-lg font-semibold leading-tight truncate">{item.club}</h3>
+                      </div>
+                      <p className="text-sm text-slate-600">{item.role}</p>
+                      <p className="mt-1 text-slate-700">{item.achievement}</p>
+                    </div>
                   </div>
-                  <p className="text-sm text-slate-500">{item.country}</p>
-
-                  <ul className="mt-2 list-disc space-y-1 pl-5 text-slate-700">
-                    {item.achievements.map((a, i) => (
-                      <li key={i}>{a}</li>
-                    ))}
-                  </ul>
                 </div>
-              </div>
-            </li>
-          ))}
-        </ol>
+              </li>
+            ))}
+          </ul>
+        </div>
+
       </div>
     </section>
   );
