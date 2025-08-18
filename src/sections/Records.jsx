@@ -1,186 +1,173 @@
 // src/sections/Records.jsx
 import React from "react";
-import { ACHIEVEMENTS, SEASONS_BY_CLUB } from "../data/records";
+import { RECORDS, SEASONS } from "../data/results";
 
-const Pill = ({ children }) => (
-  <span className="rounded-full border border-slate-200 bg-white/80 px-2 py-0.5 text-xs text-slate-600">
-    {children}
-  </span>
-);
-
-const Stat = ({ label, value }) => (
-  <div className="flex flex-col items-center rounded-xl bg-sky-50 px-3 py-2 text-center">
-    <div className="text-lg font-semibold text-slate-900">{value}</div>
-    <div className="text-[11px] leading-tight text-slate-600">{label}</div>
-  </div>
-);
-
-// /public/img/banders (incluye ecuador.png)
-const FLAG_BY_COUNTRY = {
-  AR: "/img/banders/argentina.png",
-  BO: "/img/banders/bolivia.png",
-  CO: "/img/banders/colombia.png",
-  VE: "/img/banders/venezuela.png",
-  PT: "/img/banders/portugal.png",
-  EC: "/img/banders/ecuador.png",
-  ECU: "/img/banders/ecuador.png",
-};
-
-function CountryFlag({ country, className = "" }) {
-  const src = country ? FLAG_BY_COUNTRY[country] : null;
-  if (!src) return null;
+// ---------- helpers visuales ----------
+function Chip({ children }) {
   return (
-    <img
-      src={src}
-      alt={`Bandera ${country}`}
-      className={`h-4 w-6 rounded-[2px] border object-cover ${className}`}
-      loading="lazy"
-    />
+    <span className="rounded-full border border-slate-200 bg-white px-2.5 py-0.5 text-xs text-slate-700">
+      {children}
+    </span>
+  );
+}
+
+function yearPill(y) {
+  return (
+    <span className="rounded-full bg-slate-100 px-2 py-0.5 text-xs font-medium text-slate-700">
+      {y}
+    </span>
+  );
+}
+
+function flagSrc(f) {
+  if (!f) return "";
+  if (f.startsWith("/") || f.startsWith("http")) return f;
+  return `/img/banders/${f}`;
+}
+
+function BigPct({ value }) {
+  const pct = Math.max(0, Math.min(100, Number(value) || 0));
+  return (
+    <div className="flex items-center justify-center rounded-xl border border-slate-200 bg-slate-50/60 px-3 py-2">
+      <span className="text-3xl font-extrabold leading-none text-slate-900">
+        {pct}
+        <span className="text-xl align-top">%</span>
+      </span>
+    </div>
+  );
+}
+
+function PillStat({ k, v }) {
+  return (
+    <div className="rounded-lg border border-slate-200 bg-white px-2 py-1 text-center">
+      <div className="text-xs text-slate-500">{k}</div>
+      <div className="text-base font-semibold text-slate-900">{v}</div>
+    </div>
+  );
+}
+
+// ---------- tarjeta para NÚMEROS (más sobria y uniforme) ----------
+function SeasonCard({ s }) {
+  const v = s?.stats?.v ?? 0;
+  const e = s?.stats?.e ?? 0;
+  const d = s?.stats?.d ?? 0;
+  const pj = s?.stats?.pj ?? v + e + d;
+
+  return (
+    <article className="flex h-full min-h-[20rem] flex-col rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+      {/* Header */}
+      <div className="mb-4 flex items-center justify-between gap-3">
+        <div className="flex items-center gap-3 min-w-0">
+          <img
+            src={s.logo}
+            alt={s.team}
+            className="h-12 w-12 rounded-xl border border-slate-200 bg-white object-contain p-1"
+            loading="lazy"
+          />
+          <div className="min-w-0">
+            <div className="truncate text-base font-semibold text-slate-900">
+              {s.team}
+            </div>
+            <div className="mt-0.5 flex items-center gap-2">
+              {s.flag ? (
+                <img
+                  src={flagSrc(s.flag)}
+                  alt=""
+                  className="h-3.5 w-5 rounded ring-1 ring-slate-200"
+                  loading="lazy"
+                />
+              ) : null}
+              {yearPill(s.year)}
+            </div>
+          </div>
+        </div>
+        <BigPct value={s.pct} />
+      </div>
+
+      {/* Stats en píldoras, muy legibles */}
+      <div className="grid grid-cols-3 gap-2">
+        <PillStat k="PJ" v={pj} />
+        <PillStat k="G" v={v} />
+        <PillStat k="E" v={e} />
+        <PillStat k="P" v={d} />
+        <PillStat k="GF" v={s?.stats?.gf ?? "—"} />
+        <PillStat k="GC" v={s?.stats?.gc ?? "—"} />
+      </div>
+
+      {/* Notas / logros en chips (todas visibles) */}
+      {Array.isArray(s.notes) && s.notes.length > 0 && (
+        <div className="mt-4 flex flex-wrap gap-1.5">
+          {s.notes.map((t, i) => (
+            <Chip key={i}>{t}</Chip>
+          ))}
+        </div>
+      )}
+
+      {/* empuje para igualar alturas */}
+      <div className="mt-auto" />
+    </article>
+  );
+}
+
+// ---------- tarjeta de Records (no se modifica la idea, solo estilo consistente) ----------
+function RecordCard({ r }) {
+  return (
+    <li className="flex h-full items-center gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+      <img
+        src={r.logo}
+        alt={r.club}
+        className="h-12 w-12 rounded-xl border border-slate-200 bg-white object-contain p-1"
+        loading="lazy"
+      />
+      <div className="min-w-0">
+        <div className="flex items-center gap-2">
+          <div className="truncate text-lg font-semibold text-slate-900">
+            {r.title}
+          </div>
+          {yearPill(r.year)}
+        </div>
+        <div className="text-sm text-slate-600">
+          {r.club} · {r.role}
+        </div>
+        {r.details?.length ? (
+          <div className="mt-1.5 flex flex-wrap gap-1.5">
+            {r.details.map((d, i) => (
+              <Chip key={i}>{d}</Chip>
+            ))}
+          </div>
+        ) : null}
+      </div>
+    </li>
   );
 }
 
 export default function Records() {
-  const achievements = [...ACHIEVEMENTS].sort((a, b) => b.year - a.year);
+  // Records: más recientes primero (sección NO modificada conceptualmente)
+  const recordsSorted = [...RECORDS].sort((a, b) => b.year - a.year);
+  // Números: más recientes primero
+  const seasonsSorted = [...SEASONS].sort((a, b) => b.year - a.year);
 
   return (
-    <section id="records" className="border-b">
-      <div className="mx-auto max-w-6xl px-4 py-14">
-        <h2 className="text-3xl font-bold tracking-tight">Records</h2>
-        <p className="mt-2 max-w-3xl text-slate-600">
-          Palmarés del cuerpo técnico y métricas por temporada en clubes donde trabajamos.
-        </p>
-
-        {/* PALMARÉS – mismas alturas por fila */}
-        <div
-          className="mt-8 grid gap-4 sm:grid-cols-2"
-          style={{ gridAutoRows: "1fr" }}
-        >
-          {achievements.map((r, i) => (
-            <article
-              key={i}
-              className="relative flex h-full flex-col justify-between overflow-hidden rounded-2xl border bg-gradient-to-br from-amber-50 via-white to-white p-5 shadow-sm"
-            >
-              <div className="flex items-start gap-4">
-                <img
-                  src={r.logo}
-                  alt={r.club}
-                  className="size-14 rounded-xl border bg-white p-1 object-contain"
-                  loading="lazy"
-                />
-                <div className="min-w-0">
-                  <h3 className="break-words text-lg font-semibold text-slate-900 md:text-xl">
-                    {r.title}
-                  </h3>
-                  <div className="mt-0.5 flex items-center gap-2 text-sm text-slate-600">
-                    <span>
-                      {r.club}
-                      {r.role ? <> · {r.role}</> : null}
-                    </span>
-                    <CountryFlag country={r.country} />
-                  </div>
-                </div>
-                <span className="ml-auto shrink-0 rounded-full bg-slate-100 px-3 py-1 text-sm font-semibold text-slate-700">
-                  {r.year}
-                </span>
-              </div>
-
-              {r.details?.length ? (
-                <div className="mt-3 flex flex-wrap gap-1">
-                  {r.details.map((d, idx) => (
-                    <Pill key={idx}>{d}</Pill>
-                  ))}
-                </div>
-              ) : (
-                <div className="mt-2" />
-              )}
-            </article>
+    <section id="records" className="border-b bg-gradient-to-b from-slate-50 to-white">
+      <div className="mx-auto max-w-6xl px-4 py-12">
+        {/* 1) Records */}
+        <h2 className="text-2xl font-semibold text-slate-900">Records del Cuerpo Técnico</h2>
+        <ol className="mt-6 grid gap-4 sm:grid-cols-2">
+          {recordsSorted.map((r, i) => (
+            <RecordCard key={i} r={r} />
           ))}
-        </div>
+        </ol>
 
-        {/* Título bloque de métricas */}
-        <h3 className="mt-12 text-2xl font-bold tracking-tight">
-          Cuerpo técnico en números
-        </h3>
-
-        {/* MÉTRICAS POR CLUB → grid de 2 columnas para alinear Huila y Cúcuta */}
-        <div
-          className="mt-6 grid gap-6 md:grid-cols-2"
-          style={{ gridAutoRows: "1fr" }}
-        >
-          {SEASONS_BY_CLUB.map((club) => (
-            <div
-              key={club.club}
-              className="flex h-full flex-col rounded-2xl border bg-white p-5"
-            >
-              <div className="flex items-center gap-3">
-                <img
-                  src={club.logo}
-                  alt={club.club}
-                  className="h-10 w-10 rounded-lg border bg-white p-1 object-contain"
-                  loading="lazy"
-                />
-                <h4 className="text-lg font-semibold">{club.club}</h4>
-                <CountryFlag country={club.country} />
-              </div>
-
-              <div className="mt-4 grid gap-4 md:grid-cols-2">
-                {club.seasons
-                  .slice()
-                  .sort((a, b) => b.year - a.year)
-                  .map((s, idx) => {
-                    const win = Number(s.stats?.win ?? 0);
-                    const draw = Number(s.stats?.draw ?? 0);
-                    const loss = Number(s.stats?.loss ?? 0);
-                    const pjComputed =
-                      s.stats?.pj ?? (win + draw + loss || "—");
-
-                    return (
-                      <article
-                        key={idx}
-                        className="rounded-xl border bg-slate-50/60 p-4"
-                      >
-                        <div className="flex items-start gap-3">
-                          <div className="rounded-full bg-white px-3 py-1 text-sm font-semibold text-slate-700">
-                            {s.year}
-                            {s.label ? ` · ${s.label}` : ""}
-                          </div>
-                          <div className="ml-auto flex items-center gap-2">
-                            <span className="text-sm text-slate-600">
-                              Efectividad
-                            </span>
-                            <span className="rounded-full bg-sky-600/10 px-2 py-0.5 text-sm font-semibold text-sky-700">
-                              {s.pct}%
-                            </span>
-                          </div>
-                        </div>
-
-                        <div className="mt-3 grid grid-cols-6 gap-2">
-                          <Stat label="PJ" value={pjComputed} />
-                          <Stat label="G" value={win || "—"} />
-                          <Stat label="E" value={draw || "—"} />
-                          <Stat label="P" value={loss || "—"} />
-                          <Stat label="GF" value={s.stats?.gf ?? "—"} />
-                          <Stat label="GC" value={s.stats?.ga ?? "—"} />
-                        </div>
-
-                        {s.notes?.length ? (
-                          <ul className="mt-3 list-disc space-y-1 pl-5 text-sm text-slate-700">
-                            {s.notes.map((n, i2) => (
-                              <li key={i2}>{n}</li>
-                            ))}
-                          </ul>
-                        ) : null}
-                      </article>
-                    );
-                  })}
-              </div>
-
-              <div className="mt-auto" />
-            </div>
-          ))}
+        {/* 2) Cuerpo técnico en números (nuevo diseño sobrio) */}
+        <div className="mt-12">
+          <h3 className="text-xl font-semibold text-slate-900">Cuerpo técnico en números</h3>
+          <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {seasonsSorted.map((s, i) => (
+              <SeasonCard key={i} s={s} />
+            ))}
+          </div>
         </div>
       </div>
     </section>
   );
 }
-
