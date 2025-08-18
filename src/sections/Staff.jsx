@@ -1,69 +1,97 @@
 // src/sections/Staff.jsx
+import React from "react";
 import { TEAM } from "../data/staff";
-import { Instagram, Twitter } from "lucide-react";
+
+function RoleChip({ children }) {
+  return (
+    <span className="rounded-full border bg-white/70 px-2 py-0.5 text-xs text-slate-600">
+      {children}
+    </span>
+  );
+}
+
+function FeaturedCard({ m }) {
+  return (
+    <article className="flex flex-col overflow-hidden rounded-2xl border bg-white shadow-sm md:flex-row">
+      {/* Imagen grande */}
+      <div className="md:w-1/2">
+        <div className="aspect-[4/3] w-full overflow-hidden bg-slate-100">
+          <img
+            src={m.img}
+            alt={m.name}
+            className="h-full w-full object-cover"
+            loading="eager"
+          />
+        </div>
+      </div>
+      {/* Texto */}
+      <div className="flex flex-1 flex-col gap-3 p-6 md:w-1/2">
+        <div className="text-sm text-slate-500">Cuerpo Técnico</div>
+        <h3 className="text-2xl font-semibold">{m.name}</h3>
+        <div className="text-blue-600 font-medium">{m.role}</div>
+        <p className="text-slate-700">{m.bio}</p>
+        {m.roles?.length ? (
+          <div className="mt-1 flex flex-wrap gap-1.5">
+            {m.roles.map((r, i) => (
+              <RoleChip key={i}>{r}</RoleChip>
+            ))}
+          </div>
+        ) : null}
+      </div>
+    </article>
+  );
+}
+
+function SmallCard({ m }) {
+  return (
+    <article className="flex h-full flex-col overflow-hidden rounded-2xl border bg-white shadow-sm">
+      <div className="aspect-[3/4] w-full overflow-hidden bg-slate-100">
+        <img
+          src={m.img}
+          alt={m.name}
+          className="h-full w-full object-cover"
+          loading="lazy"
+        />
+      </div>
+      <div className="flex flex-1 flex-col gap-2 p-4">
+        <h4 className="text-lg font-semibold">{m.name}</h4>
+        <div className="text-sky-700 text-sm font-medium">{m.role}</div>
+        {m.roles?.length ? (
+          <div className="mt-auto flex flex-wrap gap-1">
+            {m.roles.map((r, i) => (
+              <RoleChip key={i}>{r}</RoleChip>
+            ))}
+          </div>
+        ) : null}
+      </div>
+    </article>
+  );
+}
 
 export default function Staff() {
+  // Elegimos al DT como destacado (por rol), y el resto abajo
+  const featured =
+    TEAM.find((x) => /director/i.test(x.role)) ||
+    TEAM[0];
+  const others = TEAM.filter((x) => x !== featured);
+
   return (
-    <section id="staff" className="py-12 sm:py-16">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <header className="mb-8 sm:mb-12">
-          <h2 className="text-3xl font-bold tracking-tight text-slate-900">
-            Cuerpo Técnico
-          </h2>
-          <p className="mt-2 text-slate-600">
-            Conocé al equipo que lidera y estructura el trabajo diario.
-          </p>
-        </header>
+    <section id="staff" className="border-b">
+      <div className="mx-auto max-w-6xl px-4 py-12">
+        <h2 className="text-2xl font-semibold">Cuerpo Técnico</h2>
+        <p className="mt-2 text-slate-600">
+          Conocé al equipo que lidera y estructura el trabajo diario.
+        </p>
 
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {TEAM.map((m) => (
-            <article
-              key={m.name}
-              className="rounded-2xl border border-slate-200 bg-white shadow-sm transition hover:shadow-md"
-            >
-              {/* Imagen recortada prolija */}
-              <div className="aspect-square md:aspect-[4/5] w-full overflow-hidden rounded-t-2xl">
-                <img
-                  src={m.img}
-                  alt={m.name}
-                  className="h-full w-full object-cover object-top transition-transform duration-500 hover:scale-105"
-                  loading="lazy"
-                />
-              </div>
+        {/* Destacado */}
+        <div className="mt-6">
+          <FeaturedCard m={featured} />
+        </div>
 
-              <div className="p-5">
-                <h3 className="text-lg font-semibold text-slate-900">{m.name}</h3>
-                <p className="text-sm font-medium text-indigo-600">{m.role}</p>
-                <p className="mt-3 text-sm leading-6 text-slate-600">{m.bio}</p>
-
-                {(m.socials?.instagram || m.socials?.twitter) && (
-                  <div className="mt-4 flex items-center gap-3">
-                    {m.socials?.instagram && (
-                      <a
-                        href={m.socials.instagram}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="inline-flex rounded-md p-2 text-slate-500 hover:bg-slate-100 hover:text-slate-900"
-                        aria-label={`Instagram de ${m.name}`}
-                      >
-                        <Instagram size={18} />
-                      </a>
-                    )}
-                    {m.socials?.twitter && (
-                      <a
-                        href={m.socials.twitter}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="inline-flex rounded-md p-2 text-slate-500 hover:bg-slate-100 hover:text-slate-900"
-                        aria-label={`Twitter de ${m.name}`}
-                      >
-                        <Twitter size={18} />
-                      </a>
-                    )}
-                  </div>
-                )}
-              </div>
-            </article>
+        {/* Resto en grilla uniforme */}
+        <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {others.map((m) => (
+            <SmallCard key={m.name} m={m} />
           ))}
         </div>
       </div>
