@@ -46,46 +46,62 @@ function PillStat({ k, v }) {
   );
 }
 
-// ============ RECORDS (tal como te gustaba) ============
+// ============ RECORDS (altura uniforme + “aura campeón”) ============
 function RecordItem({ r }) {
   return (
-    <li className="rounded-2xl border border-slate-200 bg-gradient-to-b from-amber-50/50 to-white p-4 shadow-sm">
-      <div className="flex items-start gap-3">
-        <div className="relative">
-          <img
-            src={r.logo}
-            alt={r.club}
-            className="h-12 w-12 rounded-xl border border-slate-200 bg-white object-contain p-1"
-            loading="lazy"
-          />
-          <span className="absolute -bottom-1 -right-1 h-3 w-3 rounded-full bg-orange-400/80 ring-2 ring-white" />
-        </div>
+    <li className="relative h-full">
+      {/* Glow dorado sutil */}
+      <div
+        className="pointer-events-none absolute inset-0 rounded-2xl shadow-[0_10px_30px_-12px_rgba(245,158,11,0.35)]"
+        aria-hidden="true"
+      />
+      <div className="relative flex h-full min-h-[160px] flex-col justify-between rounded-2xl border border-amber-200/60 bg-gradient-to-b from-amber-50/40 to-white p-4 shadow-sm">
+        {/* cabecera */}
+        <div className="flex items-start gap-3 pr-16">
+          <div className="relative shrink-0">
+            <img
+              src={r.logo}
+              alt={r.club}
+              className="h-12 w-12 rounded-xl border border-slate-200 bg-white object-contain p-1"
+              loading="lazy"
+            />
+            <span className="absolute -bottom-1 -right-1 h-3 w-3 rounded-full bg-amber-400/80 ring-2 ring-white" />
+          </div>
 
-        <div className="min-w-0 flex-1">
-          <div className="flex items-center gap-2">
+          <div className="min-w-0 flex-1">
             <h4 className="text-lg font-semibold leading-snug text-slate-900 whitespace-normal break-words">
               {r.title}
             </h4>
-            <YearPill y={r.year} />
-          </div>
-          <div className="mt-0.5 text-sm text-slate-600">
-            {r.club} · {r.role}
+            <div className="mt-0.5 text-sm text-slate-600">
+              {r.club} · {r.role}
+            </div>
           </div>
 
-          {r.details?.length ? (
-            <div className="mt-2 flex flex-wrap gap-1.5">
+          {/* Año fijo arriba a la derecha para que no altere la altura */}
+          <div className="absolute right-4 top-4">
+            <YearPill y={r.year} />
+          </div>
+        </div>
+
+        {/* tira de detalles con altura reservada (1 línea) */}
+        {r.details?.length ? (
+          <div className="mt-2 h-8 overflow-hidden">
+            <div className="flex flex-nowrap gap-1.5">
               {r.details.map((d, i) => (
                 <Chip key={i}>{d}</Chip>
               ))}
             </div>
-          ) : null}
-        </div>
+          </div>
+        ) : (
+          // reservamos espacio para que TODAS midan igual aunque no haya chips
+          <div className="h-8" />
+        )}
       </div>
     </li>
   );
 }
 
-// ============ NÚMEROS (ahora con altura uniforme) ============
+// ============ NÚMEROS (diseño sobrio y uniforme) ============
 function SeasonCard({ s }) {
   // Overrides de PJ que pediste (sin tocar tus datos)
   const OVERRIDES = {
@@ -101,13 +117,7 @@ function SeasonCard({ s }) {
   const pj = s?.stats?.pj ?? OVERRIDES[key] ?? v + e + d;
 
   return (
-    <article
-      className="
-        flex h-80 flex-col   /* 🔒 Alto fijo para TODAS las tarjetas (20rem) */
-        rounded-2xl border border-slate-200 bg-white p-5 shadow-sm
-        hover:shadow-md transition-shadow
-      "
-    >
+    <article className="flex h-full min-h-[20rem] flex-col rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
       {/* Header */}
       <div className="mb-4 flex items-center justify-between gap-3">
         <div className="flex items-center gap-3 min-w-0">
@@ -162,31 +172,32 @@ function SeasonCard({ s }) {
 }
 
 export default function Records() {
-  // Records: más recientes primero (igual que antes)
+  // Records: más recientes primero
   const recordsSorted = [...RECORDS].sort((a, b) => b.year - a.year);
 
   // Números: más recientes primero
   const seasonsSorted = [...SEASONS].sort((a, b) => b.year - a.year);
 
-  // Querés que Huila y Cúcuta queden lado a lado al final (en desktop)
+  // Huila + Cúcuta lado a lado (desktop)
   const tailTeams = new Set(["Atlético Huila", "Cúcuta Deportivo"]);
   const main = seasonsSorted.filter((s) => !tailTeams.has(s.team));
   const tail = seasonsSorted
     .filter((s) => tailTeams.has(s.team))
-    .sort((a, b) => b.year - a.year); // 2020 antes que 2017
+    .sort((a, b) => b.year - a.year);
 
   const ordered = [...main, ...tail];
-
-  // Si con 3 columnas queda 1 solo en la última fila,
-  // meto un placeholder oculto para que los dos últimos queden juntos.
   const needsPlaceholder = ordered.length % 3 === 1;
 
   return (
     <section id="records" className="border-b bg-gradient-to-b from-slate-50 to-white">
       <div className="mx-auto max-w-6xl px-4 py-12">
         {/* 1) Records */}
-        <h2 className="text-2xl font-semibold text-slate-900">Records del Cuerpo Técnico</h2>
-        <ol className="mt-6 grid gap-4 sm:grid-cols-2">
+        <h2 className="text-2xl font-semibold text-slate-900">
+          Records del Cuerpo Técnico
+        </h2>
+
+        {/* grid con tarjetas estiradas y altura uniforme */}
+        <ol className="mt-6 grid items-stretch gap-4 sm:grid-cols-2">
           {recordsSorted.map((r, i) => (
             <RecordItem key={i} r={r} />
           ))}
@@ -194,17 +205,16 @@ export default function Records() {
 
         {/* 2) Cuerpo técnico en números */}
         <div className="mt-12">
-          <h3 className="text-xl font-semibold text-slate-900">Cuerpo técnico en números</h3>
-          <div className="mt-6 grid items-stretch gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {/* principales */}
+          <h3 className="text-xl font-semibold text-slate-900">
+            Cuerpo técnico en números
+          </h3>
+          <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {ordered.slice(0, ordered.length - tail.length).map((s, i) => (
               <SeasonCard key={`${s.team}-${s.year}-${i}`} s={s} />
             ))}
 
-            {/* placeholder para alinear la última fila si hace falta */}
             {needsPlaceholder && <div className="hidden lg:block" aria-hidden="true" />}
 
-            {/* tail: Huila + Cúcuta lado a lado */}
             {tail.map((s, i) => (
               <SeasonCard key={`${s.team}-${s.year}-tail-${i}`} s={s} />
             ))}
@@ -214,4 +224,3 @@ export default function Records() {
     </section>
   );
 }
-
