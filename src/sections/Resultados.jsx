@@ -12,15 +12,14 @@ function Chip({ children }) {
 
 export default function Resultados() {
   return (
-    <section id="records" className="border-b">
+    <section id="resultados" className="border-b">
       <div className="mx-auto max-w-6xl px-4 py-12">
         <h2 className="text-2xl font-semibold">Records del Cuerpo Técnico</h2>
 
         {/* A) RECORDS */}
         <div className="mt-8">
-          <h3 className="text-lg font-semibold">Records / Logros</h3>
           <ol className="mt-4 space-y-3">
-            {RECORDS.sort((a, b) => a.year - b.year).map((r, i) => (
+            {RECORDS.sort((a, b) => b.year - a.year).map((r, i) => (
               <li
                 key={i}
                 className="flex items-center gap-3 rounded-xl border bg-white p-3"
@@ -57,7 +56,7 @@ export default function Resultados() {
         <div className="mt-12">
           <h3 className="text-lg font-semibold">Historial de Efectividad</h3>
           <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {EFFECTIVENESS.map((e, i) => (
+            {EFFECTIVENESS.sort((a, b) => b.year - a.year).map((e, i) => (
               <div
                 key={i}
                 className="flex items-center gap-4 rounded-2xl border bg-gradient-to-b from-sky-50 to-white p-4"
@@ -70,9 +69,6 @@ export default function Resultados() {
                 <div className="min-w-0">
                   <div className="text-sm text-slate-500">{e.year}</div>
                   <div className="text-base font-semibold">{e.club}</div>
-                  {e.note ? (
-                    <div className="text-xs text-slate-600">{e.note}</div>
-                  ) : null}
                 </div>
                 <div className="ml-auto text-2xl font-extrabold">{e.pct}%</div>
               </div>
@@ -85,7 +81,7 @@ export default function Resultados() {
           <h3 className="text-lg font-semibold">Números por Temporada</h3>
 
           <div className="mt-4 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {SEASONS.map((s, i) => (
+            {SEASONS.sort((a, b) => b.year - a.year).map((s, i) => (
               <article
                 key={i}
                 className="rounded-2xl border bg-white p-5 shadow-sm"
@@ -145,4 +141,5 @@ export default function Resultados() {
     </section>
   );
 }
+
 
