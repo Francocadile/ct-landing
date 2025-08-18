@@ -1,6 +1,8 @@
 // src/Home.jsx
 import React from "react";
-import Staff from "./sections/Staff";
+import StaffCard from "./components/StaffCard";
+import { TEAM } from "./data/staff";
+import Experiencia from "./sections/Experiencia";
 
 export default function Home() {
   return (
@@ -34,8 +36,21 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Staff (sección completa) */}
-        <Staff />
+        {/* Staff */}
+        <section id="staff">
+          <div className="mx-auto max-w-6xl px-4 py-12">
+            <h2 className="text-2xl font-semibold">Staff</h2>
+
+            <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {TEAM.map((m) => (
+                <StaffCard key={m.name} {...m} />
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Experiencia */}
+        <Experiencia />
       </main>
     </>
   );
