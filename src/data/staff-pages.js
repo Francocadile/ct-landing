@@ -65,7 +65,7 @@ export const STAFF_PAGES = {
   },
 
   "juan-vogliotti": {
-    name: 'Juan "Chicho" Vogliotti',
+    name: "Juan Vogliotti",
     role: "Asistente Técnico",
     photo: "/img/staff/juan-voglioti.jpg",
     flags: ["/img/banders/argentina.png"],
@@ -124,7 +124,7 @@ export const STAFF_PAGES = {
   },
 };
 
-// Alias de compatibilidad (si en algún archivo quedó el import viejo):
+// Alias de compatibilidad por si quedó algún import viejo:
 export const CLUBS_BY_MEMBER = Object.fromEntries(
   Object.entries(STAFF_PAGES).map(([slug, data]) => [slug, data.clubs || []])
 );
