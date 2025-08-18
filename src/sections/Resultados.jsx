@@ -12,7 +12,7 @@ function Chip({ children }) {
 
 export default function Resultados() {
   return (
-    <section id="resultados" className="border-b">
+    <section id="records" className="border-b">
       <div className="mx-auto max-w-6xl px-4 py-12">
         <h2 className="text-2xl font-semibold">Records del Cuerpo Técnico</h2>
 
@@ -145,3 +145,4 @@ export default function Resultados() {
     </section>
   );
 }
+
