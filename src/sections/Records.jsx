@@ -46,8 +46,46 @@ function PillStat({ k, v }) {
   );
 }
 
+// ============ OVERRIDES de etiquetas (mostrar solo UNA por card) ============
+const TAG_OVERRIDES = [
+  // 2025
+  { year: 2025, text: "8vos de final Copa Sudamericana" },
+  // 2024 (dos casos distintos)
+  { year: 2024, match: /absoluto/i, text: "Clasificados a 8vos como líderes del Grupo E" },
+  { year: 2024, match: /clausura/i, text: "70% EFECTIVIDAD" },
+  // 2022
+  {
+    year: 2022,
+    text:
+      "Clasificación a la CONMEBOL Libertadores por primera vez en la historia del club",
+  },
+  // 2017
+  { year: 2017, text: "Mejor equipo en la tabla general" },
+  // 2015
+  { year: 2015, text: "Record en partidos ganados" },
+];
+
+// Devuelve el ÚNICO chip a mostrar para un record dado
+function getSingleTag(record) {
+  const title = record.title || "";
+  const year = record.year;
+
+  const override = TAG_OVERRIDES.find(
+    (o) => o.year === year && (!o.match || o.match.test(title))
+  );
+  if (override) return override.text;
+
+  // Si no hay override, usamos el primer detalle existente (ej: Barcelona 2012/2014)
+  if (Array.isArray(record.details) && record.details.length > 0) {
+    return record.details[0];
+  }
+  return null;
+}
+
 // ============ RECORDS (altura uniforme + “aura campeón”) ============
 function RecordItem({ r }) {
+  const singleTag = getSingleTag(r);
+
   return (
     <li className="relative h-full">
       {/* Glow dorado sutil */}
@@ -77,25 +115,16 @@ function RecordItem({ r }) {
             </div>
           </div>
 
-          {/* Año fijo arriba a la derecha para que no altere la altura */}
+          {/* Año fijo arriba a la derecha */}
           <div className="absolute right-4 top-4">
             <YearPill y={r.year} />
           </div>
         </div>
 
-        {/* tira de detalles con altura reservada (1 línea) */}
-        {r.details?.length ? (
-          <div className="mt-2 h-8 overflow-hidden">
-            <div className="flex flex-nowrap gap-1.5">
-              {r.details.map((d, i) => (
-                <Chip key={i}>{d}</Chip>
-              ))}
-            </div>
-          </div>
-        ) : (
-          // reservamos espacio para que TODAS midan igual aunque no haya chips
-          <div className="h-8" />
-        )}
+        {/* Único chip */}
+        <div className="mt-2 h-8 overflow-hidden">
+          {singleTag ? <Chip>{singleTag}</Chip> : <span className="inline-block h-6" />}
+        </div>
       </div>
     </li>
   );
@@ -103,7 +132,7 @@ function RecordItem({ r }) {
 
 // ============ NÚMEROS (diseño sobrio y uniforme) ============
 function SeasonCard({ s }) {
-  // Overrides de PJ que pediste (sin tocar tus datos)
+  // Overrides de PJ (sin tocar tus datos)
   const OVERRIDES = {
     "Nacional Potosí|2021": 9,
     "Atlético Huila|2020": 9,
@@ -196,7 +225,6 @@ export default function Records() {
           Records del Cuerpo Técnico
         </h2>
 
-        {/* grid con tarjetas estiradas y altura uniforme */}
         <ol className="mt-6 grid items-stretch gap-4 sm:grid-cols-2">
           {recordsSorted.map((r, i) => (
             <RecordItem key={i} r={r} />
