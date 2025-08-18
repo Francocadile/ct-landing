@@ -1,72 +1,88 @@
 // src/sections/Experiencia.jsx
 import React from "react";
-import { EXPERIENCE, EXPERIENCE_INTRO } from "../data/experience";
+import { EXPERIENCE } from "../data/experience";
 
-function Badge({ children }) {
+// Logo con fallback a iniciales si el escudo no existe
+function ClubLogo({ club, src }) {
+  const [error, setError] = React.useState(false);
+
+  const initials = club
+    .split(" ")
+    .map((s) => s[0])
+    .join("")
+    .slice(0, 3)
+    .toUpperCase();
+
+  if (error || !src) {
+    return (
+      <div className="flex h-14 w-14 items-center justify-center rounded-full bg-slate-100 text-sm font-semibold text-slate-600 ring-1 ring-slate-200">
+        {initials}
+      </div>
+    );
+  }
+
   return (
-    <span className="rounded-full border bg-slate-50 px-2.5 py-0.5 text-xs font-medium text-slate-700">
-      {children}
-    </span>
+    <img
+      src={src}
+      alt={club}
+      className="h-14 w-14 rounded-full object-contain ring-1 ring-slate-200 bg-white"
+      onError={() => setError(true)}
+    />
   );
 }
 
 export default function Experiencia() {
-  // Ordenar por "order" ascendente (1 = más reciente)
-  const items = [...EXPERIENCE].sort((a, b) => a.order - b.order);
-
   return (
-    <section id="experiencia" className="border-b bg-white">
+    <section id="experiencia" className="border-t">
       <div className="mx-auto max-w-6xl px-4 py-12">
-        {/* Header */}
-        <header className="mb-8">
-          <h2 className="text-3xl font-bold">Experiencia</h2>
-          {EXPERIENCE_INTRO && (
-            <p className="mt-2 max-w-3xl text-slate-600">{EXPERIENCE_INTRO}</p>
-          )}
-        </header>
+        <h2 className="text-2xl font-semibold">Experiencia</h2>
+        <p className="mt-2 text-slate-600">
+          Trayectoria profesional (DT y asistente).
+        </p>
 
-        {/* Timeline */}
-        <ol className="relative ml-3 space-y-8 border-l border-slate-200">
-          {items.map((item) => (
-            <li key={item.id} className="ml-6">
-              {/* Punto de la línea */}
-              <span className="absolute -left-1.5 mt-1.5 h-3 w-3 rounded-full border-2 border-white bg-blue-600 shadow ring-2 ring-blue-100" />
+        <div className="mt-8 grid gap-4">
+          {EXPERIENCE.map((item, idx) => (
+            <div
+              key={`${item.club}-${idx}`}
+              className="grid grid-cols-[auto,1fr,auto] items-center gap-4 rounded-xl border bg-white p-4 shadow-sm"
+            >
+              {/* Logo */}
+              <ClubLogo club={item.club} src={item.logo} />
 
-              {/* Contenido */}
-              <div className="rounded-xl border bg-white p-4 shadow-sm">
-                <div className="flex flex-wrap items-center justify-between gap-2">
-                  <div className="flex items-center gap-2">
-                    <Badge>{item.period}</Badge>
-                    {item.country && <Badge>{item.country}</Badge>}
-                  </div>
+              {/* Info */}
+              <div>
+                <div className="flex flex-wrap items-center gap-2">
+                  <h3 className="text-base font-semibold">{item.club}</h3>
+                  <span className="rounded bg-slate-100 px-2 py-0.5 text-xs font-medium text-slate-700">
+                    {item.role}
+                  </span>
                 </div>
+                <p className="mt-1 text-sm text-slate-600">{item.period}</p>
+              </div>
 
-                <h3 className="mt-2 text-xl font-semibold">{item.club}</h3>
-                <p className="text-slate-700">{item.role}</p>
-
-                {Array.isArray(item.achievements) && item.achievements.length > 0 && (
-                  <ul className="mt-3 list-disc space-y-1 pl-5 text-slate-700">
-                    {item.achievements.map((a, i) => (
-                      <li key={i}>{a}</li>
-                    ))}
-                  </ul>
+              {/* Stats */}
+              <div className="text-right">
+                {typeof item.matches === "number" ? (
+                  <p className="text-sm">
+                    <span className="font-semibold">{item.matches}</span>{" "}
+                    <span className="text-slate-500">PJ</span>
+                  </p>
+                ) : (
+                  <p className="text-sm text-slate-500">—</p>
+                )}
+                {typeof item.ppg === "number" ? (
+                  <p className="text-xs text-slate-500">
+                    {item.ppg.toFixed(2)} Pts/Partido
+                  </p>
+                ) : (
+                  <p className="text-xs text-slate-400">—</p>
                 )}
               </div>
-            </li>
+            </div>
           ))}
-        </ol>
-
-        {/* Vacío */}
-        {items.length === 0 && (
-          <p className="text-slate-500">
-            (Aún no hay registros. Agrega tu trayectoria en{" "}
-            <code className="rounded bg-slate-100 px-1 py-0.5">
-              src/data/experience.js
-            </code>
-            )
-          </p>
-        )}
+        </div>
       </div>
     </section>
   );
 }
+
