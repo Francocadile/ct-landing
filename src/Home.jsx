@@ -4,7 +4,7 @@ import React from "react";
 // Secciones
 import Staff from "./sections/Staff.jsx";
 import Experiencia from "./sections/Experiencia.jsx";
-import Records from "./sections/Records.jsx"; // <- antes importabas Resultados
+import Records from "./sections/Records.jsx"; // ya está así
 import Modelo from "./sections/Modelo.jsx";
 import Blog from "./sections/Blog.jsx";
 import Contacto from "./sections/Contacto.jsx";
@@ -52,8 +52,7 @@ export default function Home() {
         </section>
 
         {/* Records (antes Resultados) */}
-        {/* Mantengo el id="resultados" por ahora para no romper el menú hasta el siguiente paso */}
-        <section id="resultados" className="scroll-mt-24">
+        <section id="records" className="scroll-mt-24">
           <Records />
         </section>
 
@@ -62,7 +61,7 @@ export default function Home() {
           <Modelo />
         </section>
 
-        {/* Blog (por ahora sigue en home; más adelante lo sacamos a ruta aparte si querés) */}
+        {/* Blog (lo dejaremos fuera del Home en un paso siguiente) */}
         <section id="blog" className="scroll-mt-24">
           <Blog />
         </section>
