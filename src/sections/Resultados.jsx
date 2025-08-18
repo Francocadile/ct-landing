@@ -14,7 +14,7 @@ export default function Resultados() {
   return (
     <section id="resultados" className="border-b">
       <div className="mx-auto max-w-6xl px-4 py-12">
-        <h2 className="text-2xl font-semibold">Resultados del Cuerpo Técnico</h2>
+        <h2 className="text-2xl font-semibold">Records del Cuerpo Técnico</h2>
 
         {/* A) RECORDS */}
         <div className="mt-8">
