@@ -41,7 +41,7 @@ export const TEAM = [
       { name: "Bolívar", logo: "/img/clubs/bolivar.png" },
       { name: "Nacional Potosí", logo: "/img/clubs/nacional-potosi.png" },
       { name: "Atenas", logo: "/img/clubs/atenas.png" },
-      { name: "Renato", logo: "/img/clubs/renato.png" },
+      { name: "Renato", logo: "/img/clubs/renato.jpg" } // ← corregido a .jpg
     ],
   },
   {
@@ -90,8 +90,7 @@ export const TEAM = [
       { name: "Deportivo Táchira", logo: "/img/clubs/tachira.png" },
       { name: "Los Chankas", logo: "/img/clubs/chankas.png" },
       { name: "Gimnasia y Esgrima (Mza)", logo: "/img/clubs/gimnasia.png" },
-      // ⚠️ Ver nota al final sobre este archivo
-      { name: "Real Potosí", logo: "/img/clubs/real-potosi.png" },
+      { name: "Real Potosí", logo: "/img/clubs/real-potosí.png" }, // ← con acento, tal cual subiste
       { name: "Atlético Huila", logo: "/img/clubs/atletico-huila.png" },
       { name: "Nacional Potosí", logo: "/img/clubs/nacional-potosi.png" },
       { name: "Juventud", logo: "/img/clubs/juventud.png" },
