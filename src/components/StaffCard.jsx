@@ -1,56 +1,39 @@
 // src/components/StaffCard.jsx
 import React from "react";
-import { Instagram, Twitter, Linkedin, Mail } from "lucide-react";
+import { Link } from "react-router-dom";
 
-const IconLink = ({ href, label, children }) => {
-  if (!href) return null;
+function slugify(name) {
+  return name
+    .toLowerCase()
+    .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
+}
+
+export default function StaffCard({ name, role, img, bio }) {
+  const slug = slugify(name);
+
   return (
-    <a
-      href={href}
-      target="_blank"
-      rel="noreferrer"
-      aria-label={label}
-      className="rounded p-1.5 text-slate-500 hover:bg-slate-100 hover:text-slate-900"
+    <Link
+      to={`/staff/${slug}`}
+      className="group block overflow-hidden rounded-2xl border bg-white shadow-sm hover:shadow-md transition"
+      title={`Ver perfil de ${name}`}
     >
-      {children}
-    </a>
-  );
-};
-
-export default function StaffCard({ name, role, bio, img, socials }) {
-  return (
-    <article className="group overflow-hidden rounded-xl border bg-white shadow-sm transition-shadow hover:shadow-md">
-      {/* Marco 4:3 con recorte elegante */}
-      <div className="relative w-full bg-slate-100 pt-[75%]">
+      <div className="aspect-[4/3] w-full overflow-hidden bg-slate-100">
         <img
           src={img}
           alt={name}
+          className="h-full w-full object-cover object-center group-hover:scale-[1.03] transition"
           loading="lazy"
-          decoding="async"
-          className="absolute inset-0 h-full w-full object-cover"
         />
       </div>
-
       <div className="p-4">
-        <h3 className="text-lg font-semibold">{name}</h3>
-        <p className="text-sm font-medium text-indigo-600">{role}</p>
-        {bio && <p className="mt-2 text-sm text-slate-700">{bio}</p>}
-
-        <div className="mt-3 flex items-center gap-2">
-          <IconLink href={socials?.instagram} label="Instagram">
-            <Instagram className="h-4 w-4" />
-          </IconLink>
-          <IconLink href={socials?.twitter} label="Twitter / X">
-            <Twitter className="h-4 w-4" />
-          </IconLink>
-          <IconLink href={socials?.linkedin} label="LinkedIn">
-            <Linkedin className="h-4 w-4" />
-          </IconLink>
-          <IconLink href={socials?.email ? `mailto:${socials.email}` : ""} label="Email">
-            <Mail className="h-4 w-4" />
-          </IconLink>
-        </div>
+        <div className="text-sm text-slate-500">{role}</div>
+        <div className="mt-0.5 line-clamp-1 text-lg font-semibold">{name}</div>
+        <p className="mt-2 line-clamp-2 text-sm text-slate-600">{bio}</p>
+        <div className="mt-3 text-sm font-medium text-blue-600">Ver perfil →</div>
       </div>
-    </article>
+    </Link>
   );
 }
+
