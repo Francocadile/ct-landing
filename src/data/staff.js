@@ -46,7 +46,7 @@ export const TEAM = [
   },
   {
     slug: "juan-vogliotti",
-    name: 'Juan "Chicho" Vogliotti',
+    name: "Juan Vogliotti",
     role: "Asistente Técnico",
     img: "/img/staff/juan-voglioti.jpg",
     flags: ["/img/banders/argentina.png"],
@@ -80,7 +80,8 @@ export const TEAM = [
     flags: ["/img/banders/venezuela.png", "/img/banders/portugal.png"],
     bio:
       "Analista de rendimiento. Segmentación, etiquetado y presentación de informes para CT y jugadores. Genera dashboards con KPIs tácticos y de eficiencia, y produce pre/post partido para la toma de decisiones.",
-    roles: ["Análisis de video", "Informes y KPIs", "Soporte táctico al CT"],
+    roles: ["Análisis de video", "Informes y KPIs", "Soporte táctico"],
   },
 ];
+
 
