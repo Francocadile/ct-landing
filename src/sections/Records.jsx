@@ -15,18 +15,19 @@ const Stat = ({ label, value }) => (
   </div>
 );
 
-// Mapea códigos país a tus banderas en /public/img/banders
+// Map a tus banderas en /public/img/banders  (incluye Ecuador)
 const FLAG_BY_COUNTRY = {
   AR: "/img/banders/argentina.png",
   BO: "/img/banders/bolivia.png",
   CO: "/img/banders/colombia.png",
   VE: "/img/banders/venezuela.png",
   PT: "/img/banders/portugal.png",
-  EC: "/img/banders/ecuador.png", // por si luego agregamos Ecuador
+  EC: "/img/banders/ecuador.png",
+  ECU: "/img/banders/ecuador.png", // por si algún dato viene con 'ECU'
 };
 
 function CountryFlag({ country, className = "" }) {
-  const src = FLAG_BY_COUNTRY[country];
+  const src = country ? FLAG_BY_COUNTRY[country] : null;
   if (!src) return null;
   return (
     <img
@@ -46,11 +47,10 @@ export default function Records() {
       <div className="mx-auto max-w-6xl px-4 py-14">
         <h2 className="text-3xl font-bold tracking-tight">Records</h2>
         <p className="mt-2 max-w-3xl text-slate-600">
-          Palmarés del cuerpo técnico y métricas por temporada en clubes donde
-          trabajamos.
+          Palmarés del cuerpo técnico y métricas por temporada en clubes donde trabajamos.
         </p>
 
-        {/* === PALMARÉS === */}
+        {/* PALMARÉS */}
         <div className="mt-8 grid gap-4 sm:grid-cols-2">
           {achievements.map((r, i) => (
             <article
@@ -95,7 +95,7 @@ export default function Records() {
           ))}
         </div>
 
-        {/* === NÚMEROS POR CLUB Y TEMPORADA === */}
+        {/* NÚMEROS POR CLUB Y TEMPORADA */}
         <div className="mt-12 space-y-10">
           {SEASONS_BY_CLUB.map((club) => (
             <div key={club.club} className="rounded-2xl border bg-white p-5">
@@ -125,9 +125,7 @@ export default function Records() {
                           {s.label ? ` · ${s.label}` : ""}
                         </div>
                         <div className="ml-auto flex items-center gap-2">
-                          <span className="text-sm text-slate-600">
-                            Efectividad
-                          </span>
+                          <span className="text-sm text-slate-600">Efectividad</span>
                           <span className="rounded-full bg-sky-600/10 px-2 py-0.5 text-sm font-semibold text-sky-700">
                             {s.pct}%
                           </span>
