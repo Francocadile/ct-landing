@@ -19,7 +19,7 @@ function FlagRow({ flags = [] }) {
   );
 }
 
-function Card({ person, big = false }) {
+function CardHead({ person }) {
   const slug =
     (person.slug ??
       person.name
@@ -30,32 +30,24 @@ function Card({ person, big = false }) {
   return (
     <a
       href={`/staff/${slug}`}
-      className={`group block rounded-2xl border bg-white p-4 shadow-sm hover:shadow-md transition ${
-        big ? "md:flex md:items-center md:gap-6" : ""
-      }`}
+      className="group block rounded-2xl border bg-white p-5 shadow-sm transition hover:shadow-md md:flex md:items-center md:gap-6"
     >
       <img
         src={person.img}
         alt={person.name}
-        className={`rounded-xl border object-cover bg-slate-50 ${
-          big ? "h-40 w-40" : "h-28 w-28 mx-auto"
-        }`}
+        className="h-44 w-44 rounded-xl border bg-slate-50 object-cover"
         loading="lazy"
       />
-
-      <div className={`${big ? "mt-0" : "mt-3"} text-center md:text-left`}>
-        <h3 className="text-lg font-semibold text-slate-900">
+      <div className="mt-4 md:mt-0">
+        <h3 className="text-2xl font-semibold text-slate-900">
           {person.name}
           <FlagRow flags={person.flags} />
         </h3>
-        <p className="text-sm text-slate-600">{person.role}</p>
-
-        {big ? (
-          <p className="mt-2 text-sm text-slate-600 line-clamp-4">{person.bio}</p>
-        ) : null}
+        <p className="text-slate-700">{person.role}</p>
+        <p className="mt-2 max-w-3xl text-sm text-slate-600">{person.bio}</p>
 
         {person.roles?.length ? (
-          <div className="mt-3 hidden flex-wrap gap-1 md:flex">
+          <div className="mt-3 flex flex-wrap gap-1">
             {person.roles.map((r, i) => (
               <span
                 key={i}
@@ -71,6 +63,38 @@ function Card({ person, big = false }) {
   );
 }
 
+function CardAsst({ person }) {
+  const slug =
+    (person.slug ??
+      person.name
+        .toLowerCase()
+        .replace(/[^a-z0-9\s-]/g, "")
+        .replace(/\s+/g, "-")) || "";
+
+  return (
+    <a
+      href={`/staff/${slug}`}
+      className="flex h-[220px] w-full flex-col items-center rounded-2xl border bg-white p-4 text-center shadow-sm transition hover:shadow-md"
+    >
+      <img
+        src={person.img}
+        alt={person.name}
+        className="h-20 w-20 rounded-xl border bg-slate-50 object-cover"
+        loading="lazy"
+      />
+      <div className="mt-3">
+        <h4 className="line-clamp-1 text-sm font-semibold text-slate-900">
+          {person.name}
+          <FlagRow flags={person.flags} />
+        </h4>
+        <p className="mt-0.5 text-xs text-slate-600">{person.role}</p>
+      </div>
+      {/* Separador para que todas queden a la misma altura */}
+      <div className="mt-auto" />
+    </a>
+  );
+}
+
 export default function Staff() {
   const [head, ...others] = TEAM;
 
@@ -82,15 +106,15 @@ export default function Staff() {
           Cuerpo técnico de primera división.
         </p>
 
-        {/* Head Coach destacado */}
+        {/* Flavio destacado */}
         <div className="mt-6">
-          <Card person={head} big />
+          <CardHead person={head} />
         </div>
 
-        {/* Resto del staff */}
-        <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {/* Asistentes: una sola fila en desktop, misma altura */}
+        <div className="mt-6 grid gap-4 sm:grid-cols-3 lg:grid-cols-5">
           {others.map((p) => (
-            <Card key={p.name} person={p} />
+            <CardAsst key={p.name} person={p} />
           ))}
         </div>
       </div>
