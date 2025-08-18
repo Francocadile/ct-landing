@@ -3,15 +3,14 @@ import React, { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { SITE } from "../data/site";
 
-// Orden y etiquetas pedidas
 const NAV = [
   { href: "/", label: "Inicio" },
   { href: "/#staff", label: "Staff" },
-  { href: "/#clubes", label: "Clubes" },     // reemplazo de “Experiencia”
+  { href: "/#clubes", label: "Clubes" },
   { href: "/#records", label: "Records" },
   { href: "/#modelo", label: "Modelo de juego" },
   { href: "/#blog", label: "Blog" },
-  { href: "/#contacto", label: "Contacto" },
+  { href: "/#contacto", label: "Contacto" }
 ];
 
 export default function Header() {
@@ -19,7 +18,6 @@ export default function Header() {
   const [active, setActive] = useState("/");
 
   useEffect(() => {
-    // marca activo segun la URL
     const onChange = () => {
       const { pathname, hash } = window.location;
       setActive(pathname + (hash || ""));
@@ -79,4 +77,3 @@ export default function Header() {
     </header>
   );
 }
-
