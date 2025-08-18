@@ -1,74 +1,67 @@
 // src/sections/Experiencia.jsx
-import React from "react";
-import { EXPERIENCE } from "../data/experience";
+import React, { useMemo } from "react";
+import { FLAVIO_TIMELINE } from "../data/experience";
 
-function Stat({ label, value }) {
-  return (
-    <div className="rounded-lg bg-slate-50 px-3 py-2 text-center">
-      <div className="text-xs uppercase tracking-wide text-slate-500">{label}</div>
-      <div className="text-base font-semibold text-slate-800">{value}</div>
-    </div>
-  );
+function fmtRange(start, end) {
+  const ys = start?.split("-")[0] ?? "";
+  const ye = end ? end.split("-")[0] : "Presente";
+  return ys === ye ? ys : `${ys}–${ye}`;
 }
 
-function Period({ start, end }) {
-  const from = new Date(start);
-  const to = end ? new Date(end) : null;
-  const y = (d) => (d ? d.getFullYear() : "Actualidad");
-  return (
-    <span className="text-sm text-slate-600">
-      {y(from)} – {y(to)}
-    </span>
-  );
+function initials(name) {
+  return (name || "")
+    .split(" ")
+    .map((w) => w[0])
+    .join("")
+    .slice(0, 3)
+    .toUpperCase();
 }
 
 export default function Experiencia() {
-  const items = [...EXPERIENCE].sort(
-    (a, b) => new Date(b.start) - new Date(a.start)
+  const items = useMemo(
+    () => [...FLAVIO_TIMELINE].sort((a, b) => (a.start > b.start ? 1 : -1)),
+    []
   );
 
   return (
-    <section id="experiencia" className="border-b">
+    <section id="experiencia" className="border-b bg-white">
       <div className="mx-auto max-w-6xl px-4 py-12">
-        <div className="flex items-end justify-between gap-4">
-          <h2 className="text-2xl font-semibold">Experiencia</h2>
-          <span className="text-sm text-slate-500">
-            Línea de tiempo · cargos y desempeño
-          </span>
-        </div>
+        <h2 className="text-2xl font-semibold">Experiencia</h2>
+        <p className="mt-2 text-slate-600">
+          Trayectoria completa de <strong>Flavio Robatto</strong> como DT y Asistente.
+        </p>
 
-        <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <ol className="relative mt-8 space-y-6 border-l pl-6">
           {items.map((it, i) => (
-            <article
-              key={i}
-              className="group relative overflow-hidden rounded-2xl border bg-white shadow-sm transition hover:shadow-md"
-            >
-              <div className="flex items-center gap-4 p-4">
-                <img
-                  src={it.logo}
-                  alt={it.club}
-                  className="h-14 w-14 flex-none rounded-xl border bg-white object-contain p-1"
-                />
-                <div>
-                  <h3 className="text-lg font-semibold leading-tight">
-                    {it.club}
-                  </h3>
-                  <div className="text-sm text-slate-600">{it.role}</div>
-                  <Period start={it.start} end={it.end} />
+            <li key={`${it.team}-${i}`} className="relative">
+              {/* Punto de la línea */}
+              <span className="absolute -left-[9px] top-2 h-4 w-4 rounded-full border-2 border-blue-600 bg-white"></span>
+
+              <div className="flex flex-wrap items-center gap-4 rounded-xl border bg-white p-4 shadow-sm">
+                {it.logo ? (
+                  <img
+                    src={it.logo}
+                    alt={it.team}
+                    className="h-12 w-12 rounded-md border bg-white object-contain p-1"
+                    loading="lazy"
+                  />
+                ) : (
+                  <div className="flex h-12 w-12 items-center justify-center rounded-md border bg-slate-50 text-sm font-semibold text-slate-600">
+                    {initials(it.team)}
+                  </div>
+                )}
+
+                <div className="min-w-0">
+                  <div className="text-sm text-slate-500">
+                    {fmtRange(it.start, it.end)} · {it.country}
+                  </div>
+                  <div className="truncate text-base font-semibold">{it.team}</div>
+                  <div className="text-sm text-blue-700">{it.role}</div>
                 </div>
               </div>
-
-              <div className="grid grid-cols-3 gap-3 p-4 pt-0">
-                <Stat label="Partidos" value={it.matches ?? "—"} />
-                <Stat label="Puntos/PP" value={it.ppg ? it.ppg.toFixed(2) : "—"} />
-                <Stat
-                  label="País"
-                  value={it.country}
-                />
-              </div>
-            </article>
+            </li>
           ))}
-        </div>
+        </ol>
       </div>
     </section>
   );
