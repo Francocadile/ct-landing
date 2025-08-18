@@ -1,43 +1,122 @@
 // src/data/staff-pages.js
-export const CLUBS_BY_MEMBER = {
-  flavio: [
-    { name: "Bolívar", logo: "/img/clubs/bolivar.png" },
-    { name: "Atlético Huila", logo: "/img/clubs/atletico-huila.png" },
-    { name: "Nacional Potosí", logo: "/img/clubs/nacional-potosi.png" },
-    { name: "Mitre", logo: "/img/clubs/mitre.png" },
-    { name: "Millonarios", logo: "/img/clubs/millonarios.png" },
-    { name: "Liga de Loja", logo: "/img/clubs/loja.png" },
-    { name: "Jaguares FC", logo: "/img/clubs/jaguares-fc.png" },
-    { name: "Cúcuta Deportivo", logo: "/img/clubs/cucuta-deportivo.png" },
-    { name: "Barcelona SC", logo: "/img/clubs/barcelona-sc.png" },
-    { name: "Alianza Atlético", logo: "/img/clubs/alianza-atletico.png" }
-  ],
-  sandro: [
-    { name: "Bolívar", logo: "/img/clubs/bolivar.png" },
-    { name: "Nacional Potosí", logo: "/img/clubs/nacional-potosi.png" },
-    { name: "Atenas", logo: "/img/clubs/atenas.png" },
-    { name: "Renato", logo: "/img/clubs/renato.jpg" }
-  ],
-  horacio: [
-    { name: "Bolívar", logo: "/img/clubs/bolivar.png" },
-    { name: "Estudiantes", logo: "/img/clubs/estudiantes.png" }
-  ],
-  juan: [
-    { name: "Bolívar", logo: "/img/clubs/bolivar.png" }
-  ],
-  franco: [
-    { name: "Deportivo Táchira", logo: "/img/clubs/tachira.png" },
-    { name: "Las Chankas", logo: "/img/clubs/chankas.png" },
-    { name: "Gimnasia", logo: "/img/clubs/gimnasia.png" },
-    { name: "Real Potosí", logo: "/img/clubs/real-potosí.png" },
-    { name: "Atlético Huila", logo: "/img/clubs/atletico-huila.png" },
-    { name: "Nacional Potosí", logo: "/img/clubs/nacional-potosi.png" },
-    { name: "Juventud", logo: "/img/clubs/juventud.png" }
-  ],
-  gabriel: [
-    { name: "Bolívar", logo: "/img/clubs/bolivar.png" },
-    { name: "Nacional Potosí", logo: "/img/clubs/nacional-potosi.png" },
-    { name: "Zulia", logo: "/img/clubs/zulia.png" }
-  ]
+
+export const STAFF_PAGES = {
+  "flavio-robatto": {
+    name: "Flavio Robatto",
+    role: "Director Técnico",
+    photo: "/img/staff/flavio-robatto.jpg",
+    flags: ["/img/banders/argentina.png"],
+    bio: [
+      "Director técnico con experiencia en Argentina, Bolivia, Colombia, Ecuador y Perú. Liderazgo claro, construcción de identidad de juego y gestión integral del proceso competitivo.",
+      "Planifica el microciclo completo, define principios y subprincipios, y coordina al staff para asegurar coherencia metodológica.",
+    ],
+    roles: [
+      "Modelo de juego y estrategia",
+      "Dirección de partido",
+      "Gestión del staff y comunicación",
+      "Planificación anual y de microciclos",
+    ],
+    clubs: [
+      "/img/clubs/bolivar.png",
+      "/img/clubs/nacional-potosi.png",
+      "/img/clubs/atletico-huila.png",
+      "/img/clubs/jaguares-fc.png",
+      "/img/clubs/cucuta-deportivo.png",
+      "/img/clubs/loja.png",
+      "/img/clubs/alianza-atletico.png",
+      "/img/clubs/millonarios.png",
+      "/img/clubs/barcelona-sc.png",
+    ],
+  },
+
+  "sandro-dominguez": {
+    name: "Sandro Domínguez",
+    role: "Asistente Técnico",
+    photo: "/img/staff/sandro-domingez.jpg",
+    flags: ["/img/banders/argentina.png"],
+    bio: [
+      "Especialista en diseño de sesiones y en la operativización de los principios del juego en tareas de alta transferencia.",
+      "Coordina scouting, balón parado y la integración de cargas técnico-tácticas con la preparación física.",
+    ],
+    roles: ["Diseño de sesiones", "Scouting y ABP", "Planificación semanal"],
+    clubs: [
+      "/img/clubs/bolivar.png",
+      "/img/clubs/nacional-potosi.png",
+      "/img/clubs/atenas.png",
+      "/img/clubs/renato.jpg",
+    ],
+  },
+
+  "horacio-rodriguez": {
+    name: "Horacio Rodríguez",
+    role: "Asistente Técnico",
+    photo: "/img/staff/horacio-rodriguez.jpg",
+    flags: ["/img/banders/argentina.png"],
+    bio: [
+      "Coordinador metodológico. Establece progresiones, objetivos por día y control de calidad de la sesión.",
+      "Vincula contenidos con métricas de eficacia para retroalimentar el plan semanal.",
+    ],
+    roles: [
+      "Metodología y contenidos",
+      "Estructura MD+1 a MD-1",
+      "Control del entrenamiento",
+    ],
+    clubs: ["/img/clubs/bolivar.png", "/img/clubs/estudiantes.png"],
+  },
+
+  "juan-vogliotti": {
+    name: 'Juan "Chicho" Vogliotti',
+    role: "Asistente Técnico",
+    photo: "/img/staff/juan-voglioti.jpg",
+    flags: ["/img/banders/argentina.png"],
+    bio: [
+      "Exdelantero profesional. Especialista en la mejora del comportamiento ofensivo del equipo y de los atacantes.",
+      "Conduce tareas por puesto y feedback con video orientado a la eficacia de las acciones en área.",
+    ],
+    roles: [
+      "Entrenamiento de delanteros",
+      "Finalización y ocupación de área",
+      "Feedback individual",
+    ],
+    clubs: ["/img/clubs/bolivar.png"],
+  },
+
+  "franco-cadile": {
+    name: "Franco Cadile",
+    role: "Preparador Físico",
+    photo: "/img/staff/franco-cadile.jpg",
+    flags: ["/img/banders/argentina.png"],
+    bio: [
+      "Planifica y controla cargas integrando GPS, fuerza específica y prevención.",
+      "Responsable de la coordinación con readaptación y del reporte físico del microciclo.",
+    ],
+    roles: [
+      "Planificación de cargas",
+      "Prevención y fuerza",
+      "Control neuromuscular y GPS",
+    ],
+    clubs: [
+      "/img/clubs/tachira.png",
+      "/img/clubs/chankas.png",
+      "/img/clubs/gimnasia.png",
+      "/img/clubs/real-potosí.png",
+      "/img/clubs/atletico-huila.png",
+      "/img/clubs/nacional-potosi.png",
+      "/img/clubs/juventud.png",
+    ],
+  },
+
+  "gabriel-gonzalez": {
+    name: "Gabriel Gonzalez",
+    role: "Analista de Rendimiento",
+    photo: "/img/staff/gabriel-gonzalez.jpg",
+    flags: ["/img/banders/venezuela.png", "/img/banders/portugal.png"],
+    bio: [
+      "Analista de rendimiento. Segmentación, etiquetado y presentación para CT y jugadores.",
+      "Produce pre y post partido con KPIs tácticos y de eficiencia; soporte permanente al cuerpo técnico.",
+    ],
+    roles: ["Análisis de video", "Informes y dashboards", "Soporte táctico"],
+    clubs: ["/img/clubs/bolivar.png", "/img/clubs/nacional-potosi.png", "/img/clubs/zulia.png"],
+  },
 };
 
