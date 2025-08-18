@@ -50,7 +50,7 @@ export default function Records() {
           Palmarés del cuerpo técnico y métricas por temporada en clubes donde trabajamos.
         </p>
 
-        {/* PALMARÉS – filas del mismo alto */}
+        {/* PALMARÉS – mismas alturas por fila */}
         <div
           className="mt-8 grid gap-4 sm:grid-cols-2"
           style={{ gridAutoRows: "1fr" }}
@@ -102,10 +102,16 @@ export default function Records() {
           Cuerpo técnico en números
         </h3>
 
-        {/* MÉTRICAS POR CLUB */}
-        <div className="mt-6 space-y-10">
+        {/* MÉTRICAS POR CLUB → grid de 2 columnas para alinear Huila y Cúcuta */}
+        <div
+          className="mt-6 grid gap-6 md:grid-cols-2"
+          style={{ gridAutoRows: "1fr" }}
+        >
           {SEASONS_BY_CLUB.map((club) => (
-            <div key={club.club} className="rounded-2xl border bg-white p-5">
+            <div
+              key={club.club}
+              className="flex h-full flex-col rounded-2xl border bg-white p-5"
+            >
               <div className="flex items-center gap-3">
                 <img
                   src={club.logo}
@@ -121,43 +127,55 @@ export default function Records() {
                 {club.seasons
                   .slice()
                   .sort((a, b) => b.year - a.year)
-                  .map((s, idx) => (
-                    <article
-                      key={idx}
-                      className="rounded-xl border bg-slate-50/60 p-4"
-                    >
-                      <div className="flex items-start gap-3">
-                        <div className="rounded-full bg-white px-3 py-1 text-sm font-semibold text-slate-700">
-                          {s.year}
-                          {s.label ? ` · ${s.label}` : ""}
-                        </div>
-                        <div className="ml-auto flex items-center gap-2">
-                          <span className="text-sm text-slate-600">Efectividad</span>
-                          <span className="rounded-full bg-sky-600/10 px-2 py-0.5 text-sm font-semibold text-sky-700">
-                            {s.pct}%
-                          </span>
-                        </div>
-                      </div>
+                  .map((s, idx) => {
+                    const win = Number(s.stats?.win ?? 0);
+                    const draw = Number(s.stats?.draw ?? 0);
+                    const loss = Number(s.stats?.loss ?? 0);
+                    const pjComputed =
+                      s.stats?.pj ?? (win + draw + loss || "—");
 
-                      <div className="mt-3 grid grid-cols-6 gap-2">
-                        <Stat label="PJ" value={s.stats.pj ?? "—"} />
-                        <Stat label="G" value={s.stats.win ?? "—"} />
-                        <Stat label="E" value={s.stats.draw ?? "—"} />
-                        <Stat label="P" value={s.stats.loss ?? "—"} />
-                        <Stat label="GF" value={s.stats.gf ?? "—"} />
-                        <Stat label="GC" value={s.stats.ga ?? "—"} />
-                      </div>
+                    return (
+                      <article
+                        key={idx}
+                        className="rounded-xl border bg-slate-50/60 p-4"
+                      >
+                        <div className="flex items-start gap-3">
+                          <div className="rounded-full bg-white px-3 py-1 text-sm font-semibold text-slate-700">
+                            {s.year}
+                            {s.label ? ` · ${s.label}` : ""}
+                          </div>
+                          <div className="ml-auto flex items-center gap-2">
+                            <span className="text-sm text-slate-600">
+                              Efectividad
+                            </span>
+                            <span className="rounded-full bg-sky-600/10 px-2 py-0.5 text-sm font-semibold text-sky-700">
+                              {s.pct}%
+                            </span>
+                          </div>
+                        </div>
 
-                      {s.notes?.length ? (
-                        <ul className="mt-3 list-disc space-y-1 pl-5 text-sm text-slate-700">
-                          {s.notes.map((n, i2) => (
-                            <li key={i2}>{n}</li>
-                          ))}
-                        </ul>
-                      ) : null}
-                    </article>
-                  ))}
+                        <div className="mt-3 grid grid-cols-6 gap-2">
+                          <Stat label="PJ" value={pjComputed} />
+                          <Stat label="G" value={win || "—"} />
+                          <Stat label="E" value={draw || "—"} />
+                          <Stat label="P" value={loss || "—"} />
+                          <Stat label="GF" value={s.stats?.gf ?? "—"} />
+                          <Stat label="GC" value={s.stats?.ga ?? "—"} />
+                        </div>
+
+                        {s.notes?.length ? (
+                          <ul className="mt-3 list-disc space-y-1 pl-5 text-sm text-slate-700">
+                            {s.notes.map((n, i2) => (
+                              <li key={i2}>{n}</li>
+                            ))}
+                          </ul>
+                        ) : null}
+                      </article>
+                    );
+                  })}
               </div>
+
+              <div className="mt-auto" />
             </div>
           ))}
         </div>
