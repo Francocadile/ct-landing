@@ -1,14 +1,14 @@
 // src/Home.jsx
 import React from "react";
 
-// Bloques nuevos arriba del fold
+// Bloques arriba del fold (si los estás usando)
 import Highlights from "./sections/Highlights.jsx";
 import ClubsStrip from "./sections/ClubsStrip.jsx";
 
-// Secciones existentes
+// Secciones
 import Staff from "./sections/Staff.jsx";
-import Experiencia from "./sections/Experiencia.jsx";
-import Records from "./sections/Records.jsx"; // (ex Resultados)
+import ClubsWorked from "./sections/ClubsWorked.jsx"; // ← NUEVO
+import Records from "./sections/Records.jsx";
 import Modelo from "./sections/Modelo.jsx";
 import Blog from "./sections/Blog.jsx";
 import Contacto from "./sections/Contacto.jsx";
@@ -21,7 +21,7 @@ export default function Home() {
         <div className="mx-auto max-w-6xl px-4 py-16">
           <h1 className="text-4xl font-bold tracking-tight">Cuerpo Técnico</h1>
           <p className="mt-4 max-w-2xl text-slate-600">
-            Sitio oficial: staff, experiencia, records, modelo de juego y contacto.
+            Sitio oficial: staff, clubes, records, modelo de juego y contacto.
           </p>
 
           <div className="mt-6 flex items-center gap-3">
@@ -41,41 +41,38 @@ export default function Home() {
         </div>
       </section>
 
-      {/* MÉTRICAS DESTACADAS */}
-      <Highlights />
+      {/* (Opcional) Métricas y strip si los querés mantener */}
+      {Highlights ? <Highlights /> : null}
+      {ClubsStrip ? <ClubsStrip /> : null}
 
-      {/* LOGOS DE CLUBES (CONFIAZA) */}
-      <ClubsStrip />
-
-      {/* STAFF */}
+      {/* 1) STAFF */}
       <section id="staff" className="scroll-mt-24">
         <Staff />
       </section>
 
-      {/* EXPERIENCIA */}
-      <section id="experiencia" className="scroll-mt-24">
-        <Experiencia />
-      </section>
+      {/* 2) CLUBES (reemplaza Experiencia) */}
+      <ClubsWorked />
 
-      {/* RECORDS */}
+      {/* 3) RECORDS */}
       <section id="records" className="scroll-mt-24">
         <Records />
       </section>
 
-      {/* MODELO DE JUEGO */}
+      {/* 4) MODELO DE JUEGO */}
       <section id="modelo" className="scroll-mt-24">
         <Modelo />
       </section>
 
-      {/* BLOG (si luego lo sacamos del home, se elimina esta sección) */}
+      {/* 5) BLOG */}
       <section id="blog" className="scroll-mt-24">
         <Blog />
       </section>
 
-      {/* CONTACTO */}
+      {/* 6) CONTACTO */}
       <section id="contacto" className="scroll-mt-24">
         <Contacto />
       </section>
     </main>
   );
 }
+
