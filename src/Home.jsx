@@ -1,13 +1,18 @@
 // src/Home.jsx
 import React from "react";
-import Staff from "./sections/Staff";
-import Experiencia from "./sections/Experiencia";
-import Resultados from "./sections/Resultados";
+
+// Secciones
+import Staff from "./sections/Staff.jsx";
+import Experiencia from "./sections/Experiencia.jsx";
+import Records from "./sections/Records.jsx"; // <- antes importabas Resultados
+import Modelo from "./sections/Modelo.jsx";
+import Blog from "./sections/Blog.jsx";
+import Contacto from "./sections/Contacto.jsx";
 
 export default function Home() {
   return (
     <>
-      {/* Ancla para el menú "Inicio" */}
+      {/* Ancla Inicio */}
       <div id="home" className="sr-only" aria-hidden="true"></div>
 
       <main className="bg-white">
@@ -16,7 +21,7 @@ export default function Home() {
           <div className="mx-auto max-w-6xl px-4 py-16">
             <h1 className="text-4xl font-bold tracking-tight">Cuerpo Técnico</h1>
             <p className="mt-4 max-w-2xl text-slate-600">
-              Sitio oficial: staff, experiencia, resultados y contacto.
+              Sitio oficial: staff, experiencia, records, modelo de juego y contacto.
             </p>
 
             <div className="mt-6 flex items-center gap-3">
@@ -37,15 +42,36 @@ export default function Home() {
         </section>
 
         {/* Staff */}
-        <Staff />
+        <section id="staff" className="scroll-mt-24">
+          <Staff />
+        </section>
 
-        {/* Experiencia (una sola vez) */}
-        <Experiencia />
+        {/* Experiencia */}
+        <section id="experiencia" className="scroll-mt-24">
+          <Experiencia />
+        </section>
 
-        {/* Resultados / Records / Efectividad */}
-        <Resultados />
+        {/* Records (antes Resultados) */}
+        {/* Mantengo el id="resultados" por ahora para no romper el menú hasta el siguiente paso */}
+        <section id="resultados" className="scroll-mt-24">
+          <Records />
+        </section>
+
+        {/* Modelo de juego */}
+        <section id="modelo" className="scroll-mt-24">
+          <Modelo />
+        </section>
+
+        {/* Blog (por ahora sigue en home; más adelante lo sacamos a ruta aparte si querés) */}
+        <section id="blog" className="scroll-mt-24">
+          <Blog />
+        </section>
+
+        {/* Contacto */}
+        <section id="contacto" className="scroll-mt-24">
+          <Contacto />
+        </section>
       </main>
     </>
   );
 }
-
