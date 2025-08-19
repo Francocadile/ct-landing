@@ -68,7 +68,7 @@ const LoadTag = ({ label, nota }) => (
   </span>
 );
 
-// Subnav en el nuevo orden (Entrenamiento antes que Método)
+// Subnav en el orden correcto (Entrenamiento antes que Método)
 const Subnav = () => {
   const items = [
     ["principios", "Objetivos & Principios"],
@@ -177,7 +177,7 @@ export default function Modelo() {
         <div className="mt-12">
           <H2 id="fases">Fases del juego</H2>
 
-          {/* Iniciación y Creación lado a lado */}
+        {/* Iniciación y Creación lado a lado */}
           <div className="mt-4 grid gap-6 md:grid-cols-2">
             {fasesJuego.slice(0, 2).map((f, i) => (
               <AuraCard key={i}>
@@ -259,7 +259,7 @@ export default function Modelo() {
           </div>
         </div>
 
-        {/* 6) ENTRENAMIENTO (ahora arriba del Método) */}
+        {/* 6) ENTRENAMIENTO (arriba del Método) */}
         <div className="mt-12">
           <H2 id="entrenamiento">Entrenamiento</H2>
           <AuraCard className="mt-4">
@@ -277,12 +277,11 @@ export default function Modelo() {
           </AuraCard>
         </div>
 
-        {/* 7) MÉTODO INTEGRADO ESTRUCTURAL (queda debajo) */}
+        {/* 7) MÉTODO INTEGRADO ESTRUCTURAL */}
         <div className="mt-12">
           <H2 id="metodo">Método Integrado Estructural</H2>
           <AuraCard className="mt-4">
             <div className="grid items-center gap-6 md:grid-cols-2">
-              {/* Texto */}
               <div>
                 <ul className="list-disc space-y-3 pl-5 text-slate-700">
                   {metodologiaIntegrada.bullets.map((t, i) => (
@@ -290,7 +289,6 @@ export default function Modelo() {
                   ))}
                 </ul>
               </div>
-              {/* Imagen */}
               <div>
                 <Figure
                   src={metodologiaIntegrada.img}
@@ -365,7 +363,7 @@ export default function Modelo() {
           </div>
         </div>
 
-        {/* 10) SEMANA MODELO — CALENDARIO LIMPIO */}
+        {/* 10) SEMANA MODELO */}
         <div className="mt-12">
           <H2 id="semana">Semana modelo (Domingo–Domingo)</H2>
           <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-7">
@@ -393,7 +391,7 @@ export default function Modelo() {
           </div>
         </div>
 
-        {/* 11) PLAN DE TRABAJO (renombrado) */}
+        {/* 11) PLAN DE TRABAJO */}
         <div className="mt-12">
           <H2 id="plan">Plan de trabajo</H2>
           <AuraCard className="mt-4">
@@ -415,3 +413,4 @@ export default function Modelo() {
     </section>
   );
 }
+
