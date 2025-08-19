@@ -2,11 +2,10 @@
 import React from "react";
 
 import Staff from "./sections/Staff.jsx";
-import ClubsWorked from "./sections/ClubsWorked.jsx"; // escudos grandes a color
+import ClubsWorked from "./sections/ClubsWorked.jsx";
+import Videos from "./sections/Videos.jsx";     // ⬅️ NUEVO
 import Records from "./sections/Records.jsx";
 import Modelo from "./sections/Modelo.jsx";
-// 🔻 Eliminamos el Blog del Home
-// import Blog from "./sections/Blog.jsx";
 import Contacto from "./sections/Contacto.jsx";
 
 export default function Home() {
@@ -17,7 +16,7 @@ export default function Home() {
         <div className="mx-auto max-w-6xl px-4 py-16">
           <h1 className="text-4xl font-bold tracking-tight">Cuerpo Técnico</h1>
           <p className="mt-4 max-w-2xl text-slate-600">
-            Staff, clubes donde trabajamos, records, modelo de juego y contacto.
+            Staff, clubes donde trabajamos, material audiovisual, records, modelo de juego y contacto.
           </p>
 
           <div className="mt-6 flex items-center gap-3">
@@ -45,20 +44,26 @@ export default function Home() {
       {/* 2) CLUBES */}
       <ClubsWorked />
 
-      {/* 3) RECORDS */}
+      {/* 3) VIDEOS */}
+      <section className="scroll-mt-24">
+        <Videos />
+      </section>
+
+      {/* 4) RECORDS */}
       <section id="records" className="scroll-mt-24">
         <Records />
       </section>
 
-      {/* 4) MODELO */}
+      {/* 5) MODELO */}
       <section id="modelo" className="scroll-mt-24">
         <Modelo />
       </section>
 
-      {/* 5) CONTACTO */}
+      {/* 6) CONTACTO */}
       <section id="contacto" className="scroll-mt-24">
         <Contacto />
       </section>
     </main>
   );
 }
+
