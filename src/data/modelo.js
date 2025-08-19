@@ -1,9 +1,5 @@
 // src/data/modelo.js
 // ───────────────────────────────────────────────────────────────────────────────
-// Todo el contenido textual que compartiste, organizado para que el componente
-// Modelo.jsx lo muestre de forma limpia y consistente. Si luego sumás imágenes
-// (tablas tácticas, fotos, etc.), solo completá las rutas en los campos "img".
-// ───────────────────────────────────────────────────────────────────────────────
 
 export const objetivosA = [
   "Mejorar la calidad de cada posición y de cada jugador.",
@@ -56,6 +52,8 @@ export const fasesJuego = [
       "Las distancias de relación deben ser óptimas en consecuencia a los espacios libres que se generan y se aprovechan. Juntarnos para generar esos espacios pero no para dificultar la progresión; de ahí la importancia de comprenderlos.",
     formacion: "1-2-3-2-3 / 1-3-2-2-3",
     img: "/img/modelo/fase-finalizacion.png",
+    // NUEVA imagen adicional:
+    img2: "/img/modelo/fase-finalizacion1.png",
   },
 ];
 
@@ -223,7 +221,7 @@ export const metodologiaIntegrada = {
     "Incluye a diario contenidos tácticos relacionados al modelo seleccionado y los combina con todas las direcciones que condicionan el rendimiento colectivo e individual.",
     "Optimiza el rendimiento por la acción sinérgica y el alto compromiso con la idea de juego y la participación activa de jugadores, staff y dirigencia.",
   ],
-  videoUrl: "", // si más adelante querés linkear un video, ponelo acá
+  videoUrl: "",
   img: "/img/modelo/metodo.png",
 };
 
