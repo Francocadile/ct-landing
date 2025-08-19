@@ -32,7 +32,7 @@ const Chip = ({ children }) => (
   </span>
 );
 
-// Tarjeta con aura muy sutil (campeón, pero sobrio)
+// Tarjeta con aura sutil (campeón, pero sobrio)
 const AuraCard = ({ children, className = "" }) => (
   <div className={`relative rounded-2xl border border-slate-200 bg-white p-5 shadow-sm ring-1 ring-amber-100 ${className}`}>
     <div className="pointer-events-none absolute -inset-0.5 rounded-2xl bg-gradient-to-b from-amber-100/0 via-amber-100/10 to-amber-100/0 blur" />
@@ -58,9 +58,9 @@ const Figure = ({ src, alt, caption }) => (
   </figure>
 );
 
-// Etiqueta de carga: ahora más pequeña y siempre DENTRO del header
+// Etiqueta de carga — MÁS PEQUEÑA y simétrica
 const LoadTag = ({ label, nota }) => (
-  <span className="inline-flex items-center gap-1 rounded-md bg-amber-50 px-1.5 py-0.5 text-[11px] font-medium leading-none text-amber-700 ring-1 ring-inset ring-amber-200">
+  <span className="inline-flex items-center gap-1 rounded-md bg-amber-50 px-1 py-[2px] text-[10px] font-medium leading-none text-amber-700 ring-1 ring-inset ring-amber-200 whitespace-nowrap">
     {label} {nota ? <em className="not-italic opacity-70">{nota}</em> : null}
   </span>
 );
@@ -298,13 +298,13 @@ export default function Modelo() {
         <div className="mt-12">
           <H2 id="semana">Semana modelo (Domingo–Domingo)</H2>
 
-          {/*
+          {/* 
             Calendario:
             - Mobile: 1 col
             - sm: 2 col
             - md: 3 col
             - lg+: 7 col (todos en fila)
-            Notas (carga) más pequeñas y siempre dentro del header.
+            Notas (carga) aún más pequeñas y dentro del header.
           */}
           <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-7">
             {semanaTipo.map((d) => (
