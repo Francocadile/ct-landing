@@ -4,7 +4,7 @@ import { Instagram, Twitter, Mail } from "lucide-react";
 
 const FLAVIO_INSTAGRAM = "https://www.instagram.com/flaviorobatto/";
 const FLAVIO_TWITTER  = "https://x.com/DtFlavioRobatto";
-const EMAIL_CT        = "franco.cadile@gmail.com";
+const EMAIL_CT        = "cuerpotecnicorobatto@gmail.com";
 
 export default function Contacto() {
   return (
