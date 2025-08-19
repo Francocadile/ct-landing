@@ -32,7 +32,7 @@ const Chip = ({ children }) => (
   </span>
 );
 
-// ✨ ahora acepta className para poder hacer col-span
+// acepta className para variantes (usado en fases y semana)
 const AuraCard = ({ children, className = "" }) => (
   <div className={`relative rounded-2xl border border-slate-200 bg-white p-5 shadow-sm ring-1 ring-amber-100 ${className}`}>
     <div className="pointer-events-none absolute -inset-0.5 rounded-2xl bg-gradient-to-b from-amber-100/0 via-amber-100/10 to-amber-100/0 blur" />
@@ -169,7 +169,7 @@ export default function Modelo() {
         <div className="mt-12">
           <H2 id="fases">Fases del juego</H2>
 
-          {/* Las dos primeras como estaban, lado a lado */}
+          {/* Iniciación y Creación lado a lado */}
           <div className="mt-4 grid gap-6 md:grid-cols-2">
             {fasesJuego.slice(0, 2).map((f, i) => (
               <AuraCard key={i}>
@@ -187,9 +187,9 @@ export default function Modelo() {
             ))}
           </div>
 
-          {/* La última ocupa todo el ancho con dos imágenes lado a lado */}
+          {/* Finalización ocupa todo el ancho con dos imágenes */}
           {(() => {
-            const f = fasesJuego[2]; // Progresión en finalización
+            const f = fasesJuego[2];
             return (
               <AuraCard className="mt-6 md:col-span-2">
                 <div className="grid items-center gap-6 md:grid-cols-2">
@@ -307,21 +307,40 @@ export default function Modelo() {
           </div>
         </div>
 
-        {/* SEMANA MODELO */}
+        {/* SEMANA MODELO — 7 RECTÁNGULOS IGUALES EN UNA SOLA FILA */}
         <div className="mt-12">
           <H2 id="semana">Semana modelo (Domingo–Domingo)</H2>
-          <div className="mt-4 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+
+          {/* 
+            - En móviles: fila horizontal con scroll (todos uno al lado del otro).
+            - En desktop (lg+): grilla de 7 columnas exactas.
+            - Cada columna es un rectángulo alargado con alto fijo y contenido equilibrado.
+          */}
+          <div className="
+              mt-4 grid grid-flow-col auto-cols-[minmax(240px,1fr)] gap-4 overflow-x-auto
+              lg:grid-flow-row lg:auto-cols-auto lg:grid-cols-7
+            ">
             {semanaTipo.map((d) => (
-              <AuraCard key={d.dia}>
-                <div className="mb-2 flex items-center justify-between">
+              <AuraCard key={d.dia} className="flex h-[22rem] min-w-[240px] flex-col">
+                {/* encabezado */}
+                <div className="mb-3 flex items-center justify-between">
                   <H3>{d.dia}</H3>
                   <LoadTag {...d.carga} />
                 </div>
-                <ul className="mt-1 list-disc space-y-1 pl-5 text-slate-700">
+
+                <div className="h-px w-full bg-slate-200/70" />
+
+                {/* contenido (ocupa el alto disponible) */}
+                <ul className="mt-3 flex-1 list-disc space-y-1 overflow-auto pl-5 text-slate-700">
                   {d.bloques.map((b, i) => (
                     <li key={i}>{b}</li>
                   ))}
                 </ul>
+
+                {/* footer sutil para equilibrio visual */}
+                <div className="mt-3 rounded-xl bg-amber-50/40 p-2 text-center text-[11px] font-medium text-amber-800 ring-1 ring-amber-100">
+                  Preparados para competir
+                </div>
               </AuraCard>
             ))}
           </div>
