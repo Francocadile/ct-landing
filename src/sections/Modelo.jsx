@@ -68,15 +68,15 @@ const LoadTag = ({ label, nota }) => (
   </span>
 );
 
-// Subnav en el orden que pediste
+// Subnav en el nuevo orden (Entrenamiento antes que Método)
 const Subnav = () => {
   const items = [
     ["principios", "Objetivos & Principios"],
     ["juego-posicion", "Juego de Posición"],
     ["fases", "Fases del juego"],
     ["principios-juego", "Principios de juego"],
-    ["metodo", "Método Integrado"],
     ["entrenamiento", "Entrenamiento"],
+    ["metodo", "Método Integrado"],
     ["contenidos", "Contenidos semanales"],
     ["preparacion", "Preparación de la semana"],
     ["semana", "Semana modelo"],
@@ -259,7 +259,25 @@ export default function Modelo() {
           </div>
         </div>
 
-        {/* 6) MÉTODO INTEGRADO ESTRUCTURAL (jerarquía) */}
+        {/* 6) ENTRENAMIENTO (ahora arriba del Método) */}
+        <div className="mt-12">
+          <H2 id="entrenamiento">Entrenamiento</H2>
+          <AuraCard className="mt-4">
+            <div className="grid items-center gap-6 md:grid-cols-2">
+              <div>
+                <p className="text-slate-700">{entrenamientoBase.texto}</p>
+              </div>
+              <div>
+                <Figure
+                  src={entrenamientoBase.img}
+                  alt={entrenamientoBase.titulo}
+                />
+              </div>
+            </div>
+          </AuraCard>
+        </div>
+
+        {/* 7) MÉTODO INTEGRADO ESTRUCTURAL (queda debajo) */}
         <div className="mt-12">
           <H2 id="metodo">Método Integrado Estructural</H2>
           <AuraCard className="mt-4">
@@ -277,24 +295,6 @@ export default function Modelo() {
                 <Figure
                   src={metodologiaIntegrada.img}
                   alt={metodologiaIntegrada.titulo}
-                />
-              </div>
-            </div>
-          </AuraCard>
-        </div>
-
-        {/* 7) ENTRENAMIENTO (mismo layout: texto ↔ imagen) */}
-        <div className="mt-12">
-          <H2 id="entrenamiento">Entrenamiento</H2>
-          <AuraCard className="mt-4">
-            <div className="grid items-center gap-6 md:grid-cols-2">
-              <div>
-                <p className="text-slate-700">{entrenamientoBase.texto}</p>
-              </div>
-              <div>
-                <Figure
-                  src={entrenamientoBase.img}
-                  alt={entrenamientoBase.titulo}
                 />
               </div>
             </div>
@@ -368,14 +368,12 @@ export default function Modelo() {
         {/* 10) SEMANA MODELO — CALENDARIO LIMPIO */}
         <div className="mt-12">
           <H2 id="semana">Semana modelo (Domingo–Domingo)</H2>
-          {/* Responsive: 1/2/3/7 cols */}
           <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-7">
             {semanaTipo.map((d) => (
               <div
                 key={d.dia}
                 className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm ring-1 ring-amber-100"
               >
-                {/* header estilo calendario */}
                 <div className="flex items-center justify-between gap-2 rounded-t-xl bg-slate-50/80 px-3 py-1.5">
                   <div className="text-[13px] font-semibold uppercase tracking-wide text-slate-800">
                     {d.dia}
@@ -383,7 +381,6 @@ export default function Modelo() {
                   <LoadTag label={d.carga?.label} nota={d.carga?.nota} />
                 </div>
 
-                {/* cuerpo */}
                 <div className="px-3 pb-3 pt-2">
                   <ul className="list-disc space-y-1.5 pl-4 text-[13px] leading-snug text-slate-700">
                     {d.bloques.map((b, i) => (
@@ -396,7 +393,7 @@ export default function Modelo() {
           </div>
         </div>
 
-        {/* 11) PLAN DE TRABAJO (renombrado) — mismo layout texto ↔ imagen */}
+        {/* 11) PLAN DE TRABAJO (renombrado) */}
         <div className="mt-12">
           <H2 id="plan">Plan de trabajo</H2>
           <AuraCard className="mt-4">
