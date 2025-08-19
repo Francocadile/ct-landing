@@ -58,10 +58,10 @@ const Figure = ({ src, alt, caption }) => (
   </figure>
 );
 
-// Etiqueta de carga: color ámbar fijo (evita clases dinámicas de Tailwind)
+// Etiqueta de carga: ahora más pequeña y siempre DENTRO del header
 const LoadTag = ({ label, nota }) => (
-  <span className="inline-flex items-center gap-1 rounded-full bg-amber-50 px-2 py-0.5 text-xs font-medium text-amber-700 ring-1 ring-inset ring-amber-200">
-    {label} {nota ? <em className="not-italic opacity-70">({nota})</em> : null}
+  <span className="inline-flex items-center gap-1 rounded-md bg-amber-50 px-1.5 py-0.5 text-[11px] font-medium leading-none text-amber-700 ring-1 ring-inset ring-amber-200">
+    {label} {nota ? <em className="not-italic opacity-70">{nota}</em> : null}
   </span>
 );
 
@@ -294,26 +294,26 @@ export default function Modelo() {
           </div>
         </div>
 
-        {/* SEMANA MODELO — CALENDARIO LIMPIO (7 columnas en desktop) */}
+        {/* SEMANA MODELO — CALENDARIO LIMPIO */}
         <div className="mt-12">
           <H2 id="semana">Semana modelo (Domingo–Domingo)</H2>
 
           {/*
             Calendario:
-            - Mobile: 1 columna
-            - sm: 2 columnas
-            - md: 3 columnas
-            - lg+: 7 columnas (los siete días en una fila)
-            Tipografía más compacta y cards sin alto fijo (todo el contenido entra).
+            - Mobile: 1 col
+            - sm: 2 col
+            - md: 3 col
+            - lg+: 7 col (todos en fila)
+            Notas (carga) más pequeñas y siempre dentro del header.
           */}
           <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-7">
             {semanaTipo.map((d) => (
               <div
                 key={d.dia}
-                className="rounded-xl border border-slate-200 bg-white shadow-sm ring-1 ring-amber-100"
+                className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm ring-1 ring-amber-100"
               >
                 {/* header estilo calendario */}
-                <div className="flex items-center justify-between gap-2 rounded-t-xl bg-slate-50/80 px-3 py-2">
+                <div className="flex items-center justify-between gap-2 rounded-t-xl bg-slate-50/80 px-3 py-1.5">
                   <div className="text-[13px] font-semibold uppercase tracking-wide text-slate-800">
                     {d.dia}
                   </div>
@@ -383,4 +383,3 @@ export default function Modelo() {
     </section>
   );
 }
-
