@@ -9,7 +9,7 @@ const NAV = [
   { href: "/#clubes", label: "Clubes" },
   { href: "/#records", label: "Records" },
   { href: "/#modelo", label: "Modelo de juego" },
-  { href: "/#blog", label: "Blog" },
+  { href: "/blog", label: "Blog" },            // ← CAMBIO: antes era "/#blog"
   { href: "/#contacto", label: "Contacto" }
 ];
 
@@ -77,3 +77,4 @@ export default function Header() {
     </header>
   );
 }
+
