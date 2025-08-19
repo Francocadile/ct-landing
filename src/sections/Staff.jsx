@@ -56,9 +56,10 @@ export default function Staff() {
       {/* DT destacado */}
       {lead && (
         <Link to={`/staff/${slugify(lead.name)}`} className="mt-6 block">
-          <article className="rounded-2xl border border-slate-200 bg-white p-5 shadow-card ring-1 ring-amber-100 lg:flex lg:items-center lg:gap-6">
-            {/* MÁS ZOOM SOLO PARA FLAVIO (mobile también usa object-cover) */}
-            <div className="mx-auto h-56 w-56 sm:h-60 sm:w-60 lg:h-64 lg:w-64 overflow-hidden rounded-2xl border border-slate-200 bg-white">
+          <article className="rounded-2xl border border-slate-200 bg-white p-5 shadow-card ring-1 ring-amber-100 lg:flex lg:items-center lg:gap-8">
+            {/* MÁS GRANDE EN DESKTOP + ZOOM EN MÓVIL */}
+            <div className="mx-auto flex-none overflow-hidden rounded-2xl border border-slate-200 bg-white
+                            h-56 w-56 sm:h-60 sm:w-60 md:h-64 md:w-64 lg:h-80 lg:w-80 xl:h-96 xl:w-96">
               <img
                 src={lead.img}
                 alt={lead.name}
@@ -78,12 +79,13 @@ export default function Staff() {
         </Link>
       )}
 
-      {/* Asistentes (sin cambios) */}
+      {/* Asistentes (igual que antes) */}
       <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
         {assistants.map((m) => (
           <Link key={m.name} to={`/staff/${slugify(m.name)}`}>
             <article className="rounded-2xl border border-slate-200 bg-white p-4 shadow-card hover:shadow-md transition-shadow">
               <div className="mx-auto h-28 w-28 sm:h-32 sm:w-32 lg:h-36 lg:w-36 overflow-hidden rounded-2xl border border-slate-200 bg-white">
+                {/* móvil: contain; md+: cover */}
                 <img
                   src={m.img}
                   alt={m.name}
@@ -96,6 +98,7 @@ export default function Staff() {
               <div className="text-sm text-slate-600">{m.role}</div>
               <FlagRow flags={m.flags} />
               <p className="mt-2 line-clamp-3 text-sm text-slate-700">{m.bio}</p>
+
               <RoleChips roles={m.roles} />
             </article>
           </Link>
@@ -104,4 +107,5 @@ export default function Staff() {
     </div>
   );
 }
+
 
