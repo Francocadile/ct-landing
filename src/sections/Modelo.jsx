@@ -32,7 +32,7 @@ const Chip = ({ children }) => (
   </span>
 );
 
-// acepta className para variantes (usado en fases y semana)
+// Tarjeta con aura muy sutil (campeón, pero sobrio)
 const AuraCard = ({ children, className = "" }) => (
   <div className={`relative rounded-2xl border border-slate-200 bg-white p-5 shadow-sm ring-1 ring-amber-100 ${className}`}>
     <div className="pointer-events-none absolute -inset-0.5 rounded-2xl bg-gradient-to-b from-amber-100/0 via-amber-100/10 to-amber-100/0 blur" />
@@ -58,10 +58,9 @@ const Figure = ({ src, alt, caption }) => (
   </figure>
 );
 
-const LoadTag = ({ label, nota, color = "amber" }) => (
-  <span
-    className={`inline-flex items-center gap-1 rounded-full bg-${color}-50 px-2 py-0.5 text-xs font-medium text-${color}-700 ring-1 ring-inset ring-${color}-200`}
-  >
+// Etiqueta de carga: color ámbar fijo (evita clases dinámicas de Tailwind)
+const LoadTag = ({ label, nota }) => (
+  <span className="inline-flex items-center gap-1 rounded-full bg-amber-50 px-2 py-0.5 text-xs font-medium text-amber-700 ring-1 ring-inset ring-amber-200">
     {label} {nota ? <em className="not-italic opacity-70">({nota})</em> : null}
   </span>
 );
@@ -101,12 +100,10 @@ export default function Modelo() {
     <section id="modelo" className="bg-gradient-to-b from-slate-50 to-white">
       <div className="mx-auto max-w-6xl px-4 py-12">
         <header className="mb-6">
-          <h1 className="text-3xl font-bold tracking-tight text-slate-900">
-            Modelo de juego
-          </h1>
+          <h1 className="text-3xl font-bold tracking-tight text-slate-900">Modelo de juego</h1>
           <p className="mt-2 max-w-2xl text-slate-600">
-            Base conceptual y metodológica del cuerpo técnico: principios,
-            juego de posición, contenidos, semana tipo y preparación del partido.
+            Base conceptual y metodológica del cuerpo técnico: principios, juego de posición, contenidos, semana tipo y
+            preparación del partido.
           </p>
         </header>
 
@@ -135,9 +132,7 @@ export default function Modelo() {
 
         <AuraCard>
           <div className="mt-6 flex flex-col items-start gap-4 md:flex-row md:items-center md:justify-between">
-            <blockquote className="max-w-3xl text-lg italic text-slate-800">
-              «{definicionModelo}»
-            </blockquote>
+            <blockquote className="max-w-3xl text-lg italic text-slate-800">«{definicionModelo}»</blockquote>
             <Chip>Aura de Campeón</Chip>
           </div>
         </AuraCard>
@@ -147,18 +142,13 @@ export default function Modelo() {
           <H2 id="juego-posicion">Juego de Posición</H2>
           <AuraCard>
             <p className="text-slate-800">
-              “{juegoDePosicion.cita}”
-              <span className="ml-2 text-slate-500">— {juegoDePosicion.autor}</span>
+              “{juegoDePosicion.cita}” <span className="ml-2 text-slate-500">— {juegoDePosicion.autor}</span>
             </p>
 
             <div className="mt-5 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {juegoDePosicion.sistemas.map((s, i) => (
                 <div key={i} className="flex flex-col items-center gap-2">
-                  <Figure
-                    src={s.img}
-                    alt={`${s.nombre} ${s.formacion}`}
-                    caption={`${s.code} · ${s.nombre} · ${s.formacion}`}
-                  />
+                  <Figure src={s.img} alt={`${s.nombre} ${s.formacion}`} caption={`${s.code} · ${s.nombre} · ${s.formacion}`} />
                 </div>
               ))}
             </div>
@@ -289,10 +279,7 @@ export default function Modelo() {
                         <div className="text-sm font-semibold text-slate-900">
                           {p.n}. {p.titulo}
                         </div>
-                        <span
-                          className={`ml-3 inline-block h-2.5 w-2.5 rounded-full bg-${col.color}-500`}
-                          aria-hidden="true"
-                        />
+                        <span className="ml-3 inline-block h-2.5 w-2.5 rounded-full bg-amber-500" aria-hidden="true" />
                       </div>
                       <ul className="ml-4 mt-2 list-disc text-sm text-slate-700">
                         {p.notas.map((n, j) => (
@@ -307,41 +294,41 @@ export default function Modelo() {
           </div>
         </div>
 
-        {/* SEMANA MODELO — 7 RECTÁNGULOS IGUALES EN UNA SOLA FILA */}
+        {/* SEMANA MODELO — CALENDARIO LIMPIO (7 columnas en desktop) */}
         <div className="mt-12">
           <H2 id="semana">Semana modelo (Domingo–Domingo)</H2>
 
-          {/* 
-            - En móviles: fila horizontal con scroll (todos uno al lado del otro).
-            - En desktop (lg+): grilla de 7 columnas exactas.
-            - Cada columna es un rectángulo alargado con alto fijo y contenido equilibrado.
+          {/*
+            Calendario:
+            - Mobile: 1 columna
+            - sm: 2 columnas
+            - md: 3 columnas
+            - lg+: 7 columnas (los siete días en una fila)
+            Tipografía más compacta y cards sin alto fijo (todo el contenido entra).
           */}
-          <div className="
-              mt-4 grid grid-flow-col auto-cols-[minmax(240px,1fr)] gap-4 overflow-x-auto
-              lg:grid-flow-row lg:auto-cols-auto lg:grid-cols-7
-            ">
+          <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-7">
             {semanaTipo.map((d) => (
-              <AuraCard key={d.dia} className="flex h-[22rem] min-w-[240px] flex-col">
-                {/* encabezado */}
-                <div className="mb-3 flex items-center justify-between">
-                  <H3>{d.dia}</H3>
-                  <LoadTag {...d.carga} />
+              <div
+                key={d.dia}
+                className="rounded-xl border border-slate-200 bg-white shadow-sm ring-1 ring-amber-100"
+              >
+                {/* header estilo calendario */}
+                <div className="flex items-center justify-between gap-2 rounded-t-xl bg-slate-50/80 px-3 py-2">
+                  <div className="text-[13px] font-semibold uppercase tracking-wide text-slate-800">
+                    {d.dia}
+                  </div>
+                  <LoadTag label={d.carga?.label} nota={d.carga?.nota} />
                 </div>
 
-                <div className="h-px w-full bg-slate-200/70" />
-
-                {/* contenido (ocupa el alto disponible) */}
-                <ul className="mt-3 flex-1 list-disc space-y-1 overflow-auto pl-5 text-slate-700">
-                  {d.bloques.map((b, i) => (
-                    <li key={i}>{b}</li>
-                  ))}
-                </ul>
-
-                {/* footer sutil para equilibrio visual */}
-                <div className="mt-3 rounded-xl bg-amber-50/40 p-2 text-center text-[11px] font-medium text-amber-800 ring-1 ring-amber-100">
-                  Preparados para competir
+                {/* cuerpo */}
+                <div className="px-3 pb-3 pt-2">
+                  <ul className="list-disc space-y-1.5 pl-4 text-[13px] leading-snug text-slate-700">
+                    {d.bloques.map((b, i) => (
+                      <li key={i}>{b}</li>
+                    ))}
+                  </ul>
                 </div>
-              </AuraCard>
+              </div>
             ))}
           </div>
         </div>
