@@ -1,58 +1,360 @@
 // src/sections/Modelo.jsx
 import React from "react";
+import {
+  objetivosA,
+  objetivosB,
+  definicionModelo,
+  juegoDePosicion,
+  fasesJuego,
+  principiosJuego,
+  contenidosSemanales,
+  semanaTipo,
+  metodologiaIntegrada,
+  entrenamientoBase,
+  planTrabajo,
+  preparacionSemana,
+} from "../data/modelo";
 
-const PRINCIPIOS = [
-  "Juego de Posición como marco para crear superioridades.",
-  "Amplitud y profundidad constantes; cambios de orientación.",
-  "Ritmo y pausas para desorganizar al rival; tercer hombre y hombre libre.",
-  "Ocupación racional de espacios y sincronización por alturas/pasillos.",
-  "Transiciones: 5'' tras pérdida y verticalidad inteligente tras robo.",
-  "ABP con roles claros: bloqueos, cortinas y gestión de segundas jugadas.",
-];
+// ───────────────────────── helpers UI ─────────────────────────
+const H2 = ({ id, children }) => (
+  <h2 id={id} className="scroll-mt-24 text-2xl font-semibold text-slate-900">
+    {children}
+  </h2>
+);
 
-const BLOQUES = [
-  { id: "plan", title: "Plan de trabajo", placeholder: "Objetivos anuales/mensuales, periodización por microciclos." },
-  { id: "semana", title: "Semana de entrenamiento", placeholder: "Estructura MD+1 a MD-1, cargas y objetivos por día." },
-  { id: "video", title: "Material de video", placeholder: "Flujos de análisis, entregables, software y tiempos de entrega." },
-  { id: "sesiones", title: "Ejemplos de sesiones", placeholder: "2–3 sesiones tipo con tareas, espacios, tiempos y coaching points." },
-  { id: "tecnologia", title: "Tecnología aplicada", placeholder: "GPS, RPE, tableros, integraciones de datos, control de carga." },
-  { id: "funciones", title: "Funciones de cuerpo técnico", placeholder: "Roles, responsabilidades, rituales y canales de comunicación." },
-  { id: "prensa", title: "Entrevistas y artículos", placeholder: "Enlaces y recortes de prensa relevantes." },
-];
+const H3 = ({ children }) => (
+  <h3 className="text-lg font-semibold text-slate-900">{children}</h3>
+);
+
+const Chip = ({ children }) => (
+  <span className="rounded-full border border-slate-200 bg-white px-2.5 py-0.5 text-xs text-slate-700">
+    {children}
+  </span>
+);
+
+const AuraCard = ({ children }) => (
+  <div className="relative rounded-2xl border border-slate-200 bg-white p-5 shadow-sm ring-1 ring-amber-100">
+    {/* Aura campeona suave */}
+    <div className="pointer-events-none absolute -inset-0.5 rounded-2xl bg-gradient-to-b from-amber-100/0 via-amber-100/10 to-amber-100/0 blur" />
+    <div className="relative">{children}</div>
+  </div>
+);
+
+const Figure = ({ src, alt, caption }) => (
+  <figure className="rounded-xl border border-slate-200 bg-white p-2">
+    <img
+      src={src}
+      alt={alt}
+      className="mx-auto h-56 w-full max-w-md rounded-lg object-contain"
+      loading="lazy"
+      onError={(e) => {
+        // Si la imagen aún no existe, mostramos un placeholder elegante
+        e.currentTarget.outerHTML =
+          `<div class="mx-auto flex h-56 w-full max-w-md items-center justify-center rounded-lg border border-dashed border-slate-300 bg-slate-50 text-xs text-slate-500">Agregá la imagen en ${src}</div>`;
+      }}
+    />
+    {caption ? (
+      <figcaption className="mt-2 text-center text-xs text-slate-500">{caption}</figcaption>
+    ) : null}
+  </figure>
+);
+
+// Etiqueta de carga (semana tipo)
+const LoadTag = ({ label, nota, color = "amber" }) => (
+  <span
+    className={`inline-flex items-center gap-1 rounded-full bg-${color}-50 px-2 py-0.5 text-xs font-medium text-${color}-700 ring-1 ring-inset ring-${color}-200`}
+  >
+    {label} {nota ? <em className="not-italic opacity-70">({nota})</em> : null}
+  </span>
+);
+
+// Mini nav interno
+const Subnav = () => {
+  const items = [
+    ["principios", "Principios"],
+    ["juego-posicion", "Juego de Posición"],
+    ["fases", "Fases"],
+    ["contenidos", "Contenidos"],
+    ["semana", "Semana modelo"],
+    ["preparacion", "Preparación de la semana"],
+    ["metodologia", "Metodología"],
+  ];
+  return (
+    <nav className="sticky top-16 z-10 -mx-4 mb-8 border-y bg-white/70 px-4 py-2 backdrop-blur supports-[backdrop-filter]:bg-white/50">
+      <ul className="mx-auto flex max-w-6xl flex-wrap gap-2">
+        {items.map(([id, label]) => (
+          <li key={id}>
+            <a
+              href={`#${id}`}
+              className="rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-medium text-slate-700 hover:bg-amber-50 hover:text-amber-800"
+            >
+              {label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  );
+};
+
+// ───────────────────────── component ─────────────────────────
 
 export default function Modelo() {
   return (
-    <section id="modelo" className="border-t bg-white">
+    <section id="modelo" className="bg-gradient-to-b from-slate-50 to-white">
       <div className="mx-auto max-w-6xl px-4 py-12">
-        <header className="mb-8">
-          <h2 className="text-3xl font-bold">Modelo de juego</h2>
-          <p className="mt-2 max-w-3xl text-slate-600">
-            Marco metodológico y operativo del cuerpo técnico: principios, planificación y herramientas.
+        <header className="mb-6">
+          <h1 className="text-3xl font-bold tracking-tight text-slate-900">
+            Modelo de juego
+          </h1>
+          <p className="mt-2 max-w-2xl text-slate-600">
+            Base conceptual y metodológica del cuerpo técnico: principios,
+            juego de posición, contenidos, semana tipo y preparación del partido.
           </p>
         </header>
 
-        {/* Principios del modelo */}
-        <div className="mb-10 rounded-xl border bg-white p-6 shadow-sm">
-          <h3 className="text-lg font-semibold">Principios del modelo</h3>
-          <ul className="mt-3 list-disc space-y-2 pl-5 text-slate-700">
-            {PRINCIPIOS.map((p, i) => (
-              <li key={i}>{p}</li>
-            ))}
-          </ul>
+        <Subnav />
+
+        {/* PRINCIPIOS / OBJETIVOS */}
+        <H2 id="principios">Objetivos generales & Principios</H2>
+        <div className="mt-4 grid gap-6 md:grid-cols-2">
+          <AuraCard>
+            <H3>Objetivos generales (I)</H3>
+            <ul className="mt-2 list-disc space-y-1 pl-5 text-slate-700">
+              {objetivosA.map((t, i) => (
+                <li key={i}>{t}</li>
+              ))}
+            </ul>
+          </AuraCard>
+          <AuraCard>
+            <H3>Objetivos generales (II)</H3>
+            <ul className="mt-2 list-disc space-y-1 pl-5 text-slate-700">
+              {objetivosB.map((t, i) => (
+                <li key={i}>{t}</li>
+              ))}
+            </ul>
+          </AuraCard>
         </div>
 
-        {/* Bloques operativos */}
-        <div className="grid gap-6 md:grid-cols-2">
-          {BLOQUES.map((b) => (
-            <article key={b.id} className="rounded-xl border bg-white p-5 shadow-sm">
-              <h3 className="text-lg font-semibold">{b.title}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-slate-700">
-                {b.placeholder}
-              </p>
-            </article>
-          ))}
+        {/* DEFINICIÓN */}
+        <AuraCard>
+          <div className="mt-6 flex flex-col items-start gap-4 md:flex-row md:items-center md:justify-between">
+            <blockquote className="max-w-3xl text-lg italic text-slate-800">
+              «{definicionModelo}»
+            </blockquote>
+            <Chip>Aura de Campeón</Chip>
+          </div>
+        </AuraCard>
+
+        {/* JUEGO DE POSICIÓN */}
+        <div className="mt-12">
+          <H2 id="juego-posicion">Juego de Posición</H2>
+          <AuraCard>
+            <p className="text-slate-800">
+              “{juegoDePosicion.cita}”
+              <span className="ml-2 text-slate-500">— {juegoDePosicion.autor}</span>
+            </p>
+
+            <div className="mt-5 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {juegoDePosicion.sistemas.map((s, i) => (
+                <div key={i} className="flex flex-col items-center gap-2">
+                  <Figure
+                    src={s.img}
+                    alt={`${s.nombre} ${s.formacion}`}
+                    caption={`${s.code} · ${s.nombre} · ${s.formacion}`}
+                  />
+                </div>
+              ))}
+            </div>
+          </AuraCard>
+        </div>
+
+        {/* FASES */}
+        <div className="mt-12">
+          <H2 id="fases">Fases del juego</H2>
+          <div className="mt-4 grid gap-6 md:grid-cols-2">
+            {fasesJuego.map((f, i) => (
+              <AuraCard key={i}>
+                <div className="grid items-center gap-4 md:grid-cols-2">
+                  <div>
+                    <H3>{f.titulo}</H3>
+                    <p className="mt-2 text-slate-700">{f.texto}</p>
+                    <div className="mt-2">
+                      <Chip>Formación: {f.formacion}</Chip>
+                    </div>
+                  </div>
+                  <Figure src={f.img} alt={f.titulo} />
+                </div>
+              </AuraCard>
+            ))}
+          </div>
+        </div>
+
+        {/* PRINCIPIOS DE JUEGO */}
+        <div className="mt-12">
+          <H2>Principios de juego</H2>
+          <div className="mt-4 grid gap-6 md:grid-cols-2">
+            <AuraCard>
+              <H3>Ofensivos</H3>
+              <ul className="mt-3 space-y-3">
+                {principiosJuego.ofensivos.map((p, i) => (
+                  <li key={i}>
+                    <div className="font-medium text-slate-900">{p.titulo}</div>
+                    <ul className="ml-5 mt-1 list-disc text-slate-700">
+                      {p.bullets.map((b, j) => (
+                        <li key={j}>{b}</li>
+                      ))}
+                    </ul>
+                  </li>
+                ))}
+              </ul>
+            </AuraCard>
+
+            <AuraCard>
+              <H3>Defensivos</H3>
+              <ul className="mt-3 space-y-3">
+                {principiosJuego.defensivos.map((p, i) => (
+                  <li key={i}>
+                    <div className="font-medium text-slate-900">{p.titulo}</div>
+                    <ul className="ml-5 mt-1 list-disc text-slate-700">
+                      {p.bullets.map((b, j) => (
+                        <li key={j}>{b}</li>
+                      ))}
+                    </ul>
+                  </li>
+                ))}
+              </ul>
+            </AuraCard>
+          </div>
+        </div>
+
+        {/* CONTENIDOS SEMANALES */}
+        <div className="mt-12">
+          <H2 id="contenidos">Contenidos semanales</H2>
+          <div className="mt-4 grid gap-6 md:grid-cols-2">
+            {contenidosSemanales.map((g) => (
+              <AuraCard key={g.code}>
+                <div className="flex items-center gap-3">
+                  <div className="text-2xl">{g.icon}</div>
+                  <H3>
+                    {g.code} — {g.titulo}
+                  </H3>
+                </div>
+                <div className="mt-3 space-y-3">
+                  {g.bloques.map((b, i) => (
+                    <div key={i}>
+                      <div className="font-medium text-slate-900">{b.subtitulo}</div>
+                      <p className="text-slate-700">{b.texto}</p>
+                    </div>
+                  ))}
+                </div>
+              </AuraCard>
+            ))}
+          </div>
+        </div>
+
+        {/* PREPARACIÓN DE LA SEMANA */}
+        <div className="mt-12">
+          <H2 id="preparacion">Preparación de la semana</H2>
+          <div className="mt-4 grid gap-6 lg:grid-cols-3">
+            {preparacionSemana.map((col, i) => (
+              <AuraCard key={i}>
+                <div className="mb-3">
+                  <Chip>{col.grupo}</Chip>
+                </div>
+                <ol className="space-y-4">
+                  {col.pasos.map((p) => (
+                    <li key={p.n} className="rounded-xl border border-slate-200 bg-slate-50 p-3">
+                      <div className="flex items-center justify-between">
+                        <div className="text-sm font-semibold text-slate-900">
+                          {p.n}. {p.titulo}
+                        </div>
+                        <span
+                          className={`ml-3 inline-block h-2.5 w-2.5 rounded-full bg-${col.color}-500`}
+                          aria-hidden="true"
+                        />
+                      </div>
+                      <ul className="ml-4 mt-2 list-disc text-sm text-slate-700">
+                        {p.notas.map((n, j) => (
+                          <li key={j}>{n}</li>
+                        ))}
+                      </ul>
+                    </li>
+                  ))}
+                </ol>
+              </AuraCard>
+            ))}
+          </div>
+        </div>
+
+        {/* SEMANA MODELO */}
+        <div className="mt-12">
+          <H2 id="semana">Semana modelo (Domingo–Domingo)</H2>
+          <div className="mt-4 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {semanaTipo.map((d) => (
+              <AuraCard key={d.dia}>
+                <div className="mb-2 flex items-center justify-between">
+                  <H3>{d.dia}</H3>
+                  <LoadTag {...d.carga} />
+                </div>
+                <ul className="mt-1 list-disc space-y-1 pl-5 text-slate-700">
+                  {d.bloques.map((b, i) => (
+                    <li key={i}>{b}</li>
+                  ))}
+                </ul>
+              </AuraCard>
+            ))}
+          </div>
+        </div>
+
+        {/* METODOLOGÍA / ENTRENAMIENTO / PLAN */}
+        <div className="mt-12 grid gap-6 md:grid-cols-2">
+          <AuraCard>
+            <H2 id="metodologia">{metodologiaIntegrada.titulo}</H2>
+            <ul className="mt-3 list-disc space-y-1 pl-5 text-slate-700">
+              {metodologiaIntegrada.bullets.map((t, i) => (
+                <li key={i}>{t}</li>
+              ))}
+            </ul>
+            <div className="mt-4">
+              <Figure src={metodologiaIntegrada.img} alt={metodologiaIntegrada.titulo} />
+            </div>
+            {metodologiaIntegrada.videoUrl ? (
+              <a
+                href={metodologiaIntegrada.videoUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="mt-4 inline-flex items-center rounded-lg bg-amber-600 px-3 py-1.5 text-sm font-medium text-white hover:bg-amber-700"
+              >
+                Ver video
+              </a>
+            ) : null}
+          </AuraCard>
+
+          <div className="space-y-6">
+            <AuraCard>
+              <H3>{entrenamientoBase.titulo}</H3>
+              <p className="mt-2 text-slate-700">{entrenamientoBase.texto}</p>
+              <div className="mt-3">
+                <Figure src={entrenamientoBase.img} alt={entrenamientoBase.titulo} />
+              </div>
+            </AuraCard>
+
+            <AuraCard>
+              <H3>{planTrabajo.titulo}</H3>
+              <ul className="mt-2 list-disc space-y-1 pl-5 text-slate-700">
+                {planTrabajo.bullets.map((t, i) => (
+                  <li key={i}>{t}</li>
+                ))}
+              </ul>
+              <div className="mt-3">
+                <Figure src={planTrabajo.img} alt={planTrabajo.titulo} />
+              </div>
+            </AuraCard>
+          </div>
         </div>
       </div>
     </section>
   );
 }
+
