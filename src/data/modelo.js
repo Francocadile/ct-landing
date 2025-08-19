@@ -155,7 +155,7 @@ export const semanaTipo = [
       "Análisis de rendimiento",
       "Entrenamiento compensatorio individual",
     ],
-    carga: { label: "-", nota: "MD+1", color: "emerald" },
+    carga: { nota: "MD+1", color: "emerald" },
   },
   {
     dia: "Martes",
@@ -165,7 +165,7 @@ export const semanaTipo = [
       "Fuerza core · Propiocepción dinámica · Excéntricos",
       "Partido condicionado (suplentes) / Regenerativo (titulares)",
     ],
-    carga: { label: "-", nota: "MD+2", color: "sky" },
+    carga: { nota: "MD+2", color: "sky" },
   },
   {
     dia: "Miércoles",
@@ -175,7 +175,7 @@ export const semanaTipo = [
       "Fuerza potencia neuromuscular · Contrastes",
       "Reducido orientado al sistema de juego",
     ],
-    carga: { label: "-", nota: "MD-4", color: "orange" },
+    carga: { nota: "MD-4", color: "orange" },
   },
   {
     dia: "Jueves",
@@ -185,7 +185,7 @@ export const semanaTipo = [
       "Fuerza core · Propiocepción dinámica",
       "Fútbol con consignas",
     ],
-    carga: { label: "-", nota: "MD-3", color: "rose" },
+    carga: { nota: "MD-3", color: "rose" },
   },
   {
     dia: "Viernes",
@@ -195,7 +195,7 @@ export const semanaTipo = [
       "Circuito neuromuscular · Velocidad máx.",
       "Finalizaciones / Transiciones / Acciones específicas según rival",
     ],
-    carga: { label: "-", nota: "MD-2", color: "amber" },
+    carga: { nota: "MD-2", color: "amber" },
   },
   {
     dia: "Sábado",
@@ -205,12 +205,12 @@ export const semanaTipo = [
       "Activación neuromuscular",
       "Repaso: salidas, laterales y ABP",
     ],
-    carga: { label: "-", nota: "MD-1", color: "lime" },
+    carga: { nota: "MD-1", color: "lime" },
   },
   {
     dia: "Domingo",
     bloques: ["Competencia"],
-    carga: { label: "Alta", nota: "MD", color: "fuchsia" },
+    carga: { nota: "MD", color: "fuchsia" },
   },
 ];
 
