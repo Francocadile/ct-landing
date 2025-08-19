@@ -34,26 +34,33 @@ const Chip = ({ children }) => (
 
 // Tarjeta con aura sutil (campeón, pero sobrio)
 const AuraCard = ({ children, className = "" }) => (
-  <div className={`relative rounded-2xl border border-slate-200 bg-white p-5 shadow-sm ring-1 ring-amber-100 ${className}`}>
+  <div
+    className={`relative rounded-2xl border border-slate-200 bg-white p-5 shadow-sm ring-1 ring-amber-100 ${className}`}
+  >
     <div className="pointer-events-none absolute -inset-0.5 rounded-2xl bg-gradient-to-b from-amber-100/0 via-amber-100/10 to-amber-100/0 blur" />
     <div className="relative">{children}</div>
   </div>
 );
 
-const Figure = ({ src, alt, caption }) => (
+// ⬇️ Único ajuste: imgClass opcional para poder fijar altura/fit cuando lo necesitemos
+const Figure = ({ src, alt, caption, imgClass = "" }) => (
   <figure className="rounded-xl border border-slate-200 bg-white p-2">
     <img
       src={src}
       alt={alt}
-      className="mx-auto h-56 w-full max-w-md rounded-lg object-contain"
+      className={`mx-auto w-full max-w-md rounded-lg ${imgClass || "h-56 object-contain"}`}
       loading="lazy"
       onError={(e) => {
-        e.currentTarget.outerHTML =
-          `<div class="mx-auto flex h-56 w-full max-w-md items-center justify-center rounded-lg border border-dashed border-slate-300 bg-slate-50 text-xs text-slate-500">Agregá la imagen en ${src}</div>`;
+        e.currentTarget.outerHTML = `
+          <div class="mx-auto flex h-56 w-full max-w-md items-center justify-center rounded-lg border border-dashed border-slate-300 bg-slate-50 text-xs text-slate-500">
+            Agregá la imagen en ${src}
+          </div>`;
       }}
     />
     {caption ? (
-      <figcaption className="mt-2 text-center text-xs text-slate-500">{caption}</figcaption>
+      <figcaption className="mt-2 text-center text-xs text-slate-500">
+        {caption}
+      </figcaption>
     ) : null}
   </figure>
 );
@@ -100,10 +107,12 @@ export default function Modelo() {
     <section id="modelo" className="bg-gradient-to-b from-slate-50 to-white">
       <div className="mx-auto max-w-6xl px-4 py-12">
         <header className="mb-6">
-          <h1 className="text-3xl font-bold tracking-tight text-slate-900">Modelo de juego</h1>
+          <h1 className="text-3xl font-bold tracking-tight text-slate-900">
+            Modelo de juego
+          </h1>
           <p className="mt-2 max-w-2xl text-slate-600">
-            Base conceptual y metodológica del cuerpo técnico: principios, juego de posición, contenidos, semana tipo y
-            preparación del partido.
+            Base conceptual y metodológica del cuerpo técnico: principios, juego
+            de posición, contenidos, semana tipo y preparación del partido.
           </p>
         </header>
 
@@ -143,13 +152,20 @@ export default function Modelo() {
           <H2 id="juego-posicion">Juego de Posición</H2>
           <AuraCard>
             <p className="text-slate-800">
-              “{juegoDePosicion.cita}” <span className="ml-2 text-slate-500">— {juegoDePosicion.autor}</span>
+              “{juegoDePosicion.cita}”
+              <span className="ml-2 text-slate-500">
+                — {juegoDePosicion.autor}
+              </span>
             </p>
 
             <div className="mt-5 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {juegoDePosicion.sistemas.map((s, i) => (
                 <div key={i} className="flex flex-col items-center gap-2">
-                  <Figure src={s.img} alt={`${s.nombre} ${s.formacion}`} caption={`${s.code} · ${s.nombre} · ${s.formacion}`} />
+                  <Figure
+                    src={s.img}
+                    alt={`${s.nombre} ${s.formacion}`}
+                    caption={`${s.code} · ${s.nombre} · ${s.formacion}`}
+                  />
                 </div>
               ))}
             </div>
@@ -193,7 +209,11 @@ export default function Modelo() {
                   </div>
                   <div className="grid gap-3 sm:grid-cols-2">
                     <Figure src={f.img} alt={f.titulo} />
-                    <Figure src={f.img2 || "/img/modelo/fase-finalizacion1.png"} alt={`${f.titulo} 2`} />
+                    {/* segunda lámina de finalización */}
+                    <Figure
+                      src={f.img2 || "/img/modelo/fase-finalizacion1.png"}
+                      alt={`${f.titulo} 2`}
+                    />
                   </div>
                 </div>
               </AuraCard>
@@ -254,7 +274,9 @@ export default function Modelo() {
                 <div className="mt-3 space-y-3">
                   {g.bloques.map((b, i) => (
                     <div key={i}>
-                      <div className="font-medium text-slate-900">{b.subtitulo}</div>
+                      <div className="font-medium text-slate-900">
+                        {b.subtitulo}
+                      </div>
                       <p className="text-slate-700">{b.texto}</p>
                     </div>
                   ))}
@@ -275,12 +297,18 @@ export default function Modelo() {
                 </div>
                 <ol className="space-y-4">
                   {col.pasos.map((p) => (
-                    <li key={p.n} className="rounded-xl border border-slate-200 bg-slate-50 p-3">
+                    <li
+                      key={p.n}
+                      className="rounded-xl border border-slate-200 bg-slate-50 p-3"
+                    >
                       <div className="flex items-center justify-between">
                         <div className="text-sm font-semibold text-slate-900">
                           {p.n}. {p.titulo}
                         </div>
-                        <span className="ml-3 inline-block h-2.5 w-2.5 rounded-full bg-amber-500" aria-hidden="true" />
+                        <span
+                          className="ml-3 inline-block h-2.5 w-2.5 rounded-full bg-amber-500"
+                          aria-hidden="true"
+                        />
                       </div>
                       <ul className="ml-4 mt-2 list-disc text-sm text-slate-700">
                         {p.notas.map((n, j) => (
@@ -333,17 +361,23 @@ export default function Modelo() {
           </div>
         </div>
 
-        {/* METODOLOGÍA / ENTRENAMIENTO / PLAN */}
+        {/* METODOLOGÍA / ENTRENAMIENTO / PLAN — SOLO AJUSTE DE IMÁGENES */}
         <div className="mt-12 grid gap-6 md:grid-cols-2">
-          <AuraCard>
+          {/* Metodología (izquierda) */}
+          <AuraCard className="flex flex-col">
             <H2 id="metodologia">{metodologiaIntegrada.titulo}</H2>
             <ul className="mt-3 list-disc space-y-1 pl-5 text-slate-700">
               {metodologiaIntegrada.bullets.map((t, i) => (
                 <li key={i}>{t}</li>
               ))}
             </ul>
-            <div className="mt-4">
-              <Figure src={metodologiaIntegrada.img} alt={metodologiaIntegrada.titulo} />
+            {/* imagen alineada al pie + altura fija compartida */}
+            <div className="mt-4 md:mt-auto">
+              <Figure
+                src={metodologiaIntegrada.img}
+                alt={metodologiaIntegrada.titulo}
+                imgClass="h-44 object-cover"
+              />
             </div>
             {metodologiaIntegrada.videoUrl ? (
               <a
@@ -357,24 +391,33 @@ export default function Modelo() {
             ) : null}
           </AuraCard>
 
+          {/* Columna derecha (dos tarjetas apiladas) */}
           <div className="space-y-6">
-            <AuraCard>
+            <AuraCard className="flex flex-col">
               <H3>{entrenamientoBase.titulo}</H3>
               <p className="mt-2 text-slate-700">{entrenamientoBase.texto}</p>
-              <div className="mt-3">
-                <Figure src={entrenamientoBase.img} alt={entrenamientoBase.titulo} />
+              <div className="mt-3 md:mt-auto">
+                <Figure
+                  src={entrenamientoBase.img}
+                  alt={entrenamientoBase.titulo}
+                  imgClass="h-44 object-cover"
+                />
               </div>
             </AuraCard>
 
-            <AuraCard>
+            <AuraCard className="flex flex-col">
               <H3>{planTrabajo.titulo}</H3>
               <ul className="mt-2 list-disc space-y-1 pl-5 text-slate-700">
                 {planTrabajo.bullets.map((t, i) => (
                   <li key={i}>{t}</li>
                 ))}
               </ul>
-              <div className="mt-3">
-                <Figure src={planTrabajo.img} alt={planTrabajo.titulo} />
+              <div className="mt-3 md:mt-auto">
+                <Figure
+                  src={planTrabajo.img}
+                  alt={planTrabajo.titulo}
+                  imgClass="h-44 object-cover"
+                />
               </div>
             </AuraCard>
           </div>
