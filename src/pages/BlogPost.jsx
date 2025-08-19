@@ -1,90 +1,99 @@
 // src/pages/BlogPost.jsx
 import React from "react";
 import { useParams, Link } from "react-router-dom";
-import { BLOG_POSTS } from "../data/blog";
-
-function Prose({ block }) {
-  if (block.type === "h3") {
-    return <h3 className="mt-6 text-lg font-semibold text-slate-900">{block.text}</h3>;
-  }
-  if (block.type === "ul") {
-    return (
-      <ul className="mt-2 list-disc pl-5 text-slate-700">
-        {block.items.map((it, i) => (
-          <li key={i} className="mt-1">{it}</li>
-        ))}
-      </ul>
-    );
-  }
-  // párrafo por defecto
-  return <p className="mt-3 text-slate-700">{block.text}</p>;
-}
+import { POSTS } from "../data/blog";
 
 export default function BlogPost() {
   const { slug } = useParams();
-  const posts = [...BLOG_POSTS].sort((a, b) => (a.date < b.date ? 1 : -1));
-  const idx = posts.findIndex((p) => p.slug === slug);
-  const post = posts[idx];
+  const post = POSTS.find((p) => p.slug === slug);
 
   if (!post) {
     return (
-      <section className="py-24 text-center">
-        <div className="text-slate-600">Entrada no encontrada.</div>
-        <Link to="/blog" className="mt-4 inline-block rounded-lg bg-amber-600 px-3 py-1.5 text-sm font-medium text-white">
-          Volver al blog
+      <main className="mx-auto max-w-6xl px-4 py-16">
+        <p className="text-slate-600">Artículo no encontrado.</p>
+        <Link to="/blog" className="mt-4 inline-block text-blue-600 hover:underline">
+          ← Volver al blog
         </Link>
-      </section>
+      </main>
     );
   }
 
-  const prev = posts[idx - 1];
-  const next = posts[idx + 1];
-
   return (
-    <article className="bg-gradient-to-b from-slate-50 to-white">
-      <div className="mx-auto max-w-3xl px-4 py-12">
-        <Link to="/blog" className="text-sm text-amber-700 hover:underline">← Volver</Link>
-        <h1 className="mt-2 text-3xl font-bold tracking-tight text-slate-900">{post.title}</h1>
-        <div className="mt-1 text-xs text-slate-500">{post.date} • {post.author}</div>
+    <main className="bg-white">
+      <article>
+        <header className="border-b">
+          <div className="mx-auto max-w-3xl px-4 py-10">
+            <div className="text-xs uppercase tracking-wide text-slate-500">
+              {new Date(post.date).toLocaleDateString()} · {post.author}
+            </div>
+            <h1 className="mt-1 text-3xl font-bold tracking-tight">{post.title}</h1>
+            {post.tags?.length ? (
+              <div className="mt-3 flex flex-wrap gap-2">
+                {post.tags.map((t) => (
+                  <span
+                    key={t}
+                    className="rounded-full border border-slate-200 bg-slate-50 px-2 py-0.5 text-xs text-slate-700"
+                  >
+                    {t}
+                  </span>
+                ))}
+              </div>
+            ) : null}
+          </div>
+          {post.cover ? (
+            <div className="mx-auto max-w-6xl px-4 pb-6">
+              <img
+                src={post.cover}
+                alt=""
+                className="h-64 w-full rounded-xl object-cover"
+                loading="lazy"
+              />
+            </div>
+          ) : null}
+        </header>
 
-        <img
-          src={post.cover}
-          alt={post.title}
-          className="mt-6 h-72 w-full rounded-xl object-cover"
-          loading="lazy"
-          onError={(e) => {
-            e.currentTarget.outerHTML =
-              `<div class="mt-6 flex h-72 w-full items-center justify-center rounded-xl border border-dashed border-slate-300 bg-slate-50 text-xs text-slate-500">/public${post.cover}</div>`;
-          }}
-        />
+        <div className="mx-auto max-w-3xl px-4 py-10">
+          {post.sections?.map((sec, i) => (
+            <section key={i} className="mt-8">
+              {sec.h2 ? (
+                <h2 className="text-xl font-semibold text-slate-900">{sec.h2}</h2>
+              ) : null}
 
-        <div className="mt-6">
-          {post.content.map((block, i) => (
-            <Prose key={i} block={block} />
+              {Array.isArray(sec.p) &&
+                sec.p.map((txt, j) => (
+                  <p key={`p-${j}`} className="mt-3 leading-relaxed text-slate-800">
+                    {txt}
+                  </p>
+                ))}
+
+              {Array.isArray(sec.bullets) && sec.bullets.length > 0 ? (
+                <ul className="mt-3 list-disc space-y-2 pl-5 text-slate-800">
+                  {sec.bullets.map((b, k) => (
+                    <li key={`b-${k}`}>{b}</li>
+                  ))}
+                </ul>
+              ) : null}
+
+              {Array.isArray(sec.p2) &&
+                sec.p2.map((txt, j) => (
+                  <p key={`p2-${j}`} className="mt-3 leading-relaxed text-slate-800">
+                    {txt}
+                  </p>
+                ))}
+
+              {sec.note ? (
+                <p className="mt-3 text-sm text-slate-600">{sec.note}</p>
+              ) : null}
+            </section>
           ))}
-        </div>
 
-        <hr className="my-10 border-slate-200" />
-
-        <div className="flex flex-wrap justify-between gap-3">
-          {prev ? (
-            <Link
-              to={`/blog/${prev.slug}`}
-              className="inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-700 hover:bg-amber-50"
-            >
-              ← {prev.title}
+          <div className="mt-10">
+            <Link to="/blog" className="text-blue-600 hover:underline">
+              ← Volver al blog
             </Link>
-          ) : <span />}
-          {next ? (
-            <Link
-              to={`/blog/${next.slug}`}
-              className="inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-700 hover:bg-amber-50"
-            >
-              {next.title} →
-            </Link>
-          ) : <span />}
+          </div>
         </div>
-      </div>
-    </article>
+      </article>
+    </main>
   );
 }
