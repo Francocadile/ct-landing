@@ -42,7 +42,7 @@ const AuraCard = ({ children, className = "" }) => (
   </div>
 );
 
-// ⬇️ Único ajuste: imgClass opcional para poder fijar altura/fit cuando lo necesitemos
+// Permite fijar altura/fit cuando haga falta (imgClass)
 const Figure = ({ src, alt, caption, imgClass = "" }) => (
   <figure className="rounded-xl border border-slate-200 bg-white p-2">
     <img
@@ -77,10 +77,13 @@ const Subnav = () => {
     ["principios", "Principios"],
     ["juego-posicion", "Juego de Posición"],
     ["fases", "Fases"],
+    ["principios-juego", "Principios de juego"],
+    ["metodo", "Método"],
+    ["entrenamiento", "Entrenamiento"],
     ["contenidos", "Contenidos"],
+    ["preparacion", "Preparación"],
     ["semana", "Semana modelo"],
-    ["preparacion", "Preparación de la semana"],
-    ["metodologia", "Metodología"],
+    ["plan", "Plan de trabajo"],
   ];
   return (
     <nav className="sticky top-16 z-10 -mx-4 mb-8 border-y bg-white/70 px-4 py-2 backdrop-blur supports-[backdrop-filter]:bg-white/50">
@@ -106,6 +109,7 @@ export default function Modelo() {
   return (
     <section id="modelo" className="bg-gradient-to-b from-slate-50 to-white">
       <div className="mx-auto max-w-6xl px-4 py-12">
+        {/* 1) Modelo de juego (header) */}
         <header className="mb-6">
           <h1 className="text-3xl font-bold tracking-tight text-slate-900">
             Modelo de juego
@@ -118,7 +122,7 @@ export default function Modelo() {
 
         <Subnav />
 
-        {/* PRINCIPIOS / OBJETIVOS */}
+        {/* 2) Objetivos generales & Principios */}
         <H2 id="principios">Objetivos generales & Principios</H2>
         <div className="mt-5 grid gap-8 md:grid-cols-2">
           <AuraCard>
@@ -147,7 +151,7 @@ export default function Modelo() {
           <span className="mx-auto mt-3 block h-1 w-28 rounded-full bg-amber-400/80" />
         </AuraCard>
 
-        {/* JUEGO DE POSICIÓN */}
+        {/* 3) Juego de Posición */}
         <div className="mt-12">
           <H2 id="juego-posicion">Juego de Posición</H2>
           <AuraCard>
@@ -172,7 +176,7 @@ export default function Modelo() {
           </AuraCard>
         </div>
 
-        {/* FASES */}
+        {/* 4) Fases del juego */}
         <div className="mt-12">
           <H2 id="fases">Fases del juego</H2>
 
@@ -194,7 +198,7 @@ export default function Modelo() {
             ))}
           </div>
 
-          {/* Finalización ocupa todo el ancho con dos imágenes */}
+          {/* Finalización ancho completo con 2 imágenes */}
           {(() => {
             const f = fasesJuego[2];
             return (
@@ -209,7 +213,6 @@ export default function Modelo() {
                   </div>
                   <div className="grid gap-3 sm:grid-cols-2">
                     <Figure src={f.img} alt={f.titulo} />
-                    {/* segunda lámina de finalización */}
                     <Figure
                       src={f.img2 || "/img/modelo/fase-finalizacion1.png"}
                       alt={`${f.titulo} 2`}
@@ -221,9 +224,9 @@ export default function Modelo() {
           })()}
         </div>
 
-        {/* PRINCIPIOS DE JUEGO */}
+        {/* 5) Principios de juego */}
         <div className="mt-12">
-          <H2>Principios de juego</H2>
+          <H2 id="principios-juego">Principios de juego</H2>
           <div className="mt-4 grid gap-6 md:grid-cols-2">
             <AuraCard>
               <H3>Ofensivos</H3>
@@ -259,7 +262,54 @@ export default function Modelo() {
           </div>
         </div>
 
-        {/* CONTENIDOS SEMANALES */}
+        {/* 6) Método Integrado Estructural — mayor jerarquía */}
+        <div className="mt-12">
+          <H2 id="metodo">Método Integrado Estructural</H2>
+          <AuraCard className="mt-4 p-6 lg:p-8 ring-amber-200">
+            <div className="grid gap-6 lg:grid-cols-2 lg:items-start">
+              <div>
+                <ul className="list-disc space-y-2 pl-5 text-slate-700">
+                  {metodologiaIntegrada.bullets.map((t, i) => (
+                    <li key={i}>{t}</li>
+                  ))}
+                </ul>
+                {metodologiaIntegrada.videoUrl ? (
+                  <a
+                    href={metodologiaIntegrada.videoUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="mt-5 inline-flex items-center rounded-lg bg-amber-600 px-3 py-1.5 text-sm font-medium text-white hover:bg-amber-700"
+                  >
+                    Ver video
+                  </a>
+                ) : null}
+              </div>
+              <Figure
+                src={metodologiaIntegrada.img}
+                alt={metodologiaIntegrada.titulo}
+                imgClass="h-56 object-cover"
+              />
+            </div>
+          </AuraCard>
+        </div>
+
+        {/* 7) Entrenamiento */}
+        <div className="mt-12">
+          <H2 id="entrenamiento">Entrenamiento</H2>
+          <AuraCard className="mt-4 grid gap-6 lg:grid-cols-2">
+            <div>
+              <H3>{entrenamientoBase.titulo}</H3>
+              <p className="mt-2 text-slate-700">{entrenamientoBase.texto}</p>
+            </div>
+            <Figure
+              src={entrenamientoBase.img}
+              alt={entrenamientoBase.titulo}
+              imgClass="h-56 object-cover"
+            />
+          </AuraCard>
+        </div>
+
+        {/* 8) Contenidos semanales */}
         <div className="mt-12">
           <H2 id="contenidos">Contenidos semanales</H2>
           <div className="mt-4 grid gap-6 md:grid-cols-2">
@@ -286,7 +336,7 @@ export default function Modelo() {
           </div>
         </div>
 
-        {/* PREPARACIÓN DE LA SEMANA */}
+        {/* 9) Preparación de la semana */}
         <div className="mt-12">
           <H2 id="preparacion">Preparación de la semana</H2>
           <div className="mt-4 grid gap-6 lg:grid-cols-3">
@@ -323,32 +373,21 @@ export default function Modelo() {
           </div>
         </div>
 
-        {/* SEMANA MODELO — CALENDARIO LIMPIO */}
+        {/* 10) Semana modelo (Domingo–Domingo) */}
         <div className="mt-12">
           <H2 id="semana">Semana modelo (Domingo–Domingo)</H2>
-
-          {/* 
-            Calendario:
-            - Mobile: 1 col
-            - sm: 2 col
-            - md: 3 col
-            - lg+: 7 col (todos en fila)
-          */}
           <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-7">
             {semanaTipo.map((d) => (
               <div
                 key={d.dia}
                 className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm ring-1 ring-amber-100"
               >
-                {/* header estilo calendario */}
                 <div className="flex items-center justify-between gap-2 rounded-t-xl bg-slate-50/80 px-3 py-1.5">
                   <div className="text-[13px] font-semibold uppercase tracking-wide text-slate-800">
                     {d.dia}
                   </div>
                   <LoadTag label={d.carga?.label} nota={d.carga?.nota} />
                 </div>
-
-                {/* cuerpo */}
                 <div className="px-3 pb-3 pt-2">
                   <ul className="list-disc space-y-1.5 pl-4 text-[13px] leading-snug text-slate-700">
                     {d.bloques.map((b, i) => (
@@ -361,66 +400,23 @@ export default function Modelo() {
           </div>
         </div>
 
-        {/* METODOLOGÍA / ENTRENAMIENTO / PLAN — SOLO AJUSTE DE IMÁGENES */}
-        <div className="mt-12 grid gap-6 md:grid-cols-2">
-          {/* Metodología (izquierda) */}
-          <AuraCard className="flex flex-col">
-            <H2 id="metodologia">{metodologiaIntegrada.titulo}</H2>
-            <ul className="mt-3 list-disc space-y-1 pl-5 text-slate-700">
-              {metodologiaIntegrada.bullets.map((t, i) => (
-                <li key={i}>{t}</li>
-              ))}
-            </ul>
-            {/* imagen alineada al pie + altura fija compartida */}
-            <div className="mt-4 md:mt-auto">
-              <Figure
-                src={metodologiaIntegrada.img}
-                alt={metodologiaIntegrada.titulo}
-                imgClass="h-44 object-cover"
-              />
-            </div>
-            {metodologiaIntegrada.videoUrl ? (
-              <a
-                href={metodologiaIntegrada.videoUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="mt-4 inline-flex items-center rounded-lg bg-amber-600 px-3 py-1.5 text-sm font-medium text-white hover:bg-amber-700"
-              >
-                Ver video
-              </a>
-            ) : null}
-          </AuraCard>
-
-          {/* Columna derecha (dos tarjetas apiladas) */}
-          <div className="space-y-6">
-            <AuraCard className="flex flex-col">
-              <H3>{entrenamientoBase.titulo}</H3>
-              <p className="mt-2 text-slate-700">{entrenamientoBase.texto}</p>
-              <div className="mt-3 md:mt-auto">
-                <Figure
-                  src={entrenamientoBase.img}
-                  alt={entrenamientoBase.titulo}
-                  imgClass="h-44 object-cover"
-                />
-              </div>
-            </AuraCard>
-
-            <AuraCard className="flex flex-col">
-              <H3>{planTrabajo.titulo}</H3>
-              <ul className="mt-2 list-disc space-y-1 pl-5 text-slate-700">
+        {/* 11) Plan de trabajo — D.T. Flavio Robatto */}
+        <div className="mt-12">
+          <H2 id="plan">Plan de trabajo — D.T. Flavio Robatto</H2>
+          <AuraCard className="mt-4 grid gap-6 lg:grid-cols-2">
+            <div>
+              <ul className="list-disc space-y-2 pl-5 text-slate-700">
                 {planTrabajo.bullets.map((t, i) => (
                   <li key={i}>{t}</li>
                 ))}
               </ul>
-              <div className="mt-3 md:mt-auto">
-                <Figure
-                  src={planTrabajo.img}
-                  alt={planTrabajo.titulo}
-                  imgClass="h-44 object-cover"
-                />
-              </div>
-            </AuraCard>
-          </div>
+            </div>
+            <Figure
+              src={planTrabajo.img}
+              alt={planTrabajo.titulo}
+              imgClass="h-56 object-cover"
+            />
+          </AuraCard>
         </div>
       </div>
     </section>
