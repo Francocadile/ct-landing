@@ -53,15 +53,15 @@ export default function Staff() {
     <div className="mx-auto max-w-6xl px-4 py-12">
       <h2 className="text-2xl font-semibold">Staff</h2>
 
-      {/* DT destacado (Flavio) */}
+      {/* DT destacado */}
       {lead && (
         <Link to={`/staff/${slugify(lead.name)}`} className="mt-6 block">
           <article className="relative overflow-hidden rounded-3xl border border-amber-200 bg-white p-5 shadow-card ring-1 ring-amber-100/70 lg:flex lg:items-center lg:gap-6">
-            {/* Aura sutil */}
             <div className="pointer-events-none absolute -inset-1 bg-gradient-to-b from-amber-100/0 via-amber-100/15 to-amber-100/0 blur-xl" />
             <div className="relative">
-              <div className="mx-auto overflow-hidden rounded-3xl border border-slate-200 bg-white h-44 w-32 sm:h-48 sm:w-36 lg:h-56 lg:w-44">
-                {/* móvil: contain para no cortar caras; md+: cover */}
+              {/* MÁS GRANDE EN MÓVIL */}
+              <div className="mx-auto overflow-hidden rounded-3xl border border-slate-200 bg-white h-56 w-40 sm:h-64 sm:w-44 lg:h-72 lg:w-52">
+                {/* móvil: no corta caras; md+: llena el marco */}
                 <img
                   src={lead.img}
                   alt={lead.name}
@@ -76,19 +76,19 @@ export default function Staff() {
               <div className="text-base font-medium text-slate-600">{lead.role}</div>
               <FlagRow flags={lead.flags} />
               <p className="mt-3 text-slate-700 leading-relaxed">{lead.bio}</p>
-              {/* A pedido: sin chips de roles para Flavio */}
+              {/* Sin chips de roles para el DT */}
             </div>
           </article>
         </Link>
       )}
 
-      {/* Asistentes — un poco más grandes en móvil, sin cortar caras */}
+      {/* Asistentes: un poquito más grandes en móvil */}
       <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
         {assistants.map((m) => (
           <Link key={m.name} to={`/staff/${slugify(m.name)}`}>
             <article className="rounded-2xl border border-slate-200 bg-white p-4 shadow-card transition-shadow hover:shadow-md">
-              <div className="mx-auto overflow-hidden rounded-2xl border border-slate-200 bg-white h-32 w-32 sm:h-36 sm:w-36 lg:h-40 lg:w-40">
-                {/* móvil: contain; md+: cover */}
+              {/* MÁS GRANDE EN MÓVIL */}
+              <div className="mx-auto overflow-hidden rounded-2xl border border-slate-200 bg-white h-36 w-36 sm:h-40 sm:w-40 lg:h-44 lg:w-44">
                 <img
                   src={m.img}
                   alt={m.name}
@@ -103,8 +103,6 @@ export default function Staff() {
               <p className="mt-2 line-clamp-3 text-sm text-slate-700 sm:text-[15px]">
                 {m.bio}
               </p>
-
-              {/* A pedido: chips de roles sí para asistentes */}
               <RoleChips roles={m.roles} />
             </article>
           </Link>
