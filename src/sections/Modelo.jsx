@@ -58,7 +58,7 @@ const Figure = ({ src, alt, caption }) => (
   </figure>
 );
 
-// Etiqueta de carga — MÁS PEQUEÑA y simétrica
+// Etiqueta de carga — pequeña y simétrica
 const LoadTag = ({ label, nota }) => (
   <span className="inline-flex items-center gap-1 rounded-md bg-amber-50 px-1 py-[2px] text-[10px] font-medium leading-none text-amber-700 ring-1 ring-inset ring-amber-200 whitespace-nowrap">
     {label} {nota ? <em className="not-italic opacity-70">{nota}</em> : null}
@@ -111,7 +111,7 @@ export default function Modelo() {
 
         {/* PRINCIPIOS / OBJETIVOS */}
         <H2 id="principios">Objetivos generales & Principios</H2>
-        <div className="mt-4 grid gap-6 md:grid-cols-2">
+        <div className="mt-5 grid gap-8 md:grid-cols-2">
           <AuraCard>
             <H3>Objetivos generales (I)</H3>
             <ul className="mt-2 list-disc space-y-1 pl-5 text-slate-700">
@@ -130,11 +130,12 @@ export default function Modelo() {
           </AuraCard>
         </div>
 
-        <AuraCard>
-          <div className="mt-6 flex flex-col items-start gap-4 md:flex-row md:items-center md:justify-between">
-            <blockquote className="max-w-3xl text-lg italic text-slate-800">«{definicionModelo}»</blockquote>
-            <Chip>Aura de Campeón</Chip>
-          </div>
+        {/* Cita — separada, centrada y remarcada */}
+        <AuraCard className="mt-10">
+          <blockquote className="mx-auto max-w-4xl text-center text-xl font-semibold italic text-slate-900">
+            «{definicionModelo}»
+          </blockquote>
+          <span className="mx-auto mt-3 block h-1 w-28 rounded-full bg-amber-400/80" />
         </AuraCard>
 
         {/* JUEGO DE POSICIÓN */}
@@ -304,7 +305,6 @@ export default function Modelo() {
             - sm: 2 col
             - md: 3 col
             - lg+: 7 col (todos en fila)
-            Notas (carga) aún más pequeñas y dentro del header.
           */}
           <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-7">
             {semanaTipo.map((d) => (
