@@ -9,9 +9,9 @@ const NAV = [
   { href: "/#clubes", label: "Clubes" },
   { href: "/#records", label: "Records" },
   { href: "/#modelo", label: "Modelo de juego" },
-  { href: "/#videos", label: "Material audiovisual" }, // NUEVO
-  { href: "/blog", label: "Blog" },                     // ruta, no ancla
-  { href: "/#contacto", label: "Contacto" }
+  { href: "/#media", label: "Material audiovisual" }, // ← AQUI
+  { href: "/blog", label: "Blog" },                    // ruta, no hash
+  { href: "/#contacto", label: "Contacto" },
 ];
 
 export default function Header() {
