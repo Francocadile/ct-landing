@@ -9,7 +9,8 @@ const NAV = [
   { href: "/#clubes", label: "Clubes" },
   { href: "/#records", label: "Records" },
   { href: "/#modelo", label: "Modelo de juego" },
-  { href: "/blog", label: "Blog" },            // ← CAMBIO: antes era "/#blog"
+  { href: "/#videos", label: "Material audiovisual" }, // NUEVO
+  { href: "/blog", label: "Blog" },                     // ruta, no ancla
   { href: "/#contacto", label: "Contacto" }
 ];
 
@@ -77,4 +78,3 @@ export default function Header() {
     </header>
   );
 }
-
