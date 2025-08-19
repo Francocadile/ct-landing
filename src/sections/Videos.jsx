@@ -2,7 +2,7 @@
 import React, { useMemo, useState, useEffect } from "react";
 import { VIDEOS_TITLE, VIDEO_SECTIONS } from "../data/videos";
 
-// Parse de YouTube: video / playlist + thumb + embed URL
+// --- helpers ---
 function parseYouTube(url) {
   try {
     const u = new URL(url);
@@ -11,37 +11,31 @@ function parseYouTube(url) {
       const list = u.searchParams.get("list");
       return {
         type: "playlist",
-        list,
         embed: `https://www.youtube.com/embed/videoseries?list=${list}&autoplay=1`,
-        thumb: null, // sin API no hay thumb de playlist -> usamos placeholder
+        thumb: null,
       };
     }
-    // video id
     let id = "";
-    if (u.hostname === "youtu.be") {
-      id = u.pathname.replace("/", "");
-    } else {
-      id = u.searchParams.get("v") || "";
-    }
-    // start (t=22s, 1m30s, etc.)
+    if (u.hostname === "youtu.be") id = u.pathname.replace("/", "");
+    else id = u.searchParams.get("v") || "";
+
+    // start (t=22s / 1m30s / 90)
     let start = 0;
     const t = u.searchParams.get("t");
     if (t) {
-      const match = t.match(/(?:(\d+)h)?(?:(\d+)m)?(?:(\d+)s)?|^\d+$/);
-      if (match) {
+      const m = t.match(/(?:(\d+)h)?(?:(\d+)m)?(?:(\d+)s)?|^\d+$/);
+      if (m) {
         if (/^\d+$/.test(t)) start = parseInt(t, 10);
         else {
-          const h = parseInt(match[1] || "0", 10);
-          const m = parseInt(match[2] || "0", 10);
-          const s = parseInt(match[3] || "0", 10);
-          start = h * 3600 + m * 60 + s;
+          const h = parseInt(m[1] || "0", 10);
+          const mm = parseInt(m[2] || "0", 10);
+          const s = parseInt(m[3] || "0", 10);
+          start = h * 3600 + mm * 60 + s;
         }
       }
     }
     return {
       type: "video",
-      id,
-      start,
       embed: `https://www.youtube.com/embed/${id}?autoplay=1${start ? `&start=${start}` : ""}`,
       thumb: `https://img.youtube.com/vi/${id}/hqdefault.jpg`,
     };
@@ -58,8 +52,9 @@ function VideoCard({ item, onOpen }) {
     <button
       type="button"
       onClick={() => onOpen(item.title, parsed.embed)}
-      className="group overflow-hidden rounded-xl border border-slate-200 bg-white text-left shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
+      className="group flex h-full flex-col overflow-hidden rounded-xl border border-slate-200 bg-white text-left shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
     >
+      {/* thumb fija para uniformar altura */}
       <div className="relative h-36 w-full overflow-hidden bg-slate-100">
         {parsed.thumb ? (
           <img
@@ -73,7 +68,6 @@ function VideoCard({ item, onOpen }) {
             Playlist
           </div>
         )}
-        {/* Play overlay */}
         <span className="pointer-events-none absolute inset-0 flex items-center justify-center">
           <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-black/60 text-white ring-2 ring-white/80 transition group-hover:scale-105">
             ▶
@@ -85,8 +79,10 @@ function VideoCard({ item, onOpen }) {
           </span>
         )}
       </div>
-      <div className="p-3">
-        <div className="line-clamp-2 text-sm font-medium text-slate-900">
+
+      {/* cuerpo con altura mínima para alinear todas las cards */}
+      <div className="flex grow flex-col p-3">
+        <div className="line-clamp-2 min-h-[40px] text-sm font-medium text-slate-900">
           {item.title}
         </div>
       </div>
@@ -110,10 +106,7 @@ function Modal({ open, title, embed, onClose }) {
       role="dialog"
       aria-modal="true"
     >
-      <div
-        className="relative w-full max-w-5xl"
-        onClick={(e) => e.stopPropagation()}
-      >
+      <div className="relative w-full max-w-5xl" onClick={(e) => e.stopPropagation()}>
         <div className="mb-2 flex items-center justify-between">
           <h4 className="text-white">{title}</h4>
           <button
@@ -124,7 +117,6 @@ function Modal({ open, title, embed, onClose }) {
             Cerrar ✕
           </button>
         </div>
-        {/* 16:9 */}
         <div className="relative w-full overflow-hidden rounded-xl bg-black pt-[56.25%] shadow-lg ring-1 ring-white/20">
           <iframe
             src={embed}
@@ -144,6 +136,15 @@ export default function Videos() {
   const [embed, setEmbed] = useState("");
   const [title, setTitle] = useState("");
 
+  // Aplanamos TODO en una sola grilla (sin grupos uno debajo del otro)
+  const ALL = useMemo(() => {
+    const out = [];
+    for (const g of VIDEO_SECTIONS) {
+      for (const it of g.items) out.push({ ...it, group: g.title });
+    }
+    return out;
+  }, []);
+
   const onOpen = (t, e) => {
     setTitle(t);
     setEmbed(e);
@@ -160,21 +161,16 @@ export default function Videos() {
           </p>
         </header>
 
-        {VIDEO_SECTIONS.map((group) => (
-          <div key={group.title} className="mb-10 last:mb-0">
-            <h3 className="mb-3 text-lg font-semibold text-slate-900">
-              {group.title}
-            </h3>
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-              {group.items.map((it, i) => (
-                <VideoCard key={`${group.title}-${i}`} item={it} onOpen={onOpen} />
-              ))}
-            </div>
-          </div>
-        ))}
+        {/* UNA grilla compacta: 1 / 2 / 3 columnas */}
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {ALL.map((it, i) => (
+            <VideoCard key={`${it.title}-${i}`} item={it} onOpen={onOpen} />
+          ))}
+        </div>
       </div>
 
       <Modal open={open} title={title} embed={embed} onClose={() => setOpen(false)} />
     </section>
   );
 }
+
