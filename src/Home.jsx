@@ -10,9 +10,9 @@ import Contacto from "./sections/Contacto.jsx";
 
 export default function Home() {
   return (
-    <main className="bg-white">
+    <main className="bg-slate-50">
       {/* HERO */}
-      <section id="home" className="border-b scroll-mt-24">
+      <section id="home" className="border-b bg-white scroll-mt-24">
         <div className="mx-auto max-w-6xl px-4 py-16">
           <h1 className="text-4xl font-bold leading-tight tracking-tight">
             Proyecto <span className="text-slate-900">Futbolístico</span> de{" "}
@@ -49,7 +49,9 @@ export default function Home() {
       </section>
 
       {/* 2) CLUBES */}
-      <ClubsWorked />
+      <section id="clubes" className="scroll-mt-24">
+        <ClubsWorked />
+      </section>
 
       {/* 3) RECORDS */}
       <section id="records" className="scroll-mt-24">
@@ -73,4 +75,3 @@ export default function Home() {
     </main>
   );
 }
-
