@@ -32,9 +32,9 @@ const Chip = ({ children }) => (
   </span>
 );
 
-const AuraCard = ({ children }) => (
-  <div className="relative rounded-2xl border border-slate-200 bg-white p-5 shadow-sm ring-1 ring-amber-100">
-    {/* Aura campeona suave */}
+// ✨ ahora acepta className para poder hacer col-span
+const AuraCard = ({ children, className = "" }) => (
+  <div className={`relative rounded-2xl border border-slate-200 bg-white p-5 shadow-sm ring-1 ring-amber-100 ${className}`}>
     <div className="pointer-events-none absolute -inset-0.5 rounded-2xl bg-gradient-to-b from-amber-100/0 via-amber-100/10 to-amber-100/0 blur" />
     <div className="relative">{children}</div>
   </div>
@@ -48,7 +48,6 @@ const Figure = ({ src, alt, caption }) => (
       className="mx-auto h-56 w-full max-w-md rounded-lg object-contain"
       loading="lazy"
       onError={(e) => {
-        // Si la imagen aún no existe, mostramos un placeholder elegante
         e.currentTarget.outerHTML =
           `<div class="mx-auto flex h-56 w-full max-w-md items-center justify-center rounded-lg border border-dashed border-slate-300 bg-slate-50 text-xs text-slate-500">Agregá la imagen en ${src}</div>`;
       }}
@@ -59,7 +58,6 @@ const Figure = ({ src, alt, caption }) => (
   </figure>
 );
 
-// Etiqueta de carga (semana tipo)
 const LoadTag = ({ label, nota, color = "amber" }) => (
   <span
     className={`inline-flex items-center gap-1 rounded-full bg-${color}-50 px-2 py-0.5 text-xs font-medium text-${color}-700 ring-1 ring-inset ring-${color}-200`}
@@ -68,7 +66,6 @@ const LoadTag = ({ label, nota, color = "amber" }) => (
   </span>
 );
 
-// Mini nav interno
 const Subnav = () => {
   const items = [
     ["principios", "Principios"],
@@ -136,7 +133,6 @@ export default function Modelo() {
           </AuraCard>
         </div>
 
-        {/* DEFINICIÓN */}
         <AuraCard>
           <div className="mt-6 flex flex-col items-start gap-4 md:flex-row md:items-center md:justify-between">
             <blockquote className="max-w-3xl text-lg italic text-slate-800">
@@ -172,8 +168,10 @@ export default function Modelo() {
         {/* FASES */}
         <div className="mt-12">
           <H2 id="fases">Fases del juego</H2>
+
+          {/* Las dos primeras como estaban, lado a lado */}
           <div className="mt-4 grid gap-6 md:grid-cols-2">
-            {fasesJuego.map((f, i) => (
+            {fasesJuego.slice(0, 2).map((f, i) => (
               <AuraCard key={i}>
                 <div className="grid items-center gap-4 md:grid-cols-2">
                   <div>
@@ -188,6 +186,28 @@ export default function Modelo() {
               </AuraCard>
             ))}
           </div>
+
+          {/* La última ocupa todo el ancho con dos imágenes lado a lado */}
+          {(() => {
+            const f = fasesJuego[2]; // Progresión en finalización
+            return (
+              <AuraCard className="mt-6 md:col-span-2">
+                <div className="grid items-center gap-6 md:grid-cols-2">
+                  <div>
+                    <H3>{f.titulo}</H3>
+                    <p className="mt-2 text-slate-700">{f.texto}</p>
+                    <div className="mt-2">
+                      <Chip>Formación: {f.formacion}</Chip>
+                    </div>
+                  </div>
+                  <div className="grid gap-3 sm:grid-cols-2">
+                    <Figure src={f.img} alt={f.titulo} />
+                    <Figure src={f.img2 || "/img/modelo/fase-finalizacion1.png"} alt={`${f.titulo} 2`} />
+                  </div>
+                </div>
+              </AuraCard>
+            );
+          })()}
         </div>
 
         {/* PRINCIPIOS DE JUEGO */}
