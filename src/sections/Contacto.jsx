@@ -1,136 +1,66 @@
 // src/sections/Contacto.jsx
 import React from "react";
-import { SITE } from "../data/site";
-import { Mail, Phone, Instagram, Twitter, Linkedin, Send } from "lucide-react";
+import { Instagram, Twitter, Mail } from "lucide-react";
 
-// Cambiá esto por tu endpoint real (Formspree u otro)
-const FORM_ENDPOINT = "https://formspree.io/f/xxxxxxxx";
+const FLAVIO_INSTAGRAM = "https://www.instagram.com/flaviorobatto/";
+const FLAVIO_TWITTER  = "https://x.com/DtFlavioRobatto";
+const EMAIL_CT        = "franco.cadile@gmail.com";
 
 export default function Contacto() {
   return (
-    <section id="contacto" className="border-t bg-white">
-      <div className="mx-auto max-w-6xl px-4 py-12 grid gap-10 md:grid-cols-2">
-        {/* Columna izquierda: datos */}
-        <div>
-          <h2 className="text-3xl font-bold">Contacto</h2>
-          <p className="mt-2 text-slate-600">
-            Escribinos para propuestas, proyectos o colaboraciones.
+    <section id="contacto" className="border-t bg-gradient-to-b from-slate-50 to-white">
+      <div className="mx-auto max-w-6xl px-4 py-12">
+        <header className="mb-6">
+          <h2 className="text-2xl font-semibold text-slate-900">Contacto</h2>
+          <p className="mt-2 max-w-2xl text-slate-600">
+            Para propuestas y consultas directas del cuerpo técnico.
           </p>
+        </header>
 
-          <ul className="mt-6 space-y-3 text-slate-700">
-            {SITE.email && (
-              <li className="flex items-center gap-2">
-                <Mail className="h-5 w-5 text-slate-500" />
-                <a href={`mailto:${SITE.email}`} className="hover:underline">
-                  {SITE.email}
-                </a>
-              </li>
-            )}
-            {SITE.phone && (
-              <li className="flex items-center gap-2">
-                <Phone className="h-5 w-5 text-slate-500" />
-                <a
-                  href={`tel:${SITE.phone.replace(/\s+/g, "")}`}
-                  className="hover:underline"
-                >
-                  {SITE.phone}
-                </a>
-              </li>
-            )}
-          </ul>
+        {/* CTA principal por email */}
+        <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+          <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <div className="text-sm text-slate-500">Escríbenos por email</div>
+              <a
+                href={`mailto:${EMAIL_CT}?subject=Consulta%20-%20Cuerpo%20T%C3%A9cnico&body=Hola%2C%20quisiera%20hacer%20una%20consulta%20sobre...`}
+                className="mt-1 inline-flex items-center gap-2 rounded-lg bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
+              >
+                <Mail className="h-4 w-4" />
+                {EMAIL_CT}
+              </a>
+            </div>
 
-          <div className="mt-6 flex items-center gap-3">
-            {SITE.socials?.instagram && (
+            {/* Redes de Flavio */}
+            <div className="flex items-center gap-3">
               <a
-                href={SITE.socials.instagram}
+                href={FLAVIO_TWITTER}
                 target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Instagram"
-                className="rounded p-2 text-slate-500 hover:bg-slate-100 hover:text-slate-900"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-3 py-2 text-slate-700 hover:bg-slate-50"
+                aria-label="X (Twitter) de Flavio Robatto"
               >
-                <Instagram className="h-5 w-5" />
+                <Twitter className="h-4 w-4" />
+                <span>X (Twitter)</span>
               </a>
-            )}
-            {SITE.socials?.twitter && (
               <a
-                href={SITE.socials.twitter}
+                href={FLAVIO_INSTAGRAM}
                 target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Twitter"
-                className="rounded p-2 text-slate-500 hover:bg-slate-100 hover:text-slate-900"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-3 py-2 text-slate-700 hover:bg-slate-50"
+                aria-label="Instagram de Flavio Robatto"
               >
-                <Twitter className="h-5 w-5" />
+                <Instagram className="h-4 w-4" />
+                <span>Instagram</span>
               </a>
-            )}
-            {SITE.socials?.linkedin && (
-              <a
-                href={SITE.socials.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="LinkedIn"
-                className="rounded p-2 text-slate-500 hover:bg-slate-100 hover:text-slate-900"
-              >
-                <Linkedin className="h-5 w-5" />
-              </a>
-            )}
+            </div>
           </div>
         </div>
 
-        {/* Columna derecha: formulario */}
-        <div className="rounded-xl border bg-white p-6 shadow-sm">
-          <form action={FORM_ENDPOINT} method="POST" className="space-y-4">
-            <div>
-              <label className="mb-1 block text-sm font-medium text-slate-700">
-                Nombre
-              </label>
-              <input
-                type="text"
-                name="name"
-                required
-                placeholder="Tu nombre"
-                className="w-full rounded-lg border px-3 py-2 outline-none ring-offset-1 focus:ring-2 focus:ring-blue-600"
-              />
-            </div>
-
-            <div>
-              <label className="mb-1 block text-sm font-medium text-slate-700">
-                Email
-              </label>
-              <input
-                type="email"
-                name="email"
-                required
-                placeholder="tu@email.com"
-                className="w-full rounded-lg border px-3 py-2 outline-none ring-offset-1 focus:ring-2 focus:ring-blue-600"
-              />
-            </div>
-
-            <div>
-              <label className="mb-1 block text-sm font-medium text-slate-700">
-                Mensaje
-              </label>
-              <textarea
-                name="message"
-                rows={5}
-                required
-                placeholder="Contanos brevemente en qué te podemos ayudar…"
-                className="w-full rounded-lg border px-3 py-2 outline-none ring-offset-1 focus:ring-2 focus:ring-blue-600"
-              />
-            </div>
-
-            {/* hidden extras para Formspree */}
-            <input type="hidden" name="_subject" value="Nuevo contacto desde la web" />
-            <input type="text" name="_gotcha" className="hidden" aria-hidden="true" />
-
-            <button
-              type="submit"
-              className="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-4 py-2 font-medium text-white hover:bg-blue-700"
-            >
-              <Send className="h-4 w-4" />
-              Enviar
-            </button>
-          </form>
-        </div>
+        {/* nota breve */}
+        <p className="mt-3 text-xs text-slate-500">
+          Responderemos a la brevedad.
+        </p>
       </div>
     </section>
   );
