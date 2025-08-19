@@ -5,7 +5,8 @@ import Staff from "./sections/Staff.jsx";
 import ClubsWorked from "./sections/ClubsWorked.jsx"; // escudos grandes a color
 import Records from "./sections/Records.jsx";
 import Modelo from "./sections/Modelo.jsx";
-import Blog from "./sections/Blog.jsx";
+// 🔻 Eliminamos el Blog del Home
+// import Blog from "./sections/Blog.jsx";
 import Contacto from "./sections/Contacto.jsx";
 
 export default function Home() {
@@ -54,12 +55,7 @@ export default function Home() {
         <Modelo />
       </section>
 
-      {/* 5) BLOG */}
-      <section id="blog" className="scroll-mt-24">
-        <Blog />
-      </section>
-
-      {/* 6) CONTACTO */}
+      {/* 5) CONTACTO */}
       <section id="contacto" className="scroll-mt-24">
         <Contacto />
       </section>
