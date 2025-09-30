@@ -1,18 +1,17 @@
 // prisma/schema.prisma
+
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "postgresql" // si usás otro (mysql/sqlserver/sqlite/mongodb), avisá y te lo adapto
+  provider = "postgresql" // si usás otro provider, avísame y lo adapto
   url      = env("DATABASE_URL")
 }
 
-/**
- * Esquema base para NextAuth (Prisma Adapter)
- * Docs oficiales: https://authjs.dev/reference/adapter/prisma
- * Compatible con @next-auth/prisma-adapter y NextAuth v4
- */
+// Esquema base para NextAuth (Prisma Adapter)
+// Docs: https://authjs.dev/reference/adapter/prisma
+// Compatible con @next-auth/prisma-adapter y NextAuth v4
 
 model User {
   id            String    @id @default(cuid())
@@ -25,7 +24,7 @@ model User {
   accounts      Account[]
   sessions      Session[]
 
-  // (Opcional) Campos de tu app
+  // Campos de tu app
   role          Role      @default(USER)
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
@@ -53,7 +52,6 @@ model Account {
   scope             String?
   id_token          String?  @db.Text
   session_state     String?
-  // para OAuth 2.1 si aplica
   refresh_token_expires_in Int?
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
@@ -78,21 +76,19 @@ model VerificationToken {
   @@unique([identifier, token])
 }
 
-/**
- * (Opcional) Blog/post para tu landing si luego querés persistir entradas.
- * Si no lo vas a usar ahora, podés dejarlo: no afecta.
- */
+// (Opcional) Modelo Post para persistir entradas de blog en DB.
+// Si no lo usás ahora, podés dejarlo: no afecta.
 model Post {
-  id        String   @id @default(cuid())
-  slug      String   @unique
-  title     String
-  excerpt   String?
-  body      String?  // podrías guardar JSON/MDX serializado
-  tags      String[] // PostgreSQL array
-  author    String?
-  cover     String?
-  published Boolean  @default(false)
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  title       String
+  excerpt     String?
+  body        String?
+  tags        String[] // PostgreSQL array
+  author      String?
+  cover       String?
+  published   Boolean  @default(false)
   publishedAt DateTime?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }
