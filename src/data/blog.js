@@ -2,6 +2,74 @@
 
 export const POSTS = [
   {
+    slug: "cumplimiento-consignas-vs-gv-san-jose",
+    title: "Cumplimiento de consignas vs GV San José",
+    date: "2025-09-30",
+    author: "Cuerpo Técnico",
+    // cover: "/img/blog/consignas-gv-sanjose.jpg", // opcional
+    excerpt:
+      "Lo trabajado en la semana se vio en la cancha: salida segura, juego interior para liberar por fuera, amplitud, presión alta y reorganización tras pérdida.",
+    tags: ["táctica", "análisis", "presión alta", "juego de posición"],
+    sections: [
+      {
+        h2: "Introducción",
+        p: [
+          "Cuando un equipo interpreta y ejecuta con claridad las consignas de la semana, el juego se ordena y las ventajas aparecen. Frente a GV San José se vieron señales nítidas: desde la salida limpia hasta la presión alta, pasando por las combinaciones por dentro, las rupturas por fuera y la reorganización defensiva.",
+          "No fue casualidad: hubo intención, hábitos y una idea colectiva que se repitió en diferentes momentos del partido."
+        ]
+      },
+      {
+        h2: "Salida con seguridad",
+        p: [
+          "La consigna fue clara: salir desde el fondo con paciencia, sin rifar la pelota. Defensores y volantes se ofrecieron en corto y los laterales dieron apoyo para sostener líneas de pase cercanas.",
+          "El estado irregular del campo pidió reducir riesgos: distancias cortas, pases seguros y progresión con balón dominado para evitar pérdidas en zonas sensibles."
+        ]
+      },
+      {
+        h2: "Juego interior para atraer y liberar por fuera",
+        p: [
+          "Primero por dentro para fijar rivales; después, salida hacia las bandas con laterales y extremos en ventaja. Esa secuencia —atraer en el centro y desbordar por fuera— se repitió y permitió avanzar sin pelotazos forzados.",
+          "El uso del tercer hombre apareció para superar presiones: recepción de espaldas, descarga de primera y compañero libre de frente."
+        ]
+      },
+      {
+        h2: "Amplitud, 1 vs 1 y rupturas al espacio",
+        p: [
+          "En tres cuartos, los extremos buscaron el 1v1 respaldados por el desdoble del lateral. Se atacó con decisión el espacio entre lateral y central rival, una zona difícil de defender si se llega con velocidad.",
+          "Cuando el rival basculó demasiado, el lado opuesto quedó libre y los cambios de frente abrieron la defensa, alternando carga de un costado y ataque del otro."
+        ]
+      },
+      {
+        h2: "Adaptarse al contexto: cuidar los pases",
+        p: [
+          "La lectura del terreno fue clave. Para evitar malos piques, el equipo mantuvo cercanía entre compañeros y priorizó la calidad del pase sobre la velocidad de circulación.",
+          "Progresar con dominio antes que arriesgar en largo: una decisión simple que sostuvo el control del juego."
+        ]
+      },
+      {
+        h2: "Presión alta que incomodó al rival",
+        p: [
+          "En saque rival, el 4-2-3-1 se adelantó para presionar hombre a hombre. Incluso los centrales saltaron sobre mediapuntas rivales para negar giros y obligar a decidir bajo presión.",
+          "Varias recuperaciones se produjeron cerca del arco contrario. Si la primera ola no prosperaba, el equipo se replegaba rápido a un 4-1-4-1 compacto, basculando en bloque hacia el lado del balón."
+        ]
+      },
+      {
+        h2: "Reorganización y actitud tras pérdida",
+        p: [
+          "Tras pérdida, la reacción fue automática: 4-1-4-1, interiores saltando al poseedor, extremos cerrando hacia dentro y pasillos centrales negados.",
+          "Hasta en laterales rivales se notó el plan: todos los posibles receptores estaban tomados para impedir salidas limpias. Intensidad con orden."
+        ]
+      },
+      {
+        h2: "Video del análisis",
+        p: [
+          "Podés ver el video base de este análisis acá: https://www.youtube.com/watch?v=pCYBOw4oQfA"
+        ]
+      }
+    ]
+  },
+
+  {
     slug: "metodologia-integrada-estructural",
     title:
       "Metodología Integrada Estructural – El método que potencia el rendimiento colectivo",
@@ -210,4 +278,3 @@ export const POSTS = [
     ]
   }
 ];
-
