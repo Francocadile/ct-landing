@@ -1,0 +1,103 @@
+// src/pages/blog/[slug].jsx
+import React from "react";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { POSTS } from "@/src/data/blog";
+
+export default function BlogPost() {
+  const router = useRouter();
+  const { slug } = router.query;
+  const post = POSTS.find((p) => p.slug === slug);
+
+  if (!post) {
+    return (
+      <main className="mx-auto max-w-6xl px-4 py-16">
+        <p className="text-slate-600">Artículo no encontrado.</p>
+        <Link href="/blog" className="mt-4 inline-block text-blue-600 hover:underline">
+          ← Volver al blog
+        </Link>
+      </main>
+    );
+  }
+
+  return (
+    <main className="bg-white">
+      <article>
+        <header className="border-b">
+          <div className="mx-auto max-w-3xl px-4 py-10">
+            <div className="text-xs uppercase tracking-wide text-slate-500">
+              {new Date(post.date).toLocaleDateString()} · {post.author}
+            </div>
+            <h1 className="mt-1 text-3xl font-bold tracking-tight">{post.title}</h1>
+
+            {post.tags?.length ? (
+              <div className="mt-3 flex flex-wrap gap-2">
+                {post.tags.map((t) => (
+                  <span
+                    key={t}
+                    className="rounded-full border border-slate-200 bg-slate-50 px-2 py-0.5 text-xs text-slate-700"
+                  >
+                    {t}
+                  </span>
+                ))}
+              </div>
+            ) : null}
+          </div>
+
+          {post.cover ? (
+            <div className="mx-auto max-w-6xl px-4 pb-6">
+              <img
+                src={post.cover}
+                alt=""
+                className="h-64 w-full rounded-xl object-cover"
+                loading="lazy"
+              />
+            </div>
+          ) : null}
+        </header>
+
+        <div className="mx-auto max-w-3xl px-4 py-10">
+          {post.sections?.map((sec, i) => (
+            <section key={i} className="mt-8">
+              {sec.h2 ? (
+                <h2 className="text-xl font-semibold text-slate-900">{sec.h2}</h2>
+              ) : null}
+
+              {Array.isArray(sec.p) &&
+                sec.p.map((txt, j) => (
+                  <p key={`p-${j}`} className="mt-3 leading-relaxed text-slate-800">
+                    {txt}
+                  </p>
+                ))}
+
+              {Array.isArray(sec.bullets) && sec.bullets.length > 0 ? (
+                <ul className="mt-3 list-disc space-y-2 pl-5 text-slate-800">
+                  {sec.bullets.map((b, k) => (
+                    <li key={`b-${k}`}>{b}</li>
+                  ))}
+                </ul>
+              ) : null}
+
+              {Array.isArray(sec.p2) &&
+                sec.p2.map((txt, j) => (
+                  <p key={`p2-${j}`} className="mt-3 leading-relaxed text-slate-800">
+                    {txt}
+                  </p>
+                ))}
+
+              {sec.note ? (
+                <p className="mt-3 text-sm text-slate-600">{sec.note}</p>
+              ) : null}
+            </section>
+          ))}
+
+          <div className="mt-10">
+            <Link href="/blog" className="text-blue-600 hover:underline">
+              ← Volver al blog
+            </Link>
+          </div>
+        </div>
+      </article>
+    </main>
+  );
+}
