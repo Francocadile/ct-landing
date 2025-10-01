@@ -17,6 +17,7 @@
     "@prisma/client": "5.19.1",
     "autoprefixer": "^10.4.20",
     "bcryptjs": "^2.4.3",
+    "lucide-react": "^0.462.0",
     "postcss": "^8.4.41",
     "react": "18.2.0",
     "react-dom": "18.2.0",
@@ -29,13 +30,13 @@
     "@types/node": "^20.14.9",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
-    "@vitejs/plugin-react-swc": "^3.5.0",
     "eslint": "^8.57.0",
     "prettier": "^3.3.3",
     "prisma": "5.19.1",
     "tsx": "^4.7.0",
     "typescript": "^5.5.4",
-    "vite": "^5.4.19"
+    "@vitejs/plugin-react-swc": "^3.7.1",
+    "vite": "^5.4.10"
   },
   "engines": {
     "node": ">=18.17.0"
