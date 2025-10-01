@@ -6,7 +6,7 @@ export const POSTS = [
     title: "Cumplimiento de consignas vs GV San José",
     date: "2025-09-30",
     author: "Cuerpo Técnico",
-    // cover: "/img/blog/consignas-gv-sanjose.jpg", // opcional
+    cover: "/img/blog/Cumplimiento.jpeg", // ← portada que subiste
     excerpt:
       "Lo trabajado en la semana se vio en la cancha: salida segura, juego interior para liberar por fuera, amplitud, presión alta y reorganización tras pérdida.",
     tags: ["táctica", "análisis", "presión alta", "juego de posición"],
@@ -62,8 +62,10 @@ export const POSTS = [
       },
       {
         h2: "Video del análisis",
+        // ↓↓↓ nuevo campo soportado por BlogPost.jsx para embeber el video
+        video: "https://www.youtube.com/watch?v=pCYBOw4oQfA&feature=youtu.be",
         p: [
-          "Podés ver el video base de este análisis acá: https://www.youtube.com/watch?v=pCYBOw4oQfA"
+          "Análisis en detalle de las consignas aplicadas frente a GV San José."
         ]
       }
     ]
