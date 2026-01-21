@@ -134,20 +134,6 @@ export const SEASONS = [
     notes: ["DG: +104", "Prom: 2.62 gol/p"],
   },
   {
-    year: 2025,
-    team: "Global",
-    logo: "/img/clubs/bolivar.png",
-    pct: 70,
-    stats: {
-      pj: 70,
-      v: 46,
-      e: 9,
-      d: 15,
-      gf: 184,
-      gc: 80,
-    },
-  },
-  {
     year: 2024,
     team: "Bolívar",
     logo: "/img/clubs/bolivar.png",
