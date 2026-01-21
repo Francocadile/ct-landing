@@ -49,7 +49,7 @@ function PillStat({ k, v }) {
 // ============ OVERRIDES de etiquetas (mostrar solo UNA por card) ============
 const TAG_OVERRIDES = [
   // 2025
-  { year: 2025, text: "8vos de final Copa Sudamericana" },
+  { year: 2025, text: "4tos de final Copa Sudamericana" },
   // 2024 (dos casos distintos)
   { year: 2024, match: /absoluto/i, text: "Clasificados a 8vos como líderes del Grupo E" },
   { year: 2024, match: /clausura/i, text: "70% EFECTIVIDAD" },
@@ -132,6 +132,7 @@ function RecordItem({ r }) {
 
 // ============ NÚMEROS (mismo layout + AURA CAMPEÓN) ============
 function SeasonCard({ s }) {
+  const isFeatured = s?.team === "GLOBAL PROCESO";
   // Overrides de PJ (sin tocar tus datos)
   const OVERRIDES = {
     "Nacional Potosí|2021": 9,
@@ -149,13 +150,29 @@ function SeasonCard({ s }) {
     <div className="relative h-full">
       {/* Glow dorado sutil (mismo espíritu que en Records) */}
       <div
-        className="pointer-events-none absolute inset-0 rounded-2xl shadow-[0_14px_40px_-12px_rgba(245,158,11,0.35)]"
+        className={`pointer-events-none absolute inset-0 rounded-2xl ${
+          isFeatured
+            ? "shadow-[0_18px_55px_-12px_rgba(37,99,235,0.45)]"
+            : "shadow-[0_14px_40px_-12px_rgba(245,158,11,0.35)]"
+        }`}
         aria-hidden="true"
       />
       {/* Ribbon superior dorado ultra-delgado */}
-      <div className="absolute inset-x-0 top-0 h-1 rounded-t-2xl bg-gradient-to-r from-amber-300 via-amber-400 to-amber-300" />
+      <div
+        className={`absolute inset-x-0 top-0 h-1 rounded-t-2xl ${
+          isFeatured
+            ? "bg-gradient-to-r from-blue-400 via-blue-500 to-blue-400"
+            : "bg-gradient-to-r from-amber-300 via-amber-400 to-amber-300"
+        }`}
+      />
 
-      <article className="relative flex h-full min-h-[20rem] flex-col rounded-2xl border border-amber-200/70 bg-gradient-to-b from-amber-50/25 to-white p-5 shadow-sm">
+      <article
+        className={`relative flex h-full min-h-[20rem] flex-col rounded-2xl border bg-gradient-to-b p-5 shadow-sm ${
+          isFeatured
+            ? "border-blue-200/80 from-blue-50/40 to-white ring-1 ring-blue-200"
+            : "border-amber-200/70 from-amber-50/25 to-white"
+        }`}
+      >
         {/* Header */}
         <div className="mb-4 flex items-center justify-between gap-3">
           <div className="flex items-center gap-3 min-w-0">
@@ -220,8 +237,13 @@ export default function Records() {
   // Records: más recientes primero
   const recordsSorted = [...RECORDS].sort((a, b) => b.year - a.year);
 
-  // Números: más recientes primero
-  const seasonsSorted = [...SEASONS].sort((a, b) => b.year - a.year);
+  // Números: featured (GLOBAL PROCESO) siempre primero, luego más recientes
+  const seasonsSorted = [...SEASONS].sort((a, b) => {
+    const aFeatured = a?.team === "GLOBAL PROCESO";
+    const bFeatured = b?.team === "GLOBAL PROCESO";
+    if (aFeatured !== bFeatured) return aFeatured ? -1 : 1;
+    return (b?.year ?? 0) - (a?.year ?? 0);
+  });
 
   // Huila + Cúcuta lado a lado (desktop)
   const tailTeams = new Set(["Atlético Huila", "Cúcuta Deportivo"]);

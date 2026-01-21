@@ -10,7 +10,7 @@ export const RECORDS = [
     club: "Club Bolívar",
     role: "Entrenador",
     logo: "/img/clubs/bolivar.png",
-    details: ["2,4 goles por partido", "8vos de final Copa Sudamericana"],
+    details: ["2,4 goles por partido", "4tos de final Copa Sudamericana"],
   },
   {
     year: 2024,
@@ -104,6 +104,50 @@ export const EFFECTIVENESS = [
 // ===================================
 export const SEASONS = [
   {
+    year: 2025,
+    team: "GLOBAL PROCESO",
+    logo: "/img/clubs/bolivar.png",
+    pct: 70,
+    stats: {
+      pj: 119,
+      v: 77,
+      e: 19,
+      d: 23,
+      gf: 295,
+      gc: 132,
+    },
+    notes: ["DG: +163", "Prom: 2.47 gol/p", "3 títulos 🏆🏆🏆"],
+  },
+  {
+    year: 2025,
+    team: "Bolívar",
+    logo: "/img/clubs/bolivar.png",
+    pct: 70,
+    stats: {
+      pj: 70,
+      v: 46,
+      e: 9,
+      d: 15,
+      gf: 184,
+      gc: 80,
+    },
+    notes: ["DG: +104", "Prom: 2.62 gol/p"],
+  },
+  {
+    year: 2025,
+    team: "Global",
+    logo: "/img/clubs/bolivar.png",
+    pct: 70,
+    stats: {
+      pj: 70,
+      v: 46,
+      e: 9,
+      d: 15,
+      gf: 184,
+      gc: 80,
+    },
+  },
+  {
     year: 2024,
     team: "Bolívar",
     logo: "/img/clubs/bolivar.png",
@@ -118,6 +162,7 @@ export const SEASONS = [
       obs:
         "Clasificados a 8vos como líderes del Grupo E (por delante de Flamengo, Millonarios y Palestino). Campeones Clausura 2024 y Campeones Absoluto.",
     },
+    notes: ["DG: +60", "Prom: 2.2 gol/p", "2 títulos 🏆🏆"],
   },
   {
     year: 2023,
