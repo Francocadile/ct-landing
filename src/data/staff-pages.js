@@ -79,6 +79,7 @@ export const STAFF_PAGES = {
       "Control neuromuscular y GPS",
     ],
     clubs: [
+      "/img/clubs/bolivar.png",
       "/img/clubs/tachira.png",
       "/img/clubs/chankas.png",
       "/img/clubs/gimnasia.png",
