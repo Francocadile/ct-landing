@@ -131,7 +131,7 @@ export const SEASONS = [
       gf: 184,
       gc: 80,
     },
-    notes: ["DG: +104", "Prom: 2.62 gol/p"],
+    notes: ["DG: +104", "Prom: 2.62 gol/p", "1 título 🏆"],
   },
   {
     year: 2024,
