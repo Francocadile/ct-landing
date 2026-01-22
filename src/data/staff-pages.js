@@ -64,23 +64,6 @@ export const STAFF_PAGES = {
     clubs: ["/img/clubs/bolivar.png", "/img/clubs/estudiantes.png"],
   },
 
-  "juan-vogliotti": {
-    name: "Juan Vogliotti",
-    role: "Asistente Técnico",
-    photo: "/img/staff/juan-voglioti.jpg",
-    flags: ["/img/banders/argentina.png"],
-    bio: [
-      "Exdelantero profesional. Especialista en la mejora del comportamiento ofensivo del equipo y de los atacantes.",
-      "Conduce tareas por puesto y feedback con video orientado a la eficacia de las acciones en área.",
-    ],
-    roles: [
-      "Entrenamiento de delanteros",
-      "Finalización y ocupación de área",
-      "Feedback individual",
-    ],
-    clubs: ["/img/clubs/bolivar.png"],
-  },
-
   "franco-cadile": {
     name: "Franco Cadile",
     role: "Preparador Físico",

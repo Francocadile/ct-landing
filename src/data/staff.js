@@ -45,20 +45,6 @@ export const TEAM = [
     ],
   },
   {
-    slug: "juan-vogliotti",
-    name: "Juan Vogliotti",
-    role: "Asistente Técnico",
-    img: "/img/staff/juan-voglioti.jpg",
-    flags: ["/img/banders/argentina.png"],
-    bio:
-      "Exdelantero profesional. Especialista en fase ofensiva: desmarques, finalización, ocupación del área y coordinación con los extremos. Lidera tareas específicas por posición y feedback en video para atacantes.",
-    roles: [
-      "Trabajo por puestos (ataque)",
-      "Finalización y ocupación de área",
-      "Feedback individual con video",
-    ],
-  },
-  {
     slug: "franco-cadile",
     name: "Franco Cadile",
     role: "Preparador Físico",
