@@ -46,10 +46,16 @@ function PillStat({ k, v }) {
   );
 }
 
-// ============ OVERRIDES de etiquetas (mostrar solo UNA por card) ============
+// ============ OVERRIDES de etiquetas (mostrar UNA o MÁS por card) ============
 const TAG_OVERRIDES = [
   // 2025
-  { year: 2025, text: "4tos de final Copa Sudamericana" },
+  {
+    year: 2025,
+    text: [
+      "4tos de final Copa Sudamericana",
+      "Clasificación fase de grupos Libertadores 2026",
+    ],
+  },
   // 2024 (dos casos distintos)
   { year: 2024, match: /absoluto/i, text: "Clasificados a 8vos como líderes del Grupo E" },
   { year: 2024, match: /clausura/i, text: "70% EFECTIVIDAD" },
@@ -65,8 +71,8 @@ const TAG_OVERRIDES = [
   { year: 2015, text: "Record en partidos ganados" },
 ];
 
-// Devuelve el ÚNICO chip a mostrar para un record dado
-function getSingleTag(record) {
+// Devuelve el/los chip(s) a mostrar para un record dado
+function getTags(record) {
   const title = record.title || "";
   const year = record.year;
 
@@ -84,7 +90,8 @@ function getSingleTag(record) {
 
 // ============ RECORDS (altura uniforme + “aura campeón”) ============
 function RecordItem({ r }) {
-  const singleTag = getSingleTag(r);
+  const tags = getTags(r);
+  const tagsArr = Array.isArray(tags) ? tags : tags ? [tags] : [];
 
   return (
     <li className="relative h-full">
@@ -122,8 +129,12 @@ function RecordItem({ r }) {
         </div>
 
         {/* Único chip */}
-        <div className="mt-2 h-8 overflow-hidden">
-          {singleTag ? <Chip>{singleTag}</Chip> : <span className="inline-block h-6" />}
+        <div className="mt-2 flex flex-wrap gap-1.5 overflow-hidden">
+          {tagsArr.length ? (
+            tagsArr.map((t, i) => <Chip key={i}>{t}</Chip>)
+          ) : (
+            <span className="inline-block h-6" />
+          )}
         </div>
       </div>
     </li>
