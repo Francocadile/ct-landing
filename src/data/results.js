@@ -107,7 +107,7 @@ export const SEASONS = [
     year: 2025,
     team: "GLOBAL PROCESO",
     logo: "/img/clubs/bolivar.png",
-    pct: 70,
+    pct: 72,
     stats: {
       pj: 119,
       v: 77,
