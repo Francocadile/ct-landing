@@ -87,8 +87,8 @@ export const STAFF_PAGES = {
     photo: "/img/staff/franco-cadile.jpg",
     flags: ["/img/banders/argentina.png"],
     bio: [
-      "Planifica y controla cargas integrando GPS, fuerza específica y prevención.",
-      "Responsable de la coordinación con readaptación y del reporte físico del microciclo.",
+      "Preparador físico de alto rendimiento con foco en la transferencia al juego y el rendimiento competitivo. Integra tecnología aplicada (GPS, wellness y control neuromuscular) para la planificación, control y optimización de cargas.",
+      "Experiencia en equipos campeones, coordinando fuerza integrada en campo, prevención de lesiones y procesos de readaptación, con responsabilidad directa en el seguimiento y reporte físico del microciclo.",
     ],
     roles: [
       "Planificación de cargas",

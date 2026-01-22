@@ -65,7 +65,7 @@ export const TEAM = [
     img: "/img/staff/franco-cadile.jpg",
     flags: ["/img/banders/argentina.png"],
     bio:
-      "Preparador físico orientado a la transferencia. Planifica cargas con GPS y wellness, coordina fuerza integrada en campo y protocolos de prevención y readaptación. Responsable de reportes físicos por microciclo.",
+      "Preparador físico de alto rendimiento, especializado en la transferencia al juego. Integra tecnología aplicada (GPS, wellness y control neuromuscular) para la planificación y gestión de cargas. Experiencia en equipos campeones, coordinando fuerza integrada en campo, prevención de lesiones y readaptación, con responsabilidad directa en el seguimiento y reporte físico por microciclo.",
     roles: [
       "Planificación de cargas",
       "Prevención y fuerza integrada",
