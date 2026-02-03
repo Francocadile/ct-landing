@@ -14,7 +14,7 @@ const CLUBS = [
   { name: "Mitre", src: "/img/clubs/mitre.png" },
   { name: "Liga de Loja", src: "/img/clubs/loja.png" },
   // Si querés sumar Real Potosí con acento, usa el nombre exacto del archivo que subiste:
-  // { name: "Real Potosí", src: "/img/clubs/real-potosí.png" },
+  // { name: "Real Potosí", src: "/img/clubs/real-potosi.png" },
 ];
 
 export default function ClubsStrip() {

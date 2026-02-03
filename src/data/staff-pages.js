@@ -83,7 +83,7 @@ export const STAFF_PAGES = {
       "/img/clubs/tachira.png",
       "/img/clubs/chankas.png",
       "/img/clubs/gimnasia.png",
-      "/img/clubs/real-potosí.png",
+      "/img/clubs/real-potosi.png",
       "/img/clubs/atletico-huila.png",
       "/img/clubs/nacional-potosi.png",
       "/img/clubs/juventud.png",
