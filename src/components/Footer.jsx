@@ -36,6 +36,15 @@ export default function Footer() {
         <div>
           <div className="text-sm font-semibold">{SITE.name}</div>
           <div className="text-sm text-slate-500">{SITE.slogan}</div>
+
+          <div className="mt-2">
+            <a
+              href="/dossier-bolivar-2025"
+              className="text-sm text-slate-600 underline-offset-2 hover:underline"
+            >
+              Dossier Bolívar 2025 (PDF)
+            </a>
+          </div>
         </div>
 
         <div className="flex flex-wrap items-center gap-2">

@@ -6,6 +6,7 @@ import Home from "./Home.jsx";
 import StaffProfile from "./pages/StaffProfile.jsx";
 import BlogIndex from "./pages/BlogIndex.jsx";
 import BlogPost from "./pages/BlogPost.jsx";
+import DossierBolivar from "./pages/DossierBolivar.jsx";
 
 export default function App() {
   return (
@@ -13,6 +14,7 @@ export default function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/dossier-bolivar-2025" element={<DossierBolivar />} />
         <Route path="/staff/:slug" element={<StaffProfile />} />
         <Route path="/blog" element={<BlogIndex />} />
         <Route path="/blog/:slug" element={<BlogPost />} />
