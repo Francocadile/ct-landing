@@ -7,6 +7,7 @@ import Records from "./sections/Records.jsx";
 import Modelo from "./sections/Modelo.jsx";
 import Media from "./sections/Media.jsx";
 import Contacto from "./sections/Contacto.jsx";
+import Convicciones from "./sections/Convicciones.jsx";
 
 export default function Home() {
   return (
@@ -42,6 +43,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <Convicciones />
 
       {/* 1) STAFF */}
       <section id="staff" className="scroll-mt-24">
