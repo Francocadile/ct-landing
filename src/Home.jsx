@@ -44,12 +44,12 @@ export default function Home() {
         </div>
       </section>
 
-      <Convicciones />
-
       {/* 1) STAFF */}
       <section id="staff" className="scroll-mt-24">
         <Staff />
       </section>
+
+      <Convicciones />
 
       {/* 2) CLUBES */}
       <section id="clubes" className="scroll-mt-24">
