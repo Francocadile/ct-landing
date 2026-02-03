@@ -36,10 +36,6 @@ export default function Convicciones() {
                   gol. Para sostenerlo hace falta convicción, valentía, paciencia y conocimiento.
                 </p>
               </div>
-
-              <div className="mt-6 text-right text-sm italic text-slate-600">
-                “En el fútbol nunca se sabe.”
-              </div>
             </div>
           </div>
         </div>
