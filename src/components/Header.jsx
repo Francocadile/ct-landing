@@ -12,6 +12,7 @@ const NAV = [
   { href: "/#media", label: "Material audiovisual" }, // ← AQUI
   { href: "/#convicciones", label: "Convicciones" },
   { href: "/dossier-bolivar-2025", label: "Dossier Bolívar 2025" },
+  { href: "/bitacora-entrenamientos-2025", label: "Bitácora" },
   { href: "/blog", label: "Blog" },                    // ruta, no hash
   { href: "/#contacto", label: "Contacto" },
 ];
