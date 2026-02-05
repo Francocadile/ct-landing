@@ -13,7 +13,7 @@ export default function BitacoraEntrenamientos() {
 
       <div className="mt-4 flex flex-wrap items-center gap-3">
         <a
-          href="/docs/bitacora-entrenamientos-2025.pdf"
+          href="https://drive.google.com/file/d/1ZuivKAnPYuwATb75MHAWunZPgQ6KV0El/view?usp=sharing"
           target="_blank"
           rel="noreferrer"
           className="inline-flex items-center rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50"
@@ -25,7 +25,7 @@ export default function BitacoraEntrenamientos() {
       <div className="mt-6 overflow-hidden rounded-2xl border border-slate-200 bg-white">
         <iframe
           title="Bitácora de Entrenamientos 2025"
-          src="/docs/bitacora-entrenamientos-2025.pdf"
+          src="https://drive.google.com/file/d/1ZuivKAnPYuwATb75MHAWunZPgQ6KV0El/preview"
           className="h-[80vh] w-full"
         />
       </div>
