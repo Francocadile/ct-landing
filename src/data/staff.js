@@ -17,6 +17,20 @@ export const TEAM = [
     ],
   },
   {
+    slug: "franco-cadile",
+    name: "Franco Cadile",
+    role: "Preparador Físico",
+    img: "/img/staff/franco-cadile.jpg",
+    flags: ["/img/banders/argentina.png"],
+    bio:
+      "Preparador físico de alto rendimiento, especializado en la transferencia al juego. Integra tecnología aplicada (GPS, wellness y control neuromuscular) para la planificación y gestión de cargas. Experiencia en equipos campeones, coordinando fuerza integrada en campo, prevención de lesiones y readaptación, con responsabilidad directa en el seguimiento y reporte físico por microciclo.",
+    roles: [
+      "Planificación de cargas",
+      "Prevención y fuerza integrada",
+      "Control neuromuscular y GPS",
+    ],
+  },
+  {
     slug: "sandro-dominguez",
     name: "Sandro Domínguez",
     role: "Asistente Técnico",
@@ -42,20 +56,6 @@ export const TEAM = [
       "Metodología y contenidos",
       "Planificación MD+1 a MD-1",
       "Control de calidad del entrenamiento",
-    ],
-  },
-  {
-    slug: "franco-cadile",
-    name: "Franco Cadile",
-    role: "Preparador Físico",
-    img: "/img/staff/franco-cadile.jpg",
-    flags: ["/img/banders/argentina.png"],
-    bio:
-      "Preparador físico de alto rendimiento, especializado en la transferencia al juego. Integra tecnología aplicada (GPS, wellness y control neuromuscular) para la planificación y gestión de cargas. Experiencia en equipos campeones, coordinando fuerza integrada en campo, prevención de lesiones y readaptación, con responsabilidad directa en el seguimiento y reporte físico por microciclo.",
-    roles: [
-      "Planificación de cargas",
-      "Prevención y fuerza integrada",
-      "Control neuromuscular y GPS",
     ],
   },
   {
