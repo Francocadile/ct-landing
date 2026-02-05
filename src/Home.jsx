@@ -6,6 +6,7 @@ import ClubsWorked from "./sections/ClubsWorked.jsx";
 import Records from "./sections/Records.jsx";
 import Modelo from "./sections/Modelo.jsx";
 import Media from "./sections/Media.jsx";
+import OpenbaseHome from "./sections/OpenbaseHome.jsx";
 import Contacto from "./sections/Contacto.jsx";
 import Convicciones from "./sections/Convicciones.jsx";
 
@@ -70,6 +71,8 @@ export default function Home() {
       <section id="media" className="scroll-mt-24">
         <Media />
       </section>
+
+      <OpenbaseHome />
 
       {/* 6) CONTACTO */}
       <section id="contacto" className="scroll-mt-24">
