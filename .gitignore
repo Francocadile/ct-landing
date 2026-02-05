@@ -22,3 +22,6 @@ lerna-debug.log*
 # OS / editor
 .DS_Store
 .vscode/
+
+# Large PDFs served via Drive
+public/docs/bitacora-entrenamientos-2025.pdf
