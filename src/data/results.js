@@ -104,19 +104,18 @@ export const EFFECTIVENESS = [
 // ===================================
 export const SEASONS = [
   {
-    year: 2025,
     team: "GLOBAL PROCESO",
     logo: "/img/clubs/bolivar.png",
-    pct: 72,
+    pct: 70,
     stats: {
-      pj: 119,
-      v: 77,
-      e: 19,
-      d: 23,
+      pj: 127,
+      v: 82,
+      e: 21,
+      d: 24,
       gf: 295,
       gc: 132,
     },
-    notes: ["DG: +163", "Prom: 2.47 gol/p", "3 títulos 🏆🏆🏆"],
+    notes: ["DG: +163", "Prom: 2.47 gol/p", "4 títulos 🏆🏆🏆🏆"],
   },
   {
     year: 2026,
