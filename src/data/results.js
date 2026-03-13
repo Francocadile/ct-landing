@@ -119,6 +119,19 @@ export const SEASONS = [
     notes: ["DG: +163", "Prom: 2.47 gol/p", "3 títulos 🏆🏆🏆"],
   },
   {
+    year: 2026,
+    team: "Bolívar",
+    logo: "/img/clubs/bolivar.png",
+    pct: 71,
+    stats: {
+      pj: 8,
+      v: 5,
+      e: 2,
+      d: 1,
+    },
+    notes: ["Torneo de Verano", "1 título 🏆"],
+  },
+  {
     year: 2025,
     team: "Bolívar",
     logo: "/img/clubs/bolivar.png",
