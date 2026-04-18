@@ -54,7 +54,8 @@ export default function Modal() {
               <span className="flex items-center gap-2"><span className="text-2xl">🇳🇱</span><span className="font-semibold text-slate-800">PSV</span><span className="ml-2 text-slate-700">— 259</span></span>
             </div>
           </div>
-          <div className="mt-2 text-base font-semibold text-blue-600">No es casualidad. Es trabajo, idea y método.</div>
+          <div className="mt-2 text-base font-semibold text-blue-600">Una matriz orientada al juego ofensivo.</div>
+          <div className="mt-3 text-xs text-slate-400 text-center">Fuente: Sofascore</div>
         </div>
       </div>
     </div>
