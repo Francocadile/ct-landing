@@ -1,5 +1,6 @@
 // src/Home.jsx
 import React from "react";
+import Modal from "./components/Modal.jsx";
 
 import Staff from "./sections/Staff.jsx";
 import ClubsWorked from "./sections/ClubsWorked.jsx";
@@ -13,7 +14,8 @@ import Convicciones from "./sections/Convicciones.jsx";
 export default function Home() {
   return (
     <main className="bg-slate-50">
-      {/* HERO */}
+      <Modal />
+  {/* HERO */}
       <section id="home" className="border-b bg-white scroll-mt-24">
         <div className="mx-auto max-w-6xl px-4 py-16">
           <h1 className="text-4xl font-bold leading-tight tracking-tight">
