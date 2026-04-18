@@ -43,7 +43,7 @@ export default function Modal() {
           <div className="mb-3 text-xs font-semibold uppercase tracking-widest text-blue-500">Insight destacado</div>
           <h2 className="text-2xl sm:text-3xl font-extrabold mb-3 text-blue-800 leading-tight">Bolívar, entre los equipos más goleadores del mundo</h2>
           <p className="text-base sm:text-lg text-slate-700 leading-relaxed max-w-md mx-auto mb-7">
-            Desde la llegada de Kompany al Bayern, solo tres equipos marcaron más goles que Bolívar. Un dato que refleja eficacia, identidad y un modelo ofensivo competitivo a nivel internacional.
+            Desde la llegada de Flavio Robatto en 2024, solo tres equipos en el mundo marcaron más goles que Bolívar. Un dato que refleja eficacia, identidad y un modelo ofensivo competitivo a nivel internacional.
           </p>
           <div className="mb-7">
             <div className="flex flex-col gap-1 items-center text-base sm:text-lg font-medium">
