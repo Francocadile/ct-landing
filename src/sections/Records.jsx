@@ -268,24 +268,62 @@ export default function Records() {
 
   return (
     <section id="records" className="border-b bg-gradient-to-b from-slate-50 to-white">
-      <div className="mx-auto max-w-6xl px-4 py-12">
+      <div className="mx-auto max-w-6xl px-4 py-16">
         {/* 1) Records */}
-        <h2 className="text-2xl font-semibold text-slate-900">
-          Records del Cuerpo Técnico
-        </h2>
+        <div className="mb-10 text-center">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-blue-900 mb-3 tracking-tight">
+            Logros que hablan en la cancha
+          </h2>
+          <p className="max-w-2xl mx-auto text-lg sm:text-xl text-slate-700 font-medium">
+            Números y campañas que cuentan la historia de nuestro trabajo: fútbol real, en contextos de verdad.
+          </p>
+        </div>
 
-        <ol className="mt-6 grid items-stretch gap-4 sm:grid-cols-2">
+        <ol className="grid gap-6 sm:grid-cols-2 md:grid-cols-3">
           {recordsSorted.map((r, i) => (
-            <RecordItem key={i} r={r} />
+            <li key={i} className="relative flex flex-col items-stretch h-full">
+              <div className="relative flex flex-col flex-1 rounded-2xl border border-blue-100 bg-gradient-to-b from-blue-50/60 to-white p-6 shadow-md transition hover:shadow-xl">
+                <div className="flex items-center gap-4 mb-4">
+                  <img
+                    src={r.logo}
+                    alt={r.club}
+                    className="h-12 w-12 rounded-xl border border-blue-200 bg-white object-contain p-1 shadow"
+                    loading="lazy"
+                  />
+                  <div className="flex-1 min-w-0">
+                    <div className="text-2xl font-extrabold text-blue-900 leading-tight mb-1">
+                      {r.title}
+                    </div>
+                    <div className="flex items-center gap-2 text-sm text-slate-600 font-medium">
+                      {r.club}
+                      {r.year && <span className="mx-1">·</span>}
+                      {r.year && <span className="font-semibold text-blue-700">{r.year}</span>}
+                    </div>
+                  </div>
+                </div>
+                {/* Contexto/badges */}
+                <div className="flex flex-wrap gap-2 mt-2 mb-4">
+                  {(() => {
+                    const tags = getTags(r);
+                    const tagsArr = Array.isArray(tags) ? tags : tags ? [tags] : [];
+                    return tagsArr.map((t, i) => (
+                      <span key={i} className="inline-block rounded-full bg-blue-100 text-blue-800 border border-blue-200 px-3 py-0.5 text-xs font-semibold">
+                        {t}
+                      </span>
+                    ));
+                  })()}
+                </div>
+              </div>
+            </li>
           ))}
         </ol>
 
         {/* 2) Cuerpo técnico en números */}
-        <div className="mt-12">
-          <h3 className="text-xl font-semibold text-slate-900">
+        <div className="mt-16">
+          <h3 className="text-2xl font-bold text-blue-900 mb-4">
             Cuerpo técnico en números
           </h3>
-          <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {ordered.slice(0, ordered.length - tail.length).map((s, i) => (
               <SeasonCard key={`${s.team}-${s.year}-${i}`} s={s} />
             ))}
