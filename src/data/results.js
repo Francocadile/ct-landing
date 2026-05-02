@@ -5,13 +5,6 @@
 // =======================
 export const RECORDS = [
   {
-    year: 2026,
-    title: "Campeón Torneo de Verano 2026",
-    club: "Club Bolívar",
-    role: "Entrenador",
-    logo: "/img/clubs/bolivar.png",
-  },
-  {
     year: 2025,
     title: "Campeón Torneo de Verano",
     club: "Club Bolívar",
@@ -36,6 +29,7 @@ export const RECORDS = [
     club: "Club Bolívar",
     role: "Entrenador",
     logo: "/img/clubs/bolivar.png",
+    details: [],
   },
   {
     year: 2022,
@@ -62,6 +56,7 @@ export const RECORDS = [
     club: "Club Sport Norte América",
     role: "Entrenador",
     logo: "/img/clubs/norte.jpg",
+    details: [],
   },
   {
     year: 2014,
@@ -69,6 +64,7 @@ export const RECORDS = [
     club: "Barcelona SC",
     role: "Asistente Técnico",
     logo: "/img/clubs/barcelona-sc.png",
+    details: [],
   },
   {
     year: 2014,
@@ -76,6 +72,7 @@ export const RECORDS = [
     club: "Barcelona SC",
     role: "Asistente Técnico",
     logo: "/img/clubs/barcelona-sc.png",
+    details: [],
   },
   {
     year: 2012,
@@ -83,6 +80,7 @@ export const RECORDS = [
     club: "Barcelona SC",
     role: "Asistente Técnico",
     logo: "/img/clubs/barcelona-sc.png",
+    details: [],
   },
 ];
 
