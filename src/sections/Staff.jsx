@@ -1,111 +1,99 @@
-// src/sections/Staff.jsx
-import React from "react";
-import { TEAM } from "../data/staff.js";
+import { TEAM } from "../data/staff";
 import { Link } from "react-router-dom";
-
-function slugify(name) {
-  return name
-    .toLowerCase()
-    .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/(^-|-$)/g, "");
-}
-
-function FlagRow({ flags }) {
-  if (!Array.isArray(flags) || flags.length === 0) return null;
-  return (
-    <div className="mt-1 flex flex-wrap gap-1.5">
-      {flags.map((f, i) => (
-        <img
-          key={i}
-          src={f.startsWith("/") ? f : `/img/banders/${f}`}
-          alt=""
-          className="h-3.5 w-5 rounded ring-1 ring-slate-200"
-          loading="lazy"
-        />
-      ))}
-    </div>
-  );
-}
-
-function RoleChips({ roles }) {
-  if (!Array.isArray(roles) || roles.length === 0) return null;
-  return (
-    <div className="mt-3 flex flex-wrap gap-1.5">
-      {roles.map((r, i) => (
-        <span
-          key={i}
-          className="rounded-full border border-slate-200 bg-white px-2 py-0.5 text-xs text-slate-700"
-        >
-          {r}
-        </span>
-      ))}
-    </div>
-  );
-}
+import { ArrowUpRight } from "lucide-react";
 
 export default function Staff() {
-  if (!Array.isArray(TEAM) || TEAM.length === 0) return null;
-
-  const [lead, ...assistants] = TEAM;
+  const flavio = TEAM[0];
+  const rest = TEAM.slice(1);
 
   return (
-    <div className="mx-auto max-w-6xl px-4 py-12">
-      <h2 className="text-2xl font-semibold">Staff</h2>
+    <section id="staff" className="bg-ink-950 py-24 md:py-36 border-t border-bone/10">
+      <div className="container-x">
+        <div className="max-w-3xl mb-16">
+          <div className="eyebrow mb-5">Cuerpo Técnico</div>
+          <h2 className="display-2 text-[clamp(2rem,4.5vw,3.5rem)] text-bone">
+            Un equipo<br />
+            <span className="italic text-gold-500">detrás del equipo.</span>
+          </h2>
+        </div>
 
-      {/* DT destacado */}
-      {lead && (
-        <Link to={`/staff/${slugify(lead.name)}`} className="mt-6 block">
-          <article className="rounded-2xl border border-slate-200 bg-white p-5 shadow-card ring-1 ring-amber-100 lg:flex lg:items-center lg:gap-8">
-            {/* MÁS GRANDE EN DESKTOP + ZOOM EN MÓVIL */}
-            <div className="mx-auto flex-none overflow-hidden rounded-2xl border border-slate-200 bg-white
-                            h-56 w-56 sm:h-60 sm:w-60 md:h-64 md:w-64 lg:h-80 lg:w-80 xl:h-96 xl:w-96">
+        {/* FLAVIO destacado */}
+        <Link
+          to={`/staff/${flavio.slug}`}
+          className="group block relative overflow-hidden rounded-2xl bg-ink-800 border border-bone/10 hover:border-gold-500/40 transition-colors mb-px"
+        >
+          <div className="grid md:grid-cols-12 gap-0">
+            <div className="md:col-span-5 relative bg-ink-900 min-h-[400px] md:min-h-[500px] overflow-hidden">
               <img
-                src={lead.img}
-                alt={lead.name}
-                className="h-full w-full object-cover object-center"
-                loading="lazy"
+                src={flavio.img}
+                alt={flavio.name}
+                className="absolute inset-0 w-full h-full object-cover object-top"
               />
+              <div className="absolute inset-0 bg-gradient-to-t from-ink-900/60 via-transparent to-transparent" />
             </div>
 
-            <div className="mt-4 lg:mt-0">
-              <h3 className="text-xl font-semibold">{lead.name}</h3>
-              <div className="text-slate-600">{lead.role}</div>
-              <FlagRow flags={lead.flags} />
-              <p className="mt-3 text-slate-700">{lead.bio}</p>
-              {/* sin chips de roles para Flavio */}
+            <div className="md:col-span-7 p-6 md:p-10 lg:p-14 flex flex-col justify-center">
+              <div className="eyebrow mb-4 text-gold-500">{flavio.role}</div>
+              <h3 className="font-display text-3xl md:text-5xl lg:text-6xl font-bold text-bone leading-[1] tracking-tighter mb-2">
+                {flavio.name}
+              </h3>
+              {flavio.flags?.length > 0 && (
+                <div className="flex gap-2 mt-3 mb-6">
+                  {flavio.flags.map((f) => (
+                    <img key={f} src={f} alt="" className="h-4 w-auto rounded-sm opacity-80" />
+                  ))}
+                </div>
+              )}
+              <p className="text-bone/70 leading-relaxed text-base md:text-lg max-w-xl line-clamp-5">
+                {flavio.bio}
+              </p>
+              <div className="mt-8 inline-flex items-center gap-2 text-gold-500 font-medium text-sm group-hover:gap-3 transition-all">
+                Ver perfil completo
+                <ArrowUpRight size={16} />
+              </div>
             </div>
-          </article>
+          </div>
         </Link>
-      )}
 
-      {/* Asistentes (igual que antes) */}
-      <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
-        {assistants.map((m) => (
-          <Link key={m.name} to={`/staff/${slugify(m.name)}`}>
-            <article className="rounded-2xl border border-slate-200 bg-white p-4 shadow-card hover:shadow-md transition-shadow">
-              <div className="mx-auto h-28 w-28 sm:h-32 sm:w-32 lg:h-36 lg:w-36 overflow-hidden rounded-2xl border border-slate-200 bg-white">
-                {/* móvil: contain; md+: cover */}
+        {/* RESTO DEL STAFF */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-px max-w-3xl mx-auto bg-bone/10 border border-bone/10 rounded-2xl overflow-hidden mt-px">
+          {rest.map((m) => (
+            <Link
+              key={m.slug}
+              to={`/staff/${m.slug}`}
+              className="group bg-ink-800 hover:bg-ink-700 transition-colors p-6 md:p-8 flex flex-col"
+            >
+              <div className="aspect-[3/4] bg-ink-800 rounded-xl overflow-hidden mb-5 relative ring-1 ring-bone/5">
                 <img
                   src={m.img}
                   alt={m.name}
-                  className="h-full w-full object-contain md:object-cover"
-                  loading="lazy"
+                  className="absolute inset-0 w-full h-full object-cover object-top opacity-90 group-hover:opacity-100 transition-opacity"
                 />
               </div>
-
-              <h4 className="mt-3 text-base font-semibold">{m.name}</h4>
-              <div className="text-sm text-slate-600">{m.role}</div>
-              <FlagRow flags={m.flags} />
-              <p className="mt-2 line-clamp-3 text-sm text-slate-700">{m.bio}</p>
-
-              <RoleChips roles={m.roles} />
-            </article>
-          </Link>
-        ))}
+              <div className="text-[10px] uppercase tracking-[0.2em] text-gold-500 mb-2">
+                {m.role}
+              </div>
+              <h4 className="font-display text-xl md:text-2xl font-bold text-bone leading-tight tracking-tight">
+                {m.name}
+              </h4>
+              {m.flags?.length > 0 && (
+                <div className="flex gap-1.5 mt-3">
+                  {m.flags.map((f) => (
+                    <img key={f} src={f} alt="" className="h-3 w-auto rounded-sm opacity-70" />
+                  ))}
+                </div>
+              )}
+              <p className="text-bone/50 text-sm mt-4 leading-relaxed line-clamp-3">
+                {m.bio}
+              </p>
+              <div className="mt-auto pt-5 inline-flex items-center gap-2 text-bone/40 group-hover:text-gold-500 text-xs font-medium transition-colors">
+                Ver perfil
+                <ArrowUpRight size={12} />
+              </div>
+            </Link>
+          ))}
+        </div>
       </div>
-    </div>
+    </section>
   );
 }
-
-

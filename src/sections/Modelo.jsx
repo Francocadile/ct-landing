@@ -1,5 +1,3 @@
-// src/sections/Modelo.jsx
-import React from "react";
 import {
   objetivosA,
   objetivosB,
@@ -7,410 +5,475 @@ import {
   juegoDePosicion,
   fasesJuego,
   principiosJuego,
-  contenidosSemanales,
-  semanaTipo,
-  metodologiaIntegrada,
   entrenamientoBase,
-  planTrabajo,
+  metodologiaIntegrada,
+  contenidosSemanales,
   preparacionSemana,
+  semanaTipo,
+  planTrabajo,
 } from "../data/modelo";
 
-// ───────────────────────── helpers UI ─────────────────────────
-const H2 = ({ id, children }) => (
-  <h2 id={id} className="scroll-mt-24 text-2xl font-semibold text-slate-900">
-    {children}
-  </h2>
-);
-
-const H3 = ({ children }) => (
-  <h3 className="text-lg font-semibold text-slate-900">{children}</h3>
-);
-
-const Chip = ({ children }) => (
-  <span className="rounded-full border border-slate-200 bg-white px-2.5 py-0.5 text-xs text-slate-700">
-    {children}
-  </span>
-);
-
-// Tarjeta con aura sutil (campeón, pero sobrio)
-const AuraCard = ({ children, className = "" }) => (
-  <div
-    className={`relative rounded-2xl border border-slate-200 bg-white p-5 shadow-sm ring-1 ring-amber-100 ${className}`}
-  >
-    <div className="pointer-events-none absolute -inset-0.5 rounded-2xl bg-gradient-to-b from-amber-100/0 via-amber-100/10 to-amber-100/0 blur" />
-    <div className="relative">{children}</div>
-  </div>
-);
-
-const Figure = ({ src, alt, caption }) => (
-  <figure className="rounded-xl border border-slate-200 bg-white p-2">
-    <img
-      src={src}
-      alt={alt}
-      className="mx-auto h-56 w-full max-w-md rounded-lg object-contain"
-      loading="lazy"
-      onError={(e) => {
-        e.currentTarget.outerHTML = `<div class="mx-auto flex h-56 w-full max-w-md items-center justify-center rounded-lg border border-dashed border-slate-300 bg-slate-50 text-xs text-slate-500">Agregá la imagen en ${src}</div>`;
-      }}
-    />
-    {caption ? (
-      <figcaption className="mt-2 text-center text-xs text-slate-500">
-        {caption}
-      </figcaption>
-    ) : null}
-  </figure>
-);
-
-// Etiqueta de carga — pequeña y simétrica
-const LoadTag = ({ label, nota }) => (
-  <span className="inline-flex items-center gap-1 rounded-md bg-amber-50 px-1 py-[2px] text-[10px] font-medium leading-none text-amber-700 ring-1 ring-inset ring-amber-200 whitespace-nowrap">
-    {label} {nota ? <em className="not-italic opacity-70">{nota}</em> : null}
-  </span>
-);
-
-// Subnav en el orden correcto (Entrenamiento antes que Método)
-const Subnav = () => {
-  const items = [
-    ["principios", "Objetivos & Principios"],
-    ["juego-posicion", "Juego de Posición"],
-    ["fases", "Fases del juego"],
-    ["principios-juego", "Principios de juego"],
-    ["entrenamiento", "Entrenamiento"],
-    ["metodo", "Método Integrado"],
-    ["contenidos", "Contenidos semanales"],
-    ["preparacion", "Preparación de la semana"],
-    ["semana", "Semana modelo"],
-    ["plan", "Plan de trabajo"],
-  ];
-  return (
-    <nav className="sticky top-16 z-10 -mx-4 mb-8 border-y bg-white/70 px-4 py-2 backdrop-blur supports-[backdrop-filter]:bg-white/50">
-      <ul className="mx-auto flex max-w-6xl flex-wrap gap-2">
-        {items.map(([id, label]) => (
-          <li key={id}>
-            <a
-              href={`#${id}`}
-              className="rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-medium text-slate-700 hover:bg-amber-50 hover:text-amber-800"
-            >
-              {label}
-            </a>
-          </li>
-        ))}
-      </ul>
-    </nav>
-  );
-};
-
-// ───────────────────────── component ─────────────────────────
+const NAV_ITEMS = [
+  { id: "principios", label: "Objetivos & Principios" },
+  { id: "juego-posicion", label: "Juego de Posición" },
+  { id: "fases", label: "Fases del juego" },
+  { id: "principios-juego", label: "Principios de juego" },
+  { id: "entrenamiento", label: "Entrenamiento" },
+  { id: "metodo", label: "Método Integrado" },
+  { id: "contenidos", label: "Contenidos semanales" },
+  { id: "preparacion", label: "Preparación de la semana" },
+  { id: "semana", label: "Semana modelo" },
+  { id: "plan", label: "Plan de trabajo" },
+];
 
 export default function Modelo() {
   return (
-    <section id="modelo" className="bg-gradient-to-b from-slate-50 to-white">
-      <div className="mx-auto max-w-6xl px-4 py-12">
-        {/* 1) Modelo de juego (título general) */}
-        <header className="mb-6">
-          <h1 className="text-3xl font-bold tracking-tight text-slate-900">
-            Modelo de juego
-          </h1>
-          <p className="mt-2 max-w-2xl text-slate-600">
-            Base conceptual y metodológica del cuerpo técnico: principios, juego
-            de posición, contenidos, semana tipo y preparación del partido.
-          </p>
-        </header>
-
-        <Subnav />
-
-        {/* 2) PRINCIPIOS / OBJETIVOS */}
-        <H2 id="principios">Objetivos generales & Principios</H2>
-        <div className="mt-5 grid gap-8 md:grid-cols-2">
-          <AuraCard>
-            <H3>Objetivos generales (I)</H3>
-            <ul className="mt-2 list-disc space-y-1 pl-5 text-slate-700">
-              {objetivosA.map((t, i) => (
-                <li key={i}>{t}</li>
-              ))}
-            </ul>
-          </AuraCard>
-          <AuraCard>
-            <H3>Objetivos generales (II)</H3>
-            <ul className="mt-2 list-disc space-y-1 pl-5 text-slate-700">
-              {objetivosB.map((t, i) => (
-                <li key={i}>{t}</li>
-              ))}
-            </ul>
-          </AuraCard>
-        </div>
-
-        {/* Cita — separada, centrada y remarcada */}
-        <AuraCard className="mt-10">
-          <blockquote className="mx-auto max-w-4xl text-center text-xl font-semibold italic text-slate-900">
-            «{definicionModelo}»
-          </blockquote>
-          <span className="mx-auto mt-3 block h-1 w-28 rounded-full bg-amber-400/80" />
-        </AuraCard>
-
-        {/* 3) JUEGO DE POSICIÓN */}
-        <div className="mt-12">
-          <H2 id="juego-posicion">Juego de Posición</H2>
-          <AuraCard>
-            <p className="text-slate-800">
-              “{juegoDePosicion.cita}”{" "}
-              <span className="ml-2 text-slate-500">
-                — {juegoDePosicion.autor}
-              </span>
-            </p>
-
-            <div className="mt-5 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {juegoDePosicion.sistemas.map((s, i) => (
-                <div key={i} className="flex flex-col items-center gap-2">
-                  <Figure
-                    src={s.img}
-                    alt={`${s.nombre} ${s.formacion}`}
-                    caption={`${s.code} · ${s.nombre} · ${s.formacion}`}
-                  />
-                </div>
-              ))}
-            </div>
-          </AuraCard>
-        </div>
-
-        {/* 4) FASES */}
-        <div className="mt-12">
-          <H2 id="fases">Fases del juego</H2>
-
-        {/* Iniciación y Creación lado a lado */}
-          <div className="mt-4 grid gap-6 md:grid-cols-2">
-            {fasesJuego.slice(0, 2).map((f, i) => (
-              <AuraCard key={i}>
-                <div className="grid items-center gap-4 md:grid-cols-2">
-                  <div>
-                    <H3>{f.titulo}</H3>
-                    <p className="mt-2 text-slate-700">{f.texto}</p>
-                    <div className="mt-2">
-                      <Chip>Formación: {f.formacion}</Chip>
-                    </div>
-                  </div>
-                  <Figure src={f.img} alt={f.titulo} />
-                </div>
-              </AuraCard>
+    <section id="modelo" className="bg-ink-900 relative">
+      {/* Subnav sticky */}
+      <nav className="sticky top-16 z-10 bg-ink-900/95 backdrop-blur-md border-b border-bone/10">
+        <div className="container-x">
+          <div className="flex gap-1 overflow-x-auto py-3 scrollbar-hide">
+            {NAV_ITEMS.map((item) => (
+              <a
+                key={item.id}
+                href={`#${item.id}`}
+                className="whitespace-nowrap px-4 py-2 rounded-full text-sm font-medium text-bone/60 hover:text-gold-500 hover:bg-bone/5 transition-colors"
+              >
+                {item.label}
+              </a>
             ))}
           </div>
+        </div>
+      </nav>
 
-          {/* Finalización ocupa todo el ancho con dos imágenes */}
-          {(() => {
-            const f = fasesJuego[2];
-            return (
-              <AuraCard className="mt-6 md:col-span-2">
-                <div className="grid items-center gap-6 md:grid-cols-2">
-                  <div>
-                    <H3>{f.titulo}</H3>
-                    <p className="mt-2 text-slate-700">{f.texto}</p>
-                    <div className="mt-2">
-                      <Chip>Formación: {f.formacion}</Chip>
-                    </div>
-                  </div>
-                  <div className="grid gap-3 sm:grid-cols-2">
-                    <Figure src={f.img} alt={f.titulo} />
-                    <Figure
-                      src={f.img2 || "/img/modelo/fase-finalizacion1.png"}
-                      alt={`${f.titulo} 2`}
-                    />
-                  </div>
-                </div>
-              </AuraCard>
-            );
-          })()}
+      <div className="container-x py-24 md:py-36">
+
+        {/* Encabezado */}
+        <div className="max-w-3xl mb-20">
+          <div className="eyebrow mb-5">Metodología</div>
+          <h2 className="display-2 text-[clamp(2.5rem,5vw,4rem)] text-bone leading-[1]">
+            Modelo de juego
+          </h2>
+          <p className="mt-6 text-lg text-bone/60 max-w-2xl">
+            Base conceptual y metodológica del cuerpo técnico. Cómo entrenamos,
+            qué priorizamos y por qué.
+          </p>
         </div>
 
-        {/* 5) PRINCIPIOS DE JUEGO */}
-        <div className="mt-12">
-          <H2 id="principios-juego">Principios de juego</H2>
-          <div className="mt-4 grid gap-6 md:grid-cols-2">
-            <AuraCard>
-              <H3>Ofensivos</H3>
-              <ul className="mt-3 space-y-3">
-                {principiosJuego.ofensivos.map((p, i) => (
-                  <li key={i}>
-                    <div className="font-medium text-slate-900">{p.titulo}</div>
-                    <ul className="ml-5 mt-1 list-disc text-slate-700">
-                      {p.bullets.map((b, j) => (
-                        <li key={j}>{b}</li>
-                      ))}
-                    </ul>
+        {/* 1. Objetivos & Principios */}
+        <div id="principios" className="scroll-mt-32 mb-32">
+          <div className="grid md:grid-cols-2 gap-6 mb-6">
+            <div className="card-dark">
+              <div className="text-xs uppercase tracking-[0.2em] text-gold-500 mb-4 font-semibold">
+                Objetivos generales I
+              </div>
+              <ul className="space-y-3">
+                {objetivosA.map((obj, i) => (
+                  <li key={i} className="flex items-start gap-3 text-bone/70 text-sm leading-relaxed">
+                    <span className="text-gold-500 mt-1 flex-shrink-0">•</span>
+                    <span>{obj}</span>
                   </li>
                 ))}
               </ul>
-            </AuraCard>
+            </div>
 
-            <AuraCard>
-              <H3>Defensivos</H3>
-              <ul className="mt-3 space-y-3">
-                {principiosJuego.defensivos.map((p, i) => (
-                  <li key={i}>
-                    <div className="font-medium text-slate-900">{p.titulo}</div>
-                    <ul className="ml-5 mt-1 list-disc text-slate-700">
-                      {p.bullets.map((b, j) => (
-                        <li key={j}>{b}</li>
-                      ))}
-                    </ul>
+            <div className="card-dark">
+              <div className="text-xs uppercase tracking-[0.2em] text-gold-500 mb-4 font-semibold">
+                Objetivos generales II
+              </div>
+              <ul className="space-y-3">
+                {objetivosB.map((obj, i) => (
+                  <li key={i} className="flex items-start gap-3 text-bone/70 text-sm leading-relaxed">
+                    <span className="text-gold-500 mt-1 flex-shrink-0">•</span>
+                    <span>{obj}</span>
                   </li>
                 ))}
               </ul>
-            </AuraCard>
+            </div>
+          </div>
+
+          <div className="max-w-4xl mx-auto">
+            <blockquote className="relative p-8 md:p-12 bg-gradient-to-br from-gold-600/10 to-gold-700/5 rounded-2xl border border-gold-500/20">
+              <div className="absolute top-6 left-6 text-gold-500/20 text-6xl font-display leading-none">"</div>
+              <p className="relative text-xl md:text-2xl font-display font-medium text-bone/90 leading-relaxed italic text-center">
+                {definicionModelo}
+              </p>
+            </blockquote>
           </div>
         </div>
 
-        {/* 6) ENTRENAMIENTO (arriba del Método) */}
-        <div className="mt-12">
-          <H2 id="entrenamiento">Entrenamiento</H2>
-          <AuraCard className="mt-4">
-            <div className="grid items-center gap-6 md:grid-cols-2">
-              <div>
-                <p className="text-slate-700">{entrenamientoBase.texto}</p>
+        {/* 2. Juego de Posición */}
+        <div id="juego-posicion" className="scroll-mt-32 mb-32">
+          <div className="max-w-3xl mb-12">
+            <div className="eyebrow mb-4">Fundamento táctico</div>
+            <h3 className="font-display text-3xl md:text-4xl font-bold text-bone mb-6">
+              Juego de Posición
+            </h3>
+            <blockquote className="border-l-4 border-gold-500 pl-6 italic text-bone/70 text-lg leading-relaxed">
+              {juegoDePosicion.cita}
+            </blockquote>
+            <p className="text-xs text-bone/40 mt-4">— Flavio Robatto</p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {juegoDePosicion.sistemas.map((sistema) => (
+              <div key={sistema.code} className="group">
+                <div className="bg-ink-800 rounded-2xl overflow-hidden border border-bone/10 hover:border-gold-500/30 transition-colors">
+                  <div className="aspect-[3/4] bg-ink-950 relative">
+                    <img
+                      src={sistema.img}
+                      alt={sistema.nombre}
+                      className="absolute inset-0 w-full h-full object-contain p-4"
+                    />
+                  </div>
+                  <div className="p-5 border-t border-bone/10">
+                    <div className="text-xs uppercase tracking-[0.2em] text-gold-500 mb-1">
+                      {sistema.code}
+                    </div>
+                    <div className="font-display text-lg font-bold text-bone leading-tight mb-1">
+                      {sistema.nombre}
+                    </div>
+                    <div className="text-xs text-bone/50">{sistema.formacion}</div>
+                  </div>
+                </div>
               </div>
-              <div>
-                <Figure
-                  src={entrenamientoBase.img}
-                  alt={entrenamientoBase.titulo}
-                />
-              </div>
-            </div>
-          </AuraCard>
+            ))}
+          </div>
         </div>
 
-        {/* 7) MÉTODO INTEGRADO ESTRUCTURAL */}
-        <div className="mt-12">
-          <H2 id="metodo">Método Integrado Estructural</H2>
-          <AuraCard className="mt-4">
-            <div className="grid items-center gap-6 md:grid-cols-2">
-              <div>
-                <ul className="list-disc space-y-3 pl-5 text-slate-700">
-                  {metodologiaIntegrada.bullets.map((t, i) => (
-                    <li key={i}>{t}</li>
+        {/* 3. Fases del juego */}
+        <div id="fases" className="scroll-mt-32 mb-32">
+          <div className="max-w-3xl mb-12">
+            <div className="eyebrow mb-4">Organización</div>
+            <h3 className="font-display text-3xl md:text-4xl font-bold text-bone">
+              Fases del juego
+            </h3>
+          </div>
+
+          <div className="space-y-8">
+            {fasesJuego.map((fase, idx) => (
+              <div key={idx} className="card-dark">
+                <div className="grid md:grid-cols-12 gap-8 items-start">
+                  <div className="md:col-span-5">
+                    <div className="text-xs uppercase tracking-[0.2em] text-gold-500 mb-3">
+                      Fase {idx + 1}
+                    </div>
+                    <h4 className="font-display text-2xl md:text-3xl font-bold text-bone mb-4 leading-tight">
+                      {fase.titulo}
+                    </h4>
+                    <p className="text-bone/70 leading-relaxed mb-4">{fase.texto}</p>
+                    <div className="inline-block px-3 py-1.5 rounded-full bg-gold-500/10 text-gold-500 text-xs font-medium">
+                      {fase.formacion}
+                    </div>
+                  </div>
+                  <div className="md:col-span-7">
+                    <div className="bg-ink-950 rounded-xl overflow-hidden border border-bone/10">
+                      {fase.img2 ? (
+                        <div className="grid grid-cols-2 gap-px bg-bone/10">
+                          {[fase.img, fase.img2].map((img, i) => (
+                            <div key={i} className="aspect-[4/3] bg-ink-950 relative">
+                              <img
+                                src={img}
+                                alt={`${fase.titulo} variante ${i + 1}`}
+                                className="absolute inset-0 w-full h-full object-contain p-3"
+                              />
+                            </div>
+                          ))}
+                        </div>
+                      ) : (
+                        <div className="aspect-[4/3] bg-ink-950 relative">
+                          <img
+                            src={fase.img}
+                            alt={fase.titulo}
+                            className="absolute inset-0 w-full h-full object-contain p-4"
+                          />
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* 4. Principios de juego */}
+        <div id="principios-juego" className="scroll-mt-32 mb-32">
+          <div className="max-w-3xl mb-12">
+            <div className="eyebrow mb-4">Fundamentos</div>
+            <h3 className="font-display text-3xl md:text-4xl font-bold text-bone">
+              Principios de juego
+            </h3>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="card-dark">
+              <div className="text-xs uppercase tracking-[0.2em] text-gold-500 mb-6 font-semibold">
+                Principios Ofensivos
+              </div>
+              <div className="space-y-6">
+                {principiosJuego.ofensivos.map((p, i) => (
+                  <div key={i}>
+                    <h5 className="font-display text-lg font-bold text-bone mb-3">
+                      {p.titulo}
+                    </h5>
+                    <ul className="space-y-2">
+                      {p.bullets.map((item, j) => (
+                        <li key={j} className="flex items-start gap-3 text-sm text-bone/70 leading-relaxed">
+                          <span className="text-gold-500 mt-1 flex-shrink-0">•</span>
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="card-dark">
+              <div className="text-xs uppercase tracking-[0.2em] text-gold-500 mb-6 font-semibold">
+                Principios Defensivos
+              </div>
+              <div className="space-y-6">
+                {principiosJuego.defensivos.map((p, i) => (
+                  <div key={i}>
+                    <h5 className="font-display text-lg font-bold text-bone mb-3">
+                      {p.titulo}
+                    </h5>
+                    <ul className="space-y-2">
+                      {p.bullets.map((item, j) => (
+                        <li key={j} className="flex items-start gap-3 text-sm text-bone/70 leading-relaxed">
+                          <span className="text-gold-500 mt-1 flex-shrink-0">•</span>
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* 5. Entrenamiento */}
+        <div id="entrenamiento" className="scroll-mt-32 mb-32">
+          <div className="max-w-3xl mb-12">
+            <div className="eyebrow mb-4">Metodología</div>
+            <h3 className="font-display text-3xl md:text-4xl font-bold text-bone">
+              Entrenamiento
+            </h3>
+          </div>
+
+          <div className="card-dark">
+            <div className="grid md:grid-cols-12 gap-8 items-start">
+              <div className="md:col-span-7">
+                <p className="text-bone/70 leading-relaxed text-lg">
+                  {entrenamientoBase.texto}
+                </p>
+              </div>
+              <div className="md:col-span-5">
+                <div className="bg-ink-950 rounded-xl overflow-hidden border border-bone/10">
+                  <img
+                    src={entrenamientoBase.img}
+                    alt="Entrenamiento"
+                    className="w-full h-auto"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* 6. Método Integrado Estructural */}
+        <div id="metodo" className="scroll-mt-32 mb-32">
+          <div className="max-w-3xl mb-12">
+            <div className="eyebrow mb-4">Metodología</div>
+            <h3 className="font-display text-3xl md:text-4xl font-bold text-bone">
+              {metodologiaIntegrada.titulo}
+            </h3>
+          </div>
+
+          <div className="card-dark">
+            <div className="grid md:grid-cols-12 gap-8 items-start">
+              <div className="md:col-span-7">
+                <ul className="space-y-4">
+                  {metodologiaIntegrada.bullets.map((item, i) => (
+                    <li key={i} className="flex items-start gap-4">
+                      <span className="flex-shrink-0 w-8 h-8 rounded-full bg-gold-500/10 flex items-center justify-center text-gold-500 font-display font-bold text-sm">
+                        {i + 1}
+                      </span>
+                      <span className="text-bone/70 leading-relaxed pt-1">{item}</span>
+                    </li>
                   ))}
                 </ul>
               </div>
-              <div>
-                <Figure
-                  src={metodologiaIntegrada.img}
-                  alt={metodologiaIntegrada.titulo}
-                />
+              <div className="md:col-span-5">
+                <div className="bg-ink-950 rounded-xl overflow-hidden border border-bone/10">
+                  <img
+                    src={metodologiaIntegrada.img}
+                    alt={metodologiaIntegrada.titulo}
+                    className="w-full h-auto"
+                  />
+                </div>
               </div>
             </div>
-          </AuraCard>
+          </div>
         </div>
 
-        {/* 8) CONTENIDOS SEMANALES */}
-        <div className="mt-12">
-          <H2 id="contenidos">Contenidos semanales</H2>
-          <div className="mt-4 grid gap-6 md:grid-cols-2">
-            {contenidosSemanales.map((g) => (
-              <AuraCard key={g.code}>
-                <div className="flex items-center gap-3">
-                  <div className="text-2xl">{g.icon}</div>
-                  <H3>
-                    {g.code} — {g.titulo}
-                  </H3>
+        {/* 7. Contenidos semanales */}
+        <div id="contenidos" className="scroll-mt-32 mb-32">
+          <div className="max-w-3xl mb-12">
+            <div className="eyebrow mb-4">Organización semanal</div>
+            <h3 className="font-display text-3xl md:text-4xl font-bold text-bone">
+              Contenidos semanales
+            </h3>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            {contenidosSemanales.map((contenido) => (
+              <div key={contenido.code} className="card-dark">
+                <div className="flex items-start gap-4 mb-5">
+                  <div className="text-4xl">{contenido.icon}</div>
+                  <div>
+                    <div className="text-xs uppercase tracking-[0.2em] text-gold-500 mb-1">
+                      {contenido.code}
+                    </div>
+                    <h4 className="font-display text-2xl font-bold text-bone">
+                      {contenido.titulo}
+                    </h4>
+                  </div>
                 </div>
-                <div className="mt-3 space-y-3">
-                  {g.bloques.map((b, i) => (
+                <div className="space-y-4">
+                  {contenido.bloques.map((bloque, i) => (
                     <div key={i}>
-                      <div className="font-medium text-slate-900">
-                        {b.subtitulo}
-                      </div>
-                      <p className="text-slate-700">{b.texto}</p>
+                      <h5 className="font-display text-sm font-bold text-bone/90 mb-2">
+                        {bloque.subtitulo}
+                      </h5>
+                      <p className="text-sm text-bone/60 leading-relaxed">
+                        {bloque.texto}
+                      </p>
                     </div>
                   ))}
                 </div>
-              </AuraCard>
+              </div>
             ))}
           </div>
         </div>
 
-        {/* 9) PREPARACIÓN DE LA SEMANA */}
-        <div className="mt-12">
-          <H2 id="preparacion">Preparación de la semana</H2>
-          <div className="mt-4 grid gap-6 lg:grid-cols-3">
-            {preparacionSemana.map((col, i) => (
-              <AuraCard key={i}>
-                <div className="mb-3">
-                  <Chip>{col.grupo}</Chip>
+        {/* 8. Preparación de la semana */}
+        <div id="preparacion" className="scroll-mt-32 mb-32">
+          <div className="max-w-3xl mb-12">
+            <div className="eyebrow mb-4">Organización</div>
+            <h3 className="font-display text-3xl md:text-4xl font-bold text-bone">
+              Preparación de la semana
+            </h3>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {preparacionSemana.map((columna, idx) => (
+              <div key={idx} className="card-dark">
+                <div className="text-xs uppercase tracking-[0.2em] text-gold-500 mb-6 font-semibold">
+                  {columna.grupo}
                 </div>
-                <ol className="space-y-4">
-                  {col.pasos.map((p) => (
-                    <li
-                      key={p.n}
-                      className="rounded-xl border border-slate-200 bg-slate-50 p-3"
-                    >
-                      <div className="flex items-center justify-between">
-                        <div className="text-sm font-semibold text-slate-900">
-                          {p.n}. {p.titulo}
-                        </div>
-                        <span
-                          className="ml-3 inline-block h-2.5 w-2.5 rounded-full bg-amber-500"
-                          aria-hidden="true"
-                        />
+                <div className="space-y-5">
+                  {columna.pasos.map((paso) => (
+                    <div key={paso.n} className="flex items-start gap-4">
+                      <div className="flex-shrink-0 w-2 h-2 rounded-full bg-gold-500 mt-2" />
+                      <div className="flex-1 min-w-0">
+                        <p className="text-sm font-medium text-bone/80 mb-1">{paso.titulo}</p>
+                        <ul className="space-y-0.5">
+                          {paso.notas.map((n, j) => (
+                            <li key={j} className="text-xs text-bone/50">{n}</li>
+                          ))}
+                        </ul>
                       </div>
-                      <ul className="ml-4 mt-2 list-disc text-sm text-slate-700">
-                        {p.notas.map((n, j) => (
-                          <li key={j}>{n}</li>
-                        ))}
-                      </ul>
-                    </li>
+                    </div>
                   ))}
-                </ol>
-              </AuraCard>
+                </div>
+              </div>
             ))}
           </div>
         </div>
 
-        {/* 10) SEMANA MODELO */}
-        <div className="mt-12">
-          <H2 id="semana">Semana modelo (Domingo–Domingo)</H2>
-          <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-7">
-            {semanaTipo.map((d) => (
-              <div
-                key={d.dia}
-                className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm ring-1 ring-amber-100"
-              >
-                <div className="flex items-center justify-between gap-2 rounded-t-xl bg-slate-50/80 px-3 py-1.5">
-                  <div className="text-[13px] font-semibold uppercase tracking-wide text-slate-800">
-                    {d.dia}
-                  </div>
-                  <LoadTag label={d.carga?.label} nota={d.carga?.nota} />
-                </div>
+        {/* 9. Semana modelo */}
+        <div id="semana" className="scroll-mt-32 mb-32">
+          <div className="max-w-3xl mb-12">
+            <div className="eyebrow mb-4">Planificación</div>
+            <h3 className="font-display text-3xl md:text-4xl font-bold text-bone">
+              Semana modelo
+            </h3>
+            <p className="mt-4 text-bone/60">
+              Domingo a Domingo (estructura tipo con día de partido el domingo).
+            </p>
+          </div>
 
-                <div className="px-3 pb-3 pt-2">
-                  <ul className="list-disc space-y-1.5 pl-4 text-[13px] leading-snug text-slate-700">
-                    {d.bloques.map((b, i) => (
-                      <li key={i}>{b}</li>
+          <div className="overflow-x-auto -mx-4 md:mx-0">
+            <div className="inline-flex md:grid md:grid-cols-7 gap-px bg-bone/10 border border-bone/10 rounded-2xl overflow-hidden min-w-full">
+              {semanaTipo.map((dia) => (
+                <div
+                  key={dia.dia}
+                  className="bg-ink-800 p-5 md:p-6 min-w-[280px] md:min-w-0"
+                >
+                  <div className="mb-4">
+                    <div className="font-display text-xl font-bold text-bone mb-1">
+                      {dia.dia}
+                    </div>
+                    <div className="text-xs text-gold-500">{dia.carga?.nota}</div>
+                  </div>
+                  <ul className="space-y-2">
+                    {dia.bloques.map((bloque, i) => (
+                      <li
+                        key={i}
+                        className="text-xs text-bone/60 leading-relaxed flex items-start gap-2"
+                      >
+                        <span className="text-gold-500/40 mt-0.5 flex-shrink-0">•</span>
+                        <span>{bloque}</span>
+                      </li>
                     ))}
                   </ul>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
 
-        {/* 11) PLAN DE TRABAJO */}
-        <div className="mt-12">
-          <H2 id="plan">Plan de trabajo</H2>
-          <AuraCard className="mt-4">
-            <div className="grid items-center gap-6 md:grid-cols-2">
-              <div>
-                <ul className="list-disc space-y-2 pl-5 text-slate-700">
-                  {planTrabajo.bullets.map((t, i) => (
-                    <li key={i}>{t}</li>
+        {/* 10. Plan de trabajo */}
+        <div id="plan" className="scroll-mt-32 mb-32">
+          <div className="max-w-3xl mb-12">
+            <div className="eyebrow mb-4">Visión global</div>
+            <h3 className="font-display text-3xl md:text-4xl font-bold text-bone">
+              {planTrabajo.titulo}
+            </h3>
+          </div>
+
+          <div className="card-dark">
+            <div className="grid md:grid-cols-12 gap-8 items-start">
+              <div className="md:col-span-7">
+                <ul className="space-y-4">
+                  {planTrabajo.bullets.map((item, i) => (
+                    <li key={i} className="flex items-start gap-4">
+                      <span className="flex-shrink-0 w-8 h-8 rounded-full bg-gold-500/10 flex items-center justify-center text-gold-500 font-display font-bold text-sm">
+                        {i + 1}
+                      </span>
+                      <span className="text-bone/70 leading-relaxed pt-1">{item}</span>
+                    </li>
                   ))}
                 </ul>
               </div>
-              <div>
-                <Figure src={planTrabajo.img} alt="Plan de trabajo" />
+              <div className="md:col-span-5">
+                <div className="bg-ink-950 rounded-xl overflow-hidden border border-bone/10">
+                  <img
+                    src={planTrabajo.img}
+                    alt={planTrabajo.titulo}
+                    className="w-full h-auto"
+                  />
+                </div>
               </div>
             </div>
-          </AuraCard>
+          </div>
         </div>
+
       </div>
     </section>
   );
 }
-

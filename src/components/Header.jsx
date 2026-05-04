@@ -4,18 +4,13 @@ import { Menu, X } from "lucide-react";
 import { SITE } from "../data/site";
 
 const NAV = [
-  { href: "/", label: "Inicio" },
-  { href: "/#staff", label: "Staff" },
-  { href: "/#clubes", label: "Clubes" },
-  { href: "/#records", label: "Records" },
-  { href: "/#modelo", label: "Modelo de juego" },
-  { href: "/#media", label: "Material audiovisual" }, // ← AQUI
-  { href: "/#convicciones", label: "Convicciones" },
-  { href: "/dossier-bolivar-2025", label: "Dossier Bolívar 2025" },
-  { href: "/bitacora-entrenamientos-2025", label: "Bitácora" },
-  { href: "/openbase", label: "OPENBASE" },
-  { href: "/blog", label: "Blog" },                    // ruta, no hash
-  { href: "/#contacto", label: "Contacto" },
+  { label: "Inicio",      href: "/#home" },
+  { label: "Modelo",      href: "/#modelo" },
+  { label: "Trayectoria", href: "/#clubes" },
+  { label: "Staff",       href: "/#staff" },
+  { label: "Logros",      href: "/#records" },
+  { label: "OpenBase",    href: "/openbase" },
+  { label: "Contacto",    href: "/#contacto" },
 ];
 
 export default function Header() {
@@ -37,18 +32,20 @@ export default function Header() {
   }, []);
 
   const linkCls = (href) =>
-    `text-slate-600 hover:text-slate-900 ${
-      active === href ? "text-blue-600 font-semibold" : ""
+    `text-sm transition-colors ${
+      active === href
+        ? "text-gold-500 font-semibold"
+        : "text-bone/80 hover:text-gold-500"
     }`;
 
   return (
-    <header className="sticky top-0 z-50 border-b bg-white/80 backdrop-blur">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4">
-        <a href="/" className="text-lg font-semibold">
+    <header className="sticky top-0 z-50 border-b border-bone/10 bg-ink-900/80 backdrop-blur-md">
+      <div className="container-x flex h-16 items-center justify-between">
+        <a href="/" className="font-display font-bold text-bone text-lg tracking-tight">
           {SITE.name}
         </a>
 
-        <nav className="hidden gap-6 md:flex">
+        <nav className="hidden gap-7 md:flex">
           {NAV.map((item) => (
             <a key={item.href} href={item.href} className={linkCls(item.href)}>
               {item.label}
@@ -58,21 +55,21 @@ export default function Header() {
 
         <button
           onClick={() => setOpen((v) => !v)}
-          className="p-2 md:hidden"
+          className="p-2 text-bone/80 hover:text-bone md:hidden"
           aria-label="Abrir menú"
         >
-          {open ? <X /> : <Menu />}
+          {open ? <X size={22} /> : <Menu size={22} />}
         </button>
       </div>
 
       {open && (
-        <div className="border-t bg-white md:hidden">
+        <div className="border-t border-bone/10 bg-ink-800 md:hidden">
           {NAV.map((item) => (
             <a
               key={item.href}
               href={item.href}
               onClick={() => setOpen(false)}
-              className={`block px-4 py-3 ${linkCls(item.href)} hover:bg-slate-50`}
+              className={`block px-5 py-3.5 text-sm ${linkCls(item.href)} hover:bg-bone/5`}
             >
               {item.label}
             </a>

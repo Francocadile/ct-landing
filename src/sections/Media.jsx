@@ -1,90 +1,65 @@
-// src/sections/Media.jsx
-import React from "react";
-import { MEDIA } from "../data/media.js";
+import { MEDIA } from "../data/media";
 
-// Extrae el ID de YouTube (para miniatura) o detecta playlist
-function parseYouTube(u = "") {
-  try {
-    const url = new URL(u);
-    const isPlaylist = url.searchParams.get("list");
-    if (isPlaylist) return { type: "playlist", id: isPlaylist };
-    // https://www.youtube.com/watch?v=XXXX
-    const v = url.searchParams.get("v");
-    if (v) return { type: "video", id: v };
-    // https://youtu.be/XXXX
-    if (url.hostname.includes("youtu.be")) {
-      const id = url.pathname.replace("/", "");
-      if (id) return { type: "video", id };
-    }
-  } catch {}
-  return { type: "unknown", id: null };
-}
-
-function getThumb(u) {
-  const { type, id } = parseYouTube(u);
-  if (type === "video" && id) {
-    return `https://img.youtube.com/vi/${id}/hqdefault.jpg`;
-  }
-  // Placeholder para playlist o unknown
-  return "/img/media/placeholder.jpg"; // opcional: subí una imagen a public/img/media/placeholder.jpg
+function getYTThumb(url) {
+  const m = url.match(/[?&]v=([^&]+)/);
+  return m ? `https://img.youtube.com/vi/${m[1]}/hqdefault.jpg` : null;
 }
 
 export default function Media() {
   return (
-    <div className="border-b bg-white">
-      <div className="mx-auto max-w-6xl px-4 py-12">
-        <h2 className="text-2xl font-semibold text-slate-900">Material audiovisual</h2>
-        <p className="mt-2 max-w-2xl text-slate-600">
-          Selección de videos y listas con metodología, modelo de juego y sesiones del cuerpo técnico.
-        </p>
+    <section id="media" className="bg-ink-900 py-24 md:py-36 border-t border-bone/10">
+      <div className="container-x">
+        <div className="max-w-3xl mb-16">
+          <div className="eyebrow mb-5">Contenido</div>
+          <h2 className="display-2 text-[clamp(2rem,4.5vw,3.5rem)] text-bone leading-[1.05]">
+            Material<br />
+            <span className="italic text-gold-500">audiovisual.</span>
+          </h2>
+          <p className="mt-6 text-lg text-bone/60 max-w-xl">
+            Videos, análisis tácticos y entrenamientos del cuerpo técnico.
+          </p>
+        </div>
 
-        {/* Grilla 3 por fila en desktop, 2 en tablet, 1 en mobile */}
-        <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {MEDIA.map((item) => {
-            const thumb = getThumb(item.url);
-            const kind = parseYouTube(item.url).type;
-            return (
-              <a
-                key={item.title}
-                href={item.url}
-                target="_blank"
-                rel="noreferrer"
-                className="group overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm hover:shadow-md transition-shadow"
-              >
-                {/* thumb 16:9 */}
-                <div className="relative aspect-video w-full overflow-hidden bg-slate-100">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {MEDIA.map((video, idx) => (
+            <a
+              key={idx}
+              href={video.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group block bg-ink-800 rounded-2xl overflow-hidden border border-bone/10 hover:border-gold-500/40 transition-all hover:shadow-glow"
+            >
+              {/* Thumbnail */}
+              <div className="aspect-video bg-ink-950 relative overflow-hidden">
+                {getYTThumb(video.url) && (
                   <img
-                    src={thumb}
-                    alt=""
-                    className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                    loading="lazy"
+                    src={getYTThumb(video.url)}
+                    alt={video.title}
+                    className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
                   />
-                  {/* Play badge */}
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/90 ring-1 ring-slate-300">
-                      ▶
-                    </span>
-                  </div>
-                  {/* Etiqueta tipo */}
-                  <span className="absolute left-2 top-2 rounded-md bg-black/70 px-2 py-0.5 text-xs font-medium text-white">
-                    {kind === "playlist" ? "Playlist" : "Video"}
-                  </span>
-                </div>
+                )}
+                <div className="absolute inset-0 bg-gradient-to-t from-ink-900 via-transparent to-transparent" />
 
-                {/* texto */}
-                <div className="p-4">
-                  <h3 className="line-clamp-2 text-base font-semibold text-slate-900">
-                    {item.title}
-                  </h3>
-                  {item.note ? (
-                    <p className="mt-1 line-clamp-2 text-sm text-slate-600">{item.note}</p>
-                  ) : null}
+                {/* Play button */}
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                  <div className="w-16 h-16 rounded-full bg-gold-500/90 backdrop-blur flex items-center justify-center">
+                    <svg className="w-6 h-6 text-ink-900 ml-1" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M8 5v14l11-7z" />
+                    </svg>
+                  </div>
                 </div>
-              </a>
-            );
-          })}
+              </div>
+
+              {/* Info */}
+              <div className="p-5">
+                <h3 className="font-display text-lg font-bold text-bone leading-tight line-clamp-2 group-hover:text-gold-500 transition-colors">
+                  {video.title}
+                </h3>
+              </div>
+            </a>
+          ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 }

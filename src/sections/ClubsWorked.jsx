@@ -1,44 +1,45 @@
-// src/sections/ClubsWorked.jsx
-import React from "react";
-
-// Lista blanca de clubes a mostrar (en el orden que pediste)
-const ALLOWED_CLUBS = [
-  { name: "Bolívar",            logo: "/img/clubs/bolivar.png" },
-  { name: "Nacional Potosí",    logo: "/img/clubs/nacional-potosi.png" },
-  { name: "Atlético Huila",     logo: "/img/clubs/atletico-huila.png" },
-  { name: "Jaguares",           logo: "/img/clubs/jaguares-fc.png" },
-  { name: "Cúcuta Deportivo",   logo: "/img/clubs/cucuta-deportivo.png" },
-  { name: "Loja",               logo: "/img/clubs/loja.png" },
-  // Pediste "Sullana": el archivo que tenemos es el de Alianza Atlético (Sullana)
-  { name: "Sullana",            logo: "/img/clubs/alianza-atletico.png" },
-  // Me dijiste: "norte.jpg es el escudo de Norte América"
-  { name: "Norte América",      logo: "/img/clubs/norte.jpg" },
-  { name: "Millonarios",        logo: "/img/clubs/millonarios.png" },
-  { name: "Barcelona",          logo: "/img/clubs/barcelona-sc.png" },
+const CLUBS = [
+  { name: "Bolívar", logo: "/img/clubs/bolivar.png", country: "Bolivia" },
+  { name: "Millonarios", logo: "/img/clubs/millonarios.png", country: "Colombia" },
+  { name: "Barcelona SC", logo: "/img/clubs/barcelona-sc.png", country: "Ecuador" },
+  { name: "Cúcuta Deportivo", logo: "/img/clubs/cucuta-deportivo.png", country: "Colombia" },
+  { name: "Atlético Huila", logo: "/img/clubs/atletico-huila.png", country: "Colombia" },
+  { name: "Nacional Potosí", logo: "/img/clubs/nacional-potosi.png", country: "Bolivia" },
+  { name: "Jaguares", logo: "/img/clubs/jaguares-fc.png", country: "Colombia" },
+  { name: "Alianza Atlético Sullana", logo: "/img/clubs/alianza-atletico.png", country: "Perú" },
 ];
 
 export default function ClubsWorked() {
   return (
-    <section id="clubes" className="border-b scroll-mt-24">
-      <div className="mx-auto max-w-6xl px-4 py-12">
-        <h2 className="text-2xl font-semibold">
-          Clubes en los que trabajó el Cuerpo Técnico
-        </h2>
+    <section id="clubes" className="bg-ink-900 py-24 md:py-36 border-t border-bone/10">
+      <div className="container-x">
+        <div className="max-w-3xl mb-16">
+          <div className="eyebrow mb-5">Trayectoria</div>
+          <h2 className="display-2 text-[clamp(2rem,4.5vw,3.5rem)] text-bone">
+            Clubes en los que<br />
+            trabajó el cuerpo técnico
+          </h2>
+        </div>
 
-        {/* Escudos grandes a color */}
-        <div className="mt-8 grid grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
-          {ALLOWED_CLUBS.map((c) => (
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-bone/10 border border-bone/10 rounded-2xl overflow-hidden">
+          {CLUBS.map((club) => (
             <div
-              key={c.name}
-              className="flex h-28 items-center justify-center rounded-2xl border bg-white p-4 shadow-sm"
-              title={c.name}
+              key={club.name}
+              className="bg-ink-900 hover:bg-ink-800 transition-colors p-6 md:p-8 flex flex-col items-center justify-center min-h-[180px] group"
             >
-              <img
-                src={c.logo}
-                alt={c.name}
-                className="max-h-20 w-auto object-contain"
-                loading="lazy"
-              />
+              <div className="w-16 h-16 md:w-20 md:h-20 flex items-center justify-center mb-4">
+                <img
+                  src={club.logo}
+                  alt={club.name}
+                  className="max-w-full max-h-full object-contain opacity-80 group-hover:opacity-100 transition-opacity"
+                />
+              </div>
+              <p className="font-display font-semibold text-bone text-sm md:text-base text-center leading-tight">
+                {club.name}
+              </p>
+              <p className="text-[10px] uppercase tracking-[0.18em] text-bone/40 mt-1">
+                {club.country}
+              </p>
             </div>
           ))}
         </div>
@@ -46,4 +47,3 @@ export default function ClubsWorked() {
     </section>
   );
 }
-

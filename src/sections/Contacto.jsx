@@ -1,66 +1,89 @@
-// src/sections/Contacto.jsx
-import React from "react";
-import { Instagram, Twitter, Mail } from "lucide-react";
-
-const FLAVIO_INSTAGRAM = "https://www.instagram.com/flaviorobatto/";
-const FLAVIO_TWITTER  = "https://x.com/DtFlavioRobatto";
-const EMAIL_CT        = "cuerpotecnicorobatto@gmail.com";
+import { Mail, Twitter, Instagram } from "lucide-react";
 
 export default function Contacto() {
   return (
-    <section id="contacto" className="border-t bg-gradient-to-b from-slate-50 to-white">
-      <div className="mx-auto max-w-6xl px-4 py-12">
-        <header className="mb-6">
-          <h2 className="text-2xl font-semibold text-slate-900">Contacto</h2>
-          <p className="mt-2 max-w-2xl text-slate-600">
-            Para propuestas y consultas directas del cuerpo técnico.
-          </p>
-        </header>
+    <section id="contacto" className="bg-ink-900 py-24 md:py-36 border-t border-bone/10">
+      <div className="container-x">
+        <div className="max-w-3xl mb-16">
+          <div className="eyebrow mb-5">Contacto</div>
+          <h2 className="display-2 text-[clamp(2rem,4.5vw,3.5rem)] text-bone leading-[1.05]">
+            Hablemos de<br />
+            <span className="italic text-gold-500">tu proyecto.</span>
+          </h2>
+        </div>
 
-        {/* CTA principal por email */}
-        <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-          <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
-            <div>
-              <div className="text-sm text-slate-500">Escríbenos por email</div>
-              <a
-                href={`mailto:${EMAIL_CT}?subject=Consulta%20-%20Cuerpo%20T%C3%A9cnico&body=Hola%2C%20quisiera%20hacer%20una%20consulta%20sobre...`}
-                className="mt-1 inline-flex items-center gap-2 rounded-lg bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
-              >
-                <Mail className="h-4 w-4" />
-                {EMAIL_CT}
-              </a>
+        <div className="grid md:grid-cols-2 gap-8 max-w-4xl">
+          {/* Email */}
+          <a
+            href="mailto:cuerpotecnicorobatto@gmail.com"
+            className="group card-dark hover:border-gold-500/40 transition-all"
+          >
+            <div className="flex items-start gap-5">
+              <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-gold-500/10 flex items-center justify-center text-gold-500 group-hover:bg-gold-500 group-hover:text-ink-900 transition-colors">
+                <Mail size={24} />
+              </div>
+              <div className="flex-1 min-w-0">
+                <div className="text-xs uppercase tracking-[0.2em] text-gold-500 mb-2">
+                  Email
+                </div>
+                <div className="font-display text-xl font-bold text-bone group-hover:text-gold-500 transition-colors break-all">
+                  cuerpotecnicorobatto@gmail.com
+                </div>
+              </div>
             </div>
+          </a>
 
-            {/* Redes de Flavio */}
-            <div className="flex items-center gap-3">
+          {/* Redes sociales */}
+          <div className="card-dark">
+            <div className="text-xs uppercase tracking-[0.2em] text-gold-500 mb-5">
+              Redes sociales
+            </div>
+            <div className="space-y-4">
               <a
-                href={FLAVIO_TWITTER}
+                href="https://www.instagram.com/flaviorobatto/"
                 target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-3 py-2 text-slate-700 hover:bg-slate-50"
-                aria-label="X (Twitter) de Flavio Robatto"
+                rel="noopener noreferrer"
+                className="group flex items-center gap-4 p-3 rounded-lg hover:bg-bone/5 transition-colors"
               >
-                <Twitter className="h-4 w-4" />
-                <span>X (Twitter)</span>
+                <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-gold-500/10 flex items-center justify-center text-gold-500 group-hover:bg-gold-500 group-hover:text-ink-900 transition-colors">
+                  <Instagram size={20} />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="font-medium text-bone group-hover:text-gold-500 transition-colors">
+                    Instagram
+                  </div>
+                  <div className="text-sm text-bone/50">@flaviorobatto</div>
+                </div>
               </a>
+
               <a
-                href={FLAVIO_INSTAGRAM}
+                href="https://x.com/DtFlavioRobatto"
                 target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-3 py-2 text-slate-700 hover:bg-slate-50"
-                aria-label="Instagram de Flavio Robatto"
+                rel="noopener noreferrer"
+                className="group flex items-center gap-4 p-3 rounded-lg hover:bg-bone/5 transition-colors"
               >
-                <Instagram className="h-4 w-4" />
-                <span>Instagram</span>
+                <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-gold-500/10 flex items-center justify-center text-gold-500 group-hover:bg-gold-500 group-hover:text-ink-900 transition-colors">
+                  <Twitter size={20} />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="font-medium text-bone group-hover:text-gold-500 transition-colors">
+                    X / Twitter
+                  </div>
+                  <div className="text-sm text-bone/50">@DtFlavioRobatto</div>
+                </div>
               </a>
             </div>
           </div>
         </div>
 
-        {/* nota breve */}
-        <p className="mt-3 text-xs text-slate-500">
-          Responderemos a la brevedad.
-        </p>
+        {/* CTA final */}
+        <div className="mt-16 max-w-2xl">
+          <p className="text-bone/60 leading-relaxed">
+            Para consultas profesionales, propuestas de colaboración o información
+            sobre el cuerpo técnico, escribinos directamente al email o seguinos
+            en redes para contenido y novedades.
+          </p>
+        </div>
       </div>
     </section>
   );

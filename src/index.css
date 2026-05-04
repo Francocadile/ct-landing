@@ -2,26 +2,38 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ===== Base (tipos, colores, suavizado, scroll) ===== */
 @layer base {
   html { scroll-behavior: smooth; }
-  body { @apply font-sans text-slate-800 bg-white; }
-  h1,h2,h3,h4 { @apply font-display tracking-tight text-slate-900; }
-  a { @apply transition-colors; }
+  body {
+    @apply font-sans bg-ink-900 text-bone-100 antialiased;
+    font-feature-settings: "ss01", "cv11";
+  }
+  h1, h2, h3, h4 {
+    @apply font-display tracking-tighter text-bone;
+  }
+  ::selection { background: #D4A24C; color: #0A0A0B; }
 }
 
-/* ===== Component tokens (por si querés usar) ===== */
 @layer components {
-  .card { @apply rounded-2xl border border-slate-200 bg-white shadow-card; }
-  .section { @apply border-b bg-gradient-to-b from-slate-50 to-white; }
-  .btn-primary { @apply inline-flex items-center gap-2 rounded-lg bg-blue-600 px-4 py-2 font-medium text-white hover:bg-blue-700; }
-  .btn-outline { @apply inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-4 py-2 text-slate-700 hover:bg-slate-50; }
-}
-
-/* ===== Utilities para “aura de campeón” (sutil) ===== */
-@layer utilities {
-  .aura { @apply ring-1 ring-amber-100; }
-  .aura-bg {
-    background: radial-gradient(1200px 1200px at 50% -10%, rgba(251,191,36,.12), transparent 60%);
+  .container-x { @apply max-w-[1280px] mx-auto px-5 md:px-8; }
+  .eyebrow {
+    @apply text-[11px] uppercase tracking-[0.2em] text-gold-500 font-semibold font-sans;
+  }
+  .display-1 {
+    @apply font-display font-black tracking-tightest leading-[0.92];
+  }
+  .display-2 {
+    @apply font-display font-bold tracking-tighter leading-[1];
+  }
+  .btn-gold {
+    @apply inline-flex items-center gap-2 rounded-full bg-gold-500 text-ink-900
+           px-6 py-3 font-semibold hover:bg-gold-400 transition-colors;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 rounded-full border border-bone/20
+           px-6 py-3 font-medium text-bone hover:bg-bone/5 transition-colors;
+  }
+  .card-dark {
+    @apply rounded-2xl bg-ink-700 border border-bone/10 p-6 md:p-8;
   }
 }

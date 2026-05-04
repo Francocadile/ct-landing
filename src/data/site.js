@@ -1,6 +1,6 @@
 // src/data/site.js
 export const SITE = {
-  name: "Cuerpo Técnico",
+  name: "Flavio Robatto",
   slogan: "Modelo de Juego — Juego de Posición",
   email: "contacto@tudominio.com",
   phone: "+54 9 261 000 0000", // formato libre, sólo para mostrar

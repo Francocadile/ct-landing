@@ -5,8 +5,8 @@
 // =======================
 export const RECORDS = [
   {
-    year: 2025,
-    title: "Campeón Torneo de Verano",
+    year: "2025 - 2026",
+    title: "Bicampeón Torneo de Verano",
     club: "Club Bolívar",
     role: "Entrenador",
     logo: "/img/clubs/bolivar.png",
@@ -123,12 +123,12 @@ export const SEASONS = [
     logo: "/img/clubs/bolivar.png",
     pct: 71,
     stats: {
-      pj: 8,
-      v: 5,
-      e: 2,
-      d: 1,
-      gf: 20,
-      gc: 10,
+      pj: 13,
+      v: 7,
+      e: 3,
+      d: 3,
+      gf: 29,
+      gc: 16,
     },
     notes: ["DG: +10", "Prom: 2.5 gol/p", "1 título 🏆"],
   },

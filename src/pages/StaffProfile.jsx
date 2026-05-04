@@ -1,105 +1,128 @@
-// src/pages/StaffProfile.jsx
-import React from "react";
-import { useParams } from "react-router-dom";
-import { STAFF_PAGES } from "../data/staff-pages.js";
+import { useParams, Link } from "react-router-dom";
+import { STAFF_PAGES } from "../data/staff-pages";
+import { ArrowLeft } from "lucide-react";
 
 export default function StaffProfile() {
   const { slug } = useParams();
-  const person = STAFF_PAGES[slug];
+  const member = STAFF_PAGES[slug];
 
-  if (!person) {
+  if (!member) {
     return (
-      <main className="mx-auto max-w-6xl px-4 py-16">
-        <h1 className="text-2xl font-semibold">Perfil no encontrado</h1>
-        <a
-          href="/#staff"
-          className="mt-4 inline-block rounded border px-3 py-2 text-slate-700 hover:bg-slate-50"
-        >
-          ← Volver al Staff
-        </a>
-      </main>
+      <div className="min-h-screen bg-ink-900 flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="font-display text-4xl font-bold text-bone mb-4">
+            Miembro no encontrado
+          </h1>
+          <Link to="/#staff" className="btn-ghost">
+            <ArrowLeft size={20} />
+            Volver al Staff
+          </Link>
+        </div>
+      </div>
     );
   }
 
   return (
-    <main className="bg-white">
-      <section className="border-b">
-        <div className="mx-auto max-w-6xl px-4 py-12">
-          <a
-            href="/#staff"
-            className="text-sm text-slate-600 hover:text-slate-900"
-          >
-            ← Volver al Staff
-          </a>
+    <div className="min-h-screen bg-ink-900">
+      <div className="container-x py-16 md:py-24">
+        {/* Back link */}
+        <Link
+          to="/#staff"
+          className="inline-flex items-center gap-2 text-bone/60 hover:text-gold-500 transition-colors mb-12 group"
+        >
+          <ArrowLeft size={20} className="group-hover:-translate-x-1 transition-transform" />
+          <span>Volver al Staff</span>
+        </Link>
 
-          <div className="mt-4 grid gap-6 md:grid-cols-[180px,1fr]">
-            <img
-              src={person.photo}
-              alt={person.name}
-              className="h-44 w-44 rounded-xl border bg-slate-50 object-cover"
-              loading="lazy"
-            />
-            <div>
-              <h1 className="text-3xl font-bold tracking-tight">
-                {person.name}
+        <div className="max-w-4xl">
+          {/* Header */}
+          <div className="flex flex-col md:flex-row gap-8 mb-12 items-start">
+            <div className="flex-shrink-0">
+              <div className="w-44 h-44 rounded-2xl overflow-hidden bg-ink-800 ring-1 ring-bone/10">
+                <img
+                  src={member.photo}
+                  alt={member.name}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </div>
+
+            <div className="flex-1 min-w-0">
+              <h1 className="font-display text-4xl md:text-5xl font-bold text-bone leading-tight mb-3">
+                {member.name}
               </h1>
-              <p className="mt-1 text-slate-700">{person.role}</p>
-              {person.flags?.length ? (
-                <div className="mt-2 flex gap-2">
-                  {person.flags.map((f, i) => (
-                    <img
-                      key={i}
-                      src={f}
-                      alt="bandera"
-                      className="h-4 w-6 rounded-[2px] border object-cover"
-                    />
-                  ))}
-                </div>
-              ) : null}
+              <div className="flex items-center gap-3 mb-4">
+                <div className="text-lg text-bone/70">{member.role}</div>
+                {member.flags && member.flags.length > 0 && (
+                  <div className="flex gap-2">
+                    {member.flags.map((flag, i) => (
+                      <img
+                        key={i}
+                        src={flag}
+                        alt="bandera"
+                        className="w-6 h-4 object-cover rounded shadow-sm"
+                      />
+                    ))}
+                  </div>
+                )}
+              </div>
             </div>
           </div>
 
-          {person.bio?.length ? (
-            <div className="prose prose-sm mt-6 max-w-none text-slate-700">
-              {person.bio.map((p, i) => (
-                <p key={i}>{p}</p>
+          {/* Bio */}
+          {member.bio && member.bio.length > 0 && (
+            <div className="mb-12">
+              {member.bio.map((paragraph, i) => (
+                <p key={i} className="text-bone/70 leading-relaxed mb-4 text-lg">
+                  {paragraph}
+                </p>
               ))}
             </div>
-          ) : null}
+          )}
 
-          {person.roles?.length ? (
-            <div className="mt-6">
-              <h2 className="text-lg font-semibold">Funciones</h2>
-              <div className="mt-2 flex flex-wrap gap-2">
-                {person.roles.map((r, i) => (
-                  <span
+          {/* Funciones */}
+          {member.roles && member.roles.length > 0 && (
+            <div className="mb-12">
+              <h2 className="text-xs uppercase tracking-[0.2em] text-gold-500 mb-5 font-semibold">
+                Funciones
+              </h2>
+              <div className="flex flex-wrap gap-3">
+                {member.roles.map((role, i) => (
+                  <div
                     key={i}
-                    className="rounded-full border bg-slate-50 px-3 py-1 text-sm text-slate-700"
+                    className="px-4 py-2 rounded-full bg-ink-800 border border-bone/10 text-bone/80 text-sm"
                   >
-                    {r}
-                  </span>
+                    {role}
+                  </div>
                 ))}
               </div>
             </div>
-          ) : null}
+          )}
 
-          {person.clubs?.length ? (
-            <div className="mt-8">
-              <h2 className="text-lg font-semibold">Clubes</h2>
-              <div className="mt-3 flex flex-wrap items-center gap-4">
-                {person.clubs.map((c, i) => (
-                  <img
+          {/* Clubes */}
+          {member.clubs && member.clubs.length > 0 && (
+            <div>
+              <h2 className="text-xs uppercase tracking-[0.2em] text-gold-500 mb-5 font-semibold">
+                Clubes
+              </h2>
+              <div className="flex flex-wrap gap-4">
+                {member.clubs.map((club, i) => (
+                  <div
                     key={i}
-                    src={c}
-                    alt="club"
-                    className="h-10 w-10 rounded border bg-white p-1 object-contain"
-                  />
+                    className="w-12 h-12 rounded-lg bg-ink-800 border border-bone/10 flex items-center justify-center p-2 hover:border-gold-500/30 transition-colors"
+                  >
+                    <img
+                      src={club}
+                      alt="club logo"
+                      className="w-full h-full object-contain opacity-90"
+                    />
+                  </div>
                 ))}
               </div>
             </div>
-          ) : null}
+          )}
         </div>
-      </section>
-    </main>
+      </div>
+    </div>
   );
 }
