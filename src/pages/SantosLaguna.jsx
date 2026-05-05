@@ -386,7 +386,7 @@ function DiagnosticoCompletoSection() {
               <div className="space-y-4">
                 {[
                   { label: "Conversión de gol", val: "5.7%", desc: "Muy por debajo del promedio liga (12-15%)" },
-                  { label: "Goles recibidos en área propia", val: "85%", desc: "No siguen al hombre, les ganan la espalda" },
+                  { label: "Pocos goles anotados", val: "1.1", desc: "Solo 20 goles en 18 partidos (goles/partido)" },
                 ].map((item) => (
                   <div key={item.label} className="p-4 bg-gold-500/5 border border-gold-500/20 rounded-xl">
                     <div className="flex justify-between items-center mb-2">
