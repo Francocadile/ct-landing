@@ -112,11 +112,11 @@ function HeroSection() {
             transition={{ duration: 0.8, delay: 0.6 }}
             className="relative group"
           >
-            <div className="absolute -inset-1 bg-gradient-to-r from-gold-600 to-gold-800 rounded-3xl blur opacity-30 group-hover:opacity-50 transition duration-300" />
-            <div className="relative bg-gradient-to-br from-gold-900/50 to-gold-950/70 border border-gold-500/40 rounded-3xl p-8 backdrop-blur-sm">
+            <div className="absolute -inset-1 bg-gradient-to-r from-green-600 to-green-800 rounded-3xl blur opacity-30 group-hover:opacity-50 transition duration-300" />
+            <div className="relative bg-gradient-to-br from-green-900/50 to-green-950/70 border border-green-500/40 rounded-3xl p-8 backdrop-blur-sm">
               <div className="flex items-start justify-between mb-6">
                 <div>
-                  <div className="text-gold-400 text-xs uppercase tracking-[0.3em] font-bold mb-2">
+                  <div className="text-green-400 text-xs uppercase tracking-[0.3em] font-bold mb-2">
                     Metodología Integrada Estructural
                   </div>
                   <h2 className="font-display text-3xl sm:text-4xl font-bold text-bone">
@@ -124,7 +124,7 @@ function HeroSection() {
                   </h2>
                 </div>
                 <div className="text-right">
-                  <div className="font-display text-6xl sm:text-7xl font-black text-gold-500 leading-none">1</div>
+                  <div className="font-display text-6xl sm:text-7xl font-black text-green-500 leading-none">1</div>
                   <div className="text-bone/60 text-sm mt-1">Campeón</div>
                 </div>
               </div>
@@ -134,9 +134,9 @@ function HeroSection() {
                   { label: "Top 5 mundial", value: "273" },
                   { label: "Títulos", value: "4" },
                 ].map((stat) => (
-                  <div key={stat.label} className="bg-gold-500/10 rounded-xl p-3 text-center">
+                  <div key={stat.label} className="bg-green-500/10 rounded-xl p-3 text-center">
                     <div className="text-bone/60 text-xs mb-1">{stat.label}</div>
-                    <div className="font-display text-xl sm:text-2xl font-bold text-gold-400">{stat.value}</div>
+                    <div className="font-display text-xl sm:text-2xl font-bold text-green-400">{stat.value}</div>
                   </div>
                 ))}
               </div>
