@@ -64,21 +64,21 @@ function HeroSection() {
 
         {/* Comparativa apilada (mobile-first) */}
         <div className="max-w-5xl mx-auto space-y-8">
-          {/* Santos 2026 - colores institucionales */}
+          {/* Santos 2026 - ROJO CRISIS */}
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
             className="relative group"
           >
-            <div className="absolute -inset-1 bg-gradient-to-r from-santos-green to-emerald-700 rounded-3xl blur opacity-20 group-hover:opacity-40 transition duration-300" />
-            <div className="relative bg-gradient-to-br from-santos-green/30 to-emerald-950/50 border border-santos-green/40 rounded-3xl p-8 backdrop-blur-sm">
+            <div className="absolute -inset-1 bg-gradient-to-r from-red-600 to-red-800 rounded-3xl blur opacity-20 group-hover:opacity-40 transition duration-300" />
+            <div className="relative bg-gradient-to-br from-red-900/50 to-red-950/70 border border-red-500/30 rounded-3xl p-8 backdrop-blur-sm">
               <div className="absolute top-4 right-4 opacity-10">
                 <img src="/assets/santos-escudo.png" alt="Santos" className="w-16 h-16 object-contain" />
               </div>
               <div className="flex items-start justify-between mb-6">
                 <div>
-                  <div className="text-santos-gold text-xs uppercase tracking-[0.3em] font-bold mb-2">
+                  <div className="text-red-400 text-xs uppercase tracking-[0.3em] font-bold mb-2">
                     Situación Actual
                   </div>
                   <h2 className="font-display text-3xl sm:text-4xl font-bold text-bone">
@@ -86,7 +86,7 @@ function HeroSection() {
                   </h2>
                 </div>
                 <div className="text-right">
-                  <div className="font-display text-6xl sm:text-7xl font-black text-santos-gold leading-none">18</div>
+                  <div className="font-display text-6xl sm:text-7xl font-black text-red-500 leading-none">18</div>
                   <div className="text-bone/60 text-sm mt-1">de 18</div>
                 </div>
               </div>
@@ -96,9 +96,9 @@ function HeroSection() {
                   { label: "Goles/pj", value: "2.2" },
                   { label: "Conversión", value: "5.7%" },
                 ].map((stat) => (
-                  <div key={stat.label} className="bg-santos-green/20 rounded-xl p-3 text-center border border-santos-green/30">
+                  <div key={stat.label} className="bg-red-500/10 rounded-xl p-3 text-center border border-red-500/20">
                     <div className="text-bone/60 text-xs mb-1">{stat.label}</div>
-                    <div className="font-display text-xl sm:text-2xl font-bold text-santos-gold">{stat.value}</div>
+                    <div className="font-display text-xl sm:text-2xl font-bold text-red-400">{stat.value}</div>
                   </div>
                 ))}
               </div>
