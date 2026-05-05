@@ -386,7 +386,7 @@ function DiagnosticoCompletoSection() {
               <div className="space-y-4">
                 {[
                   { label: "Conversión de gol", val: "5.7%", desc: "Muy por debajo del promedio liga (12-15%)" },
-                  { label: "Finalizaciones área", val: "85%", desc: "Dependen del juego directo, falta creación" },
+                  { label: "Goles recibidos en área propia", val: "85%", desc: "No siguen al hombre, les ganan la espalda" },
                 ].map((item) => (
                   <div key={item.label} className="p-4 bg-gold-500/5 border border-gold-500/20 rounded-xl">
                     <div className="flex justify-between items-center mb-2">
@@ -983,7 +983,7 @@ function SolucionSection() {
   const comparaciones = [
     { problema: "Reciben centros al segundo palo constantemente", solucion: "Equipo corto + presión alta → el rival no centra", delay: 0 },
     { problema: "Defienden bajo + 2.2 goles recibidos por partido", solucion: "Jugar lejos del arco → defender en campo rival", delay: 0.15 },
-    { problema: "Dependen del juego directo (85% finalizaciones en área)", solucion: "Estructuras + ventajas → generar desde construcción", delay: 0.3 },
+    { problema: "85% de goles recibidos dentro del área propia (les ganan la espalda)", solucion: "Estructuras + ventajas → generar desde construcción", delay: 0.3 },
   ];
 
   return (
