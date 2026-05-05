@@ -169,7 +169,7 @@ function HeroSection() {
         >
           <div className="p-8 md:p-10 bg-gradient-to-br from-santos-gold/10 to-santos-gold/5 border border-santos-gold/20 rounded-3xl backdrop-blur-sm">
             <p className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-bone leading-tight">
-              La misma metodología que transformó a Bolívar<br className="hidden sm:block" />
+              La metodología que funcionó en Bolívar, adaptada al contexto de Santos<br className="hidden sm:block" />
               <span className="text-santos-gold">puede transformar a Santos</span>
             </p>
           </div>
@@ -996,7 +996,7 @@ function PerfilGanadorSection() {
                   <h5 className="text-bone/80 font-semibold mb-3 text-sm">EXPERIENCIA COMPETITIVA</h5>
                   <ul className="space-y-2 text-bone/70 text-xs">
                     {[
-                      ["red", "Sin liguillas en Santos (nunca clasificó)"],
+                      ["red", "Sin liguillas en Santos (no ha clasificado)"],
                       ["yellow", "Copa Sudamericana 2023 (Newell's): 7 partidos, eliminados octavos"],
                       ["red", "+100 partidos con Newell's, pero sin finales por títulos"],
                       ["red", "Leagues Cup: participaciones breves sin cuartos/semis"],
@@ -1395,7 +1395,7 @@ function SolucionSection() {
           </h3>
           <div className="grid md:grid-cols-3 gap-6">
             {[
-              { label: "Centros recibidos", val: "-40%", sub: "Reducción" },
+              { label: "Centros recibidos", val: "-40%", sub: "Objetivo de reducción" },
               { label: "Tiempo defendiendo", val: "-35%", sub: "Reducción" },
               { label: "Tiempo en campo rival", val: "+50%", sub: "Aumento" },
             ].map((s) => (
@@ -1432,11 +1432,11 @@ function PlanImplementacionSection() {
       color: "gold",
       icon: "🛡️",
       tasks: ["Reducir goles de centros", "Posicionamiento defensivo", "Presión coordinada", "Balón parado"],
-      deliverable: "-40% goles de centros",
+      deliverable: "Objetivo: -40% goles de centros",
     },
     {
       weeks: "6-12",
-      title: "Modelo en Marcha",
+      title: "Primeras bases del modelo",
       color: "green",
       icon: "⚽",
       tasks: ["Microdosificación integrada", "Posesión + presión", "Automatización principios", "Evaluación continua"],
@@ -1468,7 +1468,7 @@ function PlanImplementacionSection() {
             <span className="text-blue-400">impacto inmediato</span>
           </h2>
           <p className="text-bone/60 text-lg md:text-xl max-w-3xl mx-auto">
-            Los primeros 90 días: de la teoría a resultados medibles
+            Los primeros 90 días: de la teoría a indicadores medibles
           </p>
         </motion.div>
 
@@ -1528,7 +1528,7 @@ function PlanImplementacionSection() {
           </h3>
           <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
             {[
-              { title: "Defensivo", color: "blue", stats: [{ label: "Goles centros", value: "-40%" }, { label: "Ingresos área", value: "-30%" }] },
+              { title: "Defensivo", color: "blue", stats: [{ label: "Goles centros (objetivo)", value: "-40%" }, { label: "Ingresos área", value: "-30%" }] },
               { title: "Ofensivo", color: "gold", stats: [{ label: "Campo rival", value: "+50%" }, { label: "Conversión", value: "12%" }] },
               { title: "Posicional", color: "green", stats: [{ label: "Tabla", value: "Top 12" }, { label: "Meta", value: "Liguilla" }] },
             ].map((cat, idx) => {
