@@ -1017,6 +1017,288 @@ function PerfilGanadorSection() {
             </div>
           </div>
 
+          {/* Perfiles Competitivos - Pilares de la Plantilla */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6 }}
+              className="card-dark border-l-4 border-green-500 mb-12 mt-16"
+            >
+              <div className="flex items-center gap-4 mb-8">
+                <div className="w-14 h-14 rounded-xl bg-green-500/20 flex items-center justify-center text-2xl">
+                  ✓
+                </div>
+                <div>
+                  <h3 className="font-display text-3xl font-bold text-bone mb-2">
+                    Perfiles Competitivos
+                  </h3>
+                  <p className="text-bone/60 text-base">
+                    Pilares de la plantilla con mentalidad ganadora y trayectoria comprobada
+                  </p>
+                </div>
+              </div>
+
+              <p className="text-bone/70 mb-8 leading-relaxed">
+                Jugadores que demuestran el perfil competitivo necesario: experiencia en equipos grandes,
+                procesos internacionales, mentalidad de títulos y adaptabilidad probada a modelos de alta exigencia.
+              </p>
+
+              {/* Lucas Di Yorio */}
+              <div className="mb-8 p-6 bg-green-500/5 border border-green-500/20 rounded-xl">
+                <div className="flex items-center justify-between mb-4">
+                  <div>
+                    <h4 className="font-display text-2xl font-bold text-bone">Lucas Di Yorio</h4>
+                    <p className="text-bone/50 text-sm">Delantero • Contrato hasta diciembre 2028</p>
+                  </div>
+                  <span className="px-4 py-2 rounded-full bg-green-500/20 text-green-400 text-sm font-semibold border border-green-500/30">
+                    Pilar ofensivo
+                  </span>
+                </div>
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <h5 className="font-display font-bold text-bone mb-3 flex items-center gap-2">
+                      <span className="text-green-500">✓</span> Trayectoria competitiva
+                    </h5>
+                    <ul className="space-y-2 text-bone/70 text-sm">
+                      {[
+                        ["Universidad de Chile:", "Equipo grande con exigencia de títulos"],
+                        ["Atlético Paranaense (Brasil):", "Liga competitiva, mentalidad internacional"],
+                        ["9 de área:", "Perfil definido, sabe resolver bajo presión"],
+                      ].map(([bold, text]) => (
+                        <li key={bold} className="flex items-start gap-2">
+                          <span className="text-green-500 mt-1">•</span>
+                          <span><strong>{bold}</strong> {text}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div>
+                    <h5 className="font-display font-bold text-bone mb-3 flex items-center gap-2">
+                      <span className="text-green-500">✓</span> Cualidades clave
+                    </h5>
+                    <ul className="space-y-2 text-bone/70 text-sm">
+                      {[
+                        "Experiencia en equipos con objetivos claros",
+                        "Adaptabilidad a ligas competitivas (Chile, Brasil)",
+                        "Mentalidad de definidor, acostumbrado a presión de gol",
+                      ].map((b) => (
+                        <li key={b} className="flex items-start gap-2">
+                          <span className="text-green-500 mt-1">•</span>
+                          <span>{b}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* Ezequiel Bullaude */}
+              <div className="mb-8 p-6 bg-green-500/5 border border-green-500/20 rounded-xl">
+                <div className="flex items-center justify-between mb-4">
+                  <div>
+                    <h4 className="font-display text-2xl font-bold text-bone">Ezequiel Bullaude</h4>
+                    <p className="text-bone/50 text-sm">Mediocampista</p>
+                  </div>
+                  <span className="px-4 py-2 rounded-full bg-green-500/20 text-green-400 text-sm font-semibold border border-green-500/30">
+                    Liderazgo técnico
+                  </span>
+                </div>
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <h5 className="font-display font-bold text-bone mb-3 flex items-center gap-2">
+                      <span className="text-green-500">✓</span> Trayectoria competitiva
+                    </h5>
+                    <ul className="space-y-2 text-bone/70 text-sm">
+                      {[
+                        ["Godoy Cruz:", "Figura del equipo, rendimiento destacado"],
+                        ["Boca Juniors:", "Fichado por equipo grande argentino"],
+                        ["Europa (Holanda):", "Fortuna Sittard y Feyenoord (equipo grande)"],
+                      ].map(([bold, text]) => (
+                        <li key={bold} className="flex items-start gap-2">
+                          <span className="text-green-500 mt-1">•</span>
+                          <span><strong>{bold}</strong> {text}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div>
+                    <h5 className="font-display font-bold text-bone mb-3 flex items-center gap-2">
+                      <span className="text-green-500">✓</span> Cualidades clave
+                    </h5>
+                    <ul className="space-y-2 text-bone/70 text-sm">
+                      {[
+                        "Experiencia internacional (Sudamérica + Europa)",
+                        "Adaptación a diferentes contextos y niveles de exigencia",
+                        "Reconocimiento en liga argentina (fichaje Boca = validación)",
+                      ].map((b) => (
+                        <li key={b} className="flex items-start gap-2">
+                          <span className="text-green-500 mt-1">•</span>
+                          <span>{b}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* Bruno Amione */}
+              <div className="mb-8 p-6 bg-green-500/5 border border-green-500/20 rounded-xl">
+                <div className="flex items-center justify-between mb-4">
+                  <div>
+                    <h4 className="font-display text-2xl font-bold text-bone">Bruno Amione</h4>
+                    <p className="text-bone/50 text-sm">Defensa • 1 año y medio más de contrato</p>
+                  </div>
+                  <span className="px-4 py-2 rounded-full bg-green-500/20 text-green-400 text-sm font-semibold border border-green-500/30">
+                    Formación de élite
+                  </span>
+                </div>
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <h5 className="font-display font-bold text-bone mb-3 flex items-center gap-2">
+                      <span className="text-green-500">✓</span> Trayectoria competitiva
+                    </h5>
+                    <ul className="space-y-2 text-bone/70 text-sm">
+                      {[
+                        ["Italia:", "Experiencia en fútbol europeo de alta exigencia"],
+                        ["Belgrano:", "Rol importante en equipo competitivo argentino"],
+                        ["Selecciones juveniles Argentina:", "Todos los procesos formativos"],
+                      ].map(([bold, text]) => (
+                        <li key={bold} className="flex items-start gap-2">
+                          <span className="text-green-500 mt-1">•</span>
+                          <span><strong>{bold}</strong> {text}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div>
+                    <h5 className="font-display font-bold text-bone mb-3 flex items-center gap-2">
+                      <span className="text-green-500">✓</span> Cualidades clave
+                    </h5>
+                    <ul className="space-y-2 text-bone/70 text-sm">
+                      {[
+                        "Formación de élite en selecciones argentinas",
+                        "Mentalidad competitiva desde juveniles hasta profesional",
+                        "Experiencia internacional: Italia + Argentina",
+                      ].map((b) => (
+                        <li key={b} className="flex items-start gap-2">
+                          <span className="text-green-500 mt-1">•</span>
+                          <span>{b}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* Carlos Gruezo */}
+              <div className="mb-8 p-6 bg-green-500/5 border border-green-500/20 rounded-xl">
+                <div className="flex items-center justify-between mb-4">
+                  <div>
+                    <h4 className="font-display text-2xl font-bold text-bone">Carlos Gruezo</h4>
+                    <p className="text-bone/50 text-sm">Mediocampista • Contrato hasta finales de 2025</p>
+                  </div>
+                  <span className="px-4 py-2 rounded-full bg-green-500/20 text-green-400 text-sm font-semibold border border-green-500/30">
+                    Experiencia mundialista
+                  </span>
+                </div>
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <h5 className="font-display font-bold text-bone mb-3 flex items-center gap-2">
+                      <span className="text-green-500">✓</span> Trayectoria competitiva
+                    </h5>
+                    <ul className="space-y-2 text-bone/70 text-sm">
+                      {[
+                        ["Alemania:", "Liga top europea, exigencia máxima"],
+                        ["Barcelona (Ecuador):", "Equipo grande sudamericano"],
+                        ["MLS + Liga MX:", "Rol importante en ambas ligas"],
+                        ["Selección Ecuador:", "2 Copas del Mundo disputadas"],
+                      ].map(([bold, text]) => (
+                        <li key={bold} className="flex items-start gap-2">
+                          <span className="text-green-500 mt-1">•</span>
+                          <span><strong>{bold}</strong> {text}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div>
+                    <h5 className="font-display font-bold text-bone mb-3 flex items-center gap-2">
+                      <span className="text-green-500">✓</span> Cualidades clave
+                    </h5>
+                    <ul className="space-y-2 text-bone/70 text-sm">
+                      {[
+                        "Experiencia mundialista: mentalidad de competencias mayores",
+                        "Trayectoria internacional diversa (Europa, Sudamérica, Norteamérica)",
+                        "Liderazgo natural: referente de selección y equipos",
+                      ].map((b) => (
+                        <li key={b} className="flex items-start gap-2">
+                          <span className="text-green-500 mt-1">•</span>
+                          <span>{b}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* Diego González */}
+              <div className="mb-8 p-6 bg-green-500/5 border border-green-500/20 rounded-xl">
+                <div className="flex items-center justify-between mb-4">
+                  <div>
+                    <h4 className="font-display text-2xl font-bold text-bone">Diego González</h4>
+                    <p className="text-bone/50 text-sm">Mediocampista ofensivo</p>
+                  </div>
+                  <span className="px-4 py-2 rounded-full bg-green-500/20 text-green-400 text-sm font-semibold border border-green-500/30">
+                    En crecimiento
+                  </span>
+                </div>
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <h5 className="font-display font-bold text-bone mb-3 flex items-center gap-2">
+                      <span className="text-green-500">✓</span> Rendimiento actual destacado
+                    </h5>
+                    <ul className="space-y-2 text-bone/70 text-sm">
+                      {[
+                        ["Atlas Clausura 2026:", "14 de 18 partidos disputados"],
+                        ["11 titularidades:", "Protagonismo constante en equipo competitivo"],
+                        ["1 gol + 2 asistencias:", "Participación ofensiva efectiva"],
+                        ["Selección Paraguay:", "4 convocatorias fines 2025, 190 min, 2 titular"],
+                      ].map(([bold, text]) => (
+                        <li key={bold} className="flex items-start gap-2">
+                          <span className="text-green-500 mt-1">•</span>
+                          <span><strong>{bold}</strong> {text}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div>
+                    <h5 className="font-display font-bold text-bone mb-3 flex items-center gap-2">
+                      <span className="text-green-500">✓</span> Cualidades clave
+                    </h5>
+                    <ul className="space-y-2 text-bone/70 text-sm">
+                      {[
+                        "Momento ascendente: convocatorias selección + titularidad Atlas",
+                        "Regularidad probada: 11 titularidades en torneo competitivo",
+                        "Mentalidad internacional: experiencia en selección absoluta",
+                      ].map((b) => (
+                        <li key={b} className="flex items-start gap-2">
+                          <span className="text-green-500 mt-1">•</span>
+                          <span>{b}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* Conclusión */}
+              <div className="mt-8 p-6 bg-green-500/10 border border-green-500/30 rounded-xl">
+                <p className="text-bone/80 leading-relaxed text-center">
+                  <span className="font-display font-bold text-green-400">Estos 5 jugadores representan la base competitiva de la plantilla:</span> han disputado títulos, jugado en ligas exigentes, y demuestran el perfil mental necesario para implementar un modelo de alta intensidad desde el primer día.
+                </p>
+              </div>
+            </motion.div>
+
           {/* Plan de acción */}
           <div className="max-w-4xl mx-auto p-8 bg-gradient-to-br from-gold-600/20 to-gold-700/10 border-2 border-gold-500/40 rounded-3xl text-center">
             <h4 className="font-display text-2xl font-bold text-bone mb-6">Plan de Acción: Semanas 1-6</h4>
