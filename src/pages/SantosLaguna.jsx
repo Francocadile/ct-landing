@@ -14,190 +14,146 @@ export default function SantosLaguna() {
 }
 
 // ═══════════════════════════════════════════
-// HERO CON VS ANIMADO + SCROLL INTERACTIVO
+// HERO MODERNO - MOBILE FIRST
 // ═══════════════════════════════════════════
 
 function HeroSection() {
-  const containerRef = useRef(null);
+  const sectionRef = useRef(null);
   const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end start"]
+    target: sectionRef,
+    offset: ["start start", "end start"],
   });
 
-  const titleY = useTransform(scrollYProgress, [0, 1], [0, -100]);
-  const cardsY = useTransform(scrollYProgress, [0, 1], [0, -200]);
-  const vsScale = useTransform(scrollYProgress, [0, 0.5, 1], [1, 1.2, 0.8]);
-  const vsOpacity = useTransform(scrollYProgress, [0, 0.3, 0.7], [1, 1, 0]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+  const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.95]);
 
   return (
-    <section ref={containerRef} className="relative min-h-[200vh]">
-      <div className="sticky top-0 h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-ink-950 to-red-950/20">
-        <div className="container-x relative z-10">
-          {/* Título con parallax */}
-          <motion.div
-            style={{ y: titleY }}
-            className="text-center mb-16"
-          >
-            <motion.h1
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.2 }}
-              className="font-display text-5xl md:text-7xl font-black text-bone mb-4"
-            >
-              Proyecto Santos Laguna
-            </motion.h1>
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 1, delay: 0.5 }}
-              className="text-gold-500 text-2xl md:text-3xl font-display font-bold"
-            >
-              2026
-            </motion.p>
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 1, delay: 0.7 }}
-              className="text-bone/60 text-xl mt-4"
-            >
-              De la crisis al equipo competitivo
-            </motion.p>
-          </motion.div>
+    <section ref={sectionRef} className="relative min-h-screen flex items-center justify-center py-20 overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-b from-ink-950 via-red-950/30 to-ink-950" />
 
-          {/* Grid con VS en el centro */}
-          <motion.div
-            style={{ y: cardsY }}
-            className="grid lg:grid-cols-[1fr_auto_1fr] gap-8 items-center max-w-7xl mx-auto"
-          >
-            {/* SANTOS 2026 */}
-            <motion.div
-              initial={{ opacity: 0, x: -100 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 1, delay: 0.8 }}
-              className="relative group"
-            >
-              <div className="absolute -inset-1 bg-gradient-to-r from-red-600 to-red-800 rounded-3xl blur opacity-30 group-hover:opacity-50 transition duration-500" />
-              <div className="relative bg-gradient-to-br from-red-900/40 to-red-950/60 border-2 border-red-500/30 rounded-3xl p-8 md:p-10 hover:border-red-500/60 transition-all duration-500">
-                <div className="text-red-400 text-xs uppercase tracking-[0.3em] font-bold mb-6">
-                  Situación Actual
-                </div>
-                <h2 className="font-display text-3xl md:text-4xl font-bold text-bone mb-8">
-                  Santos Laguna 2026
-                </h2>
-                <div className="text-center mb-8">
-                  <motion.div
-                    initial={{ scale: 0.5 }}
-                    animate={{ scale: 1 }}
-                    transition={{ duration: 0.8, delay: 1.2 }}
-                    className="font-display text-[8rem] md:text-[10rem] font-black text-red-500 leading-none"
-                  >
-                    18
-                  </motion.div>
-                  <div className="text-bone/60 text-lg">de 18 equipos</div>
-                </div>
-                <div className="space-y-3">
-                  {[
-                    { label: "Efectividad", value: "19.6%" },
-                    { label: "Goles recibidos/pj", value: "2.2" },
-                    { label: "Conversión", value: "5.7%" },
-                  ].map((stat, idx) => (
-                    <motion.div
-                      key={stat.label}
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.5, delay: 1.4 + idx * 0.1 }}
-                      className="flex justify-between items-center p-4 bg-red-500/10 rounded-xl border border-red-500/20 hover:bg-red-500/20 transition-colors"
-                    >
-                      <span className="text-bone/80 text-sm">{stat.label}</span>
-                      <span className="font-display text-2xl font-bold text-red-400">{stat.value}</span>
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
-            </motion.div>
+      <motion.div style={{ opacity, scale }} className="container-x relative z-10">
+        {/* Título principal */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-16"
+        >
+          <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-bone mb-4">
+            Proyecto Santos Laguna
+          </h1>
+          <p className="text-gold-500 text-xl sm:text-2xl md:text-3xl font-display font-bold mb-4">
+            2026
+          </p>
+          <p className="text-bone/60 text-base sm:text-lg md:text-xl">
+            De la crisis al equipo competitivo
+          </p>
+        </motion.div>
 
-            {/* VS GIGANTE ANIMADO */}
-            <motion.div
-              style={{ scale: vsScale, opacity: vsOpacity }}
-              className="hidden lg:flex items-center justify-center"
-            >
-              <div className="relative">
-                <motion.div
-                  animate={{ rotate: [0, 5, -5, 0] }}
-                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                  className="font-display text-8xl font-black text-gold-500 px-8"
-                  style={{ textShadow: "0 0 40px rgba(212, 162, 76, 0.5)" }}
-                >
-                  VS
-                </motion.div>
-                <div className="absolute inset-0 bg-gold-500/20 blur-3xl -z-10" />
-              </div>
-            </motion.div>
-
-            {/* BOLÍVAR - METODOLOGÍA */}
-            <motion.div
-              initial={{ opacity: 0, x: 100 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 1, delay: 1 }}
-              className="relative group"
-            >
-              <div className="absolute -inset-1 bg-gradient-to-r from-gold-600 to-gold-800 rounded-3xl blur opacity-40 group-hover:opacity-60 transition duration-500" />
-              <div className="relative bg-gradient-to-br from-gold-900/40 to-gold-950/60 border-2 border-gold-500/40 rounded-3xl p-8 md:p-10 hover:border-gold-500/70 transition-all duration-500">
-                <div className="text-gold-400 text-xs uppercase tracking-[0.3em] font-bold mb-6">
-                  Metodología Integrada Estructural
-                </div>
-                <h2 className="font-display text-3xl md:text-4xl font-bold text-bone mb-8">
-                  Bolívar 2024-2026
-                </h2>
-                <div className="text-center mb-8">
-                  <motion.div
-                    initial={{ scale: 0.5 }}
-                    animate={{ scale: 1 }}
-                    transition={{ duration: 0.8, delay: 1.4 }}
-                    className="font-display text-[8rem] md:text-[10rem] font-black text-gold-500 leading-none"
-                  >
-                    1
-                  </motion.div>
-                  <div className="text-bone/60 text-lg">Tetracampeón</div>
-                </div>
-                <div className="space-y-3">
-                  {[
-                    { label: "Efectividad", value: "70%" },
-                    { label: "Top 5 goleadores mundial", value: "273" },
-                    { label: "Títulos consecutivos", value: "4" },
-                  ].map((stat, idx) => (
-                    <motion.div
-                      key={stat.label}
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.5, delay: 1.6 + idx * 0.1 }}
-                      className="flex justify-between items-center p-4 bg-gold-500/10 rounded-xl border border-gold-500/20 hover:bg-gold-500/20 transition-colors"
-                    >
-                      <span className="text-bone/80 text-sm">{stat.label}</span>
-                      <span className="font-display text-2xl font-bold text-gold-400">{stat.value}</span>
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
-            </motion.div>
-          </motion.div>
-
-          {/* Mensaje central */}
+        {/* Comparativa apilada (mobile-first) */}
+        <div className="max-w-5xl mx-auto space-y-8">
+          {/* Santos 2026 */}
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 2 }}
-            className="max-w-4xl mx-auto mt-16 text-center"
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="relative group"
           >
-            <div className="p-10 bg-gradient-to-br from-gold-600/20 to-gold-700/10 border-2 border-gold-500/40 rounded-3xl backdrop-blur-sm">
-              <p className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-bone leading-tight">
-                La misma metodología que transformó a Bolívar<br />
-                <span className="text-gold-400">puede transformar a Santos</span>
-              </p>
+            <div className="absolute -inset-1 bg-gradient-to-r from-red-600 to-red-800 rounded-3xl blur opacity-20 group-hover:opacity-40 transition duration-300" />
+            <div className="relative bg-gradient-to-br from-red-900/50 to-red-950/70 border border-red-500/30 rounded-3xl p-8 backdrop-blur-sm">
+              <div className="flex items-start justify-between mb-6">
+                <div>
+                  <div className="text-red-400 text-xs uppercase tracking-[0.3em] font-bold mb-2">
+                    Situación Actual
+                  </div>
+                  <h2 className="font-display text-3xl sm:text-4xl font-bold text-bone">
+                    Santos Laguna 2026
+                  </h2>
+                </div>
+                <div className="text-right">
+                  <div className="font-display text-6xl sm:text-7xl font-black text-red-500 leading-none">18</div>
+                  <div className="text-bone/60 text-sm mt-1">de 18</div>
+                </div>
+              </div>
+              <div className="grid grid-cols-3 gap-3">
+                {[
+                  { label: "Efectividad", value: "19.6%" },
+                  { label: "Goles/pj", value: "2.2" },
+                  { label: "Conversión", value: "5.7%" },
+                ].map((stat) => (
+                  <div key={stat.label} className="bg-red-500/10 rounded-xl p-3 text-center">
+                    <div className="text-bone/60 text-xs mb-1">{stat.label}</div>
+                    <div className="font-display text-xl sm:text-2xl font-bold text-red-400">{stat.value}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+
+          {/* VS - Solo desktop */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+            className="hidden md:flex items-center justify-center py-4"
+          >
+            <div className="font-display text-6xl lg:text-8xl font-black text-gold-500/30">VS</div>
+          </motion.div>
+
+          {/* Bolívar */}
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="relative group"
+          >
+            <div className="absolute -inset-1 bg-gradient-to-r from-gold-600 to-gold-800 rounded-3xl blur opacity-30 group-hover:opacity-50 transition duration-300" />
+            <div className="relative bg-gradient-to-br from-gold-900/50 to-gold-950/70 border border-gold-500/40 rounded-3xl p-8 backdrop-blur-sm">
+              <div className="flex items-start justify-between mb-6">
+                <div>
+                  <div className="text-gold-400 text-xs uppercase tracking-[0.3em] font-bold mb-2">
+                    Metodología Integrada Estructural
+                  </div>
+                  <h2 className="font-display text-3xl sm:text-4xl font-bold text-bone">
+                    Bolívar 2024-2026
+                  </h2>
+                </div>
+                <div className="text-right">
+                  <div className="font-display text-6xl sm:text-7xl font-black text-gold-500 leading-none">1</div>
+                  <div className="text-bone/60 text-sm mt-1">Campeón</div>
+                </div>
+              </div>
+              <div className="grid grid-cols-3 gap-3">
+                {[
+                  { label: "Efectividad", value: "70%" },
+                  { label: "Top 5 mundial", value: "273" },
+                  { label: "Títulos", value: "4" },
+                ].map((stat) => (
+                  <div key={stat.label} className="bg-gold-500/10 rounded-xl p-3 text-center">
+                    <div className="text-bone/60 text-xs mb-1">{stat.label}</div>
+                    <div className="font-display text-xl sm:text-2xl font-bold text-gold-400">{stat.value}</div>
+                  </div>
+                ))}
+              </div>
             </div>
           </motion.div>
         </div>
-      </div>
+
+        {/* Mensaje final */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.9 }}
+          className="max-w-4xl mx-auto mt-16 text-center"
+        >
+          <div className="p-8 md:p-10 bg-gradient-to-br from-gold-600/10 to-gold-700/5 border border-gold-500/20 rounded-3xl backdrop-blur-sm">
+            <p className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-bone leading-tight">
+              La misma metodología que transformó a Bolívar<br className="hidden sm:block" />
+              <span className="text-gold-400">puede transformar a Santos</span>
+            </p>
+          </div>
+        </motion.div>
+      </motion.div>
     </section>
   );
 }
@@ -208,19 +164,19 @@ function HeroSection() {
 
 function DiagnosticoCompletoSection() {
   return (
-    <section className="relative py-32 bg-gradient-to-b from-ink-950 via-red-950/20 to-ink-950">
+    <section className="relative py-20 md:py-32 bg-gradient-to-b from-ink-950 via-red-950/20 to-ink-950">
       <div className="container-x">
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-20"
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
         >
           <div className="inline-block px-4 py-2 rounded-full bg-red-500/10 border border-red-500/20 text-red-400 text-xs uppercase tracking-[0.2em] font-semibold mb-6">
             Diagnóstico e Interpretación
           </div>
-          <h2 className="font-display text-5xl md:text-7xl font-black text-bone mb-6 leading-[1.05]">
+          <h2 className="font-display text-4xl md:text-5xl lg:text-7xl font-black text-bone mb-6 leading-tight">
             Análisis Profundo<br />
             <span className="text-red-500">Santos Laguna</span>
           </h2>
@@ -228,11 +184,11 @@ function DiagnosticoCompletoSection() {
 
         {/* 1. ORGANIZACIÓN DEFENSIVA */}
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8 }}
-          className="mb-32"
+          transition={{ duration: 0.6 }}
+          className="mb-24"
         >
           <h3 className="font-display text-3xl md:text-4xl font-bold text-bone mb-8 flex items-center gap-4">
             <span className="w-12 h-12 rounded-xl bg-red-500/20 flex items-center justify-center flex-shrink-0 text-2xl">🛡️</span>
@@ -240,9 +196,7 @@ function DiagnosticoCompletoSection() {
           </h3>
 
           <div className="card-dark border-2 border-red-500/30 mb-8">
-            <h4 className="font-display text-2xl font-bold text-bone mb-6">
-              Tipología de goles recibidos (38)
-            </h4>
+            <h4 className="font-display text-2xl font-bold text-bone mb-6">Tipología de goles recibidos (38)</h4>
             <div className="grid md:grid-cols-2 gap-8 items-center">
               <div className="aspect-video bg-gradient-to-br from-red-900/20 to-red-950/10 rounded-xl border border-red-500/20 flex items-center justify-center">
                 <div className="text-center p-8">
@@ -264,7 +218,6 @@ function DiagnosticoCompletoSection() {
                   </div>
                 </div>
               </div>
-
               <div>
                 <div className="p-6 bg-red-500/10 border-2 border-red-500/30 rounded-xl mb-6">
                   <h5 className="font-display text-lg font-bold text-red-400 mb-3">PATRÓN DETECTADO</h5>
@@ -355,11 +308,11 @@ function DiagnosticoCompletoSection() {
 
         {/* 2. ORGANIZACIÓN OFENSIVA */}
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8 }}
-          className="mb-32"
+          transition={{ duration: 0.6 }}
+          className="mb-24"
         >
           <h3 className="font-display text-3xl md:text-4xl font-bold text-bone mb-8 flex items-center gap-4">
             <span className="w-12 h-12 rounded-xl bg-gold-500/20 flex items-center justify-center flex-shrink-0 text-2xl">⚽</span>
@@ -389,7 +342,6 @@ function DiagnosticoCompletoSection() {
                   </div>
                 </div>
               </div>
-
               <div>
                 <div className="p-6 bg-gold-500/10 border-2 border-gold-500/30 rounded-xl mb-6">
                   <h5 className="font-display text-lg font-bold text-gold-400 mb-3">PATRÓN DETECTADO</h5>
@@ -470,10 +422,10 @@ function DiagnosticoCompletoSection() {
 
         {/* 3. ASPECTO PSICOLÓGICO */}
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.6 }}
         >
           <div className="max-w-4xl mx-auto">
             <div className="relative p-10 bg-gradient-to-br from-purple-900/30 to-purple-950/10 border-2 border-purple-500/30 rounded-3xl overflow-hidden">
@@ -527,19 +479,19 @@ function DiagnosticoCompletoSection() {
 
 function PerfilGanadorSection() {
   return (
-    <section className="relative py-32 bg-gradient-to-b from-ink-950 via-green-950/10 to-ink-950">
+    <section className="relative py-20 md:py-32 bg-gradient-to-b from-ink-950 via-green-950/10 to-ink-950">
       <div className="container-x">
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-20"
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
         >
           <div className="inline-block px-4 py-2 rounded-full bg-green-500/10 border border-green-500/20 text-green-400 text-xs uppercase tracking-[0.2em] font-semibold mb-6">
             Aspecto Humano
           </div>
-          <h2 className="font-display text-5xl md:text-7xl font-black text-bone mb-6 leading-[1.05]">
+          <h2 className="font-display text-4xl md:text-5xl lg:text-7xl font-black text-bone mb-6 leading-tight">
             Conformación<br />
             <span className="text-green-500">de la plantilla</span>
           </h2>
@@ -550,10 +502,10 @@ function PerfilGanadorSection() {
 
         {/* Jugadores CON perfil ganador */}
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.6 }}
           className="mb-16"
         >
           <div className="card-dark border-l-4 border-green-500">
@@ -586,10 +538,10 @@ function PerfilGanadorSection() {
 
         {/* Jugadores a evaluar */}
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.6 }}
         >
           <div className="card-dark border-l-4 border-red-500 mb-12">
             <div className="flex items-center gap-4 mb-8">
@@ -659,9 +611,7 @@ function PerfilGanadorSection() {
                   <h5 className="text-bone/80 font-semibold mb-3 text-sm">ÚLTIMO MOMENTO DESTACADO</h5>
                   <div className="p-4 bg-gold-500/10 border border-gold-500/20 rounded-lg mb-3">
                     <p className="text-xs text-gold-400 mb-2">Independiente del Valle 2019</p>
-                    <p className="text-bone/70 text-xs">
-                      Campeón Copa Sudamericana (4 goles en 11 partidos). <strong>Hace 7 años.</strong>
-                    </p>
+                    <p className="text-bone/70 text-xs">Campeón Copa Sudamericana (4 goles en 11 partidos). <strong>Hace 7 años.</strong></p>
                   </div>
                   <ul className="space-y-2 text-bone/70 text-xs">
                     <li className="flex items-start gap-2">
@@ -817,38 +767,38 @@ function PerfilGanadorSection() {
 function SolucionSection() {
   const comparaciones = [
     { problema: "Reciben centros al segundo palo constantemente", solucion: "Equipo corto + presión alta → el rival no centra", delay: 0 },
-    { problema: "Defienden bajo + 2.2 goles recibidos por partido", solucion: "Jugar lejos del arco → defender en campo rival", delay: 0.2 },
-    { problema: "Dependen del juego directo (85% finalizaciones en área)", solucion: "Estructuras + ventajas → generar desde construcción", delay: 0.4 },
+    { problema: "Defienden bajo + 2.2 goles recibidos por partido", solucion: "Jugar lejos del arco → defender en campo rival", delay: 0.15 },
+    { problema: "Dependen del juego directo (85% finalizaciones en área)", solucion: "Estructuras + ventajas → generar desde construcción", delay: 0.3 },
   ];
 
   return (
-    <section className="relative py-32 bg-gradient-to-b from-ink-950 via-green-950/10 to-ink-950">
+    <section className="relative py-20 md:py-32 bg-gradient-to-b from-ink-950 via-green-950/10 to-ink-950">
       <div className="container-x">
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-20"
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
         >
           <div className="inline-block px-4 py-2 rounded-full bg-gold-500/10 border border-gold-500/20 text-gold-400 text-xs uppercase tracking-[0.2em] font-semibold mb-6">
-            Propuesta
+            Bloque 2
           </div>
-          <h2 className="font-display text-5xl md:text-7xl font-black text-bone mb-6 leading-[1.05]">
+          <h2 className="font-display text-4xl md:text-5xl lg:text-7xl font-black text-bone mb-6 leading-tight">
             Santos vs<br />
             <span className="text-gold-500">Nuestro Modelo</span>
           </h2>
-          <p className="text-bone/60 text-xl max-w-3xl mx-auto">Respuesta directa a cada problema detectado</p>
+          <p className="text-bone/60 text-lg md:text-xl max-w-3xl mx-auto">Respuesta directa a cada problema detectado</p>
         </motion.div>
 
-        <div className="space-y-8 mb-32">
+        <div className="space-y-8 mb-24">
           {comparaciones.map((c, i) => (
             <motion.div
               key={i}
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: "-50px" }}
-              transition={{ delay: c.delay, duration: 0.7 }}
+              transition={{ delay: c.delay, duration: 0.6 }}
               className="grid md:grid-cols-2 gap-8 items-center"
             >
               <div className="p-8 bg-gradient-to-br from-red-900/30 to-red-950/10 border-2 border-red-500/30 rounded-2xl">
@@ -874,10 +824,10 @@ function SolucionSection() {
         </div>
 
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.6 }}
         >
           <h3 className="font-display text-4xl font-bold text-bone text-center mb-12">
             Proyección con metodología Robatto
@@ -902,7 +852,7 @@ function SolucionSection() {
 }
 
 // ═══════════════════════════════════════════
-// PLAN 90 DÍAS - REDISEÑADO SIN TIMELINE
+// PLAN 90 DÍAS - CARDS APILADAS (MOBILE FIRST)
 // ═══════════════════════════════════════════
 
 function PlanImplementacionSection() {
@@ -912,117 +862,92 @@ function PlanImplementacionSection() {
       title: "Diagnóstico Interno",
       color: "blue",
       icon: "🔍",
-      tasks: [
-        "Evaluación individual completa (física + técnica + táctica)",
-        "Identificación de líderes naturales",
-        "Detección de ajustes prioritarios",
-        "Análisis de perfil psicológico",
-      ],
-      deliverable: "Informe completo + plan personalizado",
+      tasks: ["Evaluación individual completa", "Identificación de líderes", "Ajustes prioritarios", "Perfil psicológico"],
+      deliverable: "Informe + plan personalizado",
     },
     {
       weeks: "3-6",
-      title: "Ajustes Defensivos Prioritarios",
+      title: "Ajustes Defensivos",
       color: "gold",
       icon: "🛡️",
-      tasks: [
-        "Trabajo específico: reducir goles de centros",
-        "Mejora en posicionamiento defensivo",
-        "Implementación de presión coordinada",
-        "Organización en balón parado",
-      ],
-      deliverable: "Objetivo: -40% goles de centros",
+      tasks: ["Reducir goles de centros", "Posicionamiento defensivo", "Presión coordinada", "Balón parado"],
+      deliverable: "-40% goles de centros",
     },
     {
       weeks: "6-12",
-      title: "Introducción del Modelo Completo",
+      title: "Modelo Completo",
       color: "green",
       icon: "⚽",
-      tasks: [
-        "Microdosificación integrada (metodología completa)",
-        "Posesión + presión como identidad",
-        "Automatización de principios de juego",
-        "Evaluación continua de rendimiento",
-      ],
-      deliverable: "Objetivo: +15% efectividad, Top 12",
+      tasks: ["Microdosificación integrada", "Posesión + presión", "Automatización principios", "Evaluación continua"],
+      deliverable: "+15% efectividad, Top 12",
     },
   ];
 
   const colorMap = {
-    blue: { from: "from-blue-600", to: "to-blue-800", bg: "bg-blue-500/10", border: "border-blue-500/30", text: "text-blue-400", hover: "hover:border-blue-500/60" },
-    gold: { from: "from-gold-600", to: "to-gold-800", bg: "bg-gold-500/10", border: "border-gold-500/30", text: "text-gold-400", hover: "hover:border-gold-500/60" },
-    green: { from: "from-green-600", to: "to-green-800", bg: "bg-green-500/10", border: "border-green-500/30", text: "text-green-400", hover: "hover:border-green-500/60" },
+    blue: { bg: "bg-blue-500/10", border: "border-blue-500/30", text: "text-blue-400" },
+    gold: { bg: "bg-gold-500/10", border: "border-gold-500/30", text: "text-gold-400" },
+    green: { bg: "bg-green-500/10", border: "border-green-500/30", text: "text-green-400" },
   };
 
   return (
-    <section className="relative py-32 bg-gradient-to-b from-ink-950 via-blue-950/10 to-ink-950">
+    <section className="relative py-20 md:py-32 bg-gradient-to-b from-ink-950 via-blue-950/10 to-ink-950">
       <div className="container-x">
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-20"
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
         >
           <div className="inline-block px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs uppercase tracking-[0.2em] font-semibold mb-6">
             Bloque 3
           </div>
-          <h2 className="font-display text-5xl md:text-7xl font-black text-bone mb-6 leading-[1.05]">
+          <h2 className="font-display text-4xl md:text-5xl lg:text-7xl font-black text-bone mb-6 leading-tight">
             Plan de<br />
             <span className="text-blue-400">impacto inmediato</span>
           </h2>
-          <p className="text-bone/60 text-xl max-w-3xl mx-auto">
+          <p className="text-bone/60 text-lg md:text-xl max-w-3xl mx-auto">
             Los primeros 90 días: de la teoría a resultados medibles
           </p>
         </motion.div>
 
-        {/* Cards Interactivas */}
-        <div className="grid md:grid-cols-3 gap-8 mb-20">
+        {/* Cards apiladas verticalmente */}
+        <div className="max-w-4xl mx-auto space-y-6 mb-20">
           {phases.map((phase, idx) => {
             const colors = colorMap[phase.color];
             return (
               <motion.div
                 key={phase.weeks}
-                initial={{ opacity: 0, y: 100 }}
+                initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.6, delay: idx * 0.2 }}
-                whileHover={{ y: -10 }}
-                className="relative group"
+                transition={{ duration: 0.5, delay: idx * 0.15 }}
+                className="card-dark"
               >
-                <div className={`absolute -inset-1 bg-gradient-to-r ${colors.from} ${colors.to} rounded-3xl blur opacity-30 group-hover:opacity-50 transition duration-500`} />
-                <div className={`relative bg-gradient-to-br from-ink-800 to-ink-900 border-2 ${colors.border} ${colors.hover} rounded-3xl p-8 transition-all duration-500 h-full`}>
-                  <div className="flex items-center gap-4 mb-6">
+                <div className="flex flex-col sm:flex-row items-start gap-6">
+                  <div className="flex items-center gap-4 sm:flex-col sm:items-center sm:w-32 flex-shrink-0">
                     <div className={`w-16 h-16 rounded-2xl ${colors.bg} flex items-center justify-center text-4xl`}>
                       {phase.icon}
                     </div>
-                    <div>
-                      <div className={`text-xs uppercase tracking-[0.2em] ${colors.text} font-bold mb-1`}>
-                        Semana {phase.weeks}
-                      </div>
-                      <h3 className="font-display text-xl font-bold text-bone leading-tight">
-                        {phase.title}
-                      </h3>
+                    <div className="sm:text-center">
+                      <div className={`text-xs uppercase tracking-[0.2em] ${colors.text} font-bold`}>Semana</div>
+                      <div className="font-display text-2xl font-black text-bone">{phase.weeks}</div>
                     </div>
                   </div>
-                  <ul className="space-y-3 mb-6">
-                    {phase.tasks.map((task, i) => (
-                      <motion.li
-                        key={i}
-                        initial={{ opacity: 0, x: -20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.4, delay: idx * 0.2 + i * 0.1 }}
-                        className="flex items-start gap-3 text-bone/70 text-sm"
-                      >
-                        <span className={`${colors.text} mt-1 flex-shrink-0`}>→</span>
-                        <span>{task}</span>
-                      </motion.li>
-                    ))}
-                  </ul>
-                  <div className={`p-4 ${colors.bg} border ${colors.border} rounded-xl`}>
-                    <p className={`text-xs ${colors.text} font-semibold mb-1`}>ENTREGABLE:</p>
-                    <p className="text-bone/80 text-sm">{phase.deliverable}</p>
+                  <div className="flex-1">
+                    <h3 className="font-display text-2xl font-bold text-bone mb-4">{phase.title}</h3>
+                    <div className="grid sm:grid-cols-2 gap-2 mb-4">
+                      {phase.tasks.map((task, i) => (
+                        <div key={i} className="flex items-start gap-2 text-bone/70 text-sm">
+                          <span className={`${colors.text} mt-1 flex-shrink-0`}>→</span>
+                          <span>{task}</span>
+                        </div>
+                      ))}
+                    </div>
+                    <div className={`p-4 ${colors.bg} border ${colors.border} rounded-xl`}>
+                      <p className={`text-xs ${colors.text} font-semibold mb-1`}>ENTREGABLE:</p>
+                      <p className="text-bone/80 text-sm">{phase.deliverable}</p>
+                    </div>
                   </div>
                 </div>
               </motion.div>
@@ -1030,38 +955,38 @@ function PlanImplementacionSection() {
           })}
         </div>
 
-        {/* Objetivos Medibles */}
+        {/* Objetivos */}
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
         >
-          <h3 className="font-display text-4xl font-bold text-bone text-center mb-12">
-            Objetivos medibles (Corto Plazo)
+          <h3 className="font-display text-3xl md:text-4xl font-bold text-bone text-center mb-12">
+            Objetivos medibles
           </h3>
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
             {[
-              { title: "Defensivo", color: "blue", stats: [["Goles de centros", "-40%"], ["Ingresos al área", "-30%"]] },
-              { title: "Ofensivo", color: "gold", stats: [["Tiempo campo rival", "+50%"], ["Conversión de gol", "12%"]] },
-              { title: "Posicional", color: "green", stats: [["Posición tabla", "Top 12"], ["Meta semestre", "Liguilla"]] },
-            ].map((category, idx) => {
-              const colors = colorMap[category.color];
+              { title: "Defensivo", color: "blue", stats: [{ label: "Goles centros", value: "-40%" }, { label: "Ingresos área", value: "-30%" }] },
+              { title: "Ofensivo", color: "gold", stats: [{ label: "Campo rival", value: "+50%" }, { label: "Conversión", value: "12%" }] },
+              { title: "Posicional", color: "green", stats: [{ label: "Tabla", value: "Top 12" }, { label: "Meta", value: "Liguilla" }] },
+            ].map((cat, idx) => {
+              const colors = colorMap[cat.color];
               return (
                 <motion.div
-                  key={category.title}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
+                  key={cat.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: idx * 0.15 }}
+                  transition={{ duration: 0.4, delay: idx * 0.1 }}
                   className={`card-dark border-l-4 ${colors.border}`}
                 >
-                  <h4 className="font-display text-xl font-bold text-bone mb-6">{category.title}</h4>
-                  <div className="space-y-4">
-                    {category.stats.map(([label, val]) => (
-                      <div key={label} className="flex justify-between items-center p-4 bg-ink-950 rounded-xl">
-                        <span className="text-bone/70">{label}</span>
-                        <span className={`font-display text-2xl font-bold ${colors.text}`}>{val}</span>
+                  <h4 className="font-display text-xl font-bold text-bone mb-4">{cat.title}</h4>
+                  <div className="space-y-3">
+                    {cat.stats.map((stat, i) => (
+                      <div key={i} className="flex justify-between items-center p-3 bg-ink-950 rounded-xl">
+                        <span className="text-bone/70 text-sm">{stat.label}</span>
+                        <span className={`font-display text-2xl font-bold ${colors.text}`}>{stat.value}</span>
                       </div>
                     ))}
                   </div>
