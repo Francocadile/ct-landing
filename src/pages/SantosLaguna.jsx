@@ -58,9 +58,6 @@ function HeroSection() {
           <p className="text-santos-gold text-xl sm:text-2xl md:text-3xl font-display font-bold mb-4">
             2026
           </p>
-          <p className="text-bone/60 text-base sm:text-lg md:text-xl">
-            De la crisis al equipo competitivo
-          </p>
         </motion.div>
 
         {/* Comparativa apilada (mobile-first) */}
@@ -106,20 +103,6 @@ function HeroSection() {
             </div>
           </motion.div>
 
-          {/* VS - VISIBLE EN TODOS LOS TAMAÑOS */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-            className="flex items-center justify-center py-6"
-          >
-            <div className="relative">
-              <div className="font-display text-7xl sm:text-8xl md:text-9xl font-black text-santos-gold/40">
-                VS
-              </div>
-              <div className="absolute inset-0 bg-santos-gold/10 blur-2xl -z-10" />
-            </div>
-          </motion.div>
 
           {/* Bolívar */}
           <motion.div
@@ -1391,7 +1374,7 @@ function SolucionSection() {
           transition={{ duration: 0.6 }}
         >
           <h3 className="font-display text-4xl font-bold text-bone text-center mb-12">
-            Proyección con metodología Robatto
+            Proyección con nuestra metodología
           </h3>
           <div className="grid md:grid-cols-3 gap-6">
             {[
@@ -1468,7 +1451,7 @@ function PlanImplementacionSection() {
             <span className="text-blue-400">impacto inmediato</span>
           </h2>
           <p className="text-bone/60 text-lg md:text-xl max-w-3xl mx-auto">
-            Los primeros 90 días: de la teoría a indicadores medibles
+            Hoja de ruta: Los primeros 90 días
           </p>
         </motion.div>
 
@@ -1524,7 +1507,7 @@ function PlanImplementacionSection() {
           transition={{ duration: 0.6 }}
         >
           <h3 className="font-display text-3xl md:text-4xl font-bold text-bone text-center mb-12">
-            Objetivos medibles
+            Indicadores de seguimiento
           </h3>
           <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
             {[
