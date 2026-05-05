@@ -611,28 +611,30 @@ function MapaCalorSection() {
               </div>
               <div className="absolute left-1/2 top-0 bottom-0 w-px bg-bone/20 -translate-x-1/2" />
 
-              {/* Zonas de calor ROJO MÁS INTENSAS (área propia + centros) */}
+              {/* Zonas de calor ROJO - ÁREA PROPIA COMPLETA */}
+              {/* Centro del área */}
               <motion.div
                 initial={{ scale: 0, opacity: 0 }}
                 whileInView={{ scale: 1, opacity: 0.8 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.3 }}
-                className="absolute bottom-6 left-1/2 -translate-x-1/2 w-40 h-40 bg-red-500 rounded-full blur-3xl"
+                className="absolute bottom-6 left-1/2 -translate-x-1/2 w-48 h-48 bg-red-500 rounded-full blur-3xl"
               />
+              {/* Zona izquierda del área */}
               <motion.div
                 initial={{ scale: 0, opacity: 0 }}
                 whileInView={{ scale: 1, opacity: 0.6 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.5 }}
-                className="absolute bottom-12 left-1/2 -translate-x-1/2 w-56 h-56 bg-red-600 rounded-full blur-3xl"
+                className="absolute bottom-8 left-12 w-40 h-40 bg-red-600 rounded-full blur-3xl"
               />
-              {/* Zona de centros al segundo palo */}
+              {/* Zona derecha del área (segundo palo) */}
               <motion.div
                 initial={{ scale: 0, opacity: 0 }}
-                whileInView={{ scale: 1, opacity: 0.5 }}
+                whileInView={{ scale: 1, opacity: 0.7 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.7 }}
-                className="absolute bottom-20 right-8 w-32 h-32 bg-red-700 rounded-full blur-2xl"
+                className="absolute bottom-8 right-12 w-44 h-44 bg-red-700 rounded-full blur-3xl"
               />
 
               {/* Etiquetas */}
@@ -679,36 +681,46 @@ function MapaCalorSection() {
               </div>
               <div className="absolute left-1/2 top-0 bottom-0 w-px bg-bone/20 -translate-x-1/2" />
 
-              {/* Zonas de calor VERDE MÁS MARCADAS (campo rival + presión alta) */}
+              {/* Zonas de calor VERDE - 3/4 DEL CAMPO (PRESIÓN ALTA) */}
+              {/* Zona superior centro (frente de ataque) */}
               <motion.div
                 initial={{ scale: 0, opacity: 0 }}
                 whileInView={{ scale: 1, opacity: 0.8 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.3 }}
-                className="absolute top-6 left-1/2 -translate-x-1/2 w-48 h-48 bg-green-500 rounded-full blur-3xl"
+                className="absolute top-6 left-1/2 -translate-x-1/2 w-56 h-56 bg-green-500 rounded-full blur-3xl"
               />
+              {/* Zona media centro */}
               <motion.div
                 initial={{ scale: 0, opacity: 0 }}
                 whileInView={{ scale: 1, opacity: 0.6 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.5 }}
-                className="absolute top-16 left-1/2 -translate-x-1/2 w-64 h-64 bg-green-600 rounded-full blur-3xl"
+                className="absolute top-1/3 left-1/2 -translate-x-1/2 w-64 h-64 bg-green-600 rounded-full blur-3xl"
               />
-              {/* Zona presión izquierda */}
+              {/* Zona izquierda alta */}
               <motion.div
                 initial={{ scale: 0, opacity: 0 }}
                 whileInView={{ scale: 1, opacity: 0.5 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.7 }}
-                className="absolute top-20 left-8 w-40 h-40 bg-green-500 rounded-full blur-2xl"
+                className="absolute top-16 left-8 w-48 h-48 bg-green-500 rounded-full blur-2xl"
               />
-              {/* Zona presión derecha */}
+              {/* Zona derecha alta */}
               <motion.div
                 initial={{ scale: 0, opacity: 0 }}
                 whileInView={{ scale: 1, opacity: 0.5 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.9 }}
-                className="absolute top-20 right-8 w-40 h-40 bg-green-500 rounded-full blur-2xl"
+                className="absolute top-16 right-8 w-48 h-48 bg-green-500 rounded-full blur-2xl"
+              />
+              {/* Zona media-baja (recuperación) */}
+              <motion.div
+                initial={{ scale: 0, opacity: 0 }}
+                whileInView={{ scale: 1, opacity: 0.4 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 1.1 }}
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 w-52 h-52 bg-green-600 rounded-full blur-3xl"
               />
 
               {/* Etiquetas */}
