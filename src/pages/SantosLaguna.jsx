@@ -828,7 +828,7 @@ function SolucionSection() {
                   <div className="w-8 h-8 rounded-full bg-red-500/20 flex items-center justify-center flex-shrink-0">
                     <span className="text-xl">❌</span>
                   </div>
-                  <h4 className="font-display text-lg font-bold text-red-400">Problema Santos</h4>
+                  <h4 className="font-display text-lg font-bold text-red-400">Déficit presentado</h4>
                 </div>
                 <p className="text-bone text-xl">{c.problema}</p>
               </div>
@@ -837,7 +837,7 @@ function SolucionSection() {
                   <div className="w-8 h-8 rounded-full bg-green-500/20 flex items-center justify-center flex-shrink-0">
                     <span className="text-xl">✅</span>
                   </div>
-                  <h4 className="font-display text-lg font-bold text-green-400">Solución Robatto</h4>
+                  <h4 className="font-display text-lg font-bold text-green-400">Propuesta para solucionarlo</h4>
                 </div>
                 <p className="text-bone text-xl">{c.solucion}</p>
               </div>
