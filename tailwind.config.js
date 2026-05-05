@@ -41,6 +41,11 @@ export default {
           500: '#B23A2F',
           600: '#922D24',
         },
+        santos: {
+          green: '#008C72',
+          gold: '#FFB81C',
+          white: '#FFFFFF',
+        },
       },
       letterSpacing: {
         tightest: '-0.04em',

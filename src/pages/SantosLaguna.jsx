@@ -29,20 +29,32 @@ function HeroSection() {
 
   return (
     <section ref={sectionRef} className="relative min-h-screen flex items-center justify-center py-20 overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-ink-950 via-red-950/30 to-ink-950" />
+      <div className="absolute inset-0 bg-gradient-to-b from-ink-950 via-santos-green/10 to-ink-950" />
 
       <motion.div style={{ opacity, scale }} className="container-x relative z-10">
-        {/* Título principal */}
+        {/* Título principal con escudo */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
+          <motion.div
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="flex justify-center mb-8"
+          >
+            <img
+              src="/assets/santos-escudo.png"
+              alt="Santos Laguna"
+              className="w-20 h-20 md:w-24 md:h-24 object-contain"
+            />
+          </motion.div>
           <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-bone mb-4">
             Proyecto Santos Laguna
           </h1>
-          <p className="text-gold-500 text-xl sm:text-2xl md:text-3xl font-display font-bold mb-4">
+          <p className="text-santos-gold text-xl sm:text-2xl md:text-3xl font-display font-bold mb-4">
             2026
           </p>
           <p className="text-bone/60 text-base sm:text-lg md:text-xl">
@@ -52,18 +64,21 @@ function HeroSection() {
 
         {/* Comparativa apilada (mobile-first) */}
         <div className="max-w-5xl mx-auto space-y-8">
-          {/* Santos 2026 */}
+          {/* Santos 2026 - colores institucionales */}
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
             className="relative group"
           >
-            <div className="absolute -inset-1 bg-gradient-to-r from-red-600 to-red-800 rounded-3xl blur opacity-20 group-hover:opacity-40 transition duration-300" />
-            <div className="relative bg-gradient-to-br from-red-900/50 to-red-950/70 border border-red-500/30 rounded-3xl p-8 backdrop-blur-sm">
+            <div className="absolute -inset-1 bg-gradient-to-r from-santos-green to-emerald-700 rounded-3xl blur opacity-20 group-hover:opacity-40 transition duration-300" />
+            <div className="relative bg-gradient-to-br from-santos-green/30 to-emerald-950/50 border border-santos-green/40 rounded-3xl p-8 backdrop-blur-sm">
+              <div className="absolute top-4 right-4 opacity-10">
+                <img src="/assets/santos-escudo.png" alt="Santos" className="w-16 h-16 object-contain" />
+              </div>
               <div className="flex items-start justify-between mb-6">
                 <div>
-                  <div className="text-red-400 text-xs uppercase tracking-[0.3em] font-bold mb-2">
+                  <div className="text-santos-gold text-xs uppercase tracking-[0.3em] font-bold mb-2">
                     Situación Actual
                   </div>
                   <h2 className="font-display text-3xl sm:text-4xl font-bold text-bone">
@@ -71,7 +86,7 @@ function HeroSection() {
                   </h2>
                 </div>
                 <div className="text-right">
-                  <div className="font-display text-6xl sm:text-7xl font-black text-red-500 leading-none">18</div>
+                  <div className="font-display text-6xl sm:text-7xl font-black text-santos-gold leading-none">18</div>
                   <div className="text-bone/60 text-sm mt-1">de 18</div>
                 </div>
               </div>
@@ -81,9 +96,9 @@ function HeroSection() {
                   { label: "Goles/pj", value: "2.2" },
                   { label: "Conversión", value: "5.7%" },
                 ].map((stat) => (
-                  <div key={stat.label} className="bg-red-500/10 rounded-xl p-3 text-center">
+                  <div key={stat.label} className="bg-santos-green/20 rounded-xl p-3 text-center border border-santos-green/30">
                     <div className="text-bone/60 text-xs mb-1">{stat.label}</div>
-                    <div className="font-display text-xl sm:text-2xl font-bold text-red-400">{stat.value}</div>
+                    <div className="font-display text-xl sm:text-2xl font-bold text-santos-gold">{stat.value}</div>
                   </div>
                 ))}
               </div>
@@ -98,10 +113,10 @@ function HeroSection() {
             className="flex items-center justify-center py-6"
           >
             <div className="relative">
-              <div className="font-display text-7xl sm:text-8xl md:text-9xl font-black text-gold-500/40">
+              <div className="font-display text-7xl sm:text-8xl md:text-9xl font-black text-santos-gold/40">
                 VS
               </div>
-              <div className="absolute inset-0 bg-gold-500/10 blur-2xl -z-10" />
+              <div className="absolute inset-0 bg-santos-gold/10 blur-2xl -z-10" />
             </div>
           </motion.div>
 
@@ -151,10 +166,10 @@ function HeroSection() {
           transition={{ duration: 0.8, delay: 0.9 }}
           className="max-w-4xl mx-auto mt-16 text-center"
         >
-          <div className="p-8 md:p-10 bg-gradient-to-br from-gold-600/10 to-gold-700/5 border border-gold-500/20 rounded-3xl backdrop-blur-sm">
+          <div className="p-8 md:p-10 bg-gradient-to-br from-santos-gold/10 to-santos-gold/5 border border-santos-gold/20 rounded-3xl backdrop-blur-sm">
             <p className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-bone leading-tight">
               La misma metodología que transformó a Bolívar<br className="hidden sm:block" />
-              <span className="text-gold-400">puede transformar a Santos</span>
+              <span className="text-santos-gold">puede transformar a Santos</span>
             </p>
           </div>
         </motion.div>
@@ -921,7 +936,7 @@ function PlanImplementacionSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <div className="inline-block px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs uppercase tracking-[0.2em] font-semibold mb-6">
+          <div className="inline-block px-4 py-2 rounded-full bg-santos-gold/10 border border-santos-gold/20 text-santos-gold text-xs uppercase tracking-[0.2em] font-semibold mb-6">
             Bloque 3
           </div>
           <h2 className="font-display text-4xl md:text-5xl lg:text-7xl font-black text-bone mb-6 leading-tight">
