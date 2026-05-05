@@ -34,7 +34,7 @@ function HeroSection() {
             2026
           </p>
           <p className="text-bone/60 text-xl mt-4">
-            De último lugar a Liguilla en 90 días
+            De la crisis al equipo competitivo
           </p>
         </motion.div>
 
