@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 
 export default function SantosLaguna() {
   return (
@@ -13,148 +14,207 @@ export default function SantosLaguna() {
 }
 
 // ═══════════════════════════════════════════
-// HERO CORREGIDO
+// HERO CON VS ANIMADO + SCROLL INTERACTIVO
 // ═══════════════════════════════════════════
 
 function HeroSection() {
+  const containerRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"]
+  });
+
+  const titleY = useTransform(scrollYProgress, [0, 1], [0, -100]);
+  const cardsY = useTransform(scrollYProgress, [0, 1], [0, -200]);
+  const vsScale = useTransform(scrollYProgress, [0, 0.5, 1], [1, 1.2, 0.8]);
+  const vsOpacity = useTransform(scrollYProgress, [0, 0.3, 0.7], [1, 1, 0]);
+
   return (
-    <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-b from-ink-950 to-red-950/20 py-20">
-      <div className="container-x">
-        {/* Título */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-20"
-        >
-          <h1 className="font-display text-5xl md:text-7xl font-black text-bone mb-4">
-            Proyecto Santos Laguna
-          </h1>
-          <p className="text-gold-500 text-2xl md:text-3xl font-display font-bold">
-            2026
-          </p>
-          <p className="text-bone/60 text-xl mt-4">
-            De la crisis al equipo competitivo
-          </p>
-        </motion.div>
-
-        {/* Comparativa lado a lado */}
-        <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
-          {/* SANTOS 2026 (ACTUALIDAD) */}
+    <section ref={containerRef} className="relative min-h-[200vh]">
+      <div className="sticky top-0 h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-ink-950 to-red-950/20">
+        <div className="container-x relative z-10">
+          {/* Título con parallax */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="relative"
+            style={{ y: titleY }}
+            className="text-center mb-16"
           >
-            <div className="absolute -inset-1 bg-gradient-to-r from-red-600 to-red-800 rounded-3xl blur opacity-30" />
-            <div className="relative bg-gradient-to-br from-red-900/40 to-red-950/60 border-2 border-red-500/30 rounded-3xl p-10">
-              <div className="text-red-400 text-sm uppercase tracking-[0.3em] font-bold mb-6">
-                Situación Actual
-              </div>
-
-              <h2 className="font-display text-4xl font-bold text-bone mb-8">
-                Santos Laguna 2026
-              </h2>
-
-              <div className="text-center mb-8">
-                <div className="font-display text-[10rem] font-black text-red-500 leading-none">
-                  18
-                </div>
-                <div className="text-bone/60 text-xl">de 18 equipos</div>
-              </div>
-
-              <div className="space-y-4">
-                <div className="flex justify-between items-center p-4 bg-red-500/10 rounded-xl border border-red-500/20">
-                  <span className="text-bone/80">Efectividad</span>
-                  <span className="font-display text-2xl font-bold text-red-400">19.6%</span>
-                </div>
-                <div className="flex justify-between items-center p-4 bg-red-500/10 rounded-xl border border-red-500/20">
-                  <span className="text-bone/80">Goles recibidos/pj</span>
-                  <span className="font-display text-2xl font-bold text-red-400">2.2</span>
-                </div>
-                <div className="flex justify-between items-center p-4 bg-red-500/10 rounded-xl border border-red-500/20">
-                  <span className="text-bone/80">Conversión</span>
-                  <span className="font-display text-2xl font-bold text-red-400">5.7%</span>
-                </div>
-              </div>
-            </div>
+            <motion.h1
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: 0.2 }}
+              className="font-display text-5xl md:text-7xl font-black text-bone mb-4"
+            >
+              Proyecto Santos Laguna
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1, delay: 0.5 }}
+              className="text-gold-500 text-2xl md:text-3xl font-display font-bold"
+            >
+              2026
+            </motion.p>
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1, delay: 0.7 }}
+              className="text-bone/60 text-xl mt-4"
+            >
+              De la crisis al equipo competitivo
+            </motion.p>
           </motion.div>
 
-          {/* BOLÍVAR - METODOLOGÍA ROBATTO */}
+          {/* Grid con VS en el centro */}
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-            className="relative"
+            style={{ y: cardsY }}
+            className="grid lg:grid-cols-[1fr_auto_1fr] gap-8 items-center max-w-7xl mx-auto"
           >
-            <div className="absolute -inset-1 bg-gradient-to-r from-gold-600 to-gold-800 rounded-3xl blur opacity-40" />
-            <div className="relative bg-gradient-to-br from-gold-900/40 to-gold-950/60 border-2 border-gold-500/40 rounded-3xl p-10">
-              <div className="text-gold-400 text-sm uppercase tracking-[0.3em] font-bold mb-6">
-                Metodología Integrada Estructural
+            {/* SANTOS 2026 */}
+            <motion.div
+              initial={{ opacity: 0, x: -100 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1, delay: 0.8 }}
+              className="relative group"
+            >
+              <div className="absolute -inset-1 bg-gradient-to-r from-red-600 to-red-800 rounded-3xl blur opacity-30 group-hover:opacity-50 transition duration-500" />
+              <div className="relative bg-gradient-to-br from-red-900/40 to-red-950/60 border-2 border-red-500/30 rounded-3xl p-8 md:p-10 hover:border-red-500/60 transition-all duration-500">
+                <div className="text-red-400 text-xs uppercase tracking-[0.3em] font-bold mb-6">
+                  Situación Actual
+                </div>
+                <h2 className="font-display text-3xl md:text-4xl font-bold text-bone mb-8">
+                  Santos Laguna 2026
+                </h2>
+                <div className="text-center mb-8">
+                  <motion.div
+                    initial={{ scale: 0.5 }}
+                    animate={{ scale: 1 }}
+                    transition={{ duration: 0.8, delay: 1.2 }}
+                    className="font-display text-[8rem] md:text-[10rem] font-black text-red-500 leading-none"
+                  >
+                    18
+                  </motion.div>
+                  <div className="text-bone/60 text-lg">de 18 equipos</div>
+                </div>
+                <div className="space-y-3">
+                  {[
+                    { label: "Efectividad", value: "19.6%" },
+                    { label: "Goles recibidos/pj", value: "2.2" },
+                    { label: "Conversión", value: "5.7%" },
+                  ].map((stat, idx) => (
+                    <motion.div
+                      key={stat.label}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.5, delay: 1.4 + idx * 0.1 }}
+                      className="flex justify-between items-center p-4 bg-red-500/10 rounded-xl border border-red-500/20 hover:bg-red-500/20 transition-colors"
+                    >
+                      <span className="text-bone/80 text-sm">{stat.label}</span>
+                      <span className="font-display text-2xl font-bold text-red-400">{stat.value}</span>
+                    </motion.div>
+                  ))}
+                </div>
               </div>
+            </motion.div>
 
-              <h2 className="font-display text-4xl font-bold text-bone mb-8">
-                Bolívar 2024-2026
-              </h2>
-
-              <div className="text-center mb-8">
-                <div className="font-display text-[10rem] font-black text-gold-500 leading-none">
-                  1
-                </div>
-                <div className="text-bone/60 text-xl">Tetracampeón</div>
+            {/* VS GIGANTE ANIMADO */}
+            <motion.div
+              style={{ scale: vsScale, opacity: vsOpacity }}
+              className="hidden lg:flex items-center justify-center"
+            >
+              <div className="relative">
+                <motion.div
+                  animate={{ rotate: [0, 5, -5, 0] }}
+                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                  className="font-display text-8xl font-black text-gold-500 px-8"
+                  style={{ textShadow: "0 0 40px rgba(212, 162, 76, 0.5)" }}
+                >
+                  VS
+                </motion.div>
+                <div className="absolute inset-0 bg-gold-500/20 blur-3xl -z-10" />
               </div>
+            </motion.div>
 
-              <div className="space-y-4">
-                <div className="flex justify-between items-center p-4 bg-gold-500/10 rounded-xl border border-gold-500/20">
-                  <span className="text-bone/80">Efectividad</span>
-                  <span className="font-display text-2xl font-bold text-gold-400">70%</span>
+            {/* BOLÍVAR - METODOLOGÍA */}
+            <motion.div
+              initial={{ opacity: 0, x: 100 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1, delay: 1 }}
+              className="relative group"
+            >
+              <div className="absolute -inset-1 bg-gradient-to-r from-gold-600 to-gold-800 rounded-3xl blur opacity-40 group-hover:opacity-60 transition duration-500" />
+              <div className="relative bg-gradient-to-br from-gold-900/40 to-gold-950/60 border-2 border-gold-500/40 rounded-3xl p-8 md:p-10 hover:border-gold-500/70 transition-all duration-500">
+                <div className="text-gold-400 text-xs uppercase tracking-[0.3em] font-bold mb-6">
+                  Metodología Integrada Estructural
                 </div>
-                <div className="flex justify-between items-center p-4 bg-gold-500/10 rounded-xl border border-gold-500/20">
-                  <span className="text-bone/80 text-sm">Top 5 goleadores mundial</span>
-                  <span className="font-display text-2xl font-bold text-gold-400">273</span>
+                <h2 className="font-display text-3xl md:text-4xl font-bold text-bone mb-8">
+                  Bolívar 2024-2026
+                </h2>
+                <div className="text-center mb-8">
+                  <motion.div
+                    initial={{ scale: 0.5 }}
+                    animate={{ scale: 1 }}
+                    transition={{ duration: 0.8, delay: 1.4 }}
+                    className="font-display text-[8rem] md:text-[10rem] font-black text-gold-500 leading-none"
+                  >
+                    1
+                  </motion.div>
+                  <div className="text-bone/60 text-lg">Tetracampeón</div>
                 </div>
-                <div className="flex justify-between items-center p-4 bg-gold-500/10 rounded-xl border border-gold-500/20">
-                  <span className="text-bone/80">Títulos consecutivos</span>
-                  <span className="font-display text-2xl font-bold text-gold-400">4</span>
+                <div className="space-y-3">
+                  {[
+                    { label: "Efectividad", value: "70%" },
+                    { label: "Top 5 goleadores mundial", value: "273" },
+                    { label: "Títulos consecutivos", value: "4" },
+                  ].map((stat, idx) => (
+                    <motion.div
+                      key={stat.label}
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.5, delay: 1.6 + idx * 0.1 }}
+                      className="flex justify-between items-center p-4 bg-gold-500/10 rounded-xl border border-gold-500/20 hover:bg-gold-500/20 transition-colors"
+                    >
+                      <span className="text-bone/80 text-sm">{stat.label}</span>
+                      <span className="font-display text-2xl font-bold text-gold-400">{stat.value}</span>
+                    </motion.div>
+                  ))}
                 </div>
               </div>
+            </motion.div>
+          </motion.div>
+
+          {/* Mensaje central */}
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 2 }}
+            className="max-w-4xl mx-auto mt-16 text-center"
+          >
+            <div className="p-10 bg-gradient-to-br from-gold-600/20 to-gold-700/10 border-2 border-gold-500/40 rounded-3xl backdrop-blur-sm">
+              <p className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-bone leading-tight">
+                La misma metodología que transformó a Bolívar<br />
+                <span className="text-gold-400">puede transformar a Santos</span>
+              </p>
             </div>
           </motion.div>
         </div>
-
-        {/* Mensaje central */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 1 }}
-          className="max-w-4xl mx-auto mt-20 text-center"
-        >
-          <div className="p-10 bg-gradient-to-br from-gold-600/20 to-gold-700/10 border-2 border-gold-500/40 rounded-3xl">
-            <p className="font-display text-4xl md:text-5xl font-bold text-bone leading-tight">
-              La misma metodología que transformó a Bolívar<br />
-              <span className="text-gold-400">puede transformar a Santos</span>
-            </p>
-          </div>
-        </motion.div>
       </div>
     </section>
   );
 }
 
 // ═══════════════════════════════════════════
-// DIAGNÓSTICO COMPLETO CON IMÁGENES
+// DIAGNÓSTICO COMPLETO
 // ═══════════════════════════════════════════
 
 function DiagnosticoCompletoSection() {
   return (
     <section className="relative py-32 bg-gradient-to-b from-ink-950 via-red-950/20 to-ink-950">
       <div className="container-x">
-        {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
           className="text-center mb-20"
         >
           <div className="inline-block px-4 py-2 rounded-full bg-red-500/10 border border-red-500/20 text-red-400 text-xs uppercase tracking-[0.2em] font-semibold mb-6">
@@ -168,26 +228,22 @@ function DiagnosticoCompletoSection() {
 
         {/* 1. ORGANIZACIÓN DEFENSIVA */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
           className="mb-32"
         >
           <h3 className="font-display text-3xl md:text-4xl font-bold text-bone mb-8 flex items-center gap-4">
-            <span className="w-12 h-12 rounded-xl bg-red-500/20 flex items-center justify-center flex-shrink-0 text-2xl">
-              🛡️
-            </span>
+            <span className="w-12 h-12 rounded-xl bg-red-500/20 flex items-center justify-center flex-shrink-0 text-2xl">🛡️</span>
             Organización Defensiva
           </h3>
 
-          {/* Tipología de goles recibidos */}
           <div className="card-dark border-2 border-red-500/30 mb-8">
             <h4 className="font-display text-2xl font-bold text-bone mb-6">
               Tipología de goles recibidos (38)
             </h4>
-
             <div className="grid md:grid-cols-2 gap-8 items-center">
-              {/* Gráfico */}
               <div className="aspect-video bg-gradient-to-br from-red-900/20 to-red-950/10 rounded-xl border border-red-500/20 flex items-center justify-center">
                 <div className="text-center p-8">
                   <p className="text-bone/60 text-sm mb-4">Periodo de juego donde más les convierten:</p>
@@ -209,12 +265,9 @@ function DiagnosticoCompletoSection() {
                 </div>
               </div>
 
-              {/* Interpretación */}
               <div>
                 <div className="p-6 bg-red-500/10 border-2 border-red-500/30 rounded-xl mb-6">
-                  <h5 className="font-display text-lg font-bold text-red-400 mb-3">
-                    PATRÓN DETECTADO
-                  </h5>
+                  <h5 className="font-display text-lg font-bold text-red-400 mb-3">PATRÓN DETECTADO</h5>
                   <p className="text-bone/80 text-sm leading-relaxed mb-4">
                     El periodo donde Santos ha sufrido más goles es durante los <strong>primeros 15 minutos de partido (8 goles recibidos)</strong>,
                     lo que nos arroja la conclusión de que ha sido un equipo <strong>débil durante los arranques de partido</strong>,
@@ -225,7 +278,6 @@ function DiagnosticoCompletoSection() {
                     a los del inicio del partido. <strong>Respuesta lógica ante un primer mazazo.</strong>
                   </p>
                 </div>
-
                 <div className="p-6 bg-gold-500/10 border border-gold-500/20 rounded-xl">
                   <p className="text-gold-400 font-bold text-sm mb-2">CONCLUSIÓN:</p>
                   <p className="text-bone/70 text-sm">
@@ -237,62 +289,36 @@ function DiagnosticoCompletoSection() {
             </div>
           </div>
 
-          {/* Patrones y fallos */}
           <div className="grid md:grid-cols-2 gap-8">
-            {/* Goles en contra - Patrones */}
             <div className="card-dark border-l-4 border-red-500">
-              <h4 className="font-display text-xl font-bold text-bone mb-4">
-                Goles en contra: Patrones detectados
-              </h4>
-
+              <h4 className="font-display text-xl font-bold text-bone mb-4">Goles en contra: Patrones detectados</h4>
               <div className="space-y-4 mb-6">
-                <div className="p-4 bg-red-500/10 border border-red-500/20 rounded-xl">
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-bone/80 text-sm">Centros al segundo palo</span>
-                    <span className="font-display text-2xl font-bold text-red-400">40%</span>
+                {[
+                  { label: "Centros al segundo palo", val: "40%", desc: "Patrón más recurrente en goles recibidos" },
+                  { label: "Goles dentro del área", val: "85%", desc: "Por no seguir al hombre / les ganan la espalda" },
+                  { label: "Balón parado defensivo", val: "Crítico", desc: "Falta de organización en corners y tiros libres" },
+                ].map((item) => (
+                  <div key={item.label} className="p-4 bg-red-500/10 border border-red-500/20 rounded-xl">
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="text-bone/80 text-sm">{item.label}</span>
+                      <span className="font-display text-2xl font-bold text-red-400">{item.val}</span>
+                    </div>
+                    <p className="text-bone/60 text-xs">{item.desc}</p>
                   </div>
-                  <p className="text-bone/60 text-xs">Patrón más recurrente en goles recibidos</p>
-                </div>
-
-                <div className="p-4 bg-red-500/10 border border-red-500/20 rounded-xl">
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-bone/80 text-sm">Goles dentro del área</span>
-                    <span className="font-display text-2xl font-bold text-red-400">85%</span>
-                  </div>
-                  <p className="text-bone/60 text-xs">Por no seguir al hombre / les ganan la espalda</p>
-                </div>
-
-                <div className="p-4 bg-red-500/10 border border-red-500/20 rounded-xl">
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-bone/80 text-sm">Balón parado defensivo</span>
-                    <span className="font-display text-2xl font-bold text-red-400">Crítico</span>
-                  </div>
-                  <p className="text-bone/60 text-xs">Falta de organización en corners y tiros libres</p>
-                </div>
+                ))}
               </div>
-
               <div className="p-4 bg-gold-500/10 border-2 border-gold-500/30 rounded-xl">
                 <p className="text-bone font-bold text-sm mb-2">PATRÓN PRINCIPAL DETECTADO:</p>
-                <p className="text-gold-400 font-display text-lg font-bold">
-                  DISTRACCIÓN / FALTA DE CONCENTRACIÓN
-                </p>
-                <p className="text-bone/60 text-xs mt-2">
-                  Les hacen goles por no ver al hombre, pierden referencias constantes
-                </p>
+                <p className="text-gold-400 font-display text-lg font-bold">DISTRACCIÓN / FALTA DE CONCENTRACIÓN</p>
+                <p className="text-bone/60 text-xs mt-2">Les hacen goles por no ver al hombre, pierden referencias constantes</p>
               </div>
             </div>
 
-            {/* Fallos colectivos e individuales */}
             <div className="card-dark border-l-4 border-red-500">
-              <h4 className="font-display text-xl font-bold text-bone mb-4">
-                Fallos identificados
-              </h4>
-
+              <h4 className="font-display text-xl font-bold text-bone mb-4">Fallos identificados</h4>
               <div className="space-y-6">
                 <div>
-                  <h5 className="text-bone/80 font-semibold mb-3 text-sm uppercase tracking-wider">
-                    COLECTIVOS (Prioritarios)
-                  </h5>
+                  <h5 className="text-bone/80 font-semibold mb-3 text-sm uppercase tracking-wider">COLECTIVOS (Prioritarios)</h5>
                   <ul className="space-y-2 text-bone/70 text-sm">
                     {[
                       "Defensa muy retrasada (invitan al rival a atacar)",
@@ -307,11 +333,8 @@ function DiagnosticoCompletoSection() {
                     ))}
                   </ul>
                 </div>
-
                 <div>
-                  <h5 className="text-bone/80 font-semibold mb-3 text-sm uppercase tracking-wider">
-                    INDIVIDUALES (Específicos)
-                  </h5>
+                  <h5 className="text-bone/80 font-semibold mb-3 text-sm uppercase tracking-wider">INDIVIDUALES (Específicos)</h5>
                   <ul className="space-y-2 text-bone/70 text-sm">
                     {[
                       "Pérdida de referencias en jugadas de balón parado",
@@ -332,26 +355,20 @@ function DiagnosticoCompletoSection() {
 
         {/* 2. ORGANIZACIÓN OFENSIVA */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
           className="mb-32"
         >
           <h3 className="font-display text-3xl md:text-4xl font-bold text-bone mb-8 flex items-center gap-4">
-            <span className="w-12 h-12 rounded-xl bg-gold-500/20 flex items-center justify-center flex-shrink-0 text-2xl">
-              ⚽
-            </span>
+            <span className="w-12 h-12 rounded-xl bg-gold-500/20 flex items-center justify-center flex-shrink-0 text-2xl">⚽</span>
             Organización Ofensiva
           </h3>
 
-          {/* Tipología de goles anotados */}
           <div className="card-dark border-2 border-gold-500/30 mb-8">
-            <h4 className="font-display text-2xl font-bold text-bone mb-6">
-              Tipología de goles anotados (20)
-            </h4>
-
+            <h4 className="font-display text-2xl font-bold text-bone mb-6">Tipología de goles anotados (20)</h4>
             <div className="grid md:grid-cols-2 gap-8 items-center">
-              {/* Gráfico */}
               <div className="aspect-video bg-gradient-to-br from-gold-900/20 to-gold-950/10 rounded-xl border border-gold-500/20 flex items-center justify-center">
                 <div className="text-center p-8">
                   <p className="text-bone/60 text-sm mb-4">Periodo donde más han convertido:</p>
@@ -373,12 +390,9 @@ function DiagnosticoCompletoSection() {
                 </div>
               </div>
 
-              {/* Interpretación */}
               <div>
                 <div className="p-6 bg-gold-500/10 border-2 border-gold-500/30 rounded-xl mb-6">
-                  <h5 className="font-display text-lg font-bold text-gold-400 mb-3">
-                    PATRÓN DETECTADO
-                  </h5>
+                  <h5 className="font-display text-lg font-bold text-gold-400 mb-3">PATRÓN DETECTADO</h5>
                   <p className="text-bone/80 text-sm leading-relaxed mb-4">
                     El periodo donde Santos ha convertido más goles es durante <strong>los dos periodos siguientes
                     a los primeros 15 minutos de partido, justo luego del primer momento donde más débiles
@@ -394,37 +408,24 @@ function DiagnosticoCompletoSection() {
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
-            {/* Por qué pocos goles */}
             <div className="card-dark border-l-4 border-gold-500">
-              <h4 className="font-display text-xl font-bold text-bone mb-4">
-                ¿Por qué se convierten pocos goles?
-              </h4>
-
+              <h4 className="font-display text-xl font-bold text-bone mb-4">¿Por qué se convierten pocos goles?</h4>
               <div className="space-y-4">
-                <div className="p-4 bg-gold-500/5 border border-gold-500/20 rounded-xl">
-                  <div className="flex justify-between items-center mb-2">
-                    <span className="text-bone/80 text-sm">Conversión de gol</span>
-                    <span className="font-display text-2xl font-bold text-gold-400">5.7%</span>
+                {[
+                  { label: "Conversión de gol", val: "5.7%", desc: "Muy por debajo del promedio liga (12-15%)" },
+                  { label: "Finalizaciones área", val: "85%", desc: "Dependen del juego directo, falta creación" },
+                ].map((item) => (
+                  <div key={item.label} className="p-4 bg-gold-500/5 border border-gold-500/20 rounded-xl">
+                    <div className="flex justify-between items-center mb-2">
+                      <span className="text-bone/80 text-sm">{item.label}</span>
+                      <span className="font-display text-2xl font-bold text-gold-400">{item.val}</span>
+                    </div>
+                    <p className="text-bone/60 text-xs">{item.desc}</p>
                   </div>
-                  <p className="text-bone/60 text-xs">Muy por debajo del promedio liga (12-15%)</p>
-                </div>
-
-                <div className="p-4 bg-gold-500/5 border border-gold-500/20 rounded-xl">
-                  <div className="flex justify-between items-center mb-2">
-                    <span className="text-bone/80 text-sm">Finalizaciones área</span>
-                    <span className="font-display text-2xl font-bold text-gold-400">85%</span>
-                  </div>
-                  <p className="text-bone/60 text-xs">Dependen del juego directo, falta creación</p>
-                </div>
-
+                ))}
                 <h5 className="text-bone/80 font-semibold mt-6 mb-3 text-sm">QUÉ FALTÓ:</h5>
                 <ul className="space-y-2 text-bone/70 text-sm">
-                  {[
-                    "Generación de ocasiones claras",
-                    "Variedad en formas de ataque",
-                    "Llegadas desde segunda línea",
-                    "Eficacia en balón parado ofensivo (ABP)",
-                  ].map((b) => (
+                  {["Generación de ocasiones claras", "Variedad en formas de ataque", "Llegadas desde segunda línea", "Eficacia en balón parado ofensivo (ABP)"].map((b) => (
                     <li key={b} className="flex items-start gap-2">
                       <span className="text-gold-500 flex-shrink-0">→</span>
                       <span>{b}</span>
@@ -434,33 +435,23 @@ function DiagnosticoCompletoSection() {
               </div>
             </div>
 
-            {/* Inicios y desarrollo */}
             <div className="card-dark border-l-4 border-gold-500">
-              <h4 className="font-display text-xl font-bold text-bone mb-4">
-                Inicios y desarrollo de juego
-              </h4>
-
+              <h4 className="font-display text-xl font-bold text-bone mb-4">Inicios y desarrollo de juego</h4>
               <div className="space-y-6">
                 <div>
                   <h5 className="text-bone/80 font-semibold mb-3 text-sm">INICIOS DESDE ATRÁS</h5>
-                  <p className="text-bone/70 text-sm mb-3">
-                    Dificultad para salir jugado bajo presión rival. Recurren constantemente al juego largo.
-                  </p>
+                  <p className="text-bone/70 text-sm mb-3">Dificultad para salir jugado bajo presión rival. Recurren constantemente al juego largo.</p>
                   <div className="p-3 bg-red-500/10 border border-red-500/20 rounded-lg">
                     <p className="text-xs text-red-400">❌ Falta de soluciones en construcción</p>
                   </div>
                 </div>
-
                 <div>
                   <h5 className="text-bone/80 font-semibold mb-3 text-sm">ATAQUES POSICIONALES</h5>
-                  <p className="text-bone/70 text-sm mb-3">
-                    Limitados. No generan superioridades, no crean espacios entre líneas rivales.
-                  </p>
+                  <p className="text-bone/70 text-sm mb-3">Limitados. No generan superioridades, no crean espacios entre líneas rivales.</p>
                   <div className="p-3 bg-red-500/10 border border-red-500/20 rounded-lg">
                     <p className="text-xs text-red-400">❌ Predecibles y fáciles de defender</p>
                   </div>
                 </div>
-
                 <div>
                   <h5 className="text-bone/80 font-semibold mb-3 text-sm">DESARROLLO</h5>
                   <ul className="space-y-2 text-bone/70 text-sm">
@@ -479,33 +470,24 @@ function DiagnosticoCompletoSection() {
 
         {/* 3. ASPECTO PSICOLÓGICO */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
         >
           <div className="max-w-4xl mx-auto">
             <div className="relative p-10 bg-gradient-to-br from-purple-900/30 to-purple-950/10 border-2 border-purple-500/30 rounded-3xl overflow-hidden">
               <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-purple-600 to-purple-500" />
-
               <div className="flex items-start gap-6 mb-8">
-                <div className="w-16 h-16 rounded-2xl bg-purple-500/20 flex items-center justify-center flex-shrink-0 text-4xl">
-                  🧠
-                </div>
+                <div className="w-16 h-16 rounded-2xl bg-purple-500/20 flex items-center justify-center flex-shrink-0 text-4xl">🧠</div>
                 <div>
-                  <h3 className="font-display text-3xl font-bold text-bone mb-2">
-                    Aspecto Psicológico
-                  </h3>
-                  <p className="text-bone/60">
-                    Patrón mental detectado en goles recibidos
-                  </p>
+                  <h3 className="font-display text-3xl font-bold text-bone mb-2">Aspecto Psicológico</h3>
+                  <p className="text-bone/60">Patrón mental detectado en goles recibidos</p>
                 </div>
               </div>
-
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="p-6 bg-purple-500/10 border border-purple-500/20 rounded-xl">
-                  <h4 className="font-display text-lg font-bold text-purple-400 mb-4">
-                    PATRÓN DETECTADO
-                  </h4>
+                  <h4 className="font-display text-lg font-bold text-purple-400 mb-4">PATRÓN DETECTADO</h4>
                   <div className="space-y-3 text-bone/80 text-sm">
                     {[
                       "Falta de atención en momentos clave",
@@ -520,20 +502,13 @@ function DiagnosticoCompletoSection() {
                     ))}
                   </div>
                 </div>
-
                 <div className="p-6 bg-red-500/10 border-2 border-red-500/30 rounded-xl">
                   <h4 className="font-display text-lg font-bold text-red-400 mb-4">DIAGNÓSTICO</h4>
                   <div className="text-center py-6">
-                    <div className="font-display text-4xl font-black text-red-400 mb-3">
-                      DISTRACCIÓN
-                    </div>
-                    <p className="text-bone/70 text-sm mb-4">
-                      Falta de concentración sistemática
-                    </p>
+                    <div className="font-display text-4xl font-black text-red-400 mb-3">DISTRACCIÓN</div>
+                    <p className="text-bone/70 text-sm mb-4">Falta de concentración sistemática</p>
                     <div className="inline-block px-4 py-2 bg-red-500/20 rounded-full">
-                      <p className="text-xs text-red-400 font-semibold">
-                        Falta de competitividad mental
-                      </p>
+                      <p className="text-xs text-red-400 font-semibold">Falta de competitividad mental</p>
                     </div>
                   </div>
                 </div>
@@ -547,18 +522,18 @@ function DiagnosticoCompletoSection() {
 }
 
 // ═══════════════════════════════════════════
-// PERFIL GANADOR CON JUGADORES ESPECÍFICOS
+// PERFIL GANADOR
 // ═══════════════════════════════════════════
 
 function PerfilGanadorSection() {
   return (
     <section className="relative py-32 bg-gradient-to-b from-ink-950 via-green-950/10 to-ink-950">
       <div className="container-x">
-        {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
           className="text-center mb-20"
         >
           <div className="inline-block px-4 py-2 rounded-full bg-green-500/10 border border-green-500/20 text-green-400 text-xs uppercase tracking-[0.2em] font-semibold mb-6">
@@ -575,30 +550,23 @@ function PerfilGanadorSection() {
 
         {/* Jugadores CON perfil ganador */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
           className="mb-16"
         >
           <div className="card-dark border-l-4 border-green-500">
             <div className="flex items-center gap-4 mb-8">
-              <div className="w-14 h-14 rounded-xl bg-green-500/20 flex items-center justify-center text-3xl">
-                ✅
-              </div>
-              <h3 className="font-display text-2xl font-bold text-bone">
-                Jugadores de corte competitivo
-              </h3>
+              <div className="w-14 h-14 rounded-xl bg-green-500/20 flex items-center justify-center text-3xl">✅</div>
+              <h3 className="font-display text-2xl font-bold text-bone">Jugadores de corte competitivo</h3>
             </div>
-
             <p className="text-bone/70 mb-6">
               Jugadores con mentalidad ganadora, liderazgo y capacidad de respuesta en momentos críticos.
               Estos conformarán el <strong className="text-green-400">núcleo ganador</strong> del equipo.
             </p>
-
             <div className="p-6 bg-green-500/10 border border-green-500/20 rounded-xl mb-6">
-              <p className="text-sm text-green-400 font-semibold mb-3">
-                PROCESO DE IDENTIFICACIÓN (Semana 1-2):
-              </p>
+              <p className="text-sm text-green-400 font-semibold mb-3">PROCESO DE IDENTIFICACIÓN (Semana 1-2):</p>
               <ul className="space-y-2 text-bone/70 text-sm">
                 {[
                   "Evaluación individual física + técnica + táctica",
@@ -616,22 +584,18 @@ function PerfilGanadorSection() {
           </div>
         </motion.div>
 
-        {/* Jugadores SIN perfil ganador - CON DETALLES */}
+        {/* Jugadores a evaluar */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
         >
           <div className="card-dark border-l-4 border-red-500 mb-12">
             <div className="flex items-center gap-4 mb-8">
-              <div className="w-14 h-14 rounded-xl bg-red-500/20 flex items-center justify-center text-3xl">
-                ⚠️
-              </div>
-              <h3 className="font-display text-2xl font-bold text-bone">
-                Jugadores a evaluar exhaustivamente
-              </h3>
+              <div className="w-14 h-14 rounded-xl bg-red-500/20 flex items-center justify-center text-3xl">⚠️</div>
+              <h3 className="font-display text-2xl font-bold text-bone">Jugadores a evaluar exhaustivamente</h3>
             </div>
-
             <p className="text-bone/70 mb-8">
               Jugadores que actualmente <strong className="text-red-400">no demuestran</strong> perfil competitivo suficiente
               o cuyo historial no refleja experiencia en instancias definitivas. Requieren evaluación exhaustiva
@@ -645,11 +609,8 @@ function PerfilGanadorSection() {
                   <h4 className="font-display text-xl font-bold text-bone">Kevin Balanta</h4>
                   <p className="text-bone/50 text-sm">Contrato hasta 2029</p>
                 </div>
-                <span className="text-xs text-red-400 bg-red-500/20 px-4 py-2 rounded-full font-semibold">
-                  Evaluación prioritaria
-                </span>
+                <span className="text-xs text-red-400 bg-red-500/20 px-4 py-2 rounded-full font-semibold">Evaluación prioritaria</span>
               </div>
-
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
                   <h5 className="text-bone/80 font-semibold mb-3 text-sm">HISTORIAL COMPETITIVO</h5>
@@ -666,7 +627,6 @@ function PerfilGanadorSection() {
                     ))}
                   </ul>
                 </div>
-
                 <div>
                   <h5 className="text-bone/80 font-semibold mb-3 text-sm">PATRÓN DETECTADO</h5>
                   <ul className="space-y-2 text-bone/70 text-xs">
@@ -692,11 +652,8 @@ function PerfilGanadorSection() {
                   <h4 className="font-display text-xl font-bold text-bone">Cristian Dájome</h4>
                   <p className="text-bone/50 text-sm">Contrato hasta dic 2026 (32 años)</p>
                 </div>
-                <span className="text-xs text-red-400 bg-red-500/20 px-4 py-2 rounded-full font-semibold">
-                  Edad + Forma
-                </span>
+                <span className="text-xs text-red-400 bg-red-500/20 px-4 py-2 rounded-full font-semibold">Edad + Forma</span>
               </div>
-
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
                   <h5 className="text-bone/80 font-semibold mb-3 text-sm">ÚLTIMO MOMENTO DESTACADO</h5>
@@ -713,7 +670,6 @@ function PerfilGanadorSection() {
                     </li>
                   </ul>
                 </div>
-
                 <div>
                   <h5 className="text-bone/80 font-semibold mb-3 text-sm">ACTUALIDAD 2026</h5>
                   <ul className="space-y-2 text-bone/70 text-xs">
@@ -740,11 +696,8 @@ function PerfilGanadorSection() {
                   <h4 className="font-display text-xl font-bold text-bone">Kevin Palacios</h4>
                   <p className="text-bone/50 text-sm">Contrato hasta 2029</p>
                 </div>
-                <span className="text-xs text-yellow-400 bg-yellow-500/20 px-4 py-2 rounded-full font-semibold">
-                  Proyección posible
-                </span>
+                <span className="text-xs text-yellow-400 bg-yellow-500/20 px-4 py-2 rounded-full font-semibold">Proyección posible</span>
               </div>
-
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
                   <h5 className="text-bone/80 font-semibold mb-3 text-sm">RENDIMIENTO SANTOS (1 año)</h5>
@@ -761,7 +714,6 @@ function PerfilGanadorSection() {
                     ))}
                   </ul>
                 </div>
-
                 <div>
                   <h5 className="text-bone/80 font-semibold mb-3 text-sm">EXPERIENCIA COMPETITIVA</h5>
                   <ul className="space-y-2 text-bone/70 text-xs">
@@ -778,7 +730,6 @@ function PerfilGanadorSection() {
                   </ul>
                 </div>
               </div>
-
               <div className="mt-4 p-3 bg-green-500/10 border border-green-500/20 rounded-lg">
                 <p className="text-xs text-green-400">
                   <strong>VENTAJA:</strong> Más joven, mejor adaptación potencial al juego de posición, protagonismo para extremos puros
@@ -793,11 +744,8 @@ function PerfilGanadorSection() {
                   <h4 className="font-display text-xl font-bold text-bone">Ramiro Sordo</h4>
                   <p className="text-bone/50 text-sm">Contrato hasta dic 2027</p>
                 </div>
-                <span className="text-xs text-red-400 bg-red-500/20 px-4 py-2 rounded-full font-semibold">
-                  Fragilidad física
-                </span>
+                <span className="text-xs text-red-400 bg-red-500/20 px-4 py-2 rounded-full font-semibold">Fragilidad física</span>
               </div>
-
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
                   <h5 className="text-bone/80 font-semibold mb-3 text-sm">PROBLEMA PRINCIPAL</h5>
@@ -815,7 +763,6 @@ function PerfilGanadorSection() {
                     ))}
                   </ul>
                 </div>
-
                 <div>
                   <h5 className="text-bone/80 font-semibold mb-3 text-sm">EXPERIENCIA COMPETITIVA</h5>
                   <ul className="space-y-2 text-bone/70 text-xs">
@@ -833,7 +780,6 @@ function PerfilGanadorSection() {
                   </ul>
                 </div>
               </div>
-
               <div className="mt-4 p-3 bg-red-500/10 border border-red-500/20 rounded-lg">
                 <p className="text-xs text-red-400">
                   <strong>CONCLUSIÓN:</strong> Gran calidad técnica, pero historial carece de finales y disponibilidad física limitada para modelo de alta intensidad
@@ -844,9 +790,7 @@ function PerfilGanadorSection() {
 
           {/* Plan de acción */}
           <div className="max-w-4xl mx-auto p-8 bg-gradient-to-br from-gold-600/20 to-gold-700/10 border-2 border-gold-500/40 rounded-3xl text-center">
-            <h4 className="font-display text-2xl font-bold text-bone mb-6">
-              Plan de Acción: Semanas 1-6
-            </h4>
+            <h4 className="font-display text-2xl font-bold text-bone mb-6">Plan de Acción: Semanas 1-6</h4>
             <div className="grid md:grid-cols-3 gap-6 text-left">
               {[
                 ["SEMANA 1-2", "Evaluación exhaustiva: física, táctica, psicológica, historial competitivo"],
@@ -867,7 +811,7 @@ function PerfilGanadorSection() {
 }
 
 // ═══════════════════════════════════════════
-// BLOQUE 2: SOLUCIÓN
+// SOLUCIÓN
 // ═══════════════════════════════════════════
 
 function SolucionSection() {
@@ -881,9 +825,10 @@ function SolucionSection() {
     <section className="relative py-32 bg-gradient-to-b from-ink-950 via-green-950/10 to-ink-950">
       <div className="container-x">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
           className="text-center mb-20"
         >
           <div className="inline-block px-4 py-2 rounded-full bg-gold-500/10 border border-gold-500/20 text-gold-400 text-xs uppercase tracking-[0.2em] font-semibold mb-6">
@@ -902,8 +847,8 @@ function SolucionSection() {
               key={i}
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: c.delay }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ delay: c.delay, duration: 0.7 }}
               className="grid md:grid-cols-2 gap-8 items-center"
             >
               <div className="p-8 bg-gradient-to-br from-red-900/30 to-red-950/10 border-2 border-red-500/30 rounded-2xl">
@@ -928,7 +873,12 @@ function SolucionSection() {
           ))}
         </div>
 
-        <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
+        >
           <h3 className="font-display text-4xl font-bold text-bone text-center mb-12">
             Proyección con metodología Robatto
           </h3>
@@ -952,38 +902,66 @@ function SolucionSection() {
 }
 
 // ═══════════════════════════════════════════
-// BLOQUE 3: PLAN 90 DÍAS
+// PLAN 90 DÍAS - REDISEÑADO SIN TIMELINE
 // ═══════════════════════════════════════════
 
 function PlanImplementacionSection() {
-  const fases = [
+  const phases = [
     {
-      semanas: "1-2", color: "bg-blue-500", borderColor: "border-blue-500/20", bgColor: "bg-blue-500/10", textColor: "text-blue-400",
+      weeks: "1-2",
       title: "Diagnóstico Interno",
-      bullets: ["Evaluación individual completa", "Identificación de líderes", "Ajustes prioritarios"],
-      entregable: "Entregable: Informe + plan personalizado", delay: 0,
+      color: "blue",
+      icon: "🔍",
+      tasks: [
+        "Evaluación individual completa (física + técnica + táctica)",
+        "Identificación de líderes naturales",
+        "Detección de ajustes prioritarios",
+        "Análisis de perfil psicológico",
+      ],
+      deliverable: "Informe completo + plan personalizado",
     },
     {
-      semanas: "3-6", color: "bg-gold-500", borderColor: "border-gold-500/20", bgColor: "bg-gold-500/10", textColor: "text-gold-400",
+      weeks: "3-6",
       title: "Ajustes Defensivos Prioritarios",
-      bullets: ["Reducir goles de centros", "Salir de área propia", "Presión coordinada"],
-      entregable: "Objetivo: -40% goles de centros", delay: 0.2,
+      color: "gold",
+      icon: "🛡️",
+      tasks: [
+        "Trabajo específico: reducir goles de centros",
+        "Mejora en posicionamiento defensivo",
+        "Implementación de presión coordinada",
+        "Organización en balón parado",
+      ],
+      deliverable: "Objetivo: -40% goles de centros",
     },
     {
-      semanas: "6-12", color: "bg-green-500", borderColor: "border-green-500/20", bgColor: "bg-green-500/10", textColor: "text-green-400",
-      title: "Modelo Completo",
-      bullets: ["Microdosificación integrada", "Posesión + presión", "Automatización de principios"],
-      entregable: "Objetivo: +15% efectividad, Top 12", delay: 0.4,
+      weeks: "6-12",
+      title: "Introducción del Modelo Completo",
+      color: "green",
+      icon: "⚽",
+      tasks: [
+        "Microdosificación integrada (metodología completa)",
+        "Posesión + presión como identidad",
+        "Automatización de principios de juego",
+        "Evaluación continua de rendimiento",
+      ],
+      deliverable: "Objetivo: +15% efectividad, Top 12",
     },
   ];
+
+  const colorMap = {
+    blue: { from: "from-blue-600", to: "to-blue-800", bg: "bg-blue-500/10", border: "border-blue-500/30", text: "text-blue-400", hover: "hover:border-blue-500/60" },
+    gold: { from: "from-gold-600", to: "to-gold-800", bg: "bg-gold-500/10", border: "border-gold-500/30", text: "text-gold-400", hover: "hover:border-gold-500/60" },
+    green: { from: "from-green-600", to: "to-green-800", bg: "bg-green-500/10", border: "border-green-500/30", text: "text-green-400", hover: "hover:border-green-500/60" },
+  };
 
   return (
     <section className="relative py-32 bg-gradient-to-b from-ink-950 via-blue-950/10 to-ink-950">
       <div className="container-x">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
           className="text-center mb-20"
         >
           <div className="inline-block px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs uppercase tracking-[0.2em] font-semibold mb-6">
@@ -993,64 +971,103 @@ function PlanImplementacionSection() {
             Plan de<br />
             <span className="text-blue-400">impacto inmediato</span>
           </h2>
-          <p className="text-bone/60 text-xl max-w-3xl mx-auto">Los primeros 90 días: de la teoría a resultados medibles</p>
+          <p className="text-bone/60 text-xl max-w-3xl mx-auto">
+            Los primeros 90 días: de la teoría a resultados medibles
+          </p>
         </motion.div>
 
-        <div className="mb-32 overflow-x-auto pb-8">
-          <div className="min-w-[900px]">
-            <div className="relative">
-              <div className="absolute top-8 left-0 right-0 h-1 bg-bone/10" />
-              <div className="relative flex gap-4">
-                {fases.map((f) => (
-                  <motion.div
-                    key={f.semanas}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: f.delay }}
-                    className="flex-1"
-                  >
-                    <div className={`w-16 h-16 rounded-full ${f.color} border-4 border-ink-950 flex items-center justify-center mb-4 mx-auto`}>
-                      <span className="font-display text-sm font-bold text-ink-950">{f.semanas}</span>
+        {/* Cards Interactivas */}
+        <div className="grid md:grid-cols-3 gap-8 mb-20">
+          {phases.map((phase, idx) => {
+            const colors = colorMap[phase.color];
+            return (
+              <motion.div
+                key={phase.weeks}
+                initial={{ opacity: 0, y: 100 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.6, delay: idx * 0.2 }}
+                whileHover={{ y: -10 }}
+                className="relative group"
+              >
+                <div className={`absolute -inset-1 bg-gradient-to-r ${colors.from} ${colors.to} rounded-3xl blur opacity-30 group-hover:opacity-50 transition duration-500`} />
+                <div className={`relative bg-gradient-to-br from-ink-800 to-ink-900 border-2 ${colors.border} ${colors.hover} rounded-3xl p-8 transition-all duration-500 h-full`}>
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className={`w-16 h-16 rounded-2xl ${colors.bg} flex items-center justify-center text-4xl`}>
+                      {phase.icon}
                     </div>
-                    <div className="card-dark p-6">
-                      <h4 className="font-display text-xl font-bold text-bone mb-3">{f.title}</h4>
-                      <ul className="space-y-2 text-sm text-bone/70 mb-4">
-                        {f.bullets.map((b) => <li key={b}>• {b}</li>)}
-                      </ul>
-                      <div className={`p-3 ${f.bgColor} border ${f.borderColor} rounded-lg`}>
-                        <p className={`text-xs ${f.textColor} font-semibold`}>{f.entregable}</p>
+                    <div>
+                      <div className={`text-xs uppercase tracking-[0.2em] ${colors.text} font-bold mb-1`}>
+                        Semana {phase.weeks}
                       </div>
+                      <h3 className="font-display text-xl font-bold text-bone leading-tight">
+                        {phase.title}
+                      </h3>
                     </div>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          </div>
+                  </div>
+                  <ul className="space-y-3 mb-6">
+                    {phase.tasks.map((task, i) => (
+                      <motion.li
+                        key={i}
+                        initial={{ opacity: 0, x: -20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.4, delay: idx * 0.2 + i * 0.1 }}
+                        className="flex items-start gap-3 text-bone/70 text-sm"
+                      >
+                        <span className={`${colors.text} mt-1 flex-shrink-0`}>→</span>
+                        <span>{task}</span>
+                      </motion.li>
+                    ))}
+                  </ul>
+                  <div className={`p-4 ${colors.bg} border ${colors.border} rounded-xl`}>
+                    <p className={`text-xs ${colors.text} font-semibold mb-1`}>ENTREGABLE:</p>
+                    <p className="text-bone/80 text-sm">{phase.deliverable}</p>
+                  </div>
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
 
-        <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+        {/* Objetivos Medibles */}
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
+        >
           <h3 className="font-display text-4xl font-bold text-bone text-center mb-12">
             Objetivos medibles (Corto Plazo)
           </h3>
           <div className="grid md:grid-cols-3 gap-8">
             {[
-              { title: "Defensivo", border: "border-blue-500", color: "text-blue-400", rows: [["Goles de centros", "-40%"], ["Ingresos al área", "-30%"]] },
-              { title: "Ofensivo", border: "border-gold-500", color: "text-gold-400", rows: [["Tiempo campo rival", "+50%"], ["Conversión de gol", "12%"]] },
-              { title: "Posicional", border: "border-green-500", color: "text-green-400", rows: [["Posición tabla", "Top 12"], ["Meta semestre", "Liguilla"]] },
-            ].map((c) => (
-              <div key={c.title} className={`card-dark border-l-4 ${c.border}`}>
-                <h4 className="font-display text-xl font-bold text-bone mb-6">{c.title}</h4>
-                <div className="space-y-4">
-                  {c.rows.map(([label, val]) => (
-                    <div key={label} className="flex justify-between items-center p-4 bg-ink-950 rounded-xl">
-                      <span className="text-bone/70">{label}</span>
-                      <span className={`font-display text-2xl font-bold ${c.color}`}>{val}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ))}
+              { title: "Defensivo", color: "blue", stats: [["Goles de centros", "-40%"], ["Ingresos al área", "-30%"]] },
+              { title: "Ofensivo", color: "gold", stats: [["Tiempo campo rival", "+50%"], ["Conversión de gol", "12%"]] },
+              { title: "Posicional", color: "green", stats: [["Posición tabla", "Top 12"], ["Meta semestre", "Liguilla"]] },
+            ].map((category, idx) => {
+              const colors = colorMap[category.color];
+              return (
+                <motion.div
+                  key={category.title}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: idx * 0.15 }}
+                  className={`card-dark border-l-4 ${colors.border}`}
+                >
+                  <h4 className="font-display text-xl font-bold text-bone mb-6">{category.title}</h4>
+                  <div className="space-y-4">
+                    {category.stats.map(([label, val]) => (
+                      <div key={label} className="flex justify-between items-center p-4 bg-ink-950 rounded-xl">
+                        <span className="text-bone/70">{label}</span>
+                        <span className={`font-display text-2xl font-bold ${colors.text}`}>{val}</span>
+                      </div>
+                    ))}
+                  </div>
+                </motion.div>
+              );
+            })}
           </div>
         </motion.div>
       </div>
