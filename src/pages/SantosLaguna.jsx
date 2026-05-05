@@ -897,7 +897,7 @@ function PlanImplementacionSection() {
     },
     {
       weeks: "6-12",
-      title: "Modelo Completo",
+      title: "Modelo en Marcha",
       color: "green",
       icon: "⚽",
       tasks: ["Microdosificación integrada", "Posesión + presión", "Automatización principios", "Evaluación continua"],
