@@ -1498,47 +1498,6 @@ function PlanImplementacionSection() {
             );
           })}
         </div>
-
-        {/* Objetivos */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <h3 className="font-display text-3xl md:text-4xl font-bold text-bone text-center mb-12">
-            Indicadores de seguimiento
-          </h3>
-          <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            {[
-              { title: "Defensivo", color: "blue", stats: [{ label: "Goles centros (objetivo)", value: "-40%" }, { label: "Ingresos área", value: "-30%" }] },
-              { title: "Ofensivo", color: "gold", stats: [{ label: "Campo rival", value: "+50%" }, { label: "Conversión", value: "12%" }] },
-              { title: "Posicional", color: "green", stats: [{ label: "Tabla", value: "Top 12" }, { label: "Meta", value: "Liguilla" }] },
-            ].map((cat, idx) => {
-              const colors = colorMap[cat.color];
-              return (
-                <motion.div
-                  key={cat.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: idx * 0.1 }}
-                  className={`card-dark border-l-4 ${colors.border}`}
-                >
-                  <h4 className="font-display text-xl font-bold text-bone mb-4">{cat.title}</h4>
-                  <div className="space-y-3">
-                    {cat.stats.map((stat, i) => (
-                      <div key={i} className="flex justify-between items-center p-3 bg-ink-950 rounded-xl">
-                        <span className="text-bone/70 text-sm">{stat.label}</span>
-                        <span className={`font-display text-2xl font-bold ${colors.text}`}>{stat.value}</span>
-                      </div>
-                    ))}
-                  </div>
-                </motion.div>
-              );
-            })}
-          </div>
-        </motion.div>
       </div>
     </section>
   );
