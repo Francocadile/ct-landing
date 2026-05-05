@@ -40,6 +40,32 @@ export const TEAM = [
       "Analista de rendimiento. Segmentación, etiquetado y presentación de informes para CT y jugadores. Genera dashboards con KPIs tácticos y de eficiencia, y produce pre/post partido para la toma de decisiones.",
     roles: ["Análisis de video", "Informes y KPIs", "Soporte táctico"],
   },
+  {
+    slug: "sandro-dominguez",
+    name: "Sandro Domínguez",
+    role: "Asistente Técnico",
+    img: "/img/staff/sandro-domingez.png",
+    flags: ["/img/banders/argentina.png"],
+    bio:
+      "Su función central es colaborar activamente en la planificación, ejecución y control del entrenamiento y la competencia. Participa en el diseño de las tareas, supervisa el desarrollo de las sesiones en campo y aporta observaciones tácticas durante los partidos.",
+    roles: [
+      "Planificación de tareas",
+      "Supervisión de sesiones",
+      "Observaciones tácticas en partido",
+    ],
+  },
+  {
+    slug: "horacio-rodriguez",
+    name: "Horacio Rodríguez",
+    role: "Asistente Técnico",
+    img: "/img/staff/horacio-rodriguez.png",
+    flags: ["/img/banders/argentina.png"],
+    bio:
+      "Se encarga de tareas como el análisis de rivales, el registro de datos de entrenamiento y partido, y el apoyo en la organización de las sesiones.",
+    roles: [
+      "Análisis de rivales",
+      "Registro de datos",
+      "Organización de sesiones",
+    ],
+  },
 ];
-
-
