@@ -431,43 +431,60 @@ function DiagnosticoCompletoSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
+          className="mb-24"
         >
-          <div className="max-w-4xl mx-auto">
-            <div className="relative p-10 bg-gradient-to-br from-purple-900/30 to-purple-950/10 border-2 border-purple-500/30 rounded-3xl overflow-hidden">
-              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-purple-600 to-purple-500" />
-              <div className="flex items-start gap-6 mb-8">
-                <div className="w-16 h-16 rounded-2xl bg-purple-500/20 flex items-center justify-center flex-shrink-0 text-4xl">🧠</div>
-                <div>
-                  <h3 className="font-display text-3xl font-bold text-bone mb-2">Aspecto Psicológico</h3>
-                  <p className="text-bone/60">Patrón mental detectado en goles recibidos</p>
-                </div>
+          <h3 className="font-display text-3xl md:text-4xl font-bold text-bone mb-8 flex items-center gap-4">
+            <span className="w-12 h-12 rounded-xl bg-purple-500/20 flex items-center justify-center flex-shrink-0 text-2xl">
+              🧠
+            </span>
+            Aspecto Psicológico
+          </h3>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            {/* Patrón detectado */}
+            <div className="card-dark border-l-4 border-purple-500">
+              <h4 className="font-display text-xl font-bold text-bone mb-4">
+                Patrón mental detectado
+              </h4>
+              <p className="text-bone/70 text-sm mb-6">
+                En el análisis de goles recibidos identificamos un patrón recurrente en la organización defensiva
+              </p>
+              <div className="space-y-3">
+                {[
+                  "Falta de atención en momentos clave",
+                  "Les hacen goles por no seguir al hombre",
+                  "Les ganan la espalda con facilidad",
+                  "Pérdida de referencias en balón parado",
+                ].map((item) => (
+                  <div key={item} className="flex items-start gap-3 text-bone/80 text-sm p-3 bg-purple-500/5 rounded-lg border border-purple-500/10">
+                    <span className="text-purple-400 font-bold mt-0.5 flex-shrink-0">→</span>
+                    <span>{item}</span>
+                  </div>
+                ))}
               </div>
-              <div className="grid md:grid-cols-2 gap-6">
-                <div className="p-6 bg-purple-500/10 border border-purple-500/20 rounded-xl">
-                  <h4 className="font-display text-lg font-bold text-purple-400 mb-4">PATRÓN DETECTADO</h4>
-                  <div className="space-y-3 text-bone/80 text-sm">
-                    {[
-                      "Falta de atención en momentos clave",
-                      "Les hacen goles por no seguir al hombre",
-                      "Les ganan la espalda con facilidad",
-                      "Pérdida de referencias en balón parado",
-                    ].map((b) => (
-                      <p key={b} className="flex items-start gap-2">
-                        <span className="text-purple-500 font-bold flex-shrink-0">→</span>
-                        <span>{b}</span>
-                      </p>
-                    ))}
+            </div>
+
+            {/* Diagnóstico */}
+            <div className="card-dark border-l-4 border-red-500">
+              <h4 className="font-display text-xl font-bold text-bone mb-4">
+                Diagnóstico principal
+              </h4>
+              <div className="text-center py-8 mb-6">
+                <div className="inline-block px-6 py-3 bg-red-500/10 border-2 border-red-500/30 rounded-2xl mb-4">
+                  <div className="font-display text-4xl md:text-5xl font-black text-red-400">
+                    DISTRACCIÓN
                   </div>
                 </div>
-                <div className="p-6 bg-red-500/10 border-2 border-red-500/30 rounded-xl">
-                  <h4 className="font-display text-lg font-bold text-red-400 mb-4">DIAGNÓSTICO</h4>
-                  <div className="text-center py-6">
-                    <div className="font-display text-4xl font-black text-red-400 mb-3">DISTRACCIÓN</div>
-                    <p className="text-bone/70 text-sm mb-4">Falta de concentración sistemática</p>
-                    <div className="inline-block px-4 py-2 bg-red-500/20 rounded-full">
-                      <p className="text-xs text-red-400 font-semibold">Falta de competitividad mental</p>
-                    </div>
-                  </div>
+                <p className="text-bone/70 text-sm">Falta de concentración sistemática</p>
+              </div>
+              <div className="space-y-3">
+                <div className="p-4 bg-red-500/10 border border-red-500/20 rounded-xl">
+                  <p className="text-red-400 font-semibold text-sm mb-1">CONSECUENCIA:</p>
+                  <p className="text-bone/80 text-sm">Falta de competitividad mental en momentos críticos</p>
+                </div>
+                <div className="p-4 bg-gold-500/10 border border-gold-500/20 rounded-xl">
+                  <p className="text-gold-400 font-semibold text-sm mb-1">SOLUCIÓN:</p>
+                  <p className="text-bone/80 text-sm">Trabajo específico en concentración y mentalidad competitiva</p>
                 </div>
               </div>
             </div>
