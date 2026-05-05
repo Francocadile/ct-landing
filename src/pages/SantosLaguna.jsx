@@ -325,6 +325,32 @@ function DiagnosticoCompletoSection() {
               </div>
             </div>
           </div>
+
+          {/* Video: Goles recibidos */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mt-8 md:mt-12"
+          >
+            <h5 className="font-display text-base sm:text-lg md:text-xl font-bold text-bone mb-4 text-center">
+              Los 38 goles recibidos del torneo
+            </h5>
+            <div className="w-full max-w-4xl mx-auto">
+              <div className="relative w-full overflow-hidden rounded-lg md:rounded-2xl border border-red-500/30" style={{ paddingBottom: '56.25%' }}>
+                <iframe
+                  src="https://drive.google.com/file/d/18l1QqwM7a4Pft0v372pGzPOeOTUaWQsO/preview"
+                  className="absolute inset-0 w-full h-full"
+                  allow="autoplay"
+                  allowFullScreen
+                  loading="lazy"
+                />
+              </div>
+              <p className="text-bone/50 text-xs md:text-sm mt-3 text-center">
+                Análisis de todos los goles recibidos - Clausura 2026
+              </p>
+            </div>
+          </motion.div>
         </motion.div>
 
         {/* 2. ORGANIZACIÓN OFENSIVA */}
@@ -439,6 +465,32 @@ function DiagnosticoCompletoSection() {
               </div>
             </div>
           </div>
+
+          {/* Video: 20 goles anotados */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mt-8 md:mt-12"
+          >
+            <h5 className="font-display text-base sm:text-lg md:text-xl font-bold text-bone mb-4 text-center">
+              Los 20 goles anotados del torneo
+            </h5>
+            <div className="w-full max-w-4xl mx-auto">
+              <div className="relative w-full overflow-hidden rounded-lg md:rounded-2xl border border-gold-500/30" style={{ paddingBottom: '56.25%' }}>
+                <iframe
+                  src="https://drive.google.com/file/d/13hwLeYGE1dTCQJqRgIssAJ-58hMqCmFa/preview"
+                  className="absolute inset-0 w-full h-full"
+                  allow="autoplay"
+                  allowFullScreen
+                  loading="lazy"
+                />
+              </div>
+              <p className="text-bone/50 text-xs md:text-sm mt-3 text-center">
+                Compilado completo de goles convertidos - Clausura 2026
+              </p>
+            </div>
+          </motion.div>
         </motion.div>
 
         {/* 3. ASPECTO PSICOLÓGICO */}
