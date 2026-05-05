@@ -131,7 +131,7 @@ function HeroSection() {
               <div className="grid grid-cols-3 gap-3">
                 {[
                   { label: "Efectividad", value: "70%" },
-                  { label: "Top 5 mundial", value: "273" },
+                  { label: "Goles (Top 5)", value: "273" },
                   { label: "Títulos", value: "4" },
                 ].map((stat) => (
                   <div key={stat.label} className="bg-green-500/10 rounded-xl p-3 text-center">
