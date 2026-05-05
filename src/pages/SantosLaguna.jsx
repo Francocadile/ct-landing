@@ -90,14 +90,19 @@ function HeroSection() {
             </div>
           </motion.div>
 
-          {/* VS - Solo desktop */}
+          {/* VS - VISIBLE EN TODOS LOS TAMAÑOS */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.5 }}
-            className="hidden md:flex items-center justify-center py-4"
+            className="flex items-center justify-center py-6"
           >
-            <div className="font-display text-6xl lg:text-8xl font-black text-gold-500/30">VS</div>
+            <div className="relative">
+              <div className="font-display text-7xl sm:text-8xl md:text-9xl font-black text-gold-500/40">
+                VS
+              </div>
+              <div className="absolute inset-0 bg-gold-500/10 blur-2xl -z-10" />
+            </div>
           </motion.div>
 
           {/* Bolívar */}
