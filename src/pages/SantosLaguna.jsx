@@ -519,153 +519,170 @@ function MapaCalorSection() {
   return (
     <section className="relative py-20 md:py-32 bg-gradient-to-b from-ink-950 via-purple-950/10 to-ink-950">
       <div className="container-x">
-
-        {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <span className="inline-block px-4 py-1.5 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-400 text-xs font-medium tracking-widest uppercase mb-6">
+          <div className="inline-block px-4 py-2 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-400 text-xs uppercase tracking-[0.2em] font-semibold mb-6">
             Visualización de Impacto
-          </span>
-          <h2 className="text-3xl md:text-5xl font-display font-bold text-bone-50 mb-4">
-            Mapa de Calor{" "}
+          </div>
+          <h2 className="font-display text-4xl md:text-5xl lg:text-7xl font-black text-bone mb-6 leading-tight">
+            Mapa de Calor<br />
             <span className="text-purple-400">Comparativo</span>
           </h2>
-          <p className="text-ink-300 text-lg max-w-2xl mx-auto">
-            Dónde ocurren los problemas hoy vs. dónde ocurrirán las soluciones con la metodología aplicada
+          <p className="text-bone/60 text-lg md:text-xl max-w-3xl mx-auto">
+            Dónde reciben y anotan goles: Antes vs Después
           </p>
         </motion.div>
 
-        {/* Campo comparativo */}
-        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-12">
-
-          {/* Santos actual */}
+        <div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+          {/* Santos Actual - Vulnerable */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
+            initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-            className="relative"
+            transition={{ duration: 0.6 }}
+            className="card-dark border-l-4 border-red-500"
           >
-            <div className="text-center mb-4">
-              <span className="inline-block px-3 py-1 rounded-full bg-red-500/20 border border-red-500/30 text-red-400 text-sm font-semibold">
-                Santos — Situación Actual
-              </span>
-            </div>
-            <div className="relative aspect-[3/4] bg-ink-900 rounded-2xl border border-red-500/20 overflow-hidden">
-              {/* Campo de fútbol */}
-              <div className="absolute inset-4 border border-ink-600/40 rounded-lg">
-                <div className="absolute top-1/2 left-0 right-0 border-t border-ink-600/40" />
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full border border-ink-600/40" />
-                <div className="absolute top-0 left-1/4 right-1/4 h-1/5 border-b border-l border-r border-ink-600/40" />
-                <div className="absolute bottom-0 left-1/4 right-1/4 h-1/5 border-t border-l border-r border-ink-600/40" />
+            <h3 className="font-display text-2xl font-bold text-bone mb-6 text-center">
+              Santos Actual
+            </h3>
+
+            {/* Campo simplificado */}
+            <div className="aspect-[3/4] bg-gradient-to-b from-emerald-900/20 to-emerald-950/10 rounded-2xl border border-bone/10 p-8 relative overflow-hidden">
+              {/* Líneas del campo */}
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="w-full h-px bg-bone/20" />
               </div>
-              {/* Blob de calor — zona defensiva (problema) */}
+              <div className="absolute left-1/2 top-0 bottom-0 w-px bg-bone/20 -translate-x-1/2" />
+
+              {/* Zonas de calor ROJO MÁS INTENSAS (área propia + centros) */}
               <motion.div
-                animate={{ scale: [1, 1.08, 1], opacity: [0.5, 0.75, 0.5] }}
-                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute bottom-8 left-1/2 -translate-x-1/2 w-40 h-40 rounded-full bg-red-500/40 blur-3xl"
+                initial={{ scale: 0, opacity: 0 }}
+                whileInView={{ scale: 1, opacity: 0.8 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                className="absolute bottom-6 left-1/2 -translate-x-1/2 w-40 h-40 bg-red-500 rounded-full blur-3xl"
               />
               <motion.div
-                animate={{ scale: [1, 1.12, 1], opacity: [0.3, 0.55, 0.3] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-                className="absolute bottom-4 left-1/2 -translate-x-1/2 w-56 h-24 rounded-full bg-orange-500/30 blur-2xl"
+                initial={{ scale: 0, opacity: 0 }}
+                whileInView={{ scale: 1, opacity: 0.6 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.5 }}
+                className="absolute bottom-12 left-1/2 -translate-x-1/2 w-56 h-56 bg-red-600 rounded-full blur-3xl"
               />
-              {/* Label zona */}
-              <div className="absolute bottom-6 left-1/2 -translate-x-1/2 whitespace-nowrap">
-                <span className="px-3 py-1 rounded-full bg-red-500/30 border border-red-400/40 text-red-300 text-xs font-semibold">
-                  ⚠ Zona de riesgo defensivo
-                </span>
-              </div>
-              {/* Label arriba */}
-              <div className="absolute top-6 left-1/2 -translate-x-1/2 whitespace-nowrap">
-                <span className="px-3 py-1 rounded-full bg-ink-800/80 border border-ink-600/40 text-ink-400 text-xs">
+              {/* Zona de centros al segundo palo */}
+              <motion.div
+                initial={{ scale: 0, opacity: 0 }}
+                whileInView={{ scale: 1, opacity: 0.5 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.7 }}
+                className="absolute bottom-20 right-8 w-32 h-32 bg-red-700 rounded-full blur-2xl"
+              />
+
+              {/* Etiquetas */}
+              <div className="absolute top-4 left-1/2 -translate-x-1/2">
+                <div className="text-bone/40 text-xs text-center">
                   Zona ofensiva inactiva
-                </span>
+                </div>
               </div>
+
+              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-center">
+                <div className="inline-block px-4 py-2 bg-red-500/90 rounded-full backdrop-blur-sm border border-red-400/50">
+                  <div className="text-bone font-display text-lg font-bold">⚠️ Zona de riesgo defensivo</div>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-4 p-4 bg-red-500/10 border border-red-500/20 rounded-xl">
+              <p className="text-red-400 text-sm font-semibold mb-2">PATRÓN ACTUAL:</p>
+              <ul className="text-bone/70 text-xs space-y-1">
+                <li>→ Línea defensiva alta sin cobertura</li>
+                <li>→ 40% de goles por centros al área</li>
+                <li>→ 85% de goles recibidos dentro del área</li>
+              </ul>
             </div>
           </motion.div>
 
-          {/* Con metodología */}
+          {/* Con Metodología - Dominante */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
+            initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-            className="relative"
+            transition={{ duration: 0.6 }}
+            className="card-dark border-l-4 border-green-500"
           >
-            <div className="text-center mb-4">
-              <span className="inline-block px-3 py-1 rounded-full bg-santos-green/20 border border-santos-green/30 text-green-400 text-sm font-semibold">
-                Con Metodología Robatto
-              </span>
-            </div>
-            <div className="relative aspect-[3/4] bg-ink-900 rounded-2xl border border-santos-green/20 overflow-hidden">
-              {/* Campo de fútbol */}
-              <div className="absolute inset-4 border border-ink-600/40 rounded-lg">
-                <div className="absolute top-1/2 left-0 right-0 border-t border-ink-600/40" />
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full border border-ink-600/40" />
-                <div className="absolute top-0 left-1/4 right-1/4 h-1/5 border-b border-l border-r border-ink-600/40" />
-                <div className="absolute bottom-0 left-1/4 right-1/4 h-1/5 border-t border-l border-r border-ink-600/40" />
+            <h3 className="font-display text-2xl font-bold text-bone mb-6 text-center">
+              Con Metodología Robatto
+            </h3>
+
+            {/* Campo simplificado */}
+            <div className="aspect-[3/4] bg-gradient-to-b from-emerald-900/20 to-emerald-950/10 rounded-2xl border border-bone/10 p-8 relative overflow-hidden">
+              {/* Líneas del campo */}
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="w-full h-px bg-bone/20" />
               </div>
-              {/* Blob de calor — zona ofensiva (solución) */}
+              <div className="absolute left-1/2 top-0 bottom-0 w-px bg-bone/20 -translate-x-1/2" />
+
+              {/* Zonas de calor VERDE MÁS MARCADAS (campo rival + presión alta) */}
               <motion.div
-                animate={{ scale: [1, 1.08, 1], opacity: [0.5, 0.75, 0.5] }}
-                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute top-8 left-1/2 -translate-x-1/2 w-40 h-40 rounded-full bg-santos-green/40 blur-3xl"
+                initial={{ scale: 0, opacity: 0 }}
+                whileInView={{ scale: 1, opacity: 0.8 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                className="absolute top-6 left-1/2 -translate-x-1/2 w-48 h-48 bg-green-500 rounded-full blur-3xl"
               />
               <motion.div
-                animate={{ scale: [1, 1.12, 1], opacity: [0.3, 0.55, 0.3] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-                className="absolute top-4 left-1/2 -translate-x-1/2 w-56 h-24 rounded-full bg-emerald-400/20 blur-2xl"
+                initial={{ scale: 0, opacity: 0 }}
+                whileInView={{ scale: 1, opacity: 0.6 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.5 }}
+                className="absolute top-16 left-1/2 -translate-x-1/2 w-64 h-64 bg-green-600 rounded-full blur-3xl"
               />
-              {/* Label zona */}
-              <div className="absolute top-6 left-1/2 -translate-x-1/2 whitespace-nowrap">
-                <span className="px-3 py-1 rounded-full bg-santos-green/30 border border-santos-green/40 text-green-300 text-xs font-semibold">
-                  ✓ Presión alta estructurada
-                </span>
+              {/* Zona presión izquierda */}
+              <motion.div
+                initial={{ scale: 0, opacity: 0 }}
+                whileInView={{ scale: 1, opacity: 0.5 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.7 }}
+                className="absolute top-20 left-8 w-40 h-40 bg-green-500 rounded-full blur-2xl"
+              />
+              {/* Zona presión derecha */}
+              <motion.div
+                initial={{ scale: 0, opacity: 0 }}
+                whileInView={{ scale: 1, opacity: 0.5 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.9 }}
+                className="absolute top-20 right-8 w-40 h-40 bg-green-500 rounded-full blur-2xl"
+              />
+
+              {/* Etiquetas */}
+              <div className="absolute top-4 left-1/2 -translate-x-1/2 text-center">
+                <div className="inline-block px-4 py-2 bg-green-500/90 rounded-full backdrop-blur-sm border border-green-400/50">
+                  <div className="text-bone font-display text-lg font-bold">✓ Presión alta</div>
+                </div>
               </div>
-              {/* Label abajo */}
-              <div className="absolute bottom-6 left-1/2 -translate-x-1/2 whitespace-nowrap">
-                <span className="px-3 py-1 rounded-full bg-ink-800/80 border border-ink-600/40 text-ink-300 text-xs">
+
+              <div className="absolute bottom-4 left-1/2 -translate-x-1/2">
+                <div className="text-bone/40 text-xs text-center">
                   Bloque defensivo compacto
-                </span>
+                </div>
               </div>
+            </div>
+
+            <div className="mt-4 p-4 bg-green-500/10 border border-green-500/20 rounded-xl">
+              <p className="text-green-400 text-sm font-semibold mb-2">TRANSFORMACIÓN PROPUESTA:</p>
+              <ul className="text-bone/70 text-xs space-y-1">
+                <li>→ Presión alta con salida controlada</li>
+                <li>→ Equipo corto: defensa lejos del arco</li>
+                <li>→ Recuperación en campo rival</li>
+              </ul>
             </div>
           </motion.div>
         </div>
-
-        {/* Footer con bullets */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="max-w-3xl mx-auto p-6 rounded-2xl bg-ink-900/60 border border-ink-700/40"
-        >
-          <div className="grid md:grid-cols-2 gap-6">
-            <div>
-              <p className="text-red-400 text-xs font-semibold uppercase tracking-widest mb-3">Patrón actual</p>
-              <ul className="space-y-2 text-sm text-ink-300">
-                <li className="flex items-start gap-2"><span className="text-red-400 mt-0.5">↓</span> Línea defensiva alta sin cobertura</li>
-                <li className="flex items-start gap-2"><span className="text-red-400 mt-0.5">↓</span> Transiciones lentas entre fases</li>
-                <li className="flex items-start gap-2"><span className="text-red-400 mt-0.5">↓</span> Presión ofensiva desordenada y tardía</li>
-              </ul>
-            </div>
-            <div>
-              <p className="text-green-400 text-xs font-semibold uppercase tracking-widest mb-3">Transformación propuesta</p>
-              <ul className="space-y-2 text-sm text-ink-300">
-                <li className="flex items-start gap-2"><span className="text-green-400 mt-0.5">↑</span> Presión alta con triggers definidos</li>
-                <li className="flex items-start gap-2"><span className="text-green-400 mt-0.5">↑</span> Bloque medio compacto y reactivo</li>
-                <li className="flex items-start gap-2"><span className="text-green-400 mt-0.5">↑</span> Transiciones rápidas y verticales</li>
-              </ul>
-            </div>
-          </div>
-        </motion.div>
-
       </div>
     </section>
   );
