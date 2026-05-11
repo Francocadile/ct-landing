@@ -1,4 +1,4 @@
-import { Mail, Twitter, Instagram } from "lucide-react";
+import { Mail, Twitter, Instagram, Youtube } from "lucide-react";
 
 export default function Contacto() {
   return (
@@ -70,6 +70,23 @@ export default function Contacto() {
                     X / Twitter
                   </div>
                   <div className="text-sm text-bone/50">@DtFlavioRobatto</div>
+                </div>
+              </a>
+
+              <a
+                href="https://www.youtube.com/@FlavioRobatto"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center gap-4 p-3 rounded-lg hover:bg-bone/5 transition-colors"
+              >
+                <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-gold-500/10 flex items-center justify-center text-gold-500 group-hover:bg-gold-500 group-hover:text-ink-900 transition-colors">
+                  <Youtube size={20} />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="font-medium text-bone group-hover:text-gold-500 transition-colors">
+                    YouTube
+                  </div>
+                  <div className="text-sm text-bone/50">@FlavioRobatto</div>
                 </div>
               </a>
             </div>
