@@ -5,6 +5,7 @@ import Convicciones from "./sections/Convicciones";
 import ClubsWorked from "./sections/ClubsWorked";
 import Staff from "./sections/Staff";
 import Records from "./sections/Records";
+import YouTubeSection from "./sections/YouTubeSection";
 import Modelo from "./sections/Modelo";
 import OpenbaseHome from "./sections/OpenbaseHome";
 import Media from "./sections/Media";
@@ -20,6 +21,7 @@ export default function Home() {
       <ClubsWorked />
       <Staff />
       <Records />
+      <YouTubeSection />
       <Modelo />
       <OpenbaseHome />
       <Media />
