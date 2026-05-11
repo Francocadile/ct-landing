@@ -1,10 +1,7 @@
 import { RECORDS, SEASONS } from "../data/results";
 
 export default function Records() {
-  // Mostrar TODOS los logros sin filtrar (como está en producción)
-  const allRecords = RECORDS.filter(r =>
-    !(r.club === "Club Sport Norte América" && r.year === 2015)
-  );
+  const allRecords = RECORDS;
 
   // Todas las temporadas individuales
   const seasonStats = SEASONS.filter(s => s.team !== "GLOBAL PROCESO");

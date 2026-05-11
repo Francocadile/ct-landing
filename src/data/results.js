@@ -72,7 +72,7 @@ export const RECORDS = [
     year: 2015,
     title: "Campeón Segunda División",
     club: "Club Sport Norte América",
-    logo: "/img/clubs/norte.jpg",
+    logo: "/img/clubs/norte.png",
     role: "Entrenador",
     details: "Campeón de la Segunda División boliviana",
   },
