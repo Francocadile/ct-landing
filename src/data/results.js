@@ -13,7 +13,7 @@ export const RECORDS = [
     details: "Título internacional con Barcelona de Ecuador",
   },
   {
-    year: 2025,
+    year: "2025 - 2026",
     title: "Bicampeón Torneo de Verano",
     club: "Club Bolívar",
     logo: "/img/clubs/bolivar.png",
