@@ -41,13 +41,28 @@ export default function Modelo() {
         {/* Encabezado */}
         <div className="max-w-3xl mb-20">
           <div className="eyebrow mb-5">Metodología</div>
-          <h2 className="display-2 text-[clamp(2.5rem,5vw,4rem)] text-bone leading-[1]">
+          <h2 className="display-2 text-[clamp(2rem,5vw,3.75rem)] text-bone">
             Modelo de juego
           </h2>
           <p className="mt-6 text-lg text-bone/60 max-w-2xl">
-            Base conceptual y metodológica del cuerpo técnico. Cómo entrenamos,
-            qué priorizamos y por qué.
+            Base conceptual y metodológica del cuerpo técnico. Cómo entrenamos, qué priorizamos y por qué.
           </p>
+
+          {/* Principio Fundacional */}
+          <div className="mt-12 p-8 bg-gradient-to-br from-gold-500/10 to-gold-600/5 border-l-4 border-gold-500 rounded-r-2xl">
+            <p className="text-xs uppercase tracking-widest text-gold-400 mb-3 font-bold">
+              Manual de Equipo · Principios
+            </p>
+            <p className="font-display text-2xl md:text-3xl font-bold text-bone leading-tight mb-4">
+              El principio más profundo y determinante del juego de posición es la ocupación racional del espacio para generar superioridades constantes.
+            </p>
+            <p className="text-lg text-bone/80 font-semibold italic">
+              Todo nace ahí.
+            </p>
+            <p className="text-bone/70 mt-4 leading-relaxed">
+              El verdadero núcleo del modelo está en cómo el equipo distribuye sus hombres para manipular y vulnerar la estructura rival.
+            </p>
+          </div>
         </div>
 
         {/* 1. Objetivos & Principios */}
