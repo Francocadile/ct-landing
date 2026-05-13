@@ -26,5 +26,8 @@ lerna-debug.log*
 # Claude Code (local agent config)
 .claude/
 
+# Intel privada de clubes (NUNCA subir al repo público)
+/intel-clubs/
+
 # Large PDFs served via Drive
 public/docs/bitacora-entrenamientos-2025.pdf
