@@ -1,20 +1,23 @@
-import { useEffect } from "react";
+import { useLayoutEffect } from "react";
 
 export default function EmelecProyecto() {
-  useEffect(() => {
+  useLayoutEffect(() => {
+    const page = document.querySelector(".emelec-page");
     const els = document.querySelectorAll(
       "[data-animate], [data-animate-strong], [data-heat]"
     );
 
-    // 1) Activar inmediatamente los elementos que YA están en el viewport al montar
-    //    (cubre el caso de recarga con scroll y de wrappers muy grandes que el observer no dispara)
+    // 1) Activar visibles al montar (antes de habilitar el ocultamiento)
     const winH = window.innerHeight || document.documentElement.clientHeight;
     els.forEach((el) => {
       const r = el.getBoundingClientRect();
       if (r.top < winH && r.bottom > 0) el.classList.add("in-view");
     });
 
-    // 2) Observer con threshold 0 (apenas asome el primer pixel, dispara)
+    // 2) Habilitar ocultamiento por CSS solo si el JS arrancó (evita página en blanco si falla todo lo demás)
+    if (page) page.classList.add("anim-ready");
+
+    // 3) Observer threshold 0
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) => {
@@ -28,12 +31,10 @@ export default function EmelecProyecto() {
     );
     els.forEach((el) => io.observe(el));
 
-    // 3) Safeguard: si por algún motivo (Safari mobile / overflow ancestros) el observer
-    //    no dispara, después de 1.8s activar todo lo que siga oculto. Garantiza que el
-    //    contenido SIEMPRE termina visible, sin importar el browser.
+    // 4) Safeguard 1.2s
     const safeguard = setTimeout(() => {
       els.forEach((el) => el.classList.add("in-view"));
-    }, 1800);
+    }, 1200);
 
     return () => {
       io.disconnect();
@@ -47,12 +48,17 @@ export default function EmelecProyecto() {
         @keyframes emelecFadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes emelecFadeIn { from { opacity: 0; transform: translateY(50px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes emelecScaleIn { from { opacity: 0; transform: scale(0.6); } to { opacity: var(--target-opacity, 0.7); transform: scale(1); } }
-        .emelec-page [data-animate] { opacity: 0; }
+        .emelec-page.anim-ready [data-animate]:not(.in-view) { opacity: 0; }
         .emelec-page [data-animate].in-view { animation: emelecFadeUp 0.7s ease-out forwards; }
-        .emelec-page [data-animate-strong] { opacity: 0; }
+        .emelec-page.anim-ready [data-animate-strong]:not(.in-view) { opacity: 0; }
         .emelec-page [data-animate-strong].in-view { animation: emelecFadeIn 0.8s ease-out forwards; }
-        .emelec-page [data-heat] { opacity: 0; transform: scale(0.6); }
+        .emelec-page.anim-ready [data-heat]:not(.in-view) { opacity: 0; transform: scale(0.6); }
         .emelec-page [data-heat].in-view { animation: emelecScaleIn 0.9s ease-out forwards; }
+        @media (prefers-reduced-motion: reduce) {
+          .emelec-page [data-animate],
+          .emelec-page [data-animate-strong],
+          .emelec-page [data-heat] { opacity: 1 !important; transform: none !important; animation: none !important; }
+        }
       `}</style>
 
       <div className="emelec-page bg-ink-950">
