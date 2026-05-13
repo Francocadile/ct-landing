@@ -23,5 +23,8 @@ lerna-debug.log*
 .DS_Store
 .vscode/
 
+# Claude Code (local agent config)
+.claude/
+
 # Large PDFs served via Drive
 public/docs/bitacora-entrenamientos-2025.pdf
