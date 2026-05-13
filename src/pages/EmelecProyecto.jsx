@@ -74,62 +74,39 @@ export default function EmelecProyecto() {
               <p className="text-gold-500 text-xl sm:text-2xl md:text-3xl font-display font-bold mb-4">2026</p>
             </div>
 
-            <div className="max-w-5xl mx-auto space-y-8">
-              {/* Card roja - Emelec */}
+            <div className="max-w-4xl mx-auto">
+              {/* Card única - Club analizado */}
               <div className="relative group" data-animate>
-                <div className="absolute -inset-1 bg-gradient-to-r from-red-600 to-red-800 rounded-3xl blur opacity-20 group-hover:opacity-40 transition duration-300" />
-                <div className="relative bg-gradient-to-br from-red-900/50 to-red-950/70 border border-red-500/30 rounded-3xl p-8 backdrop-blur-sm">
-                  <div className="absolute top-4 right-4 opacity-10">
-                    <img src="/img/clubs/emelec.png" alt="" className="w-16 h-16 object-contain" />
-                  </div>
-                  <div className="flex items-start justify-between mb-6">
+                <div className="absolute -inset-1 bg-gradient-to-r from-red-600 to-red-800 rounded-3xl blur opacity-15 group-hover:opacity-25 transition duration-300" />
+                <div className="relative bg-gradient-to-br from-red-900/45 to-red-950/65 border border-red-500/30 rounded-3xl p-8 md:p-10 backdrop-blur-sm overflow-hidden">
+                  {/* Escudo como marca de agua atmosférica (no compite con el 12) */}
+                  <img
+                    src="/img/clubs/emelec.png"
+                    alt=""
+                    aria-hidden="true"
+                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 md:w-80 md:h-80 opacity-[0.04] object-contain pointer-events-none select-none"
+                  />
+                  <div className="relative flex items-start justify-between mb-8 gap-6">
                     <div>
-                      <div className="text-red-400 text-xs uppercase tracking-[0.3em] font-bold mb-2">Situación Actual</div>
-                      <h2 className="font-display text-3xl sm:text-4xl font-bold text-bone tracking-tighter">Club Sport Emelec 2026</h2>
+                      <div className="text-red-400 text-xs uppercase tracking-[0.3em] font-bold mb-3">Situación Actual</div>
+                      <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-bone tracking-tighter">Club Sport Emelec 2026</h2>
                     </div>
-                    <div className="text-right">
-                      <div className="font-display text-6xl sm:text-7xl font-black text-red-500 leading-none">12</div>
-                      <div className="text-bone/60 text-sm mt-1">de 16 · LigaPro</div>
+                    <div className="text-right flex-shrink-0">
+                      <div className="font-display text-6xl sm:text-7xl md:text-8xl font-black text-red-500 leading-none tracking-tightest">12</div>
+                      <div className="text-bone/60 text-sm mt-2 whitespace-nowrap">de 16 · LigaPro</div>
                     </div>
                   </div>
-                  <div className="grid grid-cols-3 gap-3">
+                  <div className="relative grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
                     {[
                       { label: "Efectividad", value: "38.4%" },
-                      { label: "Goles/pj", value: "0.86" },
-                      { label: "GC/pj", value: "1.14" },
+                      { label: "Goles/pj", value: "0.76" },
+                      { label: "GC/pj", value: "1.23" },
+                      { label: "Dif/pj", value: "−0.47" },
+                      { label: "Récord", value: "4-3-6" },
                     ].map((s) => (
                       <div key={s.label} className="bg-red-500/10 rounded-xl p-3 text-center border border-red-500/20">
                         <div className="text-bone/60 text-xs mb-1">{s.label}</div>
-                        <div className="font-display text-xl sm:text-2xl font-bold text-red-400">{s.value}</div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              {/* Card verde - Bolívar */}
-              <div className="relative group" data-animate>
-                <div className="absolute -inset-1 bg-gradient-to-r from-green-600 to-green-800 rounded-3xl blur opacity-30 group-hover:opacity-50 transition duration-300" />
-                <div className="relative bg-gradient-to-br from-green-900/50 to-green-950/70 border border-green-500/40 rounded-3xl p-8 backdrop-blur-sm">
-                  <div className="flex items-start justify-between mb-6">
-                    <div>
-                      <div className="text-green-400 text-xs uppercase tracking-[0.3em] font-bold mb-2">Metodología Integrada Estructural</div>
-                      <h2 className="font-display text-3xl sm:text-4xl font-bold text-bone tracking-tighter">Bolívar 2024-2026</h2>
-                    </div>
-                    <div className="text-right">
-                      <div className="font-display text-6xl sm:text-7xl font-black text-green-500 leading-none">1</div>
-                      <div className="text-bone/60 text-sm mt-1">Campeón</div>
-                    </div>
-                  </div>
-                  <div className="grid grid-cols-3 gap-3">
-                    {[
-                      { label: "Efectividad", value: "70%" },
-                      { label: "Goles (Top 5)", value: "273" },
-                      { label: "Títulos", value: "4" },
-                    ].map((s) => (
-                      <div key={s.label} className="bg-green-500/10 rounded-xl p-3 text-center">
-                        <div className="text-bone/60 text-xs mb-1">{s.label}</div>
-                        <div className="font-display text-xl sm:text-2xl font-bold text-green-400">{s.value}</div>
+                        <div className="font-display text-lg sm:text-xl md:text-2xl font-bold text-red-400">{s.value}</div>
                       </div>
                     ))}
                   </div>
@@ -141,9 +118,9 @@ export default function EmelecProyecto() {
             <div className="max-w-4xl mx-auto mt-16 text-center" data-animate>
               <div className="p-8 md:p-10 bg-gradient-to-br from-gold-500/10 to-gold-500/5 border border-gold-500/20 rounded-3xl backdrop-blur-sm">
                 <p className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-bone leading-tight tracking-tighter">
-                  La metodología que funcionó en Bolívar, adaptada al contexto de Emelec
+                  Diagnóstico técnico construido sobre datos verificados y observación de campo.
                   <br className="hidden sm:block" />
-                  <span className="text-gold-500">puede transformar al Bombillo</span>
+                  <span className="text-gold-500">Cada conclusión derivada en una propuesta concreta de mejora.</span>
                 </p>
               </div>
             </div>
@@ -162,7 +139,7 @@ export default function EmelecProyecto() {
                 <span className="text-red-500">Club Sport Emelec</span>
               </h2>
               <p className="text-bone/60 text-base md:text-lg max-w-3xl mx-auto">
-                Lectura técnica, humana e institucional del Bombillo a partir de los datos reales de la temporada 2026 cruzados contra la Metodología Integrada Estructural.
+                Lectura técnica, humana e institucional del Bombillo a partir de los datos reales de la temporada 2026.
               </p>
             </div>
 
@@ -174,7 +151,7 @@ export default function EmelecProyecto() {
               </h3>
 
               <div className="card-dark border-2 border-red-500/30 mb-8">
-                <h4 className="font-display text-2xl font-bold text-bone mb-6 tracking-tighter">Tipología de goles recibidos (15 en 13 partidos)</h4>
+                <h4 className="font-display text-2xl font-bold text-bone mb-6 tracking-tighter">Tipología de goles recibidos (16 en 13 partidos)</h4>
                 <div className="grid md:grid-cols-2 gap-8 items-center">
                   <div className="aspect-video bg-gradient-to-br from-red-900/20 to-red-950/10 rounded-xl border border-red-500/20 flex items-center justify-center">
                     <div className="text-center p-8 w-full">
@@ -273,6 +250,24 @@ export default function EmelecProyecto() {
                   </div>
                 </div>
               </div>
+
+              {/* Mini-callout: Inestabilidad de esquema */}
+              <div className="mt-8 p-6 md:p-8 bg-gradient-to-br from-gold-900/20 to-gold-950/10 border-2 border-gold-500/30 rounded-2xl">
+                <div className="mb-6">
+                  <div className="text-xs uppercase tracking-[0.25em] font-bold text-gold-500 mb-2">Patrón estructural</div>
+                  <h4 className="font-display text-2xl md:text-3xl font-black text-bone tracking-tightest">Inestabilidad de esquema</h4>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4">
+                  {["3-4-3", "4-3-3", "4-4-2"].map((scheme) => (
+                    <div key={scheme} className="px-6 py-5 md:py-4 bg-ink-950 border border-gold-500/40 rounded-xl text-center">
+                      <div className="font-display text-5xl md:text-3xl font-black text-gold-500 whitespace-nowrap leading-none">{scheme}</div>
+                    </div>
+                  ))}
+                </div>
+                <p className="text-bone/70 text-sm md:text-base mt-8 md:mt-6 leading-relaxed">
+                  <strong className="text-bone">3 sistemas distintos en los últimos 10 partidos.</strong> Sin tiempo de automatización colectiva, los principios defensivos no llegan a consolidarse y el equipo se rearma fecha a fecha.
+                </p>
+              </div>
             </div>
 
             {/* Ofensiva */}
@@ -283,7 +278,7 @@ export default function EmelecProyecto() {
               </h3>
 
               <div className="card-dark border-2 border-gold-500/30 mb-8">
-                <h4 className="font-display text-2xl font-bold text-bone mb-6 tracking-tighter">Tipología de goles anotados (11 en 13 partidos)</h4>
+                <h4 className="font-display text-2xl font-bold text-bone mb-6 tracking-tighter">Tipología de goles anotados (10 en 13 partidos)</h4>
                 <div className="grid md:grid-cols-2 gap-8 items-center">
                   <div className="aspect-video bg-gradient-to-br from-gold-900/20 to-gold-950/10 rounded-xl border border-gold-500/20 flex items-center justify-center">
                     <div className="text-center p-8 w-full">
@@ -326,6 +321,7 @@ export default function EmelecProyecto() {
                     {[
                       { l: "Conversión de gol", v: "8.4%", d: "Muy por debajo del promedio LigaPro (12-14%)" },
                       { l: "Tiros al arco / pj", v: "2.1", d: "7.2 totales por partido, mayoría desde fuera del área" },
+                      { l: "Derrotas sin convertir", v: "5/6", d: "Patrón claro: cuando el equipo no anota, no suma. Solo una derrota con gol propio." },
                     ].map((x) => (
                       <div key={x.l} className="p-4 bg-gold-500/5 border border-gold-500/20 rounded-xl">
                         <div className="flex justify-between items-center mb-2">
@@ -441,7 +437,7 @@ export default function EmelecProyecto() {
                 <span className="text-purple-400">Comparativo</span>
               </h2>
               <p className="text-bone/60 text-lg md:text-xl max-w-3xl mx-auto">
-                Dónde sucede hoy el juego de Emelec vs dónde sucedería con la Metodología Integrada
+                Dónde sucede hoy el juego de Emelec vs dónde sucedería con el modelo propuesto.
               </p>
             </div>
 
@@ -472,7 +468,7 @@ export default function EmelecProyecto() {
               </div>
 
               <div className="card-dark border-l-4 border-green-500" data-animate>
-                <h3 className="font-display text-2xl font-bold text-bone mb-6 text-center tracking-tighter">Con Metodología Robatto</h3>
+                <h3 className="font-display text-2xl font-bold text-bone mb-6 text-center tracking-tighter">Con el modelo propuesto</h3>
                 <div className="aspect-[3/4] bg-gradient-to-b from-emerald-900/20 to-emerald-950/10 rounded-2xl border border-bone/10 p-8 relative overflow-hidden">
                   <div className="absolute inset-0 flex items-center justify-center"><div className="w-full h-px bg-bone/20" /></div>
                   <div className="absolute left-1/2 top-0 bottom-0 w-px bg-bone/20 -translate-x-1/2" />
@@ -693,7 +689,7 @@ export default function EmelecProyecto() {
                 {[
                   {
                     name: "Francisco Pizzini",
-                    sub: "Extremo derecho · #19 · 32 años · argentino-italiano · €1,5M · contrato hasta dic 2027",
+                    sub: "Extremo derecho · #10 · 32 años · argentino-italiano · €1,5M · contrato hasta dic 2027",
                     badge: "Pilar ofensivo",
                     leftTitle: "Trayectoria competitiva",
                     leftItems: [
@@ -878,7 +874,7 @@ export default function EmelecProyecto() {
             </div>
 
             <div data-animate>
-              <h3 className="font-display text-4xl font-bold text-bone text-center mb-12 tracking-tighter">Proyección con nuestra metodología</h3>
+              <h3 className="font-display text-4xl font-bold text-bone text-center mb-12 tracking-tighter">Proyección con el modelo propuesto</h3>
               <div className="grid md:grid-cols-3 gap-6">
                 {[
                   { l: "Goles recibidos", v: "−40%", s: "Bajar de 1,14 a 0,70 GC/PJ en 6 meses" },
@@ -892,6 +888,87 @@ export default function EmelecProyecto() {
                   </div>
                 ))}
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* PRECEDENTE COMPETITIVO — punto de quiebre entre diagnóstico y plan */}
+        <section className="relative py-20 md:py-32 bg-gradient-to-b from-ink-950 via-green-950/20 to-ink-950">
+          <div className="container-x">
+            <div className="text-center mb-14" data-animate>
+              <div className="inline-block px-4 py-2 rounded-full bg-green-500/10 border border-green-500/20 text-green-400 text-xs uppercase tracking-[0.25em] font-semibold mb-6">
+                Precedente competitivo
+              </div>
+              <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-black text-bone mb-6 leading-tight tracking-tightest">
+                El plantel ya mostró<br />
+                <span className="text-green-500">que puede</span>
+              </h2>
+              <p className="text-bone/60 text-base md:text-lg max-w-2xl mx-auto">
+                Tres antecedentes recientes que confirman la capacidad latente del grupo cuando el orden colectivo aparece.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-5 md:gap-6 max-w-5xl mx-auto">
+              {[
+                {
+                  date: "19 / 03 / 2026",
+                  rivalLabel: "Independiente del Valle",
+                  scoreHome: "2",
+                  scoreAway: "0",
+                  rivalNote: "Líder absoluto · 31 pts",
+                  highlight: true,
+                },
+                {
+                  date: "25 / 04 / 2026",
+                  rivalLabel: "LDU Quito",
+                  scoreHome: "1",
+                  scoreAway: "0",
+                  rivalNote: "4° de la tabla · 20 pts",
+                  highlight: false,
+                },
+                {
+                  date: "15 / 03 / 2026",
+                  rivalLabel: "Orense",
+                  scoreHome: "2",
+                  scoreAway: "1",
+                  rivalNote: "7° de la tabla · 19 pts",
+                  highlight: false,
+                },
+              ].map((m, i) => (
+                <div
+                  key={m.date}
+                  data-animate
+                  className={`relative p-6 md:p-7 rounded-2xl bg-gradient-to-br ${
+                    m.highlight
+                      ? "from-green-900/40 to-green-950/20 border-2 border-green-500/50 shadow-[0_0_60px_rgba(34,197,94,0.12)]"
+                      : "from-green-900/20 to-green-950/10 border border-green-500/30"
+                  }`}
+                >
+                  {m.highlight && (
+                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-green-500 text-ink-900 text-[10px] uppercase tracking-[0.18em] font-bold whitespace-nowrap">
+                      Vs. el líder de la tabla
+                    </div>
+                  )}
+                  <div className="text-center">
+                    <div className="text-bone/50 text-xs uppercase tracking-[0.2em] font-semibold mb-4">{m.date}</div>
+                    <div className="text-bone/70 text-sm mb-2">Emelec</div>
+                    <div className="font-display font-black text-green-400 leading-none mb-2 tracking-tightest" style={{ fontSize: "clamp(56px, 9vw, 84px)" }}>
+                      {m.scoreHome} <span className="text-bone/30 mx-1">-</span> {m.scoreAway}
+                    </div>
+                    <div className="text-bone font-display text-lg md:text-xl font-bold tracking-tighter mb-3">{m.rivalLabel}</div>
+                    <div className="inline-block px-3 py-1 rounded-full bg-green-500/10 border border-green-500/25 text-green-400 text-[11px] uppercase tracking-[0.12em] font-semibold">
+                      {m.rivalNote}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="max-w-3xl mx-auto mt-14 md:mt-16 text-center" data-animate>
+              <p className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-bone leading-tight tracking-tighter">
+                El potencial existe.<br className="hidden sm:block" />
+                <span className="text-green-500"> Falta sistematizarlo.</span>
+              </p>
             </div>
           </div>
         </section>
