@@ -10,6 +10,7 @@ import DossierBolivar from "./pages/DossierBolivar.jsx";
 import BitacoraEntrenamientos from "./pages/BitacoraEntrenamientos.jsx";
 import Openbase from "./pages/Openbase.jsx";
 import SantosLaguna from "./pages/SantosLaguna.jsx";
+import EmelecProyecto from "./pages/EmelecProyecto.jsx";
 import ApuntesModelo from "./pages/ApuntesModelo.jsx";
 
 export default function App() {
@@ -19,6 +20,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/santos-laguna-proyecto-2026" element={<SantosLaguna />} />
+        <Route path="/emelec-proyecto-2026" element={<EmelecProyecto />} />
         <Route path="/apuntes-modelo" element={<ApuntesModelo />} />
         <Route path="/dossier-bolivar-2025" element={<DossierBolivar />} />
         <Route

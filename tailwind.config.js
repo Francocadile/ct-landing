@@ -35,6 +35,8 @@ export default {
           500: '#D4A24C',
           600: '#B5862F',
           700: '#8E6722',
+          900: '#5A4019',
+          950: '#2D2009',
         },
         ember: {
           DEFAULT: '#B23A2F',
@@ -45,6 +47,10 @@ export default {
           green: '#008C72',
           gold: '#FFB81C',
           white: '#FFFFFF',
+        },
+        emelec: {
+          blue: '#003BAA',
+          light: '#1E5BD6',
         },
       },
       letterSpacing: {
