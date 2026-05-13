@@ -1,19 +1,23 @@
-import { useEffect } from "react";
+import { useLayoutEffect } from "react";
 
 export default function AmericaCaliProyecto() {
-  useEffect(() => {
+  useLayoutEffect(() => {
+    const page = document.querySelector(".america-cali-page");
     const els = document.querySelectorAll(
       "[data-animate], [data-animate-strong], [data-heat]"
     );
 
-    // 1) Activar visibles al montar
+    // 1) Activar visibles al montar (antes de habilitar el ocultamiento)
     const winH = window.innerHeight || document.documentElement.clientHeight;
     els.forEach((el) => {
       const r = el.getBoundingClientRect();
       if (r.top < winH && r.bottom > 0) el.classList.add("in-view");
     });
 
-    // 2) Observer threshold 0
+    // 2) Habilitar ocultamiento por CSS solo si el JS arrancó (evita página en blanco si falla todo lo demás)
+    if (page) page.classList.add("anim-ready");
+
+    // 3) Observer threshold 0
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) => {
@@ -27,10 +31,10 @@ export default function AmericaCaliProyecto() {
     );
     els.forEach((el) => io.observe(el));
 
-    // 3) Safeguard 1.8s
+    // 4) Safeguard 1.2s
     const safeguard = setTimeout(() => {
       els.forEach((el) => el.classList.add("in-view"));
-    }, 1800);
+    }, 1200);
 
     return () => {
       io.disconnect();
@@ -44,12 +48,17 @@ export default function AmericaCaliProyecto() {
         @keyframes americaCaliFadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes americaCaliFadeIn { from { opacity: 0; transform: translateY(50px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes americaCaliScaleIn { from { opacity: 0; transform: scale(0.6); } to { opacity: var(--target-opacity, 0.7); transform: scale(1); } }
-        .america-cali-page [data-animate] { opacity: 0; }
+        .america-cali-page.anim-ready [data-animate]:not(.in-view) { opacity: 0; }
         .america-cali-page [data-animate].in-view { animation: americaCaliFadeUp 0.7s ease-out forwards; }
-        .america-cali-page [data-animate-strong] { opacity: 0; }
+        .america-cali-page.anim-ready [data-animate-strong]:not(.in-view) { opacity: 0; }
         .america-cali-page [data-animate-strong].in-view { animation: americaCaliFadeIn 0.8s ease-out forwards; }
-        .america-cali-page [data-heat] { opacity: 0; transform: scale(0.6); }
+        .america-cali-page.anim-ready [data-heat]:not(.in-view) { opacity: 0; transform: scale(0.6); }
         .america-cali-page [data-heat].in-view { animation: americaCaliScaleIn 0.9s ease-out forwards; }
+        @media (prefers-reduced-motion: reduce) {
+          .america-cali-page [data-animate],
+          .america-cali-page [data-animate-strong],
+          .america-cali-page [data-heat] { opacity: 1 !important; transform: none !important; animation: none !important; }
+        }
       `}</style>
 
       <div className="america-cali-page bg-ink-950">
