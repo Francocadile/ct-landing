@@ -2,6 +2,19 @@ import { useEffect } from "react";
 
 export default function EmelecProyecto() {
   useEffect(() => {
+    const els = document.querySelectorAll(
+      "[data-animate], [data-animate-strong], [data-heat]"
+    );
+
+    // 1) Activar inmediatamente los elementos que YA están en el viewport al montar
+    //    (cubre el caso de recarga con scroll y de wrappers muy grandes que el observer no dispara)
+    const winH = window.innerHeight || document.documentElement.clientHeight;
+    els.forEach((el) => {
+      const r = el.getBoundingClientRect();
+      if (r.top < winH && r.bottom > 0) el.classList.add("in-view");
+    });
+
+    // 2) Observer con threshold 0 (apenas asome el primer pixel, dispara)
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) => {
@@ -11,12 +24,21 @@ export default function EmelecProyecto() {
           }
         });
       },
-      { threshold: 0.12, rootMargin: "0px 0px -60px 0px" }
+      { threshold: 0, rootMargin: "0px 0px -10% 0px" }
     );
-    document
-      .querySelectorAll("[data-animate], [data-animate-strong], [data-heat]")
-      .forEach((el) => io.observe(el));
-    return () => io.disconnect();
+    els.forEach((el) => io.observe(el));
+
+    // 3) Safeguard: si por algún motivo (Safari mobile / overflow ancestros) el observer
+    //    no dispara, después de 1.8s activar todo lo que siga oculto. Garantiza que el
+    //    contenido SIEMPRE termina visible, sin importar el browser.
+    const safeguard = setTimeout(() => {
+      els.forEach((el) => el.classList.add("in-view"));
+    }, 1800);
+
+    return () => {
+      io.disconnect();
+      clearTimeout(safeguard);
+    };
   }, []);
 
   return (
