@@ -96,17 +96,16 @@ export default function EmelecProyecto() {
                       <div className="text-bone/60 text-sm mt-2 whitespace-nowrap">de 16 · LigaPro</div>
                     </div>
                   </div>
-                  <div className="relative grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
+                  <div className="relative grid grid-cols-2 md:grid-cols-4 gap-3">
                     {[
-                      { label: "Efectividad", value: "38.4%" },
+                      { label: "Pts/PJ", value: "1.15" },
                       { label: "Goles/pj", value: "0.76" },
                       { label: "GC/pj", value: "1.23" },
                       { label: "Dif/pj", value: "−0.47" },
-                      { label: "Récord", value: "4-3-6" },
                     ].map((s) => (
-                      <div key={s.label} className="bg-red-500/10 rounded-xl p-3 text-center border border-red-500/20">
+                      <div key={s.label} className="bg-red-500/10 rounded-xl p-4 text-center border border-red-500/20">
                         <div className="text-bone/60 text-xs mb-1">{s.label}</div>
-                        <div className="font-display text-lg sm:text-xl md:text-2xl font-bold text-red-400">{s.value}</div>
+                        <div className="font-display text-xl sm:text-2xl md:text-3xl font-bold text-red-400">{s.value}</div>
                       </div>
                     ))}
                   </div>
