@@ -389,14 +389,13 @@ export default function EmelecProyecto() {
               <div className="grid md:grid-cols-2 gap-8">
                 <div className="card-dark border-l-4 border-purple-500">
                   <h4 className="font-display text-xl font-bold text-bone mb-4 tracking-tighter">Patrón mental detectado</h4>
-                  <p className="text-bone/70 text-sm mb-6">El ruido institucional invade el campo. Cada decisión deportiva se toma con un peso emocional que no debería estar.</p>
+                  <p className="text-bone/70 text-sm mb-6">El equipo opera en un entorno de alta exigencia y exposición sostenida. Esa carga repercute en la toma de decisiones dentro del campo y en la capacidad de gestionar tramos clave del partido.</p>
                   <div className="space-y-3">
                     {[
-                      <><strong>6 entrenadores en 3 años</strong>: Rondelli, Torres, Álvarez, Célico, Duró, Sánchez</>,
-                      <><strong>Sueldos impagos sostenidos</strong> (5 meses pendientes a Duró)</>,
-                      <><strong>Renuncia pública de Cristhian Noboa</strong>: "mi voz no tenía fuerza"</>,
-                      <><strong>Salida disciplinaria de Bolaños</strong> (abril 2026) tras incidentes extradeportivos</>,
-                      <><strong>4ta temporada consecutiva</strong> peleando descenso</>,
+                      "Alta rotación del cuerpo técnico en las últimas temporadas",
+                      "Múltiples procesos competitivos consecutivos en zona de descenso",
+                      "Presión mediática y emocional elevada como constante del contexto",
+                      "Falta de continuidad en los liderazgos internos del vestuario",
                     ].map((node, i) => (
                       <div key={i} className="flex items-start gap-3 text-bone/80 text-sm p-3 bg-purple-500/5 rounded-lg border border-purple-500/10">
                         <span className="text-purple-400 font-bold mt-0.5 flex-shrink-0">→</span>
@@ -410,14 +409,14 @@ export default function EmelecProyecto() {
                   <h4 className="font-display text-xl font-bold text-bone mb-4 tracking-tighter">Diagnóstico principal</h4>
                   <div className="text-center py-8 mb-6">
                     <div className="inline-block px-6 py-3 bg-red-500/10 border-2 border-red-500/30 rounded-2xl mb-4">
-                      <div className="font-display text-4xl md:text-5xl font-black text-red-400 tracking-tightest">SUPERVIVENCIA</div>
+                      <div className="font-display text-4xl md:text-5xl font-black text-red-400 tracking-tightest">TENSIÓN</div>
                     </div>
-                    <p className="text-bone/70 text-sm">El plantel juega para no perder, no para ganar</p>
+                    <p className="text-bone/70 text-sm">El equipo prioriza no perder por sobre proponer</p>
                   </div>
                   <div className="space-y-3">
                     <div className="p-4 bg-red-500/10 border border-red-500/20 rounded-xl">
                       <p className="text-red-400 font-semibold text-sm mb-1">CONSECUENCIA:</p>
-                      <p className="text-bone/80 text-sm">73% de goles llegan recién en segundos tiempos (apenas reaccionan), 6 derrotas en 13 fechas, 2 goles en 6 visitas.</p>
+                      <p className="text-bone/80 text-sm">73% de los goles llegan en segundos tiempos: el equipo reacciona en lugar de proponer. Solo 2 goles en 6 visitas y rendimiento defensivo irregular en tramos críticos del partido.</p>
                     </div>
                     <div className="p-4 bg-gold-500/10 border border-gold-500/20 rounded-xl">
                       <p className="text-gold-500 font-semibold text-sm mb-1">SOLUCIÓN:</p>
