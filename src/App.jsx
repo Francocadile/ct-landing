@@ -12,7 +12,6 @@ import Openbase from "./pages/Openbase.jsx";
 import SantosLaguna from "./pages/SantosLaguna.jsx";
 import EmelecProyecto from "./pages/EmelecProyecto.jsx";
 import AmericaCaliProyecto from "./pages/AmericaCaliProyecto.jsx";
-import ApuntesModelo from "./pages/ApuntesModelo.jsx";
 import ManualModelo from "./pages/ManualModelo.jsx";
 
 export default function App() {
@@ -24,7 +23,6 @@ export default function App() {
         <Route path="/santos-laguna-proyecto-2026" element={<SantosLaguna />} />
         <Route path="/emelec-proyecto-2026" element={<EmelecProyecto />} />
         <Route path="/america-cali-proyecto-2026" element={<AmericaCaliProyecto />} />
-        <Route path="/apuntes-modelo" element={<ApuntesModelo />} />
         <Route path="/manual-modelo" element={<ManualModelo />} />
         <Route path="/dossier-bolivar-2025" element={<DossierBolivar />} />
         <Route

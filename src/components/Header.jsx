@@ -6,6 +6,7 @@ import { SITE } from "../data/site";
 const NAV = [
   { label: "Inicio",      href: "/#home" },
   { label: "Modelo",      href: "/#modelo" },
+  { label: "Manual",      href: "/manual-modelo" },
   { label: "Trayectoria", href: "/#clubes" },
   { label: "Staff",       href: "/#staff" },
   { label: "Logros",      href: "/#records" },

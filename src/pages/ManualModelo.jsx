@@ -79,23 +79,43 @@ const MANUAL_BASICO = [
   },
   {
     num: 8,
+    titulo: "Atacar preparados para defender",
+    contenido: "La organización ofensiva debe preparar la futura recuperación. El equipo ataca manteniendo equilibrio estructural, distancias correctas y ubicaciones que faciliten la presión inmediata tras pérdida. No existe separación total entre ataque y defensa.",
+  },
+  {
+    num: 9,
     titulo: "Presión tras pérdida",
     contenido: "La pérdida inicia inmediatamente la fase defensiva. El equipo debe: reaccionar rápido, rodear zona de pérdida, recuperar cerca, impedir transición rival. La organización ofensiva debe preparar la recuperación.",
   },
   {
-    num: 9,
+    num: 10,
     titulo: "Jugar a lo que se ve",
     contenido: "El futbolista debe interpretar: tiempo, espacio, presión, orientación rival, ventajas contextuales. No ejecutar mecánicamente. El jugador debe comprender e interpretar el juego constantemente.",
   },
   {
-    num: 10,
-    titulo: "El equipo como organismo",
-    contenido: "El equipo viaja junto. La pelota organiza: desplazamientos, alturas, presiones, coberturas. Todos los movimientos deben sostener: equilibrio, compactación, control, y relaciones colectivas.",
+    num: 11,
+    titulo: "Interpretar contexto y ventajas",
+    contenido: "Cada situación del juego presenta ventajas específicas según: posición rival, espacios disponibles, momento del partido, y estado físico. El jugador debe leer constantemente el contexto para identificar dónde aparece la ventaja táctica.",
   },
   {
-    num: 11,
-    titulo: "Principios emocionales del modelo",
-    contenido: "El juego de posición también busca: confianza, control emocional, autoridad psicológica, identidad colectiva. El rival debe sentirse: incómodo, desordenado, cansado mentalmente.",
+    num: 12,
+    titulo: "Viajar juntos como estructura colectiva",
+    contenido: "El equipo viaja junto. La pelota organiza: desplazamientos, alturas, presiones, coberturas. Todos los movimientos deben sostener: equilibrio, compactación, control, y relaciones colectivas. El equipo se mueve como un organismo único.",
+  },
+  {
+    num: 13,
+    titulo: "Mantener equilibrio ofensivo y defensivo",
+    contenido: "La estructura debe garantizar equilibrio permanente entre capacidad ofensiva y seguridad defensiva. Ubicaciones, alturas y relaciones se ajustan para sostener ambas fases simultáneamente, evitando exposición excesiva.",
+  },
+  {
+    num: 14,
+    titulo: "Utilizar el balón como organizador colectivo",
+    contenido: "La pelota no solo inicia ataques. La pelota organiza: las distancias, las alturas, las relaciones, las coberturas, la presión futura. El balón es el organizador central del comportamiento colectivo del equipo.",
+  },
+  {
+    num: 15,
+    titulo: "Manipular emocionalmente al rival",
+    contenido: "El juego de posición también busca: confianza, control emocional, autoridad psicológica, identidad colectiva. El rival debe sentirse: incómodo, desordenado, cansado mentalmente. El control del balón genera control emocional del partido.",
   },
 ];
 
@@ -249,7 +269,7 @@ export default function ManualModelo() {
               Manual Básico del <span className="text-gold-500">Juego de Posición</span>
             </h2>
             <p className="text-bone/60 text-lg max-w-2xl mx-auto">
-              Once principios fundamentales que estructuran el modelo
+              Quince principios fundamentales que estructuran el modelo
             </p>
           </motion.div>
 
@@ -276,6 +296,120 @@ export default function ManualModelo() {
                 <p className="text-bone/70 leading-relaxed text-sm">
                   {principio.contenido}
                 </p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Apuntes Prácticos con Videos */}
+      <section className="py-24 md:py-32 border-b border-bone/10">
+        <div className="container-x max-w-5xl">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mb-16"
+          >
+            <h2 className="font-display text-4xl md:text-5xl font-black text-bone mb-4">
+              Apuntes <span className="text-gold-500">Prácticos</span>
+            </h2>
+            <p className="text-bone/60 text-lg">
+              Conceptos tácticos aplicados con ejemplos en video
+            </p>
+          </motion.div>
+
+          <div className="space-y-6">
+            {[
+              {
+                id: 1,
+                categoria: "EQUIPO",
+                titulo: "Viajar juntos: La regla de los 5 segundos",
+                contenido: "El equipo debe tener claro el concepto de viajar juntos. Esto hace posible la norma de los 5 segundos que indica a los jugadores cercanos a la pérdida ir a MÁXIMA velocidad a recuperar. En esta situación todo el resto del equipo se vuelca hacia la pelota mínimo 5 metros (cierre de jugadores opuestos). Esto facilita que podamos estar más juntos a una posible salida rival de la presión.",
+                quote: "Viajar juntos: 5 segundos, máxima velocidad",
+                videoId: "AhDtsUIvk5Y",
+              },
+              {
+                id: 2,
+                categoria: "EQUIPO",
+                titulo: "La pelota nos organiza",
+                contenido: "La pelota no solo inicia ataques. La pelota nos organiza: las distancias, las alturas, las relaciones, las coberturas, la presión futura. Por eso no existe separación total entre ataque y defensa, el equipo se posiciona pensando en ambos momentos simultáneamente. Idea central: Atacamos preparados para defender. Defendemos preparados para atacar. Esto genera: continuidad estructural, menor desorganización, mejores transiciones.",
+                quote: "Atacamos preparados para defender. Defendemos preparados para atacar.",
+                videoId: "OcVw1KNfF3U",
+              },
+              {
+                id: 3,
+                categoria: "INDIVIDUAL",
+                titulo: "La posición genera ventajas",
+                contenido: "La posición sirve principalmente para generar ventajas. La pelota llega al jugador y no al revés. Respetar distancias de relación, jugar a partir de mi posición y confiar en el pase de mi compañero para que me llegue con cierta ventaja, saber moverme dentro de espacios dinámicos, que se abren y cierran según la interacción del rival, sin invadir espacios de compañeros. Y dentro de esos espacios perfilar bien mi cuerpo con la intención de una jugada futura aprovechando mi posición es el objetivo.",
+                quote: "La pelota llega al jugador, no al revés",
+                videoId: "cyS-CSZ-hVQ",
+              },
+            ].map((apunte, index) => (
+              <motion.div
+                key={apunte.id}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="card-dark border-l-4 border-gold-500"
+              >
+                <div className="flex items-start justify-between mb-4">
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-xl bg-gold-500/20 flex items-center justify-center flex-shrink-0">
+                      <span className="font-display text-2xl font-black text-gold-400">
+                        {String(apunte.id).padStart(2, '0')}
+                      </span>
+                    </div>
+                    <div>
+                      <span className="inline-block px-3 py-1 rounded-full bg-gold-500/10 text-gold-400 text-xs font-bold uppercase tracking-wider mb-2">
+                        {apunte.categoria}
+                      </span>
+                      <h3 className="font-display text-2xl font-bold text-bone">
+                        {apunte.titulo}
+                      </h3>
+                    </div>
+                  </div>
+                </div>
+
+                <p className="text-bone/80 leading-relaxed mb-6">
+                  {apunte.contenido}
+                </p>
+
+                <div className="p-4 bg-gold-500/5 border-l-4 border-gold-500 rounded-r-xl mb-6">
+                  <p className="font-display text-lg font-bold text-gold-400 italic">
+                    "{apunte.quote}"
+                  </p>
+                </div>
+
+                {apunte.videoId ? (
+                  <div className="rounded-xl overflow-hidden border-2 border-gold-500/30 bg-ink-950">
+                    <div className="aspect-video">
+                      <iframe
+                        src={`https://www.youtube.com/embed/${apunte.videoId}`}
+                        className="w-full h-full"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                      />
+                    </div>
+                  </div>
+                ) : (
+                  <div className="bg-ink-800 rounded-xl overflow-hidden border-2 border-dashed border-gold-500/30">
+                    <div className="aspect-video flex flex-col items-center justify-center p-8 text-center">
+                      <div className="w-20 h-20 rounded-full bg-gold-500/20 flex items-center justify-center mb-4">
+                        <svg className="w-10 h-10 text-gold-400" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" />
+                        </svg>
+                      </div>
+                      <p className="text-gold-400 font-bold text-lg mb-2">
+                        Video pendiente
+                      </p>
+                      <p className="text-bone/50 text-sm">
+                        Apunte #{apunte.id} - Video próximamente
+                      </p>
+                    </div>
+                  </div>
+                )}
               </motion.div>
             ))}
           </div>
