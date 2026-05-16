@@ -56,6 +56,9 @@ export default function Hero() {
               </svg>
               Canal YouTube
             </a>
+            <a href="/manual-modelo" className="btn-ghost">
+              Manual del Modelo
+            </a>
           </div>
         </div>
 

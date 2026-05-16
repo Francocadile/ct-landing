@@ -9,7 +9,7 @@ export const SITE = {
     instagram: "https://instagram.com/tu_usuario",
     twitter: "https://twitter.com/tu_usuario",         // X
     linkedin: "https://www.linkedin.com/in/tu_usuario",
-    youtube: "https://www.youtube.com/@tu_usuario",
+    youtube: "https://www.youtube.com/@FlavioRobatto",
     facebook: "https://www.facebook.com/tu_usuario",
     tiktok: "https://www.tiktok.com/@tu_usuario",
     threads: "https://www.threads.net/@tu_usuario",

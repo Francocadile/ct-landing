@@ -104,6 +104,18 @@ export default function Modelo() {
                 {definicionModelo}
               </p>
             </blockquote>
+
+            <div className="mt-8 text-center">
+              <a
+                href="/manual-modelo"
+                className="btn-gold inline-flex items-center gap-2"
+              >
+                Ver Manual Completo
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </a>
+            </div>
           </div>
         </div>
 

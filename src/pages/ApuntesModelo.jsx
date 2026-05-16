@@ -65,6 +65,18 @@ export default function ApuntesModelo() {
           <p className="text-bone/60 text-lg max-w-2xl mx-auto">
             Conceptos tácticos fundamentales que definen nuestra forma de jugar, entrenar y competir.
           </p>
+
+          <div className="mt-6">
+            <a
+              href="/manual-modelo"
+              className="text-gold-400 hover:text-gold-300 font-semibold inline-flex items-center gap-2"
+            >
+              Ver Manual Completo del Modelo
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </a>
+          </div>
         </motion.div>
 
         {/* Lista de Apuntes */}
