@@ -159,6 +159,39 @@ export default function ManualModelo() {
               Fundamentos conceptuales del juego de posición. Principios, situaciones tácticas y aplicación práctica del modelo.
             </p>
 
+            {/* Filosofía Profunda */}
+            <div className="mt-10 p-8 bg-gradient-to-br from-ink-800 to-ink-900 border border-gold-500/30 rounded-2xl">
+              <p className="text-bone/90 text-lg leading-relaxed space-y-4">
+                <span className="block">
+                  El verdadero juego de posición no empieza con la pelota.<br />
+                  <strong className="text-gold-400">Empieza con la cabeza.</strong>
+                </span>
+
+                <span className="block">
+                  Muchos equipos creen que jugar bien es dar muchos pases. No.<br />
+                  Jugar bien es entender dónde ubicarse, cuándo atraer, cuándo fijar y cómo generar superioridades para que el rival empiece a correr detrás de nuestras decisiones.
+                </span>
+
+                <span className="block font-display text-xl text-gold-400 font-bold">
+                  El balón debe ordenar al equipo y desordenar emocionalmente al adversario.<br />
+                  Ahí nace el dominio real.
+                </span>
+
+                <span className="block">
+                  Los grandes equipos no juegan desesperados.<br />
+                  Juegan con <strong className="text-bone">estructura</strong>, con <strong className="text-bone">sentido</strong> y con <strong className="text-bone">inteligencia colectiva</strong>.
+                </span>
+
+                <span className="block">
+                  Cuando un jugador comprende el espacio, deja de correr por necesidad y empieza a moverse con intención.
+                </span>
+
+                <span className="block text-bone/70 italic">
+                  El fútbol moderno cada vez exige menos improvisación vacía y más comprensión del juego.
+                </span>
+              </p>
+            </div>
+
             {/* Quote central */}
             <div className="p-6 bg-gradient-to-br from-gold-500/10 to-gold-600/5 border-l-4 border-gold-500 rounded-r-2xl">
               <p className="font-display text-2xl font-bold text-bone leading-tight italic">
