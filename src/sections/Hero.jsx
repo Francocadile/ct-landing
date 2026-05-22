@@ -24,16 +24,6 @@ export default function Hero() {
       {/* Contenido */}
       <div className="relative container-x flex flex-col justify-between min-h-[100svh] py-28 md:py-32">
         <div className="max-w-4xl pt-8 md:pt-16">
-          <a
-            href="/el-arte-de-ser-protagonistas"
-            className="group inline-flex items-center gap-3 mb-5 text-[11px] uppercase tracking-[0.18em] text-gold-400/90 hover:text-gold-400 transition-colors"
-          >
-            <span className="w-6 h-px bg-gold-400/50 group-hover:bg-gold-400 group-hover:w-10 transition-all" />
-            <span className="font-semibold [text-shadow:_0_1px_6px_rgb(0_0_0_/_70%)]">
-              Nuevo · Ensayo: El Arte de Ser Protagonistas
-            </span>
-            <ArrowRight size={12} className="group-hover:translate-x-0.5 transition-transform" />
-          </a>
           <div className="eyebrow mb-6">Cuerpo Técnico · Flavio Robatto</div>
 
           <h1 className="display-1 text-[clamp(2.75rem,8vw,7rem)] [text-shadow:_0_2px_12px_rgb(0_0_0_/_80%)]">
