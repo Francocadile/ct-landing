@@ -7,6 +7,7 @@ const NAV = [
   { label: "Inicio",      href: "/#home" },
   { label: "Modelo",      href: "/#modelo" },
   { label: "Manual",      href: "/manual-modelo" },
+  { label: "Ensayo",      href: "/el-arte-de-ser-protagonistas" },
   { label: "Trayectoria", href: "/#clubes" },
   { label: "Staff",       href: "/#staff" },
   { label: "Logros",      href: "/#records" },
@@ -46,7 +47,7 @@ export default function Header() {
           {SITE.name}
         </a>
 
-        <nav className="hidden gap-7 md:flex">
+        <nav className="hidden gap-5 lg:gap-7 md:flex">
           {NAV.map((item) => (
             <a key={item.href} href={item.href} className={linkCls(item.href)}>
               {item.label}

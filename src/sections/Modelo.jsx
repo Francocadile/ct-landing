@@ -663,6 +663,16 @@ export default function Modelo() {
               de superioridades."
             </blockquote>
             <p className="text-xs text-bone/40 mt-4">— Flavio Robatto</p>
+
+            <a
+              href="/el-arte-de-ser-protagonistas"
+              className="inline-flex items-center gap-2 mt-6 text-sm text-gold-400 hover:text-gold-500 transition-colors group"
+            >
+              <span>Leer el ensayo completo</span>
+              <svg className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </a>
           </div>
 
           {/* Grid de 3 sistemas tácticos */}
