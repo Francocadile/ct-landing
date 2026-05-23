@@ -514,7 +514,7 @@ export default function EmelecProyecto() {
                 <span className="text-green-500">de la plantilla</span>
               </h2>
               <p className="text-bone/60 text-base md:text-lg max-w-3xl mx-auto">
-                28 jugadores · edad media 27,2 años · 8 extranjeros · valor de mercado total €11,26M
+                28 jugadores · edad media 27,2 años · 8 extranjeros
                 <br /><span className="text-bone/40 text-sm">(Transfermarkt, mayo 2026)</span>
               </p>
             </div>
@@ -559,7 +559,7 @@ export default function EmelecProyecto() {
                 {[
                   {
                     name: "Pedro Ortiz",
-                    sub: "Arquero · #12 · 36 años · contrato hasta dic 2026",
+                    sub: "Arquero · #12 · 36 años",
                     badge: "Edad + Forma",
                     leftTitle: "PROBLEMA PRINCIPAL",
                     leftItems: [
@@ -575,11 +575,10 @@ export default function EmelecProyecto() {
                   },
                   {
                     name: "Gonzalo Nápoli",
-                    sub: "Volante · #8 · 26 años · uruguayo · €1,2M · contrato hasta dic 2026",
+                    sub: "Volante · #8 · 26 años · uruguayo",
                     badge: "Evaluación prioritaria",
                     leftTitle: "SITUACIÓN",
                     leftItems: [
-                      "Es el jugador más caro del medio (€1,2M)",
                       "El equipo no logra construir desde él",
                       "Tarda en circular; no rompe líneas",
                     ],
@@ -591,7 +590,7 @@ export default function EmelecProyecto() {
                   },
                   {
                     name: "Aníbal Leguizamón",
-                    sub: "Defensor central · #2 · 34 años · argentino-paraguayo · €150K",
+                    sub: "Defensor central · #2 · 34 años · argentino-paraguayo",
                     badge: "Edad + Forma",
                     leftTitle: "SITUACIÓN",
                     leftItems: [
@@ -607,7 +606,7 @@ export default function EmelecProyecto() {
                   },
                   {
                     name: "Romario Caicedo",
-                    sub: "Lateral derecho · #14 · 35 años · contrato hasta dic 2026",
+                    sub: "Lateral derecho · #14 · 35 años",
                     badge: "Edad + Forma",
                     leftTitle: "PROBLEMA",
                     leftItems: [
@@ -654,7 +653,7 @@ export default function EmelecProyecto() {
                   <div className="flex items-center justify-between mb-4 flex-wrap gap-3">
                     <div>
                       <h4 className="font-display text-xl font-bold text-bone tracking-tighter">Luca Klimowicz</h4>
-                      <p className="text-bone/50 text-sm">Delantero · #7 · 21 años · argentino-ecuatoriano · €600K · contrato hasta dic 2026</p>
+                      <p className="text-bone/50 text-sm">Delantero · #7 · 21 años · argentino-ecuatoriano</p>
                     </div>
                     <span className="text-xs text-yellow-400 bg-yellow-500/20 px-4 py-2 rounded-full font-semibold border border-yellow-500/30">Proyección posible</span>
                   </div>
@@ -694,7 +693,7 @@ export default function EmelecProyecto() {
                 {[
                   {
                     name: "Francisco Pizzini",
-                    sub: "Extremo derecho · #10 · 32 años · argentino-italiano · €1,5M · contrato hasta dic 2027",
+                    sub: "Extremo derecho · #10 · 32 años · argentino-italiano",
                     badge: "Pilar ofensivo",
                     leftTitle: "Trayectoria competitiva",
                     leftItems: [
@@ -704,20 +703,20 @@ export default function EmelecProyecto() {
                     ],
                     rightTitle: "Cualidades clave",
                     rightItems: [
-                      "Jugador más valorado del plantel (€1,5M)",
+                      "Referente ofensivo del plantel",
                       "Profundidad por banda + 1v1 ganador",
-                      "Edad pico (32) y contrato largo: estabilidad para el ciclo",
+                      "Edad pico (32): estabilidad para el ciclo",
                     ],
                   },
                   {
                     name: "Estalin Segura",
-                    sub: "Defensor central · #4 · 26 años · ecuatoriano · €1,2M · contrato hasta dic 2026",
+                    sub: "Defensor central · #4 · 26 años · ecuatoriano",
                     badge: "Núcleo defensivo",
                     leftTitle: "Trayectoria competitiva",
                     leftItems: [
                       ["Selección Ecuador sub-23:", "proceso formativo continuo"],
                       [null, "Titular indiscutido en 2025 y 2026"],
-                      [null, "Crecimiento sostenido en valor de mercado"],
+                      [null, "Crecimiento sostenido en rendimiento competitivo"],
                     ],
                     rightTitle: "Cualidades clave",
                     rightItems: [
@@ -728,12 +727,12 @@ export default function EmelecProyecto() {
                   },
                   {
                     name: "José Neris",
-                    sub: "Delantero · #9 · 26 años · uruguayo · €1,0M · contrato hasta dic 2028",
+                    sub: "Delantero · #9 · 26 años · uruguayo",
                     badge: "Pilar de área",
                     leftTitle: "Trayectoria competitiva",
                     leftItems: [
                       [null, "Formación uruguaya: cultura de competencia"],
-                      [null, "Contrato largo: el club apostó fuerte por su evolución"],
+                      [null, "El club apostó fuerte por su evolución"],
                       [null, "Edad ideal (26) en posición de delantero de referencia"],
                     ],
                     rightTitle: "Cualidades clave",
@@ -745,11 +744,11 @@ export default function EmelecProyecto() {
                   },
                   {
                     name: "Angelo Mina",
-                    sub: "Mediocampista defensivo · #5 · 27 años · ecuatoriano · €1,0M · contrato hasta dic 2028",
+                    sub: "Mediocampista defensivo · #5 · 27 años · ecuatoriano",
                     badge: "Volante de equilibrio",
                     leftTitle: "Perfil",
                     leftItems: [
-                      [null, "Volante defensivo con contrato largo (hasta 2028)"],
+                      [null, "Volante defensivo titular del esquema actual"],
                       [null, "Edad ideal (27): pico físico y madurez táctica"],
                       [null, "Apuesta institucional firme del club"],
                     ],
@@ -793,7 +792,7 @@ export default function EmelecProyecto() {
                 <div className="mt-8 p-6 bg-green-500/10 border border-green-500/30 rounded-xl">
                   <p className="text-bone/80 leading-relaxed text-center">
                     <span className="font-display font-bold text-green-400 tracking-tighter">Estos 4 jugadores conforman la base competitiva real del plantel actual:</span>{" "}
-                    verificados en Transfermarkt y noticias recientes, con perfil internacional, contratos vigentes y mentalidad necesaria para implementar un modelo de alta intensidad desde el primer día.
+                    verificados en Transfermarkt y noticias recientes, con perfil internacional y mentalidad necesaria para implementar un modelo de alta intensidad desde el primer día.
                   </p>
                 </div>
               </div>
