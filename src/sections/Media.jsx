@@ -1,4 +1,28 @@
 import { MEDIA } from "../data/media";
+import { useLang } from "../i18n/LanguageContext.jsx";
+
+const COPY = {
+  es: {
+    eyebrow: "Contenido",
+    title: (
+      <>
+        Material<br />
+        <span className="italic text-gold-500">audiovisual.</span>
+      </>
+    ),
+    lead: "Videos, análisis tácticos y entrenamientos del cuerpo técnico.",
+  },
+  en: {
+    eyebrow: "Content",
+    title: (
+      <>
+        Video<br />
+        <span className="italic text-gold-500">material.</span>
+      </>
+    ),
+    lead: "Videos, tactical analysis and training sessions from the coaching staff.",
+  },
+};
 
 function getYTThumb(url) {
   const m = url.match(/[?&]v=([^&]+)/);
@@ -6,17 +30,19 @@ function getYTThumb(url) {
 }
 
 export default function Media() {
+  const { lang } = useLang();
+  const t = COPY[lang];
+  const title = (v) => (lang === "en" ? v.title_en ?? v.title : v.title);
   return (
     <section id="media" className="bg-ink-900 py-24 md:py-36 border-t border-bone/10">
       <div className="container-x">
         <div className="max-w-3xl mb-16">
-          <div className="eyebrow mb-5">Contenido</div>
+          <div className="eyebrow mb-5">{t.eyebrow}</div>
           <h2 className="display-2 text-[clamp(2rem,4.5vw,3.5rem)] text-bone leading-[1.05]">
-            Material<br />
-            <span className="italic text-gold-500">audiovisual.</span>
+            {t.title}
           </h2>
           <p className="mt-6 text-lg text-bone/60 max-w-xl">
-            Videos, análisis tácticos y entrenamientos del cuerpo técnico.
+            {t.lead}
           </p>
         </div>
 
@@ -34,7 +60,7 @@ export default function Media() {
                 {getYTThumb(video.url) && (
                   <img
                     src={getYTThumb(video.url)}
-                    alt={video.title}
+                    alt={title(video)}
                     className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
                   />
                 )}
@@ -53,7 +79,7 @@ export default function Media() {
               {/* Info */}
               <div className="p-5">
                 <h3 className="font-display text-lg font-bold text-bone leading-tight line-clamp-2 group-hover:text-gold-500 transition-colors">
-                  {video.title}
+                  {title(video)}
                 </h3>
               </div>
             </a>

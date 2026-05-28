@@ -20,6 +20,29 @@ export const objetivosB = [
 export const definicionModelo =
   "Entendemos un modelo de juego como los comportamientos colectivos que guían nuestra identidad como equipo.";
 
+// ───────────────────────────────────────────────────────────────────────────────
+// English siblings (consumed by Modelo.jsx)
+// ───────────────────────────────────────────────────────────────────────────────
+
+export const objetivosAEn = [
+  "Improve the quality of every position and every player.",
+  "Sharpen each player's technical and individual actions.",
+  "Implement situational exercises built around our playing model.",
+  "Build our own identity as a team, based on the players' characteristics and those of the club itself.",
+  "Instill a winning mentality and compete on equal terms in every stadium, trusting our game — which allows us to win in any setting.",
+];
+
+export const objetivosBEn = [
+  "Foster competition and accountability to drive performance and growth, both individual and collective.",
+  "Encourage open communication and self-criticism for better training planning.",
+  "Maximize strengths and add options for problem-solving, in pursuit of professionalism, proper preparation and effectiveness.",
+  "Design sessions tailored to the team's needs and scout upcoming opponents, structuring the week according to the competition (domestic or international).",
+  "Provide socio-educational sporting development.",
+];
+
+export const definicionModeloEn =
+  "We understand a game model as the collective behaviors that guide our identity as a team.";
+
 export const juegoDePosicion = {
   cita:
     "El Juego de Posición consiste en obtener ventajas en base a un ordenamiento estructural y para ello se deben cumplir varios criterios conceptuales. Un correcto ordenamiento permite progresar en el juego.",

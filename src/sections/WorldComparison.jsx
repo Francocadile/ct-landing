@@ -1,13 +1,48 @@
+import { useLang } from "../i18n/LanguageContext.jsx";
+
 const TEAMS = [
-  { name: "Bayern", country: "Alemania", flag: "🇩🇪", goals: 305, color: "from-red-600/20 to-red-700/10" },
-  { name: "Barcelona", country: "España", flag: "🇪🇸", goals: 301, color: "from-blue-600/20 to-blue-700/10" },
-  { name: "PSG", country: "Francia", flag: "🇫🇷", goals: 274, color: "from-blue-500/20 to-red-500/10" },
-  { name: "Bolívar", country: "Bolivia", flag: "🇧🇴", goals: 273, color: "from-gold-600/30 to-gold-700/20", highlight: true },
-  { name: "PSV", country: "Países Bajos", flag: "🇳🇱", goals: 259, color: "from-red-500/20 to-white/5" },
+  { name: "Bayern", country: { es: "Alemania", en: "Germany" }, flag: "🇩🇪", goals: 305, color: "from-red-600/20 to-red-700/10" },
+  { name: "Barcelona", country: { es: "España", en: "Spain" }, flag: "🇪🇸", goals: 301, color: "from-blue-600/20 to-blue-700/10" },
+  { name: "PSG", country: { es: "Francia", en: "France" }, flag: "🇫🇷", goals: 274, color: "from-blue-500/20 to-red-500/10" },
+  { name: "Bolívar", country: { es: "Bolivia", en: "Bolivia" }, flag: "🇧🇴", goals: 273, color: "from-gold-600/30 to-gold-700/20", highlight: true },
+  { name: "PSV", country: { es: "Países Bajos", en: "Netherlands" }, flag: "🇳🇱", goals: 259, color: "from-red-500/20 to-white/5" },
 ];
 
+const COPY = {
+  es: {
+    badge: "Insight destacado",
+    title: (
+      <>
+        Bolívar, entre los equipos más<br />
+        <span className="text-gold-500">goleadores del mundo</span>
+      </>
+    ),
+    lead:
+      "Desde la llegada de Flavio Robatto en 2024, solo tres equipos en el mundo marcaron más goles que Bolívar. Un dato que refleja eficacia, identidad y un modelo ofensivo competitivo a nivel internacional.",
+    ourTeam: "Nuestro equipo",
+    footerTitle: "Una matriz orientada al juego ofensivo.",
+    source: "Fuente: Sofascore · Temporada 2024-2025",
+  },
+  en: {
+    badge: "Featured insight",
+    title: (
+      <>
+        Bolívar, among the most<br />
+        <span className="text-gold-500">prolific scoring teams in the world</span>
+      </>
+    ),
+    lead:
+      "Since Flavio Robatto arrived in 2024, only three teams in the world scored more goals than Bolívar. A figure that reflects efficiency, identity and an attacking model that is competitive at an international level.",
+    ourTeam: "Our team",
+    footerTitle: "A framework built around attacking play.",
+    source: "Source: Sofascore · 2024-2025 season",
+  },
+};
+
 export default function WorldComparison() {
-  const maxGoals = Math.max(...TEAMS.map(t => t.goals));
+  const { lang } = useLang();
+  const t = COPY[lang];
+  const maxGoals = Math.max(...TEAMS.map((tm) => tm.goals));
 
   return (
     <section className="bg-ink-950 py-24 md:py-36 border-t border-bone/10 relative overflow-hidden">
@@ -18,18 +53,15 @@ export default function WorldComparison() {
         {/* Header */}
         <div className="max-w-4xl mx-auto text-center mb-16">
           <div className="inline-block px-4 py-2 rounded-full bg-gold-500/10 border border-gold-500/20 text-gold-500 text-xs uppercase tracking-[0.2em] font-semibold mb-6">
-            Insight destacado
+            {t.badge}
           </div>
 
           <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-black text-bone leading-[1.05] mb-8">
-            Bolívar, entre los equipos más<br />
-            <span className="text-gold-500">goleadores del mundo</span>
+            {t.title}
           </h2>
 
           <p className="text-lg md:text-xl text-bone/70 leading-relaxed max-w-3xl mx-auto">
-            Desde la llegada de Flavio Robatto en 2024, solo tres equipos en el
-            mundo marcaron más goles que Bolívar. Un dato que refleja eficacia,
-            identidad y un modelo ofensivo competitivo a nivel internacional.
+            {t.lead}
           </p>
         </div>
 
@@ -74,7 +106,7 @@ export default function WorldComparison() {
                         }`}>
                           {team.name}
                         </div>
-                        <div className="text-xs text-bone/50">{team.country}</div>
+                        <div className="text-xs text-bone/50">{team.country[lang]}</div>
                       </div>
                     </div>
                   </div>
@@ -93,7 +125,7 @@ export default function WorldComparison() {
                     <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-gold-500/20 border border-gold-500/40">
                       <div className="w-2 h-2 rounded-full bg-gold-500 animate-pulse" />
                       <span className="text-xs font-semibold text-gold-400 uppercase tracking-wider">
-                        Nuestro equipo
+                        {t.ourTeam}
                       </span>
                     </div>
                   </div>
@@ -106,10 +138,10 @@ export default function WorldComparison() {
         {/* Footer */}
         <div className="max-w-4xl mx-auto text-center">
           <p className="text-lg font-display font-semibold text-gold-500 mb-2">
-            Una matriz orientada al juego ofensivo.
+            {t.footerTitle}
           </p>
           <p className="text-sm text-bone/40">
-            Fuente: Sofascore · Temporada 2024-2025
+            {t.source}
           </p>
         </div>
       </div>

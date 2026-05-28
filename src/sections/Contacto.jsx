@@ -1,14 +1,41 @@
 import { Mail, Twitter, Instagram, Youtube } from "lucide-react";
+import { useLang } from "../i18n/LanguageContext.jsx";
+
+const COPY = {
+  es: {
+    eyebrow: "Contacto",
+    title: (
+      <>
+        Hablemos de<br />
+        <span className="italic text-gold-500">tu proyecto.</span>
+      </>
+    ),
+    socials: "Redes sociales",
+    cta: "Para consultas profesionales, propuestas de colaboración o información sobre el cuerpo técnico, escribinos directamente al email o seguinos en redes para contenido y novedades.",
+  },
+  en: {
+    eyebrow: "Contact",
+    title: (
+      <>
+        Let's talk about<br />
+        <span className="italic text-gold-500">your project.</span>
+      </>
+    ),
+    socials: "Social media",
+    cta: "For professional inquiries, collaboration proposals or information about the coaching staff, write to us directly by email or follow us on social media for content and updates.",
+  },
+};
 
 export default function Contacto() {
+  const { lang } = useLang();
+  const t = COPY[lang];
   return (
     <section id="contacto" className="bg-ink-900 py-24 md:py-36 border-t border-bone/10">
       <div className="container-x">
         <div className="max-w-3xl mb-16">
-          <div className="eyebrow mb-5">Contacto</div>
+          <div className="eyebrow mb-5">{t.eyebrow}</div>
           <h2 className="display-2 text-[clamp(2rem,4.5vw,3.5rem)] text-bone leading-[1.05]">
-            Hablemos de<br />
-            <span className="italic text-gold-500">tu proyecto.</span>
+            {t.title}
           </h2>
         </div>
 
@@ -36,7 +63,7 @@ export default function Contacto() {
           {/* Redes sociales */}
           <div className="card-dark">
             <div className="text-xs uppercase tracking-[0.2em] text-gold-500 mb-5">
-              Redes sociales
+              {t.socials}
             </div>
             <div className="space-y-4">
               <a
@@ -96,9 +123,7 @@ export default function Contacto() {
         {/* CTA final */}
         <div className="mt-16 max-w-2xl">
           <p className="text-bone/60 leading-relaxed">
-            Para consultas profesionales, propuestas de colaboración o información
-            sobre el cuerpo técnico, escribinos directamente al email o seguinos
-            en redes para contenido y novedades.
+            {t.cta}
           </p>
         </div>
       </div>

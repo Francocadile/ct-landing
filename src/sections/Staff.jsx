@@ -1,8 +1,38 @@
 import { TEAM } from "../data/staff";
 import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
+import { useLang } from "../i18n/LanguageContext.jsx";
+
+const COPY = {
+  es: {
+    eyebrow: "Cuerpo Técnico",
+    title: (
+      <>
+        Un equipo<br />
+        <span className="italic text-gold-500">detrás del equipo.</span>
+      </>
+    ),
+    fullProfile: "Ver perfil completo",
+    profile: "Ver perfil",
+  },
+  en: {
+    eyebrow: "Coaching Staff",
+    title: (
+      <>
+        A team<br />
+        <span className="italic text-gold-500">behind the team.</span>
+      </>
+    ),
+    fullProfile: "View full profile",
+    profile: "View profile",
+  },
+};
 
 export default function Staff() {
+  const { lang } = useLang();
+  const t = COPY[lang];
+  const role = (m) => (lang === "en" ? m.role_en ?? m.role : m.role);
+  const bio = (m) => (lang === "en" ? m.bio_en ?? m.bio : m.bio);
   const flavio = TEAM[0];
   const rest = TEAM.slice(1);
 
@@ -10,10 +40,9 @@ export default function Staff() {
     <section id="staff" className="bg-ink-950 py-24 md:py-36 border-t border-bone/10">
       <div className="container-x">
         <div className="max-w-3xl mb-16">
-          <div className="eyebrow mb-5">Cuerpo Técnico</div>
+          <div className="eyebrow mb-5">{t.eyebrow}</div>
           <h2 className="display-2 text-[clamp(2rem,4.5vw,3.5rem)] text-bone">
-            Un equipo<br />
-            <span className="italic text-gold-500">detrás del equipo.</span>
+            {t.title}
           </h2>
         </div>
 
@@ -33,7 +62,7 @@ export default function Staff() {
             </div>
 
             <div className="md:col-span-7 p-6 md:p-10 lg:p-14 flex flex-col justify-center">
-              <div className="eyebrow mb-4 text-gold-500">{flavio.role}</div>
+              <div className="eyebrow mb-4 text-gold-500">{role(flavio)}</div>
               <h3 className="font-display text-3xl md:text-5xl lg:text-6xl font-bold text-bone leading-[1] tracking-tighter mb-2">
                 {flavio.name}
               </h3>
@@ -45,10 +74,10 @@ export default function Staff() {
                 </div>
               )}
               <p className="text-bone/70 leading-relaxed text-base md:text-lg max-w-xl line-clamp-5">
-                {flavio.bio}
+                {bio(flavio)}
               </p>
               <div className="mt-8 inline-flex items-center gap-2 text-gold-500 font-medium text-sm group-hover:gap-3 transition-all">
-                Ver perfil completo
+                {t.fullProfile}
                 <ArrowUpRight size={16} />
               </div>
             </div>
@@ -71,7 +100,7 @@ export default function Staff() {
                 />
               </div>
               <div className="text-[10px] uppercase tracking-[0.2em] text-gold-500 mb-2">
-                {m.role}
+                {role(m)}
               </div>
               <h4 className="font-display text-xl md:text-2xl font-bold text-bone leading-tight tracking-tight">
                 {m.name}
@@ -84,10 +113,10 @@ export default function Staff() {
                 </div>
               )}
               <p className="text-bone/50 text-sm mt-4 leading-relaxed line-clamp-3">
-                {m.bio}
+                {bio(m)}
               </p>
               <div className="mt-auto pt-5 inline-flex items-center gap-2 text-bone/40 group-hover:text-gold-500 text-xs font-medium transition-colors">
-                Ver perfil
+                {t.profile}
                 <ArrowUpRight size={12} />
               </div>
             </Link>

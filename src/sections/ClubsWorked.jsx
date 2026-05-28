@@ -1,23 +1,48 @@
+import { useLang } from "../i18n/LanguageContext.jsx";
+
 const CLUBS = [
-  { name: "Bolívar", logo: "/img/clubs/bolivar.png", country: "Bolivia" },
-  { name: "Millonarios", logo: "/img/clubs/millonarios.png", country: "Colombia" },
-  { name: "Barcelona SC", logo: "/img/clubs/barcelona-sc.png", country: "Ecuador" },
-  { name: "Cúcuta Deportivo", logo: "/img/clubs/cucuta-deportivo.png", country: "Colombia" },
-  { name: "Atlético Huila", logo: "/img/clubs/atletico-huila.png", country: "Colombia" },
-  { name: "Nacional Potosí", logo: "/img/clubs/nacional-potosi.png", country: "Bolivia" },
-  { name: "Jaguares", logo: "/img/clubs/jaguares-fc.png", country: "Colombia" },
-  { name: "Alianza Atlético Sullana", logo: "/img/clubs/alianza-atletico.png", country: "Perú" },
+  { name: "Bolívar", logo: "/img/clubs/bolivar.png", country: { es: "Bolivia", en: "Bolivia" } },
+  { name: "Millonarios", logo: "/img/clubs/millonarios.png", country: { es: "Colombia", en: "Colombia" } },
+  { name: "Barcelona SC", logo: "/img/clubs/barcelona-sc.png", country: { es: "Ecuador", en: "Ecuador" } },
+  { name: "Cúcuta Deportivo", logo: "/img/clubs/cucuta-deportivo.png", country: { es: "Colombia", en: "Colombia" } },
+  { name: "Atlético Huila", logo: "/img/clubs/atletico-huila.png", country: { es: "Colombia", en: "Colombia" } },
+  { name: "Nacional Potosí", logo: "/img/clubs/nacional-potosi.png", country: { es: "Bolivia", en: "Bolivia" } },
+  { name: "Jaguares", logo: "/img/clubs/jaguares-fc.png", country: { es: "Colombia", en: "Colombia" } },
+  { name: "Alianza Atlético Sullana", logo: "/img/clubs/alianza-atletico.png", country: { es: "Perú", en: "Peru" } },
 ];
 
+const COPY = {
+  es: {
+    eyebrow: "Trayectoria",
+    title: (
+      <>
+        Clubes en los que<br />
+        trabajó el cuerpo técnico
+      </>
+    ),
+  },
+  en: {
+    eyebrow: "Career",
+    title: (
+      <>
+        Clubs where the<br />
+        coaching staff has worked
+      </>
+    ),
+  },
+};
+
 export default function ClubsWorked() {
+  const { lang } = useLang();
+  const t = COPY[lang];
+
   return (
     <section id="clubes" className="bg-ink-900 py-24 md:py-36 border-t border-bone/10">
       <div className="container-x">
         <div className="max-w-3xl mb-16">
-          <div className="eyebrow mb-5">Trayectoria</div>
+          <div className="eyebrow mb-5">{t.eyebrow}</div>
           <h2 className="display-2 text-[clamp(2rem,4.5vw,3.5rem)] text-bone">
-            Clubes en los que<br />
-            trabajó el cuerpo técnico
+            {t.title}
           </h2>
         </div>
 
@@ -38,7 +63,7 @@ export default function ClubsWorked() {
                 {club.name}
               </p>
               <p className="text-[10px] uppercase tracking-[0.18em] text-bone/40 mt-1">
-                {club.country}
+                {club.country[lang]}
               </p>
             </div>
           ))}

@@ -1,25 +1,51 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
+import { useLang } from "../i18n/LanguageContext.jsx";
 
 const VIDEOS = [
   {
     id: "MENg3uZzJdE",
-    titulo: "Presión alta mano a mano en inicio rival",
-    descripcion: "Agresividad colectiva desde el primer pase del rival",
+    titulo: { es: "Presión alta mano a mano en inicio rival", en: "High man-to-man press on the opponent's build-up" },
+    descripcion: { es: "Agresividad colectiva desde el primer pase del rival", en: "Collective aggression from the opponent's first pass" },
   },
   {
     id: "9mpSMvbfZ8w",
-    titulo: "Identidad de juego reconocible",
-    descripcion: "Juego de posición y principios estructurales",
+    titulo: { es: "Identidad de juego reconocible", en: "A recognizable playing identity" },
+    descripcion: { es: "Juego de posición y principios estructurales", en: "Positional play and structural principles" },
   },
   {
     id: "QJUQSiFhaH4",
-    titulo: "Modelo de juego",
-    descripcion: "Entrenamiento estructurado bajo los principios del modelo",
+    titulo: { es: "Modelo de juego", en: "Playing model" },
+    descripcion: { es: "Entrenamiento estructurado bajo los principios del modelo", en: "Structured training under the principles of the model" },
   },
 ];
 
+const COPY = {
+  es: {
+    eyebrow: "Contenido",
+    title: (
+      <>
+        Síguenos en <span className="text-gold-500">YouTube</span>
+      </>
+    ),
+    lead: "Análisis tácticos, conceptos del modelo, sesiones de entrenamiento y más contenido exclusivo.",
+    cta: "Ver canal completo",
+  },
+  en: {
+    eyebrow: "Content",
+    title: (
+      <>
+        Follow us on <span className="text-gold-500">YouTube</span>
+      </>
+    ),
+    lead: "Tactical analysis, model concepts, training sessions and more exclusive content.",
+    cta: "Visit the full channel",
+  },
+};
+
 export default function YouTubeSection() {
+  const { lang } = useLang();
+  const t = COPY[lang];
   return (
     <section className="bg-ink-950 py-24 md:py-36 border-t border-bone/10">
       <div className="container-x">
@@ -32,12 +58,12 @@ export default function YouTubeSection() {
           transition={{ duration: 0.6 }}
           className="max-w-3xl mb-12"
         >
-          <div className="eyebrow mb-5">Contenido</div>
+          <div className="eyebrow mb-5">{t.eyebrow}</div>
           <h2 className="display-2 text-[clamp(2rem,5vw,3.75rem)] text-bone mb-6">
-            Síguenos en <span className="text-gold-500">YouTube</span>
+            {t.title}
           </h2>
           <p className="text-lg text-bone/60 max-w-xl">
-            Análisis tácticos, conceptos del modelo, sesiones de entrenamiento y más contenido exclusivo.
+            {t.lead}
           </p>
         </motion.div>
 
@@ -67,7 +93,7 @@ export default function YouTubeSection() {
                 {/* Thumbnail real de YouTube */}
                 <img
                   src={`https://img.youtube.com/vi/${video.id}/maxresdefault.jpg`}
-                  alt={video.titulo}
+                  alt={video.titulo[lang]}
                   className="w-full h-full object-cover opacity-50 group-hover:opacity-70 transition-opacity"
                   onError={(e) => {
                     e.target.src = `https://img.youtube.com/vi/${video.id}/hqdefault.jpg`;
@@ -79,10 +105,10 @@ export default function YouTubeSection() {
 
               {/* Info del video */}
               <h3 className="font-display text-xl font-bold text-bone mb-2 group-hover:text-gold-400 transition-colors">
-                {video.titulo}
+                {video.titulo[lang]}
               </h3>
               <p className="text-bone/60 text-sm leading-relaxed">
-                {video.descripcion}
+                {video.descripcion[lang]}
               </p>
             </motion.a>
           ))}
@@ -105,7 +131,7 @@ export default function YouTubeSection() {
             <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
               <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
             </svg>
-            Ver canal completo
+            {t.cta}
             <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
           </a>
         </motion.div>

@@ -1,6 +1,42 @@
 import { RECORDS, SEASONS } from "../data/results";
+import { useLang } from "../i18n/LanguageContext.jsx";
+
+const COPY = {
+  es: {
+    eyebrow: "Logros",
+    title: (
+      <>
+        Records del<br />
+        <span className="italic text-gold-500">Cuerpo Técnico.</span>
+      </>
+    ),
+    numbersTitle: "Cuerpo técnico en números",
+    globalLabel: "Global Proceso",
+    stat: { pj: "PJ", g: "G", e: "E", p: "P", gf: "GF", gc: "GC" },
+    dg: "DG",
+    avg: "Prom",
+    perGame: "gol/p",
+  },
+  en: {
+    eyebrow: "Records",
+    title: (
+      <>
+        Coaching staff<br />
+        <span className="italic text-gold-500">records.</span>
+      </>
+    ),
+    numbersTitle: "Coaching staff in numbers",
+    globalLabel: "Overall Process",
+    stat: { pj: "MP", g: "W", e: "D", p: "L", gf: "GF", gc: "GA" },
+    dg: "GD",
+    avg: "Avg",
+    perGame: "goals/g",
+  },
+};
 
 export default function Records() {
+  const { lang } = useLang();
+  const t = COPY[lang];
   const allRecords = RECORDS;
 
   // Todas las temporadas individuales
@@ -23,10 +59,9 @@ export default function Records() {
       <div className="container-x">
         {/* Encabezado */}
         <div className="max-w-3xl mb-16">
-          <div className="eyebrow mb-5">Logros</div>
+          <div className="eyebrow mb-5">{t.eyebrow}</div>
           <h2 className="display-2 text-[clamp(2rem,4.5vw,3.5rem)] text-bone leading-[1.05]">
-            Records del<br />
-            <span className="italic text-gold-500">Cuerpo Técnico.</span>
+            {t.title}
           </h2>
         </div>
 
@@ -47,12 +82,12 @@ export default function Records() {
                 </div>
                 <div className="flex-1 min-w-0">
                   <h3 className="font-display text-xl md:text-2xl font-bold text-bone leading-tight mb-1.5">
-                    {record.title}
+                    {lang === "en" ? record.title_en ?? record.title : record.title}
                   </h3>
                   <div className="flex items-baseline gap-2 text-sm mb-3">
                     <span className="text-bone/60">{record.club}</span>
                     <span className="text-bone/30">·</span>
-                    <span className="text-bone/60">{record.role}</span>
+                    <span className="text-bone/60">{lang === "en" ? record.role_en ?? record.role : record.role}</span>
                   </div>
                   <div className="flex items-baseline gap-3 text-xs">
                     <span className="text-gold-500 font-semibold">{record.year}</span>
@@ -71,7 +106,7 @@ export default function Records() {
         {/* Cuerpo técnico en números */}
         <div className="max-w-3xl mb-10">
           <h3 className="font-display text-2xl md:text-3xl font-bold text-bone">
-            Cuerpo técnico en números
+            {t.numbersTitle}
           </h3>
         </div>
 
@@ -89,7 +124,7 @@ export default function Records() {
                   </div>
                   <div>
                     <div className="text-xs uppercase tracking-[0.2em] text-gold-400 font-bold">
-                      Global Proceso
+                      {t.globalLabel}
                     </div>
                   </div>
                 </div>
@@ -101,34 +136,34 @@ export default function Records() {
               </div>
               <div className="grid grid-cols-3 gap-2 text-center mb-3">
                 <div className="bg-ink-900/20 rounded-lg p-2">
-                  <div className="text-[10px] uppercase tracking-wider text-bone/40 mb-1">PJ</div>
+                  <div className="text-[10px] uppercase tracking-wider text-bone/40 mb-1">{t.stat.pj}</div>
                   <div className="font-display text-xl font-bold text-bone">{totals.pj}</div>
                 </div>
                 <div className="bg-ink-900/20 rounded-lg p-2">
-                  <div className="text-[10px] uppercase tracking-wider text-bone/40 mb-1">G</div>
+                  <div className="text-[10px] uppercase tracking-wider text-bone/40 mb-1">{t.stat.g}</div>
                   <div className="font-display text-xl font-bold text-gold-400">{totals.v}</div>
                 </div>
                 <div className="bg-ink-900/20 rounded-lg p-2">
-                  <div className="text-[10px] uppercase tracking-wider text-bone/40 mb-1">E</div>
+                  <div className="text-[10px] uppercase tracking-wider text-bone/40 mb-1">{t.stat.e}</div>
                   <div className="font-display text-xl font-bold text-bone/60">{totals.e}</div>
                 </div>
               </div>
               <div className="grid grid-cols-3 gap-2 text-center mb-3">
                 <div className="bg-ink-900/20 rounded-lg p-2">
-                  <div className="text-[10px] uppercase tracking-wider text-bone/40 mb-1">P</div>
+                  <div className="text-[10px] uppercase tracking-wider text-bone/40 mb-1">{t.stat.p}</div>
                   <div className="font-display text-xl font-bold text-bone/40">{totals.d}</div>
                 </div>
                 <div className="bg-ink-900/20 rounded-lg p-2">
-                  <div className="text-[10px] uppercase tracking-wider text-bone/40 mb-1">GF</div>
+                  <div className="text-[10px] uppercase tracking-wider text-bone/40 mb-1">{t.stat.gf}</div>
                   <div className="font-display text-xl font-bold text-gold-400">{totals.gf}</div>
                 </div>
                 <div className="bg-ink-900/20 rounded-lg p-2">
-                  <div className="text-[10px] uppercase tracking-wider text-bone/40 mb-1">GC</div>
+                  <div className="text-[10px] uppercase tracking-wider text-bone/40 mb-1">{t.stat.gc}</div>
                   <div className="font-display text-xl font-bold text-bone/60">{totals.gc}</div>
                 </div>
               </div>
               <div className="pt-3 border-t border-gold-500/20 text-[10px] text-bone/50">
-                DG: +{totals.gf - totals.gc} · Prom: {(totals.gf / totals.pj).toFixed(1)} gol/p
+                {t.dg}: +{totals.gf - totals.gc} · {t.avg}: {(totals.gf / totals.pj).toFixed(1)} {t.perGame}
               </div>
             </div>
           </div>
@@ -174,35 +209,37 @@ export default function Records() {
                 </div>
                 <div className="grid grid-cols-3 gap-2 text-center mb-3">
                   <div className="bg-ink-900/50 rounded p-2">
-                    <div className="text-[9px] uppercase tracking-wider text-bone/40 mb-1">PJ</div>
+                    <div className="text-[9px] uppercase tracking-wider text-bone/40 mb-1">{t.stat.pj}</div>
                     <div className="font-display text-lg font-bold text-bone">{pj}</div>
                   </div>
                   <div className="bg-ink-900/50 rounded p-2">
-                    <div className="text-[9px] uppercase tracking-wider text-bone/40 mb-1">G</div>
+                    <div className="text-[9px] uppercase tracking-wider text-bone/40 mb-1">{t.stat.g}</div>
                     <div className="font-display text-lg font-bold text-bone">{v}</div>
                   </div>
                   <div className="bg-ink-900/50 rounded p-2">
-                    <div className="text-[9px] uppercase tracking-wider text-bone/40 mb-1">E</div>
+                    <div className="text-[9px] uppercase tracking-wider text-bone/40 mb-1">{t.stat.e}</div>
                     <div className="font-display text-lg font-bold text-bone/60">{e}</div>
                   </div>
                 </div>
                 <div className="grid grid-cols-3 gap-2 text-center mb-3">
                   <div className="bg-ink-900/50 rounded p-2">
-                    <div className="text-[9px] uppercase tracking-wider text-bone/40 mb-1">P</div>
+                    <div className="text-[9px] uppercase tracking-wider text-bone/40 mb-1">{t.stat.p}</div>
                     <div className="font-display text-lg font-bold text-bone/40">{d}</div>
                   </div>
                   <div className="bg-ink-900/50 rounded p-2">
-                    <div className="text-[9px] uppercase tracking-wider text-bone/40 mb-1">GF</div>
+                    <div className="text-[9px] uppercase tracking-wider text-bone/40 mb-1">{t.stat.gf}</div>
                     <div className="font-display text-lg font-bold text-bone">{gf}</div>
                   </div>
                   <div className="bg-ink-900/50 rounded p-2">
-                    <div className="text-[9px] uppercase tracking-wider text-bone/40 mb-1">GC</div>
+                    <div className="text-[9px] uppercase tracking-wider text-bone/40 mb-1">{t.stat.gc}</div>
                     <div className="font-display text-lg font-bold text-bone/60">{gc}</div>
                   </div>
                 </div>
                 <div className="pt-2 border-t border-bone/10 text-[9px] text-bone/50">
-                  DG: {dg > 0 ? '+' : ''}{dg} · Prom: {prom} gol/p
-                  {season.notes && <div className="mt-1">{season.notes}</div>}
+                  {t.dg}: {dg > 0 ? '+' : ''}{dg} · {t.avg}: {prom} {t.perGame}
+                  {(lang === "en" ? season.notes_en ?? season.notes : season.notes) && (
+                    <div className="mt-1">{lang === "en" ? season.notes_en ?? season.notes : season.notes}</div>
+                  )}
                 </div>
               </div>
             );
