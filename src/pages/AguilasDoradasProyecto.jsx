@@ -116,7 +116,7 @@ export default function AguilasDoradasProyecto() {
                     ))}
                   </div>
                   <p className="relative text-bone/40 text-xs mt-4 text-center">
-                    Liga BetPlay I-2026 · 19 PJ · 7G 5E 7P · 20 GF / 25 GC (ESPN · Transfermarkt, mayo 2026)
+                    Liga BetPlay Apertura 2026 · fase regular (19 fechas) · 7G 5E 7P · 20 GF / 25 GC · a 2 puntos del Top 8
                   </p>
                 </div>
               </div>
@@ -167,9 +167,9 @@ export default function AguilasDoradasProyecto() {
                       <div className="space-y-3">
                         {[
                           ["Goles en contra / pj", "1.32", true],
-                          ["Diferencia de gol", "−5", true],
-                          ["Partidos sin recibir", "Bajo", false],
-                          ["Saldo (Dif/pj)", "−0.26", false],
+                          ["Goles esperados en contra", "23.1", false],
+                          ["Recuperaciones en campo propio", "48%", true],
+                          ["Diferencia de gol", "−5", false],
                         ].map(([p, v, hl]) => (
                           <div key={p} className="flex justify-between items-center">
                             <span className="text-bone/80">{p}</span>
@@ -183,10 +183,10 @@ export default function AguilasDoradasProyecto() {
                     <div className="p-6 bg-red-500/10 border-2 border-red-500/30 rounded-xl mb-6">
                       <h5 className="font-display text-lg font-bold text-red-400 mb-3 tracking-tighter">PATRÓN DETECTADO</h5>
                       <p className="text-bone/80 text-sm leading-relaxed mb-4">
-                        Con <strong>1,32 goles recibidos por partido</strong> y diferencia de gol negativa (−5), la fase defensiva es el principal lastre del rendimiento global. El equipo recibe más de lo que su volumen ofensivo puede compensar.
+                        Con <strong>1,32 goles recibidos por partido</strong> (25 en total, frente a 23,1 esperados) y diferencia de gol negativa, la fase defensiva es el principal lastre del rendimiento global.
                       </p>
                       <p className="text-bone/80 text-sm leading-relaxed">
-                        El bloque defiende lejos del modelo ideal: <strong>se hunde y resuelve dentro del área propia</strong> en lugar de cortar el ataque rival en zonas altas.
+                        El equipo es <strong>reactivo</strong>: recupera mucho pero hondo (el 48% de sus recuperaciones son en campo propio) y pierde la pelota seguido en mediocampo. Defiende lejos del modelo ideal, <strong>resolviendo dentro del área en lugar de cortar arriba</strong>.
                       </p>
                     </div>
                     <div className="p-6 bg-gold-500/10 border border-gold-500/20 rounded-xl">
@@ -204,9 +204,9 @@ export default function AguilasDoradasProyecto() {
                   <h4 className="font-display text-xl font-bold text-bone mb-4 tracking-tighter">Goles en contra: patrones detectados</h4>
                   <div className="space-y-4 mb-6">
                     {[
-                      { l: "Bloque hundido en defensa", d: "El equipo defiende cerca del arco propio; concede la zona de creación y los duelos en el área." },
-                      { l: "Transición defensiva lenta", d: "Tras la pérdida en campo rival, falta presión inmediata para recuperar o frenar el contragolpe." },
-                      { l: "Fragilidad en pelota parada", d: "Pérdida de referencias en el balón parado defensivo, donde se pagan goles evitables." },
+                      { l: "Bloque hundido en defensa", d: "Recupera el 48% en campo propio: defiende cerca del arco y concede la zona de creación." },
+                      { l: "Pérdidas en mediocampo", d: "2° equipo con más pérdidas de la liga; cede la pelota en zonas de transición y queda expuesto." },
+                      { l: "Duelo aéreo flojo pese al volumen", d: "2° equipo con más duelos aéreos de la liga, pero gana solo el 42% (debajo del promedio)." },
                     ].map((x) => (
                       <div key={x.l} className="p-4 bg-red-500/10 border border-red-500/20 rounded-xl">
                         <span className="text-bone/80 text-sm font-semibold block mb-1">{x.l}</span>
@@ -241,7 +241,7 @@ export default function AguilasDoradasProyecto() {
                       <h5 className="text-bone/80 font-semibold mb-3 text-sm uppercase tracking-wider">INDIVIDUALES (Específicos)</h5>
                       <ul className="space-y-2 text-bone/70 text-sm">
                         {[
-                          "Duelos 1v1 perdidos en el área propia",
+                          "Duelo aéreo ganado solo al 42% pese al gran volumen",
                           "Falta de agresividad en la anticipación",
                           "Núcleo central de edad alta para defensa adelantada",
                           "Pérdida de referencias en balón parado defensivo",
@@ -252,6 +252,24 @@ export default function AguilasDoradasProyecto() {
                     </div>
                   </div>
                 </div>
+              </div>
+
+              {/* Callout estructural: inestabilidad de esquema */}
+              <div className="mt-8 p-6 md:p-8 bg-gradient-to-br from-gold-900/20 to-gold-950/10 border-2 border-gold-500/30 rounded-2xl">
+                <div className="mb-6">
+                  <div className="text-xs uppercase tracking-[0.25em] font-bold text-gold-500 mb-2">Patrón estructural</div>
+                  <h4 className="font-display text-2xl md:text-3xl font-black text-bone tracking-tightest">Inestabilidad de esquema</h4>
+                </div>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+                  {["5-3-2", "4-4-2", "3-5-2", "4-2-3-1"].map((scheme) => (
+                    <div key={scheme} className="px-4 py-5 md:py-4 bg-ink-950 border border-gold-500/40 rounded-xl text-center">
+                      <div className="font-display text-4xl md:text-3xl font-black text-gold-500 whitespace-nowrap leading-none">{scheme}</div>
+                    </div>
+                  ))}
+                </div>
+                <p className="text-bone/70 text-sm md:text-base mt-8 md:mt-6 leading-relaxed">
+                  <strong className="text-bone">Cuatro dibujos distintos repartidos a lo largo de la temporada.</strong> Sin un esquema de referencia, los principios defensivos no llegan a automatizarse y el bloque se rearma fecha a fecha. La mejor versión ofensiva aparece en 4-4-2, pero no se sostiene.
+                </p>
               </div>
             </div>
 
@@ -271,9 +289,9 @@ export default function AguilasDoradasProyecto() {
                       <div className="space-y-3">
                         {[
                           ["Goles a favor / pj", "1.05", true],
-                          ["Goleador del plantel", "8 goles", true],
-                          ["Peso del goleador", "40%", true],
-                          ["Resto del plantel", "12 goles", false],
+                          ["Goleador (4° de la liga)", "11 goles", true],
+                          ["Peso del goleador", "55%", true],
+                          ["Resto del plantel", "9 goles", false],
                         ].map(([p, v, hl]) => (
                           <div key={p} className="flex justify-between items-center">
                             <span className="text-bone/80">{p}</span>
@@ -287,10 +305,10 @@ export default function AguilasDoradasProyecto() {
                     <div className="p-6 bg-gold-500/10 border-2 border-gold-500/30 rounded-xl">
                       <h5 className="font-display text-lg font-bold text-gold-500 mb-3 tracking-tighter">PATRÓN DETECTADO</h5>
                       <p className="text-bone/80 text-sm leading-relaxed mb-4">
-                        El equipo anota poco (<strong>1,05 goles/pj</strong>) y, sobre todo, concentra la producción en un solo nombre: <strong>el goleador firma 8 de los 20 goles (40%)</strong>. Cuando ese jugador no aparece, el ataque se apaga.
+                        El equipo anota poco (<strong>1,05 goles/pj</strong>) y concentra la producción en un solo nombre: <strong>el goleador firma 11 de los 20 goles (55%)</strong> y es el 4° máximo artillero de toda la liga. Cuando no aparece, el ataque se apaga.
                       </p>
                       <p className="text-bone/80 text-sm leading-relaxed">
-                        Faltan <strong>vías alternativas de gol</strong>: llegadas de segunda línea, peligro desde el balón parado y volumen de finalización repartido entre más jugadores.
+                        Genera <strong>muy pocos remates</strong> (de los más bajos de la liga) aunque de buena calidad: la mejor materia prima existe, falta volumen y vías alternativas (segunda línea y balón parado, hoy su arma secundaria real).
                       </p>
                     </div>
                   </div>
@@ -304,14 +322,14 @@ export default function AguilasDoradasProyecto() {
                   <h4 className="font-display text-2xl md:text-3xl font-black text-bone tracking-tightest">Dependencia de una sola vía de gol</h4>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4">
-                  {["40%", "8 / 20", "1 jugador"].map((d) => (
+                  {["55%", "11 / 20", "4° de la liga"].map((d) => (
                     <div key={d} className="px-6 py-5 md:py-4 bg-ink-950 border border-gold-500/40 rounded-xl text-center">
-                      <div className="font-display text-5xl md:text-3xl font-black text-gold-500 whitespace-nowrap leading-none">{d}</div>
+                      <div className="font-display text-4xl md:text-3xl font-black text-gold-500 whitespace-nowrap leading-none">{d}</div>
                     </div>
                   ))}
                 </div>
                 <p className="text-bone/70 text-sm md:text-base mt-8 md:mt-6 leading-relaxed">
-                  <strong className="text-bone">El 40% de los goles depende de un único finalizador.</strong> Es un activo enorme, pero también un riesgo: una lesión, una marca individual o una baja de forma reducen al equipo a un ataque sin salidas. El modelo busca sostener al goleador y, a la vez, multiplicar las fuentes de gol.
+                  <strong className="text-bone">El 55% de los goles depende de un único finalizador</strong> (11 de 20, 4° artillero de la liga). Es un activo enorme, pero también un riesgo: una lesión, una marca individual o una baja de forma reducen al equipo a un ataque sin salidas. El modelo busca sostener al goleador y, a la vez, multiplicar las fuentes de gol.
                 </p>
               </div>
 
@@ -320,9 +338,9 @@ export default function AguilasDoradasProyecto() {
                   <h4 className="font-display text-xl font-bold text-bone mb-4 tracking-tighter">¿Por qué se convierten pocos goles?</h4>
                   <div className="space-y-4">
                     {[
-                      { l: "Goles a favor / pj", v: "1.05", d: "Volumen ofensivo bajo para aspirar a la fase final." },
-                      { l: "Peso del goleador", v: "40%", d: "8 de 20 goles en un solo jugador: ataque demasiado dependiente." },
-                      { l: "Diferencia de gol", v: "−5", d: "El ataque no alcanza a compensar lo que concede la defensa." },
+                      { l: "Remates / 90", v: "9.2", d: "De los más bajos de la liga: el problema es de volumen, no de puntería." },
+                      { l: "xG por remate", v: "0.12", d: "De los mejores de la liga: cuando remata, lo hace desde buenas posiciones." },
+                      { l: "Peso del goleador", v: "55%", d: "11 de 20 goles en un solo jugador: ataque demasiado dependiente." },
                     ].map((x) => (
                       <div key={x.l} className="p-4 bg-gold-500/5 border border-gold-500/20 rounded-xl">
                         <div className="flex justify-between items-center mb-2">
@@ -351,8 +369,8 @@ export default function AguilasDoradasProyecto() {
                   <div className="space-y-6">
                     <div>
                       <h5 className="text-bone/80 font-semibold mb-3 text-sm">INICIOS DESDE ATRÁS</h5>
-                      <p className="text-bone/70 text-sm mb-3">La salida pierde limpieza bajo presión: el recurso del envío largo entrega la pelota y cede la iniciativa en mediocampo.</p>
-                      <div className="p-3 bg-red-500/10 border border-red-500/20 rounded-lg"><p className="text-xs text-red-400">❌ Faltan soluciones bajo presión</p></div>
+                      <p className="text-bone/70 text-sm mb-3">Es el equipo menos asociativo de la liga: el menor volumen de pases y la mayor proporción de envíos largos. La salida renuncia al juego corto y entrega la pelota en mediocampo.</p>
+                      <div className="p-3 bg-red-500/10 border border-red-500/20 rounded-lg"><p className="text-xs text-red-400">❌ Juego directo como recurso, no como elección</p></div>
                     </div>
                     <div>
                       <h5 className="text-bone/80 font-semibold mb-3 text-sm">ATAQUES POSICIONALES</h5>
@@ -373,6 +391,29 @@ export default function AguilasDoradasProyecto() {
                     </div>
                   </div>
                 </div>
+              </div>
+
+              {/* Callout estructural: equipo menos asociativo */}
+              <div className="mt-8 p-6 md:p-8 bg-gradient-to-br from-gold-900/20 to-gold-950/10 border-2 border-gold-500/30 rounded-2xl">
+                <div className="mb-6">
+                  <div className="text-xs uppercase tracking-[0.25em] font-bold text-gold-500 mb-2">Patrón estructural</div>
+                  <h4 className="font-display text-2xl md:text-3xl font-black text-bone tracking-tightest">El equipo menos asociativo de la liga</h4>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4">
+                  {[
+                    ["295", "pases / 90 · último de 20"],
+                    ["68%", "precisión · la más baja"],
+                    ["41%", "pases largos · la más alta"],
+                  ].map(([n, l]) => (
+                    <div key={l} className="px-6 py-5 md:py-4 bg-ink-950 border border-gold-500/40 rounded-xl text-center">
+                      <div className="font-display text-5xl md:text-4xl font-black text-gold-500 whitespace-nowrap leading-none mb-2">{n}</div>
+                      <div className="text-bone/50 text-xs">{l}</div>
+                    </div>
+                  ))}
+                </div>
+                <p className="text-bone/70 text-sm md:text-base mt-8 md:mt-6 leading-relaxed">
+                  <strong className="text-bone">Hoy el juego asociativo no es una herramienta del equipo.</strong> Es justo el terreno donde el modelo propuesto agrega más valor: salida limpia desde atrás, control del balón y llevar el juego al campo rival en vez de cederlo con el envío largo.
+                </p>
               </div>
             </div>
 
@@ -461,9 +502,9 @@ export default function AguilasDoradasProyecto() {
                 <div className="mt-4 p-4 bg-red-500/10 border border-red-500/20 rounded-xl">
                   <p className="text-red-400 text-sm font-semibold mb-2">PATRÓN ACTUAL:</p>
                   <ul className="text-bone/70 text-xs space-y-1">
-                    <li>→ Bloque que defiende cerca del arco propio</li>
-                    <li>→ 1,32 goles recibidos por partido</li>
-                    <li>→ Ataque concentrado en un solo finalizador (40%)</li>
+                    <li>→ Recupera hondo: 48% de recuperaciones en campo propio</li>
+                    <li>→ El menor volumen de pases de la liga, juego directo</li>
+                    <li>→ Ataque concentrado en un solo finalizador (55%)</li>
                   </ul>
                 </div>
               </div>
@@ -629,26 +670,26 @@ export default function AguilasDoradasProyecto() {
                     name: "Javier Mena",
                     sub: "Lateral izquierdo · #32 · 21 años",
                     leftItems: [
-                      ["green", "21 años, una de las revelaciones del campeonato"],
-                      ["green", "Convirtió goles importantes en el torneo"],
+                      ["green", "Una de las revelaciones del campeonato, ya con gol propio"],
+                      ["green", "El lado izquierdo es el carril por el que más construye el equipo"],
                       ["yellow", "Interés de clubes grandes: hay que retenerlo y potenciarlo"],
                     ],
                     rightItems: [
-                      "Proyección y energía para el carril izquierdo del modelo",
-                      "Perfil ideal para lateral con ida y vuelta sostenida",
+                      "Gran volumen de centros: motor del ataque por izquierda",
+                      "Perfil ideal para lateral con ida y vuelta sostenida del modelo",
                     ],
                   },
                   {
                     name: "Royner Benítez",
                     sub: "Volante ofensivo · #90 · 20 años",
                     leftItems: [
-                      ["green", "20 años, juvenil de proyección con minutos en Primera"],
-                      ["green", "Aporta asistencias y desequilibrio entre líneas"],
+                      ["green", "Muy productivo: combina goles y asistencias en pocos minutos"],
+                      ["green", "Presiona alto y recupera en campo rival, a veces con gol después"],
                       ["yellow", "Necesita continuidad para consolidar regularidad"],
                     ],
                     rightItems: [
-                      "Puede ser una vía de gol alternativa al 9",
-                      "Llegada de segunda línea, justo lo que falta en ataque",
+                      "Vía de gol alternativa al 9, justo lo que falta en ataque",
+                      "Llegada de segunda línea y presión tras pérdida: encaja en el modelo",
                     ],
                   },
                 ].map((j) => (
@@ -736,8 +777,8 @@ export default function AguilasDoradasProyecto() {
                     badge: "Pilar de área",
                     leftTitle: "Trayectoria competitiva",
                     leftItems: [
-                      ["Liga BetPlay I-2026:", "8 goles, entre los máximos artilleros"],
-                      [null, "40% de los goles del equipo en la temporada"],
+                      ["Apertura 2026:", "11 goles, 4° artillero de la liga"],
+                      [null, "55% de los goles del equipo en la temporada"],
                       [null, "22 años: techo alto y margen de evolución"],
                     ],
                     rightTitle: "Cualidades clave",
@@ -745,6 +786,40 @@ export default function AguilasDoradasProyecto() {
                       "Delantero de referencia con peso y definición",
                       "Punto fijo del ataque alrededor del cual construir",
                       "Activo a sostener y a rodear de más vías de gol",
+                    ],
+                  },
+                  {
+                    name: "Joaquín Varela",
+                    sub: "Defensor central · #3 · 27 años",
+                    badge: "Salida + ABP",
+                    leftTitle: "Trayectoria competitiva",
+                    leftItems: [
+                      [null, "Titular indiscutido y mayor volumen de pase de la zaga"],
+                      ["Apertura 2026:", "3 goles, amenaza aérea en balón parado"],
+                      [null, "1,89 m: dominio del juego aéreo en ambas áreas"],
+                    ],
+                    rightTitle: "Cualidades clave",
+                    rightItems: [
+                      "Central con buen pie: clave para iniciar desde atrás",
+                      "Edad ideal (27) para liderar la línea por ciclo largo",
+                      "Aporta gol de ABP, una vía secundaria real del equipo",
+                    ],
+                  },
+                  {
+                    name: "Frank Lozano",
+                    sub: "Volante central · #22 · 32 años",
+                    badge: "Eje del medio",
+                    leftTitle: "Trayectoria competitiva",
+                    leftItems: [
+                      [null, "El jugador con más minutos del plantel en la temporada"],
+                      [null, "Eje permanente del mediocampo en todos los esquemas"],
+                      [null, "Alto volumen de recuperaciones y de pase"],
+                    ],
+                    rightTitle: "Cualidades clave",
+                    rightItems: [
+                      "Pivote de equilibrio entre líneas",
+                      "Regularidad y jerarquía para ordenar la fase de posesión",
+                      "Base sobre la que apoyar la construcción del modelo",
                     ],
                   },
                 ].map((j) => (
@@ -779,8 +854,8 @@ export default function AguilasDoradasProyecto() {
 
                 <div className="mt-8 p-6 bg-green-500/10 border border-green-500/30 rounded-xl">
                   <p className="text-bone/80 leading-relaxed text-center">
-                    <span className="font-display font-bold text-green-400 tracking-tighter">Estos tres jugadores conforman la base competitiva real del plantel actual:</span>{" "}
-                    verificados en Transfermarkt y noticias recientes, con jerarquía, producción y mentalidad para liderar un proceso de alta exigencia desde el primer día.
+                    <span className="font-display font-bold text-green-400 tracking-tighter">Estos cinco jugadores conforman la base competitiva real del plantel actual:</span>{" "}
+                    arquero de jerarquía, central de salida, eje de medio, conducción creativa y goleador de la liga. Núcleo con producción y mentalidad para liderar un proceso de alta exigencia desde el primer día.
                   </p>
                 </div>
               </div>
@@ -822,28 +897,28 @@ export default function AguilasDoradasProyecto() {
             <div className="space-y-8 mb-24">
               {[
                 {
-                  problema: "1,32 goles recibidos por partido y diferencia de gol negativa. La defensa es el principal lastre del rendimiento.",
-                  solucion: "Bloque defensivo compacto y presión coordinada para cortar el ataque rival lejos del área propia, no dentro de ella.",
+                  problema: "Es el equipo menos asociativo de la liga: el menor volumen de pases, la precisión más baja y la mayor proporción de envíos largos.",
+                  solucion: "Salida limpia desde atrás con apoyos cortos y rotaciones automatizadas. Controlar el balón y llevar el juego al campo rival en vez de cederlo con el pelotazo.",
                 },
                 {
-                  problema: "El 40% de los goles depende de un solo finalizador. Si el goleador no aparece, el ataque se apaga.",
+                  problema: "El 55% de los goles depende de un solo finalizador (11 de 20). Si el goleador no aparece, el ataque se apaga.",
                   solucion: "Sostener al goleador y multiplicar las vías de gol: llegadas de segunda línea, balón parado trabajado y volumen repartido entre más jugadores.",
                 },
                 {
-                  problema: "Producción ofensiva baja (1,05 goles/pj) para aspirar a la fase final del campeonato.",
-                  solucion: "Ataques posicionales con paciencia para abrir bloques bajos y generar ocasiones de mayor calidad, no solo de inspiración individual.",
+                  problema: "Genera muy pocos remates (de los más bajos de la liga), aunque de buena calidad. Falta volumen de ocasiones.",
+                  solucion: "Ataques posicionales con paciencia para abrir bloques bajos y generar más ocasiones, aprovechando que la selección de remate ya es buena.",
                 },
                 {
-                  problema: "Rendimiento intermitente: tras pelear los ocho, el equipo perdió continuidad y terminó 12°.",
-                  solucion: "Construir un piso competitivo estable con trabajo de concentración por tramos y microdosificación física para sostener el nivel las 20 fechas.",
+                  problema: "1,32 goles recibidos por partido: recupera hondo y resuelve dentro del área en lugar de cortar arriba.",
+                  solucion: "Bloque defensivo compacto y presión coordinada para defender lejos del arco propio y recuperar en campo rival.",
                 },
                 {
-                  problema: "Falta de una identidad de juego reconocible y sostenida en el tiempo.",
+                  problema: "Rendimiento intermitente: peleó el Top 8 y se cayó en el cierre, quedando a 2 puntos de la clasificación.",
+                  solucion: "Construir un piso competitivo estable con trabajo de concentración por tramos y microdosificación física para sostener el nivel las 19 fechas.",
+                },
+                {
+                  problema: "Cuatro esquemas distintos en la temporada: sin una identidad de juego reconocible y sostenida.",
                   solucion: "Modelo de juego escrito, transferible y de ciclo largo: principios claros que el plantel pueda automatizar y crecer sobre ellos.",
-                },
-                {
-                  problema: "Núcleo central de la defensa con edad alta para una línea adelantada e intensa.",
-                  solucion: "Plan de recambio generacional por puesto, apoyado en los juveniles de proyección que ya tiene el plantel (Mena, Benítez).",
                 },
               ].map((c, i) => (
                 <div key={i} className="grid md:grid-cols-2 gap-8 items-center" data-animate>
@@ -869,9 +944,9 @@ export default function AguilasDoradasProyecto() {
               <h3 className="font-display text-4xl font-bold text-bone text-center mb-12 tracking-tighter">Proyección con el modelo propuesto</h3>
               <div className="grid md:grid-cols-3 gap-6">
                 {[
-                  { l: "Goles recibidos", v: "−35%", s: "Bajar de 1,32 a ~0,85 GC/pj en 6 meses" },
-                  { l: "Peso del goleador", v: "40% → 25%", s: "Repartir el gol entre más finalizadores" },
-                  { l: "Tiempo en campo rival", v: "+40%", s: "Llevar el juego al campo contrario de forma sostenida" },
+                  { l: "Peso del goleador", v: "55% → 35%", s: "Repartir el gol entre más finalizadores" },
+                  { l: "Precisión de pase", v: "68% → 80%", s: "Pasar del juego directo a la construcción asociativa" },
+                  { l: "Volumen de remates", v: "+30%", s: "Más ocasiones manteniendo la buena selección de remate" },
                 ].map((p) => (
                   <div key={p.l} className="p-8 bg-gradient-to-br from-gold-900/20 to-gold-950/10 border border-gold-500/30 rounded-2xl text-center">
                     <div className="text-bone/60 text-sm mb-2">{p.l}</div>
@@ -903,7 +978,7 @@ export default function AguilasDoradasProyecto() {
             <div className="grid md:grid-cols-3 gap-5 md:gap-6 max-w-5xl mx-auto">
               {[
                 {
-                  date: "Liga BetPlay · 2026-I",
+                  date: "07 / 04 / 2026 · Liga BetPlay",
                   rivalLabel: "Atlético Bucaramanga",
                   scoreHome: "2",
                   scoreAway: "1",
@@ -911,19 +986,19 @@ export default function AguilasDoradasProyecto() {
                   highlight: true,
                 },
                 {
-                  date: "Liga BetPlay · 2026-I",
-                  rivalLabel: "Alianza",
-                  scoreHome: "1",
-                  scoreAway: "0",
-                  rivalNote: "Triunfo en pelea por los ocho",
+                  date: "03 / 05 / 2026 · Liga BetPlay",
+                  rivalLabel: "Medellín",
+                  scoreHome: "2",
+                  scoreAway: "1",
+                  rivalNote: "Triunfo de visita ante un grande",
                   highlight: false,
                 },
                 {
-                  date: "Liga BetPlay · 2026-I",
-                  rivalLabel: "Atlético Nacional",
-                  scoreHome: "1",
-                  scoreAway: "1",
-                  rivalNote: "Empate ante un grande",
+                  date: "26 / 04 / 2026 · Liga BetPlay",
+                  rivalLabel: "Once Caldas",
+                  scoreHome: "2",
+                  scoreAway: "2",
+                  rivalNote: "Empate ante un clasificado al Top 8",
                   highlight: false,
                 },
               ].map((m) => (
