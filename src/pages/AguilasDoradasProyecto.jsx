@@ -549,7 +549,7 @@ export default function AguilasDoradasProyecto() {
                   <h3 className="font-display text-2xl font-bold text-bone tracking-tighter">Jugadores a evaluar exhaustivamente</h3>
                 </div>
                 <p className="text-bone/70 mb-8">
-                  El núcleo central de la defensa concentra varios jugadores de edad alta para un modelo de defensa adelantada e intensidad sostenida. En paralelo, el plantel tiene juveniles con proyección que merecen un plan de minutos. Cada caso pasa por una evaluación de <strong className="text-red-400">4-6 semanas</strong> antes de definir su rol.
+                  El núcleo central de la defensa concentra varios jugadores de edad alta para un modelo de defensa adelantada e intensidad sostenida. Cada caso pasa por una evaluación de <strong className="text-red-400">4-6 semanas</strong> antes de definir su rol.
                 </p>
 
                 {[
@@ -613,8 +613,17 @@ export default function AguilasDoradasProyecto() {
                     </div>
                   </div>
                 ))}
+              </div>
 
-                {/* Juveniles con proyección - cards amarillas */}
+              {/* Proyección y destacados */}
+              <div className="card-dark border-l-4 border-green-500 mb-12" data-animate>
+                <div className="flex items-center gap-4 mb-8">
+                  <div className="w-14 h-14 rounded-xl bg-green-500/20 flex items-center justify-center text-3xl">⭐</div>
+                  <div>
+                    <h3 className="font-display text-2xl font-bold text-bone tracking-tighter">Proyección y destacados</h3>
+                    <p className="text-bone/60 text-base">Juveniles con minutos en Primera y techo alto sobre los que apoyar el recambio generacional</p>
+                  </div>
+                </div>
                 {[
                   {
                     name: "Javier Mena",
