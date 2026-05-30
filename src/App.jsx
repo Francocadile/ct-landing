@@ -13,6 +13,7 @@ import SantosLaguna from "./pages/SantosLaguna.jsx";
 import EmelecProyecto from "./pages/EmelecProyecto.jsx";
 import AmericaCaliProyecto from "./pages/AmericaCaliProyecto.jsx";
 import JuniorProyecto from "./pages/JuniorProyecto.jsx";
+import AguilasDoradasProyecto from "./pages/AguilasDoradasProyecto.jsx";
 import ManualModelo from "./pages/ManualModelo.jsx";
 import Protagonistas from "./pages/ElArteDeSerProtagonistas.jsx";
 
@@ -26,6 +27,7 @@ export default function App() {
         <Route path="/emelec-proyecto-2026" element={<EmelecProyecto />} />
         <Route path="/america-cali-proyecto-2026" element={<AmericaCaliProyecto />} />
         <Route path="/junior-proyecto-2026" element={<JuniorProyecto />} />
+        <Route path="/aguilas-doradas-proyecto-2026" element={<AguilasDoradasProyecto />} />
         <Route path="/manual-modelo" element={<ManualModelo />} />
         <Route path="/el-arte-de-ser-protagonistas" element={<Protagonistas />} />
         <Route path="/dossier-bolivar-2025" element={<DossierBolivar />} />
