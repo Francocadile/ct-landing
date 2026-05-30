@@ -755,23 +755,6 @@ export default function AguilasDoradasProyecto() {
                     ],
                   },
                   {
-                    name: "Iván Arboleda",
-                    sub: "Arquero · #1 · 30 años",
-                    badge: "Pilar defensivo",
-                    leftTitle: "Trayectoria competitiva",
-                    leftItems: [
-                      ["Banfield (Argentina):", "finalista Copa Maradona 2020"],
-                      ["Selección Colombia:", "convocado en el ciclo reciente"],
-                      [null, "Más de una década de fútbol de alto nivel"],
-                    ],
-                    rightTitle: "Cualidades clave",
-                    rightItems: [
-                      "Jerarquía y reflejo bajo presión en el área",
-                      "Juego con los pies para inicios desde atrás",
-                      "Edad ideal (30) para sostener la valla por ciclo largo",
-                    ],
-                  },
-                  {
                     name: "Jorge Rivaldo",
                     sub: "Delantero centro · #9 · 22 años",
                     badge: "Pilar de área",
@@ -854,8 +837,8 @@ export default function AguilasDoradasProyecto() {
 
                 <div className="mt-8 p-6 bg-green-500/10 border border-green-500/30 rounded-xl">
                   <p className="text-bone/80 leading-relaxed text-center">
-                    <span className="font-display font-bold text-green-400 tracking-tighter">Estos cinco jugadores conforman la base competitiva real del plantel actual:</span>{" "}
-                    arquero de jerarquía, central de salida, eje de medio, conducción creativa y goleador de la liga. Núcleo con producción y mentalidad para liderar un proceso de alta exigencia desde el primer día.
+                    <span className="font-display font-bold text-green-400 tracking-tighter">Estos cuatro jugadores conforman la base competitiva real del plantel actual:</span>{" "}
+                    central de salida, eje de medio, conducción creativa y goleador de la liga. Núcleo con producción y mentalidad para liderar un proceso de alta exigencia desde el primer día.
                   </p>
                 </div>
               </div>
