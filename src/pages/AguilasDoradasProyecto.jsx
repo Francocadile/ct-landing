@@ -389,8 +389,8 @@ export default function AguilasDoradasProyecto() {
                   <p className="text-bone/70 text-sm mb-6">El equipo mostró capacidad para meterse en zona de clasificación y luego no logró sostener ese nivel hasta el cierre, quedando fuera de los ocho. El rendimiento aparece a chispazos más que como una constante.</p>
                   <div className="space-y-3">
                     {[
-                      "Alta rotación del cuerpo técnico en las últimas temporadas",
                       "Falta de continuidad en una identidad de juego reconocible",
+                      "Liderazgos internos del vestuario por afianzar",
                       "Rendimiento intermitente: tramos buenos seguidos de caídas",
                       "Dependencia emocional de la inspiración de individualidades",
                     ].map((node, i) => (
@@ -829,8 +829,8 @@ export default function AguilasDoradasProyecto() {
                   solucion: "Construir un piso competitivo estable con trabajo de concentración por tramos y microdosificación física para sostener el nivel las 20 fechas.",
                 },
                 {
-                  problema: "Alta rotación del cuerpo técnico en las últimas temporadas. Cada proceso vuelve a empezar de cero.",
-                  solucion: "Modelo de juego escrito, transferible y de ciclo largo: una identidad no negociable que sobreviva a los cambios de contexto.",
+                  problema: "Falta de una identidad de juego reconocible y sostenida en el tiempo.",
+                  solucion: "Modelo de juego escrito, transferible y de ciclo largo: principios claros que el plantel pueda automatizar y crecer sobre ellos.",
                 },
                 {
                   problema: "Núcleo central de la defensa con edad alta para una línea adelantada e intensa.",
