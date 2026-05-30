@@ -260,15 +260,15 @@ export default function AguilasDoradasProyecto() {
                   <div className="text-xs uppercase tracking-[0.25em] font-bold text-gold-500 mb-2">Patrón estructural</div>
                   <h4 className="font-display text-2xl md:text-3xl font-black text-bone tracking-tightest">Inestabilidad de esquema</h4>
                 </div>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
-                  {["5-3-2", "4-4-2", "3-5-2", "4-2-3-1"].map((scheme) => (
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4">
+                  {["4-4-2", "3-5-2", "4-2-3-1"].map((scheme) => (
                     <div key={scheme} className="px-4 py-5 md:py-4 bg-ink-950 border border-gold-500/40 rounded-xl text-center">
-                      <div className="font-display text-4xl md:text-3xl font-black text-gold-500 whitespace-nowrap leading-none">{scheme}</div>
+                      <div className="font-display text-5xl md:text-3xl font-black text-gold-500 whitespace-nowrap leading-none">{scheme}</div>
                     </div>
                   ))}
                 </div>
                 <p className="text-bone/70 text-sm md:text-base mt-8 md:mt-6 leading-relaxed">
-                  <strong className="text-bone">Cuatro dibujos distintos repartidos a lo largo de la temporada.</strong> Sin un esquema de referencia, los principios defensivos no llegan a automatizarse y el bloque se rearma fecha a fecha. La mejor versión ofensiva aparece en 4-4-2, pero no se sostiene.
+                  <strong className="text-bone">El 4-4-2 es el esquema base, pero alterna con 3-5-2 y 4-2-3-1 en los últimos partidos.</strong> Sin un dibujo de referencia consolidado, los principios defensivos no terminan de automatizarse y el bloque se rearma fecha a fecha.
                 </p>
               </div>
             </div>
@@ -289,7 +289,7 @@ export default function AguilasDoradasProyecto() {
                       <div className="space-y-3">
                         {[
                           ["Goles a favor / pj", "1.05", true],
-                          ["Goleador (4° de la liga)", "11 goles", true],
+                          ["Goleador del plantel", "11 goles", true],
                           ["Peso del goleador", "55%", true],
                           ["Resto del plantel", "9 goles", false],
                         ].map(([p, v, hl]) => (
@@ -305,7 +305,7 @@ export default function AguilasDoradasProyecto() {
                     <div className="p-6 bg-gold-500/10 border-2 border-gold-500/30 rounded-xl">
                       <h5 className="font-display text-lg font-bold text-gold-500 mb-3 tracking-tighter">PATRÓN DETECTADO</h5>
                       <p className="text-bone/80 text-sm leading-relaxed mb-4">
-                        El equipo anota poco (<strong>1,05 goles/pj</strong>) y concentra la producción en un solo nombre: <strong>el goleador firma 11 de los 20 goles (55%)</strong> y es el 4° máximo artillero de toda la liga. Cuando no aparece, el ataque se apaga.
+                        El equipo anota poco (<strong>1,05 goles/pj</strong>) y concentra la producción en un solo nombre: <strong>el goleador firma 11 de los 20 goles (55%)</strong> y es uno de los máximos artilleros del Torneo Apertura. Cuando no aparece, el ataque se apaga.
                       </p>
                       <p className="text-bone/80 text-sm leading-relaxed">
                         Genera <strong>muy pocos remates</strong> (de los más bajos de la liga) aunque de buena calidad: la mejor materia prima existe, falta volumen y vías alternativas (segunda línea y balón parado, hoy su arma secundaria real).
@@ -322,14 +322,14 @@ export default function AguilasDoradasProyecto() {
                   <h4 className="font-display text-2xl md:text-3xl font-black text-bone tracking-tightest">Dependencia de una sola vía de gol</h4>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4">
-                  {["55%", "11 / 20", "4° de la liga"].map((d) => (
+                  {["55%", "11 / 20", "1 jugador"].map((d) => (
                     <div key={d} className="px-6 py-5 md:py-4 bg-ink-950 border border-gold-500/40 rounded-xl text-center">
                       <div className="font-display text-4xl md:text-3xl font-black text-gold-500 whitespace-nowrap leading-none">{d}</div>
                     </div>
                   ))}
                 </div>
                 <p className="text-bone/70 text-sm md:text-base mt-8 md:mt-6 leading-relaxed">
-                  <strong className="text-bone">El 55% de los goles depende de un único finalizador</strong> (11 de 20, 4° artillero de la liga). Es un activo enorme, pero también un riesgo: una lesión, una marca individual o una baja de forma reducen al equipo a un ataque sin salidas. El modelo busca sostener al goleador y, a la vez, multiplicar las fuentes de gol.
+                  <strong className="text-bone">El 55% de los goles depende de un único finalizador</strong> (11 de 20, uno de los máximos artilleros del torneo). Es un activo enorme, pero también un riesgo: una lesión, una marca individual o una baja de forma reducen al equipo a un ataque sin salidas. El modelo busca sostener al goleador y, a la vez, multiplicar las fuentes de gol.
                 </p>
               </div>
 
@@ -431,7 +431,7 @@ export default function AguilasDoradasProyecto() {
                   <div className="space-y-3">
                     {[
                       "Falta de continuidad en una identidad de juego reconocible",
-                      "Liderazgos internos del vestuario por afianzar",
+                      "Rinde mejor de visitante (8°) que de local (16°): le cuesta imponerse en casa",
                       "Rendimiento intermitente: tramos buenos seguidos de caídas",
                       "Dependencia emocional de la inspiración de individualidades",
                     ].map((node, i) => (
@@ -454,7 +454,7 @@ export default function AguilasDoradasProyecto() {
                   <div className="space-y-3">
                     <div className="p-4 bg-red-500/10 border border-red-500/20 rounded-xl">
                       <p className="text-red-400 font-semibold text-sm mb-1">CONSECUENCIA:</p>
-                      <p className="text-bone/80 text-sm">Tras pelear el grupo de los ocho, el equipo perdió continuidad y terminó 12°. La falta de un piso competitivo estable cuesta los puntos que separan la mitad de tabla de la fase final.</p>
+                      <p className="text-bone/80 text-sm">Quedó a solo 2 puntos del Top 8. La falta de un piso competitivo estable —y de localía fuerte (16° como local)— cuesta justo los puntos que separan la mitad de tabla de la fase final.</p>
                     </div>
                     <div className="p-4 bg-gold-500/10 border border-gold-500/20 rounded-xl">
                       <p className="text-gold-500 font-semibold text-sm mb-1">SOLUCIÓN:</p>
@@ -551,7 +551,7 @@ export default function AguilasDoradasProyecto() {
                 <span className="text-green-500">de la plantilla</span>
               </h2>
               <p className="text-bone/60 text-base md:text-lg max-w-3xl mx-auto">
-                23 jugadores · edad media 27,4 años · base nacional
+                Uno de los planteles más cortos de la liga (23 jugadores) y de los 7 más jóvenes (edad media 27,4 años), que aun así quedó a 2 puntos del Top 8.
                 <br /><span className="text-bone/40 text-sm">(Transfermarkt, mayo 2026)</span>
               </p>
             </div>
@@ -760,7 +760,7 @@ export default function AguilasDoradasProyecto() {
                     badge: "Pilar de área",
                     leftTitle: "Trayectoria competitiva",
                     leftItems: [
-                      ["Apertura 2026:", "11 goles, 4° artillero de la liga"],
+                      ["Apertura 2026:", "11 goles, de los máximos artilleros del torneo"],
                       [null, "55% de los goles del equipo en la temporada"],
                       [null, "22 años: techo alto y margen de evolución"],
                     ],
@@ -777,7 +777,7 @@ export default function AguilasDoradasProyecto() {
                     badge: "Salida + ABP",
                     leftTitle: "Trayectoria competitiva",
                     leftItems: [
-                      [null, "Titular indiscutido y mayor volumen de pase de la zaga"],
+                      [null, "Mayor volumen de pase de la zaga: eje de la salida"],
                       ["Apertura 2026:", "3 goles, amenaza aérea en balón parado"],
                       [null, "1,89 m: dominio del juego aéreo en ambas áreas"],
                     ],
