@@ -72,7 +72,7 @@ export default function EmelecProyecto() {
                 <img src="/img/clubs/emelec.png" alt="Club Sport Emelec" className="w-20 h-20 md:w-24 md:h-24 object-contain" />
               </div>
               <div className="inline-block px-4 py-2 rounded-full bg-gold-500/10 border border-gold-500/20 text-gold-500 text-xs uppercase tracking-[0.25em] font-semibold mb-6">
-                Análisis profesional · Mayo 2026
+                Análisis profesional · Junio 2026
               </div>
               <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-bone tracking-tightest mb-4 leading-[0.92]">
                 Proyecto Emelec
@@ -83,35 +83,49 @@ export default function EmelecProyecto() {
             <div className="max-w-4xl mx-auto">
               {/* Card única - Club analizado */}
               <div className="relative group" data-animate>
-                <div className="absolute -inset-1 bg-gradient-to-r from-red-600 to-red-800 rounded-3xl blur opacity-15 group-hover:opacity-25 transition duration-300" />
-                <div className="relative bg-gradient-to-br from-red-900/45 to-red-950/65 border border-red-500/30 rounded-3xl p-8 md:p-10 backdrop-blur-sm overflow-hidden">
-                  {/* Escudo como marca de agua atmosférica (no compite con el 12) */}
+                <div className="absolute -inset-1 bg-gradient-to-r from-emelec-blue to-blue-800 rounded-3xl blur opacity-20 group-hover:opacity-30 transition duration-300" />
+                <div className="relative bg-gradient-to-br from-emelec-blue/35 to-blue-950/65 border border-emelec-light/30 rounded-3xl p-8 md:p-10 backdrop-blur-sm overflow-hidden">
+                  {/* Escudo como marca de agua atmosférica (no compite con el número) */}
                   <img
                     src="/img/clubs/emelec.png"
                     alt=""
                     aria-hidden="true"
-                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 md:w-80 md:h-80 opacity-[0.04] object-contain pointer-events-none select-none"
+                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 md:w-80 md:h-80 opacity-[0.05] object-contain pointer-events-none select-none"
                   />
                   <div className="relative flex items-start justify-between mb-8 gap-6">
                     <div>
-                      <div className="text-red-400 text-xs uppercase tracking-[0.3em] font-bold mb-3">Situación Actual</div>
+                      <div className="text-emelec-light text-xs uppercase tracking-[0.3em] font-bold mb-3">Situación actual · Junio 2026</div>
                       <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-bone tracking-tighter">Club Sport Emelec 2026</h2>
+                      <p className="text-bone/60 text-sm mt-3 max-w-xs">Fuera de la zona de riesgo y en levantada: invicto en los últimos 4 partidos de LigaPro y vivo en la Copa Ecuador.</p>
                     </div>
                     <div className="text-right flex-shrink-0">
-                      <div className="font-display text-6xl sm:text-7xl md:text-8xl font-black text-red-500 leading-none tracking-tightest">12</div>
+                      <div className="font-display text-6xl sm:text-7xl md:text-8xl font-black text-emelec-light leading-none tracking-tightest">8°</div>
                       <div className="text-bone/60 text-sm mt-2 whitespace-nowrap">de 16 · LigaPro</div>
                     </div>
                   </div>
                   <div className="relative grid grid-cols-2 md:grid-cols-4 gap-3">
                     {[
-                      { label: "Pts/PJ", value: "1.15" },
-                      { label: "Goles/pj", value: "0.76" },
-                      { label: "GC/pj", value: "1.23" },
-                      { label: "Dif/pj", value: "−0.47" },
+                      { label: "Pts/PJ", value: "1.38" },
+                      { label: "Goles/pj", value: "0.81" },
+                      { label: "GC/pj", value: "1.00" },
+                      { label: "Dif/pj", value: "−0.19" },
                     ].map((s) => (
-                      <div key={s.label} className="bg-red-500/10 rounded-xl p-4 text-center border border-red-500/20">
+                      <div key={s.label} className="bg-emelec-light/10 rounded-xl p-4 text-center border border-emelec-light/20">
                         <div className="text-bone/60 text-xs mb-1">{s.label}</div>
-                        <div className="font-display text-xl sm:text-2xl md:text-3xl font-bold text-red-400">{s.value}</div>
+                        <div className="font-display text-xl sm:text-2xl md:text-3xl font-bold text-emelec-light">{s.value}</div>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="relative mt-3 grid grid-cols-2 md:grid-cols-4 gap-3">
+                    {[
+                      { label: "Récord", value: "6V·4E·6D" },
+                      { label: "Puntos", value: "22 / 48" },
+                      { label: "En casa", value: "5V·2E·2D" },
+                      { label: "Últimos 5", value: "2V·2E·1D" },
+                    ].map((s) => (
+                      <div key={s.label} className="bg-ink-950/40 rounded-xl p-4 text-center border border-bone/10">
+                        <div className="text-bone/50 text-xs mb-1">{s.label}</div>
+                        <div className="font-display text-base sm:text-lg md:text-xl font-bold text-bone whitespace-nowrap">{s.value}</div>
                       </div>
                     ))}
                   </div>
@@ -123,9 +137,9 @@ export default function EmelecProyecto() {
             <div className="max-w-4xl mx-auto mt-16 text-center" data-animate>
               <div className="p-8 md:p-10 bg-gradient-to-br from-gold-500/10 to-gold-500/5 border border-gold-500/20 rounded-3xl backdrop-blur-sm">
                 <p className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-bone leading-tight tracking-tighter">
-                  Diagnóstico técnico construido sobre datos verificados y observación de campo.
+                  El repunte ya empezó: Emelec salió del fondo y está 8°.
                   <br className="hidden sm:block" />
-                  <span className="text-gold-500">Cada conclusión derivada en una propuesta concreta de mejora.</span>
+                  <span className="text-gold-500">Esto es cómo sistematizarlo y convertirlo en clasificación a copa.</span>
                 </p>
               </div>
             </div>
@@ -144,7 +158,7 @@ export default function EmelecProyecto() {
                 <span className="text-red-500">Club Sport Emelec</span>
               </h2>
               <p className="text-bone/60 text-base md:text-lg max-w-3xl mx-auto">
-                Lectura técnica, humana e institucional del Bombillo a partir de los datos reales de la temporada 2026.
+                Lectura técnica, humana e institucional del Bombillo a partir de los datos reales de la temporada 2026. El equipo ya reaccionó: la oportunidad está en consolidar lo que funciona y cerrar las brechas que todavía cuestan puntos.
               </p>
             </div>
 
@@ -156,23 +170,21 @@ export default function EmelecProyecto() {
               </h3>
 
               <div className="card-dark border-2 border-red-500/30 mb-8">
-                <h4 className="font-display text-2xl font-bold text-bone mb-6 tracking-tighter">Tipología de goles recibidos (16 en 13 partidos)</h4>
+                <h4 className="font-display text-2xl font-bold text-bone mb-6 tracking-tighter">Goles recibidos: 16 en 16 partidos (1,00 por partido)</h4>
                 <div className="grid md:grid-cols-2 gap-8 items-center">
                   <div className="aspect-video bg-gradient-to-br from-red-900/20 to-red-950/10 rounded-xl border border-red-500/20 flex items-center justify-center">
                     <div className="text-center p-8 w-full">
-                      <p className="text-bone/60 text-sm mb-4">Periodo donde más reciben:</p>
+                      <p className="text-bone/60 text-sm mb-4">Dónde se reciben los goles:</p>
                       <div className="space-y-3">
                         {[
-                          ["0-15 min", "12%", false],
-                          ["15-30 min", "14%", false],
-                          ["30-45 min", "22%", true],
-                          ["45-60 min", "20%", true],
-                          ["60-75 min", "17%", false],
-                          ["75-90+ min", "15%", false],
-                        ].map(([p, v, hl]) => (
+                          ["Vallas invictas", "6 / 16"],
+                          ["En los últimos 4", "3 vallas invictas"],
+                          ["GC en casa (9 PJ)", "0,89 /pj"],
+                          ["GC de visitante (7 PJ)", "1,14 /pj"],
+                        ].map(([p, v]) => (
                           <div key={p} className="flex justify-between items-center">
                             <span className="text-bone/80">{p}</span>
-                            <span className={`font-display font-bold text-red-400 ${hl ? "text-2xl" : "text-xl"}`}>{v}</span>
+                            <span className="font-display font-bold text-red-400 text-xl">{v}</span>
                           </div>
                         ))}
                       </div>
@@ -182,16 +194,16 @@ export default function EmelecProyecto() {
                     <div className="p-6 bg-red-500/10 border-2 border-red-500/30 rounded-xl mb-6">
                       <h5 className="font-display text-lg font-bold text-red-400 mb-3 tracking-tighter">PATRÓN DETECTADO</h5>
                       <p className="text-bone/80 text-sm leading-relaxed mb-4">
-                        El periodo donde Emelec sufre más goles es el tramo <strong>30-60 minutos (42% del total)</strong>: la concentración cae justo cuando el partido aprieta. La defensa baja, el bloque se hunde y los duelos individuales en el área se pierden.
+                        La defensa se ordenó: <strong>6 vallas invictas en 16 fechas y 3 en los últimos 4 partidos</strong>, con el promedio de goles en contra ya en 1,00 por partido. El problema dejó de ser general.
                       </p>
                       <p className="text-bone/80 text-sm leading-relaxed">
-                        Coincide con el promedio de minuto del primer gol recibido (~50'): <strong>el equipo no aguanta el peso emocional del partido</strong>.
+                        Hoy es un problema de localía: <strong>1,14 goles recibidos por partido de visitante contra 0,89 en el Capwell</strong>. El bloque todavía no viaja con la misma solidez.
                       </p>
                     </div>
                     <div className="p-6 bg-gold-500/10 border border-gold-500/20 rounded-xl">
                       <p className="text-gold-500 font-bold text-sm mb-2">CONCLUSIÓN:</p>
                       <p className="text-bone/70 text-sm">
-                        Sin un bloque defensivo identificable, cada fecha el equipo se rearma desde cero. Eso se paga con goles evitables.
+                        Hay una base defensiva real para construir. Falta que sea la misma dentro y fuera de casa, fecha a fecha.
                       </p>
                     </div>
                   </div>
@@ -203,9 +215,9 @@ export default function EmelecProyecto() {
                   <h4 className="font-display text-xl font-bold text-bone mb-4 tracking-tighter">Goles en contra: patrones detectados</h4>
                   <div className="space-y-4 mb-6">
                     {[
-                      { l: "Goles dentro del área propia", v: "87%", d: "Defensa hundida; les ganan la espalda y los duelos en el área." },
-                      { l: "Goles tras pérdida en zona de creación", v: "38%", d: "Sin transición defensiva organizada tras la pérdida." },
-                      { l: "Goles como visitante", v: "67%", d: "Solo 4 puntos en 6 partidos fuera del Capwell." },
+                      { l: "Vallas invictas", v: "6/16", d: "Seis partidos sin recibir goles, tres de ellos en los últimos cuatro: la solidez es reciente y real." },
+                      { l: "GC por partido", v: "1,00", d: "Promedio de goles en contra en línea descendente en el tramo reciente." },
+                      { l: "Goles recibidos como visitante", v: "50%", d: "8 de los 16 goles en contra llegaron fuera de casa: solo 5 puntos en 7 partidos como visitante." },
                     ].map((x) => (
                       <div key={x.l} className="p-4 bg-red-500/10 border border-red-500/20 rounded-xl">
                         <div className="flex items-center justify-between mb-2">
@@ -218,8 +230,8 @@ export default function EmelecProyecto() {
                   </div>
                   <div className="p-4 bg-gold-500/10 border-2 border-gold-500/30 rounded-xl">
                     <p className="text-bone font-bold text-sm mb-2">PATRÓN PRINCIPAL DETECTADO:</p>
-                    <p className="text-gold-500 font-display text-lg font-bold tracking-tighter">FRAGILIDAD ESTRUCTURAL</p>
-                    <p className="text-bone/60 text-xs mt-2">La defensa no se sostiene como bloque cuando el partido aprieta.</p>
+                    <p className="text-gold-500 font-display text-lg font-bold tracking-tighter">EL GAP CASA–VISITANTE</p>
+                    <p className="text-bone/60 text-xs mt-2">En el Capwell el bloque ya se sostiene (5V·2E·2D). Fuera de casa todavía no viaja: ahí está el techo a romper.</p>
                   </div>
                 </div>
 
@@ -230,10 +242,10 @@ export default function EmelecProyecto() {
                       <h5 className="text-bone/80 font-semibold mb-3 text-sm uppercase tracking-wider">COLECTIVOS (Prioritarios)</h5>
                       <ul className="space-y-2 text-bone/70 text-sm">
                         {[
-                          "Líneas desconectadas: 12-15 m entre defensa y mediocampo",
+                          "Distancias largas entre defensa y mediocampo en transición",
                           "Presión descoordinada (primer presionante queda solo)",
-                          "Coberturas inexistentes en transiciones rivales",
-                          "Cambios de esquema constantes sin tiempo de automatización",
+                          "Coberturas a mejorar en transiciones rivales",
+                          "Reacción lenta tras pérdida en zona de creación",
                         ].map((b) => (
                           <li key={b} className="flex items-start gap-2"><span className="text-red-500 mt-1 flex-shrink-0">•</span><span>{b}</span></li>
                         ))}
@@ -256,23 +268,6 @@ export default function EmelecProyecto() {
                 </div>
               </div>
 
-              {/* Mini-callout: Inestabilidad de esquema */}
-              <div className="mt-8 p-6 md:p-8 bg-gradient-to-br from-gold-900/20 to-gold-950/10 border-2 border-gold-500/30 rounded-2xl">
-                <div className="mb-6">
-                  <div className="text-xs uppercase tracking-[0.25em] font-bold text-gold-500 mb-2">Patrón estructural</div>
-                  <h4 className="font-display text-2xl md:text-3xl font-black text-bone tracking-tightest">Inestabilidad de esquema</h4>
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4">
-                  {["3-4-3", "4-3-3", "4-4-2"].map((scheme) => (
-                    <div key={scheme} className="px-6 py-5 md:py-4 bg-ink-950 border border-gold-500/40 rounded-xl text-center">
-                      <div className="font-display text-5xl md:text-3xl font-black text-gold-500 whitespace-nowrap leading-none">{scheme}</div>
-                    </div>
-                  ))}
-                </div>
-                <p className="text-bone/70 text-sm md:text-base mt-8 md:mt-6 leading-relaxed">
-                  <strong className="text-bone">3 sistemas distintos en los últimos 10 partidos.</strong> Sin tiempo de automatización colectiva, los principios defensivos no llegan a consolidarse y el equipo se rearma fecha a fecha.
-                </p>
-              </div>
             </div>
 
             {/* Ofensiva */}
@@ -283,23 +278,21 @@ export default function EmelecProyecto() {
               </h3>
 
               <div className="card-dark border-2 border-gold-500/30 mb-8">
-                <h4 className="font-display text-2xl font-bold text-bone mb-6 tracking-tighter">Tipología de goles anotados (10 en 13 partidos)</h4>
+                <h4 className="font-display text-2xl font-bold text-bone mb-6 tracking-tighter">Goles anotados: 13 en 16 partidos (0,81 por partido)</h4>
                 <div className="grid md:grid-cols-2 gap-8 items-center">
                   <div className="aspect-video bg-gradient-to-br from-gold-900/20 to-gold-950/10 rounded-xl border border-gold-500/20 flex items-center justify-center">
                     <div className="text-center p-8 w-full">
-                      <p className="text-bone/60 text-sm mb-4">Periodo donde más convierten:</p>
+                      <p className="text-bone/60 text-sm mb-4">Dónde se anotan los goles:</p>
                       <div className="space-y-3">
                         {[
-                          ["0-15 min", "9%", false],
-                          ["15-30 min", "9%", false],
-                          ["30-45 min", "9%", false],
-                          ["45-60 min", "27%", true],
-                          ["60-75 min", "27%", true],
-                          ["75-90+ min", "19%", false],
-                        ].map(([p, v, hl]) => (
+                          ["Goles en casa (9 PJ)", "11 · 1,22/pj"],
+                          ["Goles de visitante (7 PJ)", "2 · 0,29/pj"],
+                          ["Goleador", "Klimowicz · 4"],
+                          ["Total", "13 · 0,81/pj"],
+                        ].map(([p, v]) => (
                           <div key={p} className="flex justify-between items-center">
                             <span className="text-bone/80">{p}</span>
-                            <span className={`font-display font-bold text-gold-500 ${hl ? "text-2xl" : "text-xl"}`}>{v}</span>
+                            <span className="font-display font-bold text-gold-500 text-xl">{v}</span>
                           </div>
                         ))}
                       </div>
@@ -309,10 +302,10 @@ export default function EmelecProyecto() {
                     <div className="p-6 bg-gold-500/10 border-2 border-gold-500/30 rounded-xl">
                       <h5 className="font-display text-lg font-bold text-gold-500 mb-3 tracking-tighter">PATRÓN DETECTADO</h5>
                       <p className="text-bone/80 text-sm leading-relaxed mb-4">
-                        Emelec depende del segundo tiempo para anotar (<strong>73% de sus goles entre el 45' y 90'</strong>). El equipo recién aparece cuando va perdiendo o cuando el rival baja la intensidad. Sin mecanismos automatizados de ataque, sobrevive de chispazos individuales, no de un sistema.
+                        El gol vive en el Capwell: <strong>11 de los 13 goles fueron en casa (1,22 por partido) contra apenas 2 en 7 visitas (0,29)</strong>. Fuera de casa el ataque todavía se apaga: ahí está el margen de crecimiento más claro.
                       </p>
                       <p className="text-bone/80 text-sm leading-relaxed">
-                        <strong>Solo 2 goles en 6 partidos como visitante.</strong> Fuera del Capwell el ataque se desarma por completo.
+                        Hay una referencia joven en ascenso: <strong>Luca Klimowicz (21 años) es el goleador del equipo con 4 goles</strong>. El paso siguiente es automatizar mecanismos de ataque para no depender solo de chispazos individuales.
                       </p>
                     </div>
                   </div>
@@ -324,9 +317,9 @@ export default function EmelecProyecto() {
                   <h4 className="font-display text-xl font-bold text-bone mb-4 tracking-tighter">¿Por qué se convierten pocos goles?</h4>
                   <div className="space-y-4">
                     {[
-                      { l: "Conversión de gol", v: "8.4%", d: "Muy por debajo del promedio LigaPro (12-14%)" },
-                      { l: "Tiros al arco / pj", v: "2.1", d: "7.2 totales por partido, mayoría desde fuera del área" },
-                      { l: "Derrotas sin convertir", v: "5/6", d: "Patrón claro: cuando el equipo no anota, no suma. Solo una derrota con gol propio." },
+                      { l: "Goles de visitante", v: "2/13", d: "Solo 2 de los 13 goles llegaron fuera de casa: el ataque no se traslada." },
+                      { l: "Goleador del equipo", v: "4", d: "Luca Klimowicz (21 años) lidera el marcador: una referencia joven en ascenso." },
+                      { l: "Derrotas sin convertir", v: "5/6", d: "Patrón claro: cuando el equipo no anota, no suma. Solo una derrota con gol propio (1-3 vs Guayaquil City)." },
                     ].map((x) => (
                       <div key={x.l} className="p-4 bg-gold-500/5 border border-gold-500/20 rounded-xl">
                         <div className="flex justify-between items-center mb-2">
@@ -336,13 +329,13 @@ export default function EmelecProyecto() {
                         <p className="text-bone/60 text-xs">{x.d}</p>
                       </div>
                     ))}
-                    <h5 className="text-bone/80 font-semibold mt-6 mb-3 text-sm">QUÉ FALTÓ:</h5>
+                    <h5 className="text-bone/80 font-semibold mt-6 mb-3 text-sm">QUÉ FALTA:</h5>
                     <ul className="space-y-2 text-bone/70 text-sm">
                       {[
                         "Un 9 referencia con peso y poder de definición",
                         "Ataques posicionales con paciencia (hoy se atropella)",
                         "Llegadas desde segunda línea",
-                        "ABP ofensivo trabajado: solo 18% de goles vienen de ahí",
+                        "ABP ofensivo trabajado como arma a desarrollar",
                       ].map((b) => (
                         <li key={b} className="flex items-start gap-2"><span className="text-gold-500 flex-shrink-0">→</span><span>{b}</span></li>
                       ))}
@@ -355,7 +348,7 @@ export default function EmelecProyecto() {
                   <div className="space-y-6">
                     <div>
                       <h5 className="text-bone/80 font-semibold mb-3 text-sm">INICIOS DESDE ATRÁS</h5>
-                      <p className="text-bone/70 text-sm mb-3">Bajo presión rival, el arquero opta por pelotazo largo en el 64% de los inicios. Pérdida sistemática de la posesión en mediocampo.</p>
+                      <p className="text-bone/70 text-sm mb-3">Bajo presión rival, el equipo recurre con frecuencia al pelotazo largo. Eso entrega la posesión en mediocampo y obliga a defender de nuevo.</p>
                       <div className="p-3 bg-red-500/10 border border-red-500/20 rounded-lg"><p className="text-xs text-red-400">❌ Sin soluciones bajo presión</p></div>
                     </div>
                     <div>
@@ -367,9 +360,9 @@ export default function EmelecProyecto() {
                       <h5 className="text-bone/80 font-semibold mb-3 text-sm">DESARROLLO</h5>
                       <ul className="space-y-2 text-bone/70 text-sm">
                         {[
-                          "Tiempo en campo rival: 41% (LigaPro promedio: 50%)",
+                          "Poco tiempo sostenido en campo rival",
                           "Falta de paciencia en posesión",
-                          "No aprovechan ventajas numéricas cuando aparecen",
+                          "No se aprovechan las ventajas numéricas cuando aparecen",
                         ].map((b) => (
                           <li key={b} className="flex items-start gap-2"><span className="text-red-500 flex-shrink-0">•</span><span>{b}</span></li>
                         ))}
@@ -390,13 +383,13 @@ export default function EmelecProyecto() {
               <div className="grid md:grid-cols-2 gap-8">
                 <div className="card-dark border-l-4 border-purple-500">
                   <h4 className="font-display text-xl font-bold text-bone mb-4 tracking-tighter">Patrón mental detectado</h4>
-                  <p className="text-bone/70 text-sm mb-6">El equipo opera en un entorno de alta exigencia y exposición sostenida. Esa carga repercute en la toma de decisiones dentro del campo y en la capacidad de gestionar tramos clave del partido.</p>
+                  <p className="text-bone/70 text-sm mb-6">El equipo opera en un entorno de alta exigencia y exposición permanente. La buena noticia: ya salió de la zona baja y viene en levantada. El desafío ahora es psicológico: convertir ese envión en una confianza estable que también viaje de visitante.</p>
                   <div className="space-y-3">
                     {[
-                      "Alta rotación del cuerpo técnico en las últimas temporadas",
-                      "Múltiples procesos competitivos consecutivos en zona de descenso",
-                      "Presión mediática y emocional elevada como constante del contexto",
-                      "Falta de continuidad en los liderazgos internos del vestuario",
+                      "Entorno de alta exigencia y exposición mediática constante",
+                      "Reciente salida de la zona baja: confianza ganada que hay que consolidar",
+                      "El envión actual todavía no es identidad sostenida en el tiempo",
+                      "Liderazgos internos por reforzar para sostener la regularidad",
                     ].map((node, i) => (
                       <div key={i} className="flex items-start gap-3 text-bone/80 text-sm p-3 bg-purple-500/5 rounded-lg border border-purple-500/10">
                         <span className="text-purple-400 font-bold mt-0.5 flex-shrink-0">→</span>
@@ -409,19 +402,19 @@ export default function EmelecProyecto() {
                 <div className="card-dark border-l-4 border-red-500">
                   <h4 className="font-display text-xl font-bold text-bone mb-4 tracking-tighter">Diagnóstico principal</h4>
                   <div className="text-center py-8 mb-6">
-                    <div className="inline-block px-6 py-3 bg-red-500/10 border-2 border-red-500/30 rounded-2xl mb-4">
-                      <div className="font-display text-4xl md:text-5xl font-black text-red-400 tracking-tightest">TENSIÓN</div>
+                    <div className="inline-block px-6 py-3 bg-gold-500/10 border-2 border-gold-500/30 rounded-2xl mb-4">
+                      <div className="font-display text-4xl md:text-5xl font-black text-gold-500 tracking-tightest">MOMENTUM</div>
                     </div>
-                    <p className="text-bone/70 text-sm">El equipo prioriza no perder por sobre proponer</p>
+                    <p className="text-bone/70 text-sm">Hay confianza ganada; falta hacerla sistema y llevarla de visitante</p>
                   </div>
                   <div className="space-y-3">
-                    <div className="p-4 bg-red-500/10 border border-red-500/20 rounded-xl">
-                      <p className="text-red-400 font-semibold text-sm mb-1">CONSECUENCIA:</p>
-                      <p className="text-bone/80 text-sm">73% de los goles llegan en segundos tiempos: el equipo reacciona en lugar de proponer. Solo 2 goles en 6 visitas y rendimiento defensivo irregular en tramos críticos del partido.</p>
+                    <div className="p-4 bg-emelec-light/10 border border-emelec-light/20 rounded-xl">
+                      <p className="text-emelec-light font-semibold text-sm mb-1">DÓNDE SE NOTA:</p>
+                      <p className="text-bone/80 text-sm">En el Capwell es un equipo sólido (5V·2E·2D, 11 goles a favor), pero de visitante solo lleva 2 goles y 5 puntos en 7 partidos: la cabeza todavía juega distinto dentro y fuera de casa.</p>
                     </div>
                     <div className="p-4 bg-gold-500/10 border border-gold-500/20 rounded-xl">
                       <p className="text-gold-500 font-semibold text-sm mb-1">SOLUCIÓN:</p>
-                      <p className="text-bone/80 text-sm">Trabajo sistemático sobre mentalidad competitiva: identificar el núcleo ganador real, reconstruir liderazgos internos y entrenar la concentración en los tramos críticos del partido.</p>
+                      <p className="text-bone/80 text-sm">Trabajo sistemático sobre mentalidad competitiva: consolidar el núcleo ganador que ya aparece, reforzar liderazgos internos y entrenar la concentración para sostener la misma versión los 90 minutos y en cualquier cancha.</p>
                     </div>
                   </div>
                 </div>
@@ -465,9 +458,9 @@ export default function EmelecProyecto() {
                 <div className="mt-4 p-4 bg-red-500/10 border border-red-500/20 rounded-xl">
                   <p className="text-red-400 text-sm font-semibold mb-2">PATRÓN ACTUAL:</p>
                   <ul className="text-bone/70 text-xs space-y-1">
-                    <li>→ Defensa hundida: 87% de goles recibidos dentro del área</li>
-                    <li>→ 41% de tiempo en campo rival (LigaPro promedio 50%)</li>
-                    <li>→ Bloque que se desarma a partir del minuto 30</li>
+                    <li>→ Fuerte en casa (11 goles, 5V·2E·2D) y frágil de visitante</li>
+                    <li>→ Solo 2 goles y 5 puntos en 7 partidos fuera del Capwell</li>
+                    <li>→ El juego todavía no se sostiene lejos del arco propio</li>
                   </ul>
                 </div>
               </div>
@@ -514,8 +507,8 @@ export default function EmelecProyecto() {
                 <span className="text-green-500">de la plantilla</span>
               </h2>
               <p className="text-bone/60 text-base md:text-lg max-w-3xl mx-auto">
-                28 jugadores · edad media 27,2 años · 8 extranjeros
-                <br /><span className="text-bone/40 text-sm">(Transfermarkt, mayo 2026)</span>
+                Plantel de base ecuatoriana con refuerzos extranjeros · edad media cercana a los 27 años
+                <br /><span className="text-bone/40 text-sm">(ESPN / Transfermarkt, junio 2026)</span>
               </p>
             </div>
 
@@ -553,7 +546,7 @@ export default function EmelecProyecto() {
                   <h3 className="font-display text-2xl font-bold text-bone tracking-tighter">Jugadores a evaluar exhaustivamente</h3>
                 </div>
                 <p className="text-bone/70 mb-8">
-                  La edad promedio del plantel (27,2 años) es alta para una LigaPro que premia intensidad. Hay nombres que llegaron libres desde ligas argentinas y colombianas con cuestionamientos previos. Cada uno debe pasar por una evaluación de <strong className="text-red-400">4-6 semanas</strong> antes de definir continuidad.
+                  El plantel tiene una franja de jugadores experimentados en posiciones donde el modelo exige intensidad y recorrido. Cada uno debe pasar por una evaluación de <strong className="text-red-400">4-6 semanas</strong> antes de definir su rol y continuidad.
                 </p>
 
                 {[
@@ -563,9 +556,9 @@ export default function EmelecProyecto() {
                     badge: "Edad + Forma",
                     leftTitle: "PROBLEMA PRINCIPAL",
                     leftItems: [
-                      "1.14 GC/PJ con la línea actual; fragilidad en aéreos",
                       "36 años, ciclo natural en cierre",
-                      "Salida con pies limitada para inicios desde atrás",
+                      "A reforzar en el juego aéreo",
+                      "Salida con pies a mejorar para inicios desde atrás",
                     ],
                     rightTitle: "PATRÓN DETECTADO",
                     rightItems: [
@@ -590,7 +583,7 @@ export default function EmelecProyecto() {
                   },
                   {
                     name: "Aníbal Leguizamón",
-                    sub: "Defensor central · #2 · 34 años · argentino-paraguayo",
+                    sub: "Defensor central · #2 · 34 años · argentino",
                     badge: "Edad + Forma",
                     leftTitle: "SITUACIÓN",
                     leftItems: [
@@ -601,16 +594,16 @@ export default function EmelecProyecto() {
                     rightTitle: "CONCLUSIÓN",
                     rightItems: [
                       "Rotación, no titular fijo del modelo",
-                      "Dejar espacio a Estalin Segura como pareja titular",
+                      "Dejar espacio a Stalin Segura como pareja titular",
                     ],
                   },
                   {
                     name: "Romario Caicedo",
-                    sub: "Lateral derecho · #14 · 35 años",
+                    sub: "Lateral derecho · #14 · 36 años",
                     badge: "Edad + Forma",
                     leftTitle: "PROBLEMA",
                     leftItems: [
-                      "35 años: dificultad para retorno tras subir al ataque",
+                      "36 años: dificultad para retorno tras subir al ataque",
                       "El modelo exige laterales con ida y vuelta sostenida",
                     ],
                     rightTitle: "CONCLUSIÓN",
@@ -648,29 +641,29 @@ export default function EmelecProyecto() {
                   </div>
                 ))}
 
-                {/* Luca Klimowicz - card amarilla */}
-                <div className="mt-8 p-6 bg-yellow-500/5 border border-yellow-500/20 rounded-xl">
+                {/* Luca Klimowicz - card destacado */}
+                <div className="mt-8 p-6 bg-green-500/5 border border-green-500/20 rounded-xl">
                   <div className="flex items-center justify-between mb-4 flex-wrap gap-3">
                     <div>
                       <h4 className="font-display text-xl font-bold text-bone tracking-tighter">Luca Klimowicz</h4>
-                      <p className="text-bone/50 text-sm">Delantero · #7 · 21 años · argentino-ecuatoriano</p>
+                      <p className="text-bone/50 text-sm">Delantero · #7 · 21 años · argentino</p>
                     </div>
-                    <span className="text-xs text-yellow-400 bg-yellow-500/20 px-4 py-2 rounded-full font-semibold border border-yellow-500/30">Proyección posible</span>
+                    <span className="text-xs text-green-400 bg-green-500/20 px-4 py-2 rounded-full font-semibold border border-green-500/30">Proyección y destacado</span>
                   </div>
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
-                      <h5 className="text-bone/80 font-semibold mb-3 text-sm">SITUACIÓN ACTUAL</h5>
+                      <h5 className="text-bone/80 font-semibold mb-3 text-sm">DESTACADO</h5>
                       <ul className="space-y-2 text-bone/70 text-xs">
-                        <li className="flex items-start gap-2"><span className="text-yellow-500 flex-shrink-0">•</span><span>21 años, fichaje desde Vélez Sarsfield</span></li>
-                        <li className="flex items-start gap-2"><span className="text-red-500 flex-shrink-0">•</span><span>Pocas finalizaciones (~0,3 remates al arco/pj)</span></li>
-                        <li className="flex items-start gap-2"><span className="text-red-500 flex-shrink-0">•</span><span>Falta peso físico en el área</span></li>
+                        <li className="flex items-start gap-2"><span className="text-green-500 flex-shrink-0">•</span><span>Goleador del equipo con 4 goles en la temporada</span></li>
+                        <li className="flex items-start gap-2"><span className="text-green-500 flex-shrink-0">•</span><span>21 años: ya es la referencia de gol pese a su juventud</span></li>
+                        <li className="flex items-start gap-2"><span className="text-green-500 flex-shrink-0">•</span><span>Margen de crecimiento físico y de definición por delante</span></li>
                       </ul>
                     </div>
                     <div>
                       <h5 className="text-bone/80 font-semibold mb-3 text-sm">VENTAJA</h5>
                       <ul className="space-y-2 text-bone/70 text-xs">
-                        <li className="flex items-start gap-2"><span className="text-green-500 flex-shrink-0">•</span><span>Edad ideal para invertir trabajo físico-técnico</span></li>
-                        <li className="flex items-start gap-2"><span className="text-green-500 flex-shrink-0">•</span><span>Puede ser el 9 del proyecto si crece en 6 meses</span></li>
+                        <li className="flex items-start gap-2"><span className="text-green-500 flex-shrink-0">•</span><span>Edad ideal para seguir invirtiendo trabajo físico-técnico</span></li>
+                        <li className="flex items-start gap-2"><span className="text-green-500 flex-shrink-0">•</span><span>Perfil de 9 del proyecto a construir a mediano plazo</span></li>
                       </ul>
                     </div>
                   </div>
@@ -693,11 +686,11 @@ export default function EmelecProyecto() {
                 {[
                   {
                     name: "Francisco Pizzini",
-                    sub: "Extremo derecho · #10 · 32 años · argentino-italiano",
+                    sub: "Extremo derecho · #10 · 32 años · argentino",
                     badge: "Pilar ofensivo",
                     leftTitle: "Trayectoria competitiva",
                     leftItems: [
-                      ["Independiente / Estudiantes:", "equipos grandes argentinos"],
+                      ["Estudiantes de La Plata:", "trayectoria en la elite argentina"],
                       ["Defensa y Justicia:", "Campeón Copa Sudamericana 2020"],
                       [null, "Adaptabilidad probada a modelos de alta exigencia"],
                     ],
@@ -709,13 +702,13 @@ export default function EmelecProyecto() {
                     ],
                   },
                   {
-                    name: "Estalin Segura",
+                    name: "Stalin Segura",
                     sub: "Defensor central · #4 · 26 años · ecuatoriano",
                     badge: "Núcleo defensivo",
                     leftTitle: "Trayectoria competitiva",
                     leftItems: [
                       ["Selección Ecuador sub-23:", "proceso formativo continuo"],
-                      [null, "Titular indiscutido en 2025 y 2026"],
+                      [null, "Presencia regular en la línea durante 2025 y 2026"],
                       [null, "Crecimiento sostenido en rendimiento competitivo"],
                     ],
                     rightTitle: "Cualidades clave",
@@ -738,7 +731,7 @@ export default function EmelecProyecto() {
                     rightTitle: "Cualidades clave",
                     rightItems: [
                       "Perfil de #9 de área que el equipo necesita",
-                      "Trabajo específico de definición lo lleva a +12% conversión",
+                      "Con trabajo específico de definición puede elevar su eficacia",
                       "Dupla natural con Pizzini por banda derecha",
                     ],
                   },
@@ -834,28 +827,28 @@ export default function EmelecProyecto() {
             <div className="space-y-8 mb-24">
               {[
                 {
-                  problema: "87% de los goles recibidos dentro del área propia. La defensa baja y termina defendiendo en el último tercio.",
+                  problema: "Cuando el bloque se hunde al último tercio, la defensa todavía concede goles evitables, sobre todo de visitante (1,14 GC/pj fuera vs 0,89 en casa).",
                   solucion: "Defender lejos del arco propio: bloque adelantado + presión alta para que el rival no llegue al área a generar.",
                 },
                 {
-                  problema: "42% de los goles recibidos entre el minuto 30 y 60. Caída sistemática de concentración.",
+                  problema: "Hay una ventana del partido donde la concentración baja y llegan goles que cuestan puntos.",
                   solucion: "Trabajo psicológico específico de concentración por tramos + microdosificación física que sostenga la intensidad los 90 minutos.",
                 },
                 {
-                  problema: "Solo 2 goles en 6 partidos como visitante. El equipo se desarma fuera del Capwell.",
+                  problema: "Solo 2 goles y 5 puntos en 7 partidos como visitante. La versión de local todavía no viaja.",
                   solucion: "Mismo modelo en casa y de visitante: estructura no negociable. El plantel se entrena en una sola idea, no en dos versiones.",
                 },
                 {
-                  problema: "64% de inicios con pelotazo largo bajo presión rival. Sin soluciones desde abajo.",
+                  problema: "Bajo presión rival, el equipo recurre con frecuencia al pelotazo largo y entrega la posesión en mediocampo.",
                   solucion: "Inicios estructurados con apoyos cortos, terceros hombres y rotaciones automatizadas. Construir desde el arco con criterio.",
                 },
                 {
-                  problema: "8.4% de conversión vs 12-14% promedio LigaPro. No se aprovechan las pocas ocasiones que se generan.",
+                  problema: "Pocos goles para lo que genera: 13 en 16 partidos (0,81 por partido) y apenas 2 de visitante. El ataque rinde por debajo de su potencial.",
                   solucion: "Trabajo específico de definición + ataques posicionales que generen ocasiones de mayor calidad (xG por remate más alto).",
                 },
                 {
-                  problema: "6 entrenadores en 3 años. Cero identidad colectiva, cada DT empieza de cero.",
-                  solucion: "Modelo de juego escrito, transferible y de ciclo largo. Lo que hace 4to Emelec hoy puede sostenerse y crecer en el tiempo.",
+                  problema: "El envión actual se apoya en chispazos individuales más que en un modelo escrito. Sin sistema, lo bueno no se sostiene fecha a fecha.",
+                  solucion: "Modelo de juego escrito, transferible y de ciclo largo. Lo que ya hace bien Emelec hoy se vuelve repetible y escalable, y permite seguir escalando desde el 8° puesto.",
                 },
               ].map((c, i) => (
                 <div key={i} className="grid md:grid-cols-2 gap-8 items-center" data-animate>
@@ -881,9 +874,9 @@ export default function EmelecProyecto() {
               <h3 className="font-display text-4xl font-bold text-bone text-center mb-12 tracking-tighter">Proyección con el modelo propuesto</h3>
               <div className="grid md:grid-cols-3 gap-6">
                 {[
-                  { l: "Goles recibidos", v: "−40%", s: "Bajar de 1,14 a 0,70 GC/PJ en 6 meses" },
-                  { l: "Tiempo en campo rival", v: "+45%", s: "De 41% a 60% del tiempo efectivo de juego" },
-                  { l: "Conversión", v: "12%", s: "Alcanzar el promedio LigaPro y subir goles/PJ a 1,4" },
+                  { l: "Goles recibidos", v: "−30%", s: "Bajar de 1,00 a 0,70 GC/PJ en 6 meses" },
+                  { l: "Tiempo en campo rival", v: "+45%", s: "Llevar el juego al campo rival y sostener la posesión con criterio" },
+                  { l: "Conversión", v: "12%", s: "Alcanzar el promedio LigaPro y subir goles/PJ de 0,81 a 1,4" },
                 ].map((p) => (
                   <div key={p.l} className="p-8 bg-gradient-to-br from-gold-900/20 to-gold-950/10 border border-gold-500/30 rounded-2xl text-center">
                     <div className="text-bone/60 text-sm mb-2">{p.l}</div>
@@ -919,23 +912,23 @@ export default function EmelecProyecto() {
                   rivalLabel: "Independiente del Valle",
                   scoreHome: "2",
                   scoreAway: "0",
-                  rivalNote: "Líder absoluto · 31 pts",
+                  rivalNote: "Hoy líder de la LigaPro · 37 pts",
                   highlight: true,
+                },
+                {
+                  date: "31 / 05 / 2026",
+                  rivalLabel: "Universidad Católica",
+                  scoreHome: "1",
+                  scoreAway: "0",
+                  rivalNote: "3° de la tabla · 26 pts",
+                  highlight: false,
                 },
                 {
                   date: "25 / 04 / 2026",
                   rivalLabel: "LDU Quito",
                   scoreHome: "1",
                   scoreAway: "0",
-                  rivalNote: "4° de la tabla · 20 pts",
-                  highlight: false,
-                },
-                {
-                  date: "15 / 03 / 2026",
-                  rivalLabel: "Orense",
-                  scoreHome: "2",
-                  scoreAway: "1",
-                  rivalNote: "7° de la tabla · 19 pts",
+                  rivalNote: "Uno de los grandes del país",
                   highlight: false,
                 },
               ].map((m, i) => (
@@ -1007,7 +1000,7 @@ export default function EmelecProyecto() {
                   color: "gold",
                   icon: "🛡️",
                   tasks: ["Reducir goles dentro del área", "Posicionamiento defensivo", "Presión coordinada", "Balón parado defensivo"],
-                  deliverable: "−40% goles recibidos · 0% goles evitables por desconcentración 30-60'",
+                  deliverable: "−30% goles recibidos · cerrar la ventana de goles evitables en tramos clave del partido",
                 },
                 {
                   weeks: "6-12",
@@ -1015,7 +1008,7 @@ export default function EmelecProyecto() {
                   color: "green",
                   icon: "⚽",
                   tasks: ["Microdosificación integrada", "Posesión + presión", "Automatización principios", "Evaluación continua"],
-                  deliverable: "+15% efectividad · escalar a Top 8 LigaPro · clasificación a la siguiente fase",
+                  deliverable: "+15% efectividad · consolidar zona de clasificación a copa (Top 6) · sostener la versión visitante",
                 },
               ].map((p) => {
                 const colorMap = {
@@ -1058,7 +1051,7 @@ export default function EmelecProyecto() {
                 {[
                   { title: "Defensivo", border: "border-blue-500/30", text: "text-blue-400", stats: [["Goles en área propia", "−40%"], ["Ingresos al área", "−30%"]] },
                   { title: "Ofensivo", border: "border-gold-500/30", text: "text-gold-500", stats: [["Tiempo campo rival", "+45%"], ["Conversión", "12%"]] },
-                  { title: "Posicional", border: "border-green-500/30", text: "text-green-400", stats: [["Tabla LigaPro", "Top 8"], ["Meta", "Sudamericana"]] },
+                  { title: "Posicional", border: "border-green-500/30", text: "text-green-400", stats: [["Tabla LigaPro", "Top 6"], ["Meta", "Copa Sudamericana"]] },
                 ].map((c) => (
                   <div key={c.title} className={`card-dark border-l-4 ${c.border}`}>
                     <h4 className="font-display text-xl font-bold text-bone mb-4 tracking-tighter">{c.title}</h4>
